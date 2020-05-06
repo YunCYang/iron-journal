@@ -84,6 +84,7 @@ app.post('/api/auth/signup', (req, res, next) => {
     });
   }
 });
+
 // log in
 app.post('/api/auth/login', (req, res, next) => {
   if (!req.body.userName) next(new ClientError('missing user name', 400));
@@ -112,6 +113,7 @@ app.post('/api/auth/login', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
 // send reset password email
 app.post('/api/auth/reset', (req, res, next) => {
   if (!req.body.email) next(new ClientError('missing email', 400));
@@ -201,6 +203,105 @@ app.put('/api/auth/update', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
+// delete account
+app.delete('/api/auth/delete', (req, res, next) => {
+  if (!req.body.userName) next(new ClientError('missing user name', 400));
+  else if (!req.body.password) next(new ClientError('missing password', 400));
+  const searchSql = `
+    select "userName", "password"
+      from "user"
+     where "userName" = $1;
+  `;
+  const deleteSql = `
+    delete from "user"
+     where "userName" = $1;
+  `;
+  const value = [req.body.userName];
+  db.query(searchSql, value)
+    .then(searchResult => {
+      if (!searchResult.rows[0]) next(new ClientError(`user name ${req.body.userName} does not exist`, 404));
+      else {
+        bcrypt.compare(req.body.password, searchResult.rows[0].password, (err, pwdResult) => {
+          if (err) next(err);
+          if (pwdResult) {
+            db.query(deleteSql, value)
+              .then(deleteResult => {
+                res.status(204).json([]);
+              })
+              .catch(err => next(err));
+          } else next(new ClientError('password does not match', 401));
+        });
+      }
+    })
+    .catch(err => next(err));
+});
+
+// change password
+app.put('/api/auth/password', (req, res, next) => {
+  const saltRounds = 11;
+  if (!req.body.userName) next(new ClientError('missing user name', 400));
+  else if (!req.body.oldPassword) next(new ClientError('missing old password', 400));
+  else if (!req.body.newPassword) next(new ClientError('missing new password', 400));
+  const pwdTest = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*_=+-])(?=.{8,})/;
+  if (!pwdTest.exec(req.body.newPassword)) next(new ClientError('new password is not valid', 400));
+  const searchSql = `
+    select "userName", "password"
+      from "user"
+     where "userName" = $1;
+  `;
+  const updatePwSql = `
+    update "user"
+       set "password" = $1
+     where "userName" = $2
+    returning *;
+  `;
+  const searchValue = [req.body.userName];
+  db.query(searchSql, searchValue)
+    .then(searchResult => {
+      if (!searchResult.rows[0]) next(new ClientError(`user name ${req.body.userName} does not exist`, 404));
+      else {
+        bcrypt.compare(req.body.oldPassword, searchResult.rows[0].password, (err, pwdResult) => {
+          if (err) next(err);
+          if (pwdResult) {
+            bcrypt.hash(req.body.newPassword, saltRounds, (err, hash) => {
+              if (err) next(err);
+              const updateValue = [hash, req.body.userName];
+              db.query(updatePwSql, updateValue)
+                .then(updateResult => {
+                  res.status(200).json([]);
+                })
+                .catch(err => next(err));
+            });
+          } else next(new ClientError('password does not match', 401));
+        });
+      }
+    })
+    .catch(err => next(err));
+});
+
+// get character
+
+// create character
+
+// edit character stat
+
+// delete character
+
+// get vow
+
+// create vow
+
+// edit vow
+
+// delete vow
+
+// get log
+
+// add log
+
+// delete log
+
 // // get route from user
 // app.get('/api/route/all/:userId', (req, res, next) => {
 //   intTest(req.params.userId, next);
