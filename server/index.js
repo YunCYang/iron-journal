@@ -281,26 +281,44 @@ app.put('/api/auth/password', (req, res, next) => {
 });
 
 // get character
+app.get('/api/character', (req, res, next) => { });
 
 // create character
+app.post('/api/character', (req, res, next) => {
+  if (!req.body.characterName) next(new ClientError('missing character name', 400));
+  else if (!req.body.stat_edge) next(new ClientError('missing stat - edge', 400));
+  else if (!req.body.stat_heart) next(new ClientError('missing stat - heart', 400));
+  else if (!req.body.stat_iron) next(new ClientError('missing stat - iron', 400));
+  else if (!req.body.stat_shadow) next(new ClientError('missing stat - shadow', 400));
+  else if (!req.body.stat_wits) next(new ClientError('missing stat - wits', 400));
+});
 
 // edit character stat
+app.put('/api/character', (req, res, next) => { });
 
 // delete character
+app.delete('/api/character', (req, res, next) => { });
 
 // get vow
+app.get('/api/vow', (req, res, next) => { });
 
 // create vow
+app.post('/api/vow', (req, res, next) => { });
 
 // edit vow
+app.put('/api/vow', (req, res, next) => { });
 
 // delete vow
+app.delete('/api/vow', (req, res, next) => { });
 
 // get log
+app.get('/api/log', (req, res, next) => { });
 
 // add log
+app.post('/api/log', (req, res, next) => { });
 
 // delete log
+app.delete('/api/log', (req, res, next) => { });
 
 // // get route from user
 // app.get('/api/route/all/:userId', (req, res, next) => {

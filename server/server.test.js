@@ -60,9 +60,41 @@ describe('Initial Jest Test', () => {
     expect(duplicateEmailRes.status).toBe(400);
     expect(duplicateEmailRes.body.error).toBe('email alex@gmail.com already exists');
 
-    const deleteUserRes = await request.delete('/api/auth/delete').send({
+    const wrongPwdLoginRes = await request.post('/api/auth/login').send({
+      userName: 'alex',
+      password: 'Abcd124!'
+    });
+    expect(wrongPwdLoginRes.status).toBe(401);
+    expect(wrongPwdLoginRes.body.error).toBe('password does not match');
+    const loginRes = await request.post('/api/auth/login').send({
       userName: 'alex',
       password: 'Abcd123!'
+    });
+    expect(loginRes.status).toBe(200);
+
+    const wrongPwdEditRes = await request.put('/api/auth/password').send({
+      userName: 'alex',
+      oldPassword: 'Abcd124!',
+      newPassword: 'Abcd125!'
+    });
+    expect(wrongPwdEditRes.status).toBe(401);
+    expect(wrongPwdEditRes.body.error).toBe('password does not match');
+    const editRes = await request.put('/api/auth/password').send({
+      userName: 'alex',
+      oldPassword: 'Abcd123!',
+      newPassword: 'Abcd124!'
+    });
+    expect(editRes.status).toBe(200);
+
+    const wrongPwdDeleteRes = await request.delete('/api/auth/delete').send({
+      userName: 'alex',
+      password: 'Abcd123!'
+    });
+    expect(wrongPwdDeleteRes.status).toBe(401);
+    expect(wrongPwdDeleteRes.body.error).toBe('password does not match');
+    const deleteUserRes = await request.delete('/api/auth/delete').send({
+      userName: 'alex',
+      password: 'Abcd124!'
     });
     expect(deleteUserRes.status).toBe(204);
     done();
