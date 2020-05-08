@@ -291,6 +291,79 @@ app.post('/api/character', (req, res, next) => {
   else if (!req.body.stat_iron) next(new ClientError('missing stat - iron', 400));
   else if (!req.body.stat_shadow) next(new ClientError('missing stat - shadow', 400));
   else if (!req.body.stat_wits) next(new ClientError('missing stat - wits', 400));
+  else if (!req.body.asset_1) next(new ClientError('missing first asset', 400));
+  else if (!req.body.asset_2) next(new ClientError('missing second asset', 400));
+  else if (!req.body.asset_3) next(new ClientError('missing third asset', 400));
+  else if (!req.body.equipment) next(new ClientError('missing equipment', 400));
+  else if (!req.body.location) next(new ClientError('missing location', 400));
+  intTest(req.body.stat_edge, next);
+  intTest(req.body.stat_heart, next);
+  intTest(req.body.stat_iron, next);
+  intTest(req.body.stat_shadow, next);
+  intTest(req.body.stat_wits, next);
+  const createCharacterSql = `
+    insert into "character" ("characterName", "asset", "equipment", "location")
+    values ($1, ARRAY [$2, $3, $4], $5, $6)
+    returning "characterId";
+  `;
+  const updateStatSql = `
+    update "character"
+       set "stat" = ARRAY [$1::integer, $2::integer, $3::integer, $4::integer, $5::integer]
+     where "characterId" = $6;
+  `;
+  const updateBond1Sql = `
+    update "character"
+       set "bond" = ARRAY [$1]
+     where "characterId" = $2;
+  `;
+  const updateBond2Sql = `
+    update "character"
+       set "bond" = ARRAY [$1, $2]
+     where "characterId" = $3;
+  `;
+  const updateBond3Sql = `
+    update "character"
+       set "bond" = ARRAY [$1, $2, $3]
+     where "characterId" = $4;
+  `;
+  const createCharacterValue = [req.body.characterName, req.body.asset_1,
+    req.body.asset_2, req.body.asset_3, req.body.equipment, req.body.location];
+  db.query(createCharacterSql, createCharacterValue)
+    .then(createResult => {
+      const updateStatValue = [parseInt(req.body.stat_edge), parseInt(req.body.stat_heart),
+        parseInt(req.body.stat_iron), parseInt(req.body.stat_shadow), parseInt(req.body.stat_wits),
+        createResult.rows[0].characterId];
+      const updateBond1Value = [req.body.bond_1, createResult.rows[0].characterId];
+      const updateBond2Value = [req.body.bond_1, req.body.bond_2, createResult.rows[0].characterId];
+      const updateBond3Value = [req.body.bond_1, req.body.bond_2, req.body.bond_3,
+        createResult.rows[0].characterId];
+      db.query(updateStatSql, updateStatValue)
+        .then(statResult => {
+          if (req.body.bond_3) {
+            db.query(updateBond3Sql, updateBond3Value)
+              .then(bondResult => {
+                res.status(201).json(createResult.rows[0].characterId);
+              })
+              .catch(err => next(err));
+          } else if (req.body.bond_2) {
+            db.query(updateBond2Sql, updateBond2Value)
+              .then(bondResult => {
+                res.status(201).json(createResult.rows[0].characterId);
+              })
+              .catch(err => next(err));
+          } else if (req.body.bond_1) {
+            db.query(updateBond1Sql, updateBond1Value)
+              .then(bondResult => {
+                res.status(201).json(createResult.rows[0].characterId);
+              })
+              .catch(err => next(err));
+          } else {
+            res.status(201).json(createResult.rows[0].characterId);
+          }
+        })
+        .catch(err => next(err));
+    })
+    .catch(err => next(err));
 });
 
 // edit character stat

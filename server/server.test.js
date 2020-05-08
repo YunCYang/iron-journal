@@ -99,4 +99,27 @@ describe('Initial Jest Test', () => {
     expect(deleteUserRes.status).toBe(204);
     done();
   });
+
+  it('character', async done => {
+    const emptyRes = await request.post('/api/character').send({});
+    expect(emptyRes.status).toBe(400);
+    expect(emptyRes.body.error).toBe('missing character name');
+    const createCharactereRes = await request.post('/api/character').send({
+      characterName: 'Percy',
+      stat_edge: 2,
+      stat_heart: 3,
+      stat_iron: 4,
+      stat_shadow: 5,
+      stat_wits: 6,
+      asset_1: 'asset 1',
+      asset_2: 'asset 2',
+      asset_3: 'asset 3',
+      equipment: 'equipment a',
+      location: 'location b',
+      bond_1: 'bond 1',
+      bond_2: 'bond 2'
+    });
+    expect(createCharactereRes.status).toBe(201);
+    done();
+  });
 });
