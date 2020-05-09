@@ -193,9 +193,7 @@ app.put('/api/auth/update', (req, res, next) => {
             if (err) next(err);
             const updatePasswordValue = [hash, parseInt(req.body.userId)];
             db.query(updatePasswordSql, updatePasswordValue)
-              .then(updatePasswordResult => {
-                res.status(200).json(updatePasswordResult.rows[0]);
-              })
+              .then(updatePasswordResult => res.status(200).json(updatePasswordResult.rows[0]))
               .catch(err => next(err));
           });
         }
@@ -226,9 +224,7 @@ app.delete('/api/auth/delete', (req, res, next) => {
           if (err) next(err);
           if (pwdResult) {
             db.query(deleteSql, value)
-              .then(deleteResult => {
-                res.status(204).json([]);
-              })
+              .then(deleteResult => res.status(204).json([]))
               .catch(err => next(err));
           } else next(new ClientError('password does not match', 401));
         });
@@ -268,9 +264,7 @@ app.put('/api/auth/password', (req, res, next) => {
               if (err) next(err);
               const updateValue = [hash, req.body.userName];
               db.query(updatePwSql, updateValue)
-                .then(updateResult => {
-                  res.status(200).json([]);
-                })
+                .then(updateResult => res.status(200).json([]))
                 .catch(err => next(err));
             });
           } else next(new ClientError('password does not match', 401));
@@ -281,7 +275,20 @@ app.put('/api/auth/password', (req, res, next) => {
 });
 
 // get character
-app.get('/api/character', (req, res, next) => { });
+app.get('/api/character/:characterId', (req, res, next) => {
+  intTest(req.params.characterId, next);
+  const sql = `
+    select *
+      from "character"
+     where "characterId" = $1;
+  `;
+  const value = [parseInt(req.params.characterId)];
+  db.query(sql, value)
+    .then(result => {
+      res.status(200).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
 
 // create character
 app.post('/api/character', (req, res, next) => {
@@ -294,7 +301,6 @@ app.post('/api/character', (req, res, next) => {
   else if (!req.body.asset_1) next(new ClientError('missing first asset', 400));
   else if (!req.body.asset_2) next(new ClientError('missing second asset', 400));
   else if (!req.body.asset_3) next(new ClientError('missing third asset', 400));
-  else if (!req.body.equipment) next(new ClientError('missing equipment', 400));
   else if (!req.body.location) next(new ClientError('missing location', 400));
   intTest(req.body.stat_edge, next);
   intTest(req.body.stat_heart, next);
@@ -302,8 +308,8 @@ app.post('/api/character', (req, res, next) => {
   intTest(req.body.stat_shadow, next);
   intTest(req.body.stat_wits, next);
   const createCharacterSql = `
-    insert into "character" ("characterName", "asset", "equipment", "location")
-    values ($1, ARRAY [$2, $3, $4], $5, $6)
+    insert into "character" ("characterName", "asset", "location")
+    values ($1, ARRAY [$2, $3, $4], $5)
     returning "characterId";
   `;
   const updateStatSql = `
@@ -327,7 +333,7 @@ app.post('/api/character', (req, res, next) => {
      where "characterId" = $4;
   `;
   const createCharacterValue = [req.body.characterName, req.body.asset_1,
-    req.body.asset_2, req.body.asset_3, req.body.equipment, req.body.location];
+    req.body.asset_2, req.body.asset_3, req.body.location];
   db.query(createCharacterSql, createCharacterValue)
     .then(createResult => {
       const updateStatValue = [parseInt(req.body.stat_edge), parseInt(req.body.stat_heart),
@@ -341,25 +347,17 @@ app.post('/api/character', (req, res, next) => {
         .then(statResult => {
           if (req.body.bond_3) {
             db.query(updateBond3Sql, updateBond3Value)
-              .then(bondResult => {
-                res.status(201).json(createResult.rows[0].characterId);
-              })
+              .then(bondResult => res.status(201).json(createResult.rows[0].characterId))
               .catch(err => next(err));
           } else if (req.body.bond_2) {
             db.query(updateBond2Sql, updateBond2Value)
-              .then(bondResult => {
-                res.status(201).json(createResult.rows[0].characterId);
-              })
+              .then(bondResult => res.status(201).json(createResult.rows[0].characterId))
               .catch(err => next(err));
           } else if (req.body.bond_1) {
             db.query(updateBond1Sql, updateBond1Value)
-              .then(bondResult => {
-                res.status(201).json(createResult.rows[0].characterId);
-              })
+              .then(bondResult => res.status(201).json(createResult.rows[0].characterId))
               .catch(err => next(err));
-          } else {
-            res.status(201).json(createResult.rows[0].characterId);
-          }
+          } else res.status(201).json(createResult.rows[0].characterId);
         })
         .catch(err => next(err));
     })
@@ -367,11 +365,112 @@ app.post('/api/character', (req, res, next) => {
 });
 
 // edit character stat
-app.put('/api/character', (req, res, next) => { });
+app.put('/api/character/:characterId', (req, res, next) => {
+  if (!req.params.characterId) next(new ClientError('missing character id', 400));
+  intTest(req.params.characterId, next);
+  if (req.body.characterName) {
+    const nameSql = `
+      update "character"
+         set "characterName" = $1
+       where "characterId" = $2;
+    `;
+    const nameValue = [req.body.characterName, parseInt(req.params.characterId)];
+    db.query(nameSql, nameValue)
+      .then(nameResult => res.status(200).json([]))
+      .catch(err => next(err));
+  } else if (req.body.stat_edge) {
+    const edgeSql = `
+      update "character"
+         set "stat" [1] = $1
+       where "characterId" = $2;
+    `;
+    const edgeValue = [req.body.stat_edge, parseInt(req.params.characterId)];
+    db.query(edgeSql, edgeValue)
+      .then(edgeResult => res.status(200).json([]))
+      .catch(err => next(err));
+  } else if (req.body.stat_heart) {
+    const heartSql = `
+      update "character"
+         set "stat" [2] = $1
+       where "characterId" = $2;
+    `;
+    const heartValue = [req.body.stat_heart, parseInt(req.params.characterId)];
+    db.query(heartSql, heartValue)
+      .then(heartResult => res.status(200).json([]))
+      .catch(err => next(err));
+  } else if (req.body.stat_iron) {
+    const ironSql = `
+      update "character"
+         set "stat" [3] = $1
+       where "characterId" = $2;
+    `;
+    const ironValue = [req.body.stat_iron, parseInt(req.params.characterId)];
+    db.query(ironSql, ironValue)
+      .then(ironResult => res.status(200).json([]))
+      .catch(err => next(err));
+  } else if (req.body.stat_shadow) {
+    const shadowSql = `
+      update "character"
+         set "stat" [4] = $1
+       where "characterId" = $2;
+    `;
+    const shadowValue = [req.body.stat_shadow, parseInt(req.params.characterId)];
+    db.query(shadowSql, shadowValue)
+      .then(shadowResult => res.status(200).json([]))
+      .catch(err => next(err));
+  } else if (req.body.stat_wits) {
+    const witsSql = `
+      update "character"
+         set "stat" [5] = $1
+       where "characterId" = $2;
+    `;
+    const witsValue = [req.body.stat_wits, parseInt(req.params.characterId)];
+    db.query(witsSql, witsValue)
+      .then(witsResult => res.status(200).json([]))
+      .catch(err => next(err));
+  } else if (req.body.asset) {
+    return null;
+  } else if (req.body.equipment) {
+    return null;
+  } else if (req.body.location) {
+    const locationSql = `
+      update "character"
+         set "location" = $1
+       where "location" = $2;
+    `;
+    const locationValue = [req.body.location, parseInt(req.params.characterId)];
+    db.query(locationSql, locationValue)
+      .then(locationResult => res.status(200).json([]))
+      .catch(err => next(err));
+  } else if (req.body.bond) {
+    return null;
+  }
+});
 
 // delete character
-app.delete('/api/character', (req, res, next) => { });
-
+app.delete('/api/character/:characterId', (req, res, next) => {
+  intTest(req.params.characterId, next);
+  const getSql = `
+    select "characterId"
+      from "character"
+     where "characterId" = $1;
+  `;
+  const deleteSql = `
+    delete from "character"
+     where "characterId" = $1;
+  `;
+  const value = [parseInt(req.params.characterId)];
+  db.query(getSql, value)
+    .then(getResult => {
+      if (!getResult.rows[0]) next(new ClientError(`character id ${req.params.characterId} does not exist`, 404));
+      else {
+        db.query(deleteSql, value)
+          .then(deleteResult => res.status(204).json([]))
+          .catch(err => next(err));
+      }
+    })
+    .catch(err => next(err));
+});
 // get vow
 app.get('/api/vow', (req, res, next) => { });
 

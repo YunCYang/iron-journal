@@ -24,7 +24,7 @@ CREATE TABLE "character" (
 	"debilities" bool [] NOT NULL DEFAULT ARRAY [FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE],
 	"bond" varchar(255) [],
 	"asset" varchar(255) [] NOT NULL,
-	"equipment" varchar(255) NOT NULL,
+	"equipment" varchar(255) [],
 	"location" varchar(255) NOT NULL,
 	"createdAt" timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT "character_pk" PRIMARY KEY ("characterId")
