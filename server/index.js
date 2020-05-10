@@ -372,78 +372,211 @@ app.put('/api/character/:characterId', (req, res, next) => {
     const nameSql = `
       update "character"
          set "characterName" = $1
-       where "characterId" = $2;
+       where "characterId" = $2
+      returning "characterName";
     `;
     const nameValue = [req.body.characterName, parseInt(req.params.characterId)];
     db.query(nameSql, nameValue)
-      .then(nameResult => res.status(200).json([]))
+      .then(nameResult => res.status(200).json(nameResult.rows[0]))
       .catch(err => next(err));
   } else if (req.body.stat_edge) {
     const edgeSql = `
       update "character"
          set "stat" [1] = $1
-       where "characterId" = $2;
+       where "characterId" = $2
+      returning "stat" [1];
     `;
     const edgeValue = [req.body.stat_edge, parseInt(req.params.characterId)];
     db.query(edgeSql, edgeValue)
-      .then(edgeResult => res.status(200).json([]))
+      .then(edgeResult => res.status(200).json(edgeResult.rows[0]))
       .catch(err => next(err));
   } else if (req.body.stat_heart) {
     const heartSql = `
       update "character"
          set "stat" [2] = $1
-       where "characterId" = $2;
+       where "characterId" = $2
+      returning "stat" [2];
     `;
     const heartValue = [req.body.stat_heart, parseInt(req.params.characterId)];
     db.query(heartSql, heartValue)
-      .then(heartResult => res.status(200).json([]))
+      .then(heartResult => res.status(200).json(heartResult.rows[0]))
       .catch(err => next(err));
   } else if (req.body.stat_iron) {
     const ironSql = `
       update "character"
          set "stat" [3] = $1
-       where "characterId" = $2;
+       where "characterId" = $2
+      returning "stat" [3];
     `;
     const ironValue = [req.body.stat_iron, parseInt(req.params.characterId)];
     db.query(ironSql, ironValue)
-      .then(ironResult => res.status(200).json([]))
+      .then(ironResult => res.status(200).json(ironResult.rows[0]))
       .catch(err => next(err));
   } else if (req.body.stat_shadow) {
     const shadowSql = `
       update "character"
          set "stat" [4] = $1
-       where "characterId" = $2;
+       where "characterId" = $2
+      returning "stat" [4];
     `;
     const shadowValue = [req.body.stat_shadow, parseInt(req.params.characterId)];
     db.query(shadowSql, shadowValue)
-      .then(shadowResult => res.status(200).json([]))
+      .then(shadowResult => res.status(200).json(shadowResult.rows[0]))
       .catch(err => next(err));
   } else if (req.body.stat_wits) {
     const witsSql = `
       update "character"
          set "stat" [5] = $1
-       where "characterId" = $2;
+       where "characterId" = $2
+      returning "stat" [5];
     `;
     const witsValue = [req.body.stat_wits, parseInt(req.params.characterId)];
     db.query(witsSql, witsValue)
-      .then(witsResult => res.status(200).json([]))
+      .then(witsResult => res.status(200).json(witsResult.rows[0]))
       .catch(err => next(err));
   } else if (req.body.asset) {
-    return null;
+    const checkAssetSql = `
+      select "asset"
+        from "character"
+       where $1 = ANY ("asset") and "characterId" = $2;
+    `;
+    const selectAssetSql = `
+      select "asset"
+        from "character"
+       where "characterId" = $1;
+    `;
+    const addAssetSql = `
+      update "character"
+         set "asset" = ARRAY_APPEND($1, $2::varchar(255))
+       where "characterId" = $3
+      returning "asset";
+    `;
+    const deleteAssetSql = `
+      update "character"
+         set "asset" = ARRAY_REMOVE($1, $2::varchar(255))
+       where "characterId" = $3
+      returning "asset";
+    `;
+    const checkAssetValue = [req.body.asset, parseInt(req.params.characterId)];
+    const selectAssetValue = [parseInt(req.params.characterId)];
+    db.query(checkAssetSql, checkAssetValue)
+      .then(checkAssetResult => {
+        if (!checkAssetResult.rows[0]) {
+          db.query(selectAssetSql, selectAssetValue)
+            .then(selectResult => {
+              const assetValue = [selectResult.rows[0].asset, req.body.asset, parseInt(req.params.characterId)];
+              db.query(addAssetSql, assetValue)
+                .then(addAssetResult => res.status(201).json(addAssetResult.rows[0]))
+                .catch(err => next(err));
+            })
+            .catch(err => next(err));
+        } else {
+          const assetValue = [checkAssetResult.rows[0].asset, req.body.asset, parseInt(req.params.characterId)];
+          db.query(deleteAssetSql, assetValue)
+            .then(deleteAssetResult => res.status(204).json(deleteAssetResult.rows[0]))
+            .catch(err => next(err));
+        }
+      })
+      .catch(err => next(err));
   } else if (req.body.equipment) {
-    return null;
+    const checkEquipmentSql = `
+      select "equipment"
+        from "character"
+       where $1 = ANY ("equipment") and "characterId" = $2;
+    `;
+    const selectEquipmentSql = `
+      select "equipment"
+        from "character"
+       where "characterId" = $1;
+    `;
+    const addEquipmentSql = `
+      update "character"
+         set "equipment" = ARRAY_APPEND($1, $2::varchar(255))
+       where "characterId" = $3
+      returning "equipment";
+    `;
+    const deleteEquipmentSql = `
+      update "character"
+         set "equipment" = ARRAY_REMOVE($1, $2::varchar(255))
+       where "characterId" = $3
+      returning "equipment";
+    `;
+    const checkEquipmentValue = [req.body.equipment, parseInt(req.params.characterId)];
+    const selectEquipmentValue = [parseInt(req.params.characterId)];
+    db.query(checkEquipmentSql, checkEquipmentValue)
+      .then(checkEquipmentResult => {
+        if (!checkEquipmentResult.rows[0]) {
+          db.query(selectEquipmentSql, selectEquipmentValue)
+            .then(selectResult => {
+              const equipmentValue = [selectResult.rows[0].equipment, req.body.equipment, parseInt(req.params.characterId)];
+              db.query(addEquipmentSql, equipmentValue)
+                .then(addEquipmentResult => res.status(201).json(addEquipmentResult.rows[0]))
+                .catch(err => next(err));
+            })
+            .catch(err => next(err));
+        } else {
+          const equipmentValue = [checkEquipmentResult.rows[0].equipment, req.body.equipment, parseInt(req.params.characterId)];
+          db.query(deleteEquipmentSql, equipmentValue)
+            .then(deleteEquipmentResult => res.status(204).json(deleteEquipmentResult.rows[0]))
+            .catch(err => next(err));
+        }
+      })
+      .catch(err => next(err));
   } else if (req.body.location) {
     const locationSql = `
       update "character"
          set "location" = $1
-       where "location" = $2;
+       where "location" = $2
+      returning "location";
     `;
     const locationValue = [req.body.location, parseInt(req.params.characterId)];
     db.query(locationSql, locationValue)
-      .then(locationResult => res.status(200).json([]))
+      .then(locationResult => res.status(200).json(locationResult.rows[0]))
       .catch(err => next(err));
   } else if (req.body.bond) {
-    return null;
+    const checkBondSql = `
+      select "bond"
+        from "character"
+       where $1 = ANY ("bond") and "characterId" = $2;
+    `;
+    const selectBondSql = `
+      select "bond"
+        from "character"
+       where "characterId" = $1;
+    `;
+    const addBondSql = `
+      update "character"
+         set "bond" = ARRAY_APPEND($1, $2::varchar(255))
+       where "characterId" = $3
+      returning "bond";
+    `;
+    const deleteBondSql = `
+      update "character"
+         set "bond" = ARRAY_REMOVE($1, $2::varchar(255))
+       where "characterId" = $3
+      returning "bond";
+    `;
+    const checkBondValue = [req.body.bond, parseInt(req.params.characterId)];
+    const selectBondValue = [parseInt(req.params.characterId)];
+    db.query(checkBondSql, checkBondValue)
+      .then(checkBondResult => {
+        if (!checkBondResult.rows[0]) {
+          db.query(selectBondSql, selectBondValue)
+            .then(selectResult => {
+              const bondValue = [selectResult.rows[0].bond, req.body.bond, parseInt(req.params.characterId)];
+              db.query(addBondSql, bondValue)
+                .then(addBondResult => res.status(201).json(addBondResult.rows[0]))
+                .catch(err => next(err));
+            })
+            .catch(err => next(err));
+        } else {
+          const bondValue = [checkBondResult.rows[0].bond, req.body.bond, parseInt(req.params.characterId)];
+          db.query(deleteBondSql, bondValue)
+            .then(deleteBondResult => res.status(204).json(deleteBondResult.rows[0]))
+            .catch(err => next(err));
+        }
+      })
+      .catch(err => next(err));
   }
 });
 
