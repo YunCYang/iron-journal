@@ -88,13 +88,13 @@ CREATE TABLE "characterLog" (
 
 
 
-ALTER TABLE "userCharacter" ADD CONSTRAINT "userCharacter_fk0" FOREIGN KEY ("userId") REFERENCES "user"("userId");
-ALTER TABLE "userCharacter" ADD CONSTRAINT "userCharacter_fk1" FOREIGN KEY ("characterId") REFERENCES "character"("characterId");
+ALTER TABLE "userCharacter" ADD CONSTRAINT "userCharacter_fk0" FOREIGN KEY ("userId") REFERENCES "user"("userId") ON DELETE CASCADE;
+ALTER TABLE "userCharacter" ADD CONSTRAINT "userCharacter_fk1" FOREIGN KEY ("characterId") REFERENCES "character"("characterId") ON DELETE CASCADE;
 
 
-ALTER TABLE "characterVow" ADD CONSTRAINT "characterVow_fk0" FOREIGN KEY ("characterId") REFERENCES "character"("characterId");
-ALTER TABLE "characterVow" ADD CONSTRAINT "characterVow_fk1" FOREIGN KEY ("vowId") REFERENCES "vow"("vowId");
+ALTER TABLE "characterVow" ADD CONSTRAINT "characterVow_fk0" FOREIGN KEY ("characterId") REFERENCES "character"("characterId") ON DELETE CASCADE;
+ALTER TABLE "characterVow" ADD CONSTRAINT "characterVow_fk1" FOREIGN KEY ("vowId") REFERENCES "vow"("vowId") ON DELETE CASCADE;
 
 
-ALTER TABLE "characterLog" ADD CONSTRAINT "characterLog_fk0" FOREIGN KEY ("characterId") REFERENCES "character"("characterId");
-ALTER TABLE "characterLog" ADD CONSTRAINT "characterLog_fk1" FOREIGN KEY ("logId") REFERENCES "log"("logId");
+ALTER TABLE "characterLog" ADD CONSTRAINT "characterLog_fk0" FOREIGN KEY ("characterId") REFERENCES "character"("characterId") ON DELETE CASCADE;
+ALTER TABLE "characterLog" ADD CONSTRAINT "characterLog_fk1" FOREIGN KEY ("logId") REFERENCES "log"("logId") ON DELETE CASCADE;

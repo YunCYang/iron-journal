@@ -217,10 +217,6 @@ app.delete('/api/auth/delete', (req, res, next) => {
     delete from "user"
      where "userId" = $1;
   `;
-  const deleteUserCharacterSql = `
-    delete from "userCharacter"
-     where "userId" = $1;
-  `;
   const value = [req.body.userName];
   const deleteValue = [parseInt(req.body.userId)];
   db.query(searchSql, value)
@@ -230,12 +226,8 @@ app.delete('/api/auth/delete', (req, res, next) => {
         bcrypt.compare(req.body.password, searchResult.rows[0].password, (err, pwdResult) => {
           if (err) next(err);
           if (pwdResult) {
-            db.query(deleteUserCharacterSql, deleteValue)
-              .then(deleteURResult => {
-                db.query(deleteSql, deleteValue)
-                  .then(deleteResult => res.status(204).json([]))
-                  .catch(err => next(err));
-              })
+            db.query(deleteSql, deleteValue)
+              .then(deleteResult => res.status(204).json([]))
               .catch(err => next(err));
           } else next(new ClientError('password does not match', 401));
         });
@@ -627,20 +619,27 @@ app.delete('/api/character/:userId/:characterId', (req, res, next) => {
     delete from "character"
      where "characterId" = $1;
   `;
-  const deleteUserCharacterSql = `
-    delete from "userCharacter"
-     where "characterId" = $1 and "userId" = $2;
+  const deleteVowSql = `
+    delete from "vow"
+     where "vowId" IN (SELECT "vowId" from "characterVow" where "characterId" = $1);
+  `;
+  const deleteLogSql = `
+    delete from "log"
+     where "logId" IN (SELECT "logId" from "characterLog" where "characterId" = $1);
   `;
   const value = [parseInt(req.params.characterId)];
-  const deleteUserCharacterValue = [parseInt(req.params.characterId), parseInt(req.params.userId)];
   db.query(getSql, value)
     .then(getResult => {
       if (!getResult.rows[0]) next(new ClientError(`character id ${req.params.characterId} does not exist`, 404));
       else {
-        db.query(deleteUserCharacterSql, deleteUserCharacterValue)
-          .then(deleteURResult => {
-            db.query(deleteSql, value)
-              .then(deleteResult => res.status(204).json([]))
+        db.query(deleteVowSql, value)
+          .then(deleteVowResult => {
+            db.query(deleteLogSql, value)
+              .then(deleteLogResult => {
+                db.query(deleteSql, value)
+                  .then(deleteResult => res.status(204).json([]))
+                  .catch(err => next(err));
+              })
               .catch(err => next(err));
           })
           .catch(err => next(err));
@@ -664,68 +663,55 @@ app.post('/api/vow', (req, res, next) => {
   intTest(req.body.characterId, next);
   intTest(req.body.vowRank, next);
   intTest(req.body.vowProgress, next);
-  // const createCharacterSql = `
-  //   insert into "character" ("characterName", "asset", "location")
-  //   values ($1, ARRAY [$2, $3, $4], $5)
-  //   returning "characterId";
-  // `;
-  // const updateStatSql = `
-  //   update "character"
-  //      set "stat" = ARRAY [$1::integer, $2::integer, $3::integer, $4::integer, $5::integer]
-  //    where "characterId" = $6;
-  // `;
-  // const updateBond1Sql = `
-  //   update "character"
-  //      set "bond" = ARRAY [$1]
-  //    where "characterId" = $2;
-  // `;
-  // const updateBond2Sql = `
-  //   update "character"
-  //      set "bond" = ARRAY [$1, $2]
-  //    where "characterId" = $3;
-  // `;
-  // const updateBond3Sql = `
-  //   update "character"
-  //      set "bond" = ARRAY [$1, $2, $3]
-  //    where "characterId" = $4;
-  // `;
-  // const createCharacterValue = [req.body.characterName, req.body.asset_1,
-  // req.body.asset_2, req.body.asset_3, req.body.location];
-  // db.query(createCharacterSql, createCharacterValue)
-  //   .then(createResult => {
-  //     const updateStatValue = [parseInt(req.body.stat_edge), parseInt(req.body.stat_heart),
-  //     parseInt(req.body.stat_iron), parseInt(req.body.stat_shadow), parseInt(req.body.stat_wits),
-  //     createResult.rows[0].characterId];
-  //     const updateBond1Value = [req.body.bond_1, createResult.rows[0].characterId];
-  //     const updateBond2Value = [req.body.bond_1, req.body.bond_2, createResult.rows[0].characterId];
-  //     const updateBond3Value = [req.body.bond_1, req.body.bond_2, req.body.bond_3,
-  //     createResult.rows[0].characterId];
-  //     db.query(updateStatSql, updateStatValue)
-  //       .then(statResult => {
-  //         if (req.body.bond_3) {
-  //           db.query(updateBond3Sql, updateBond3Value)
-  //             .then(bondResult => res.status(201).json(createResult.rows[0].characterId))
-  //             .catch(err => next(err));
-  //         } else if (req.body.bond_2) {
-  //           db.query(updateBond2Sql, updateBond2Value)
-  //             .then(bondResult => res.status(201).json(createResult.rows[0].characterId))
-  //             .catch(err => next(err));
-  //         } else if (req.body.bond_1) {
-  //           db.query(updateBond1Sql, updateBond1Value)
-  //             .then(bondResult => res.status(201).json(createResult.rows[0].characterId))
-  //             .catch(err => next(err));
-  //         } else res.status(201).json(createResult.rows[0].characterId);
-  //       })
-  //       .catch(err => next(err));
-  //   })
-  //   .catch(err => next(err));
+  const createVowSql = `
+    insert into "vow" ("name", "rank", "progress", "status")
+    values ($1, $2, $3, $4)
+    returning "vowId";
+  `;
+  const setCharacterVowSql = `
+    insert into "characterVow" ("characterId", "vowId")
+    values ($1, $2);
+  `;
+  const createVowValue = [req.body.vowName, parseInt(req.body.vowRank), parseInt(req.body.vowProgress),
+    req.body.vowStatus];
+  db.query(createVowSql, createVowValue)
+    .then(createVowResult => {
+      const setCharacterVowValue = [parseInt(req.body.characterId), parseInt(createVowResult.rows[0].vowId)];
+      db.query(setCharacterVowSql, setCharacterVowValue)
+        .then(setCharacterCowResult => res.status(201).json(createVowResult.rows[0].vowId))
+        .catch(err => next(err));
+    })
+    .catch(err => next(err));
 });
 
 // edit vow
 app.put('/api/vow/:vowId', (req, res, next) => { });
 
 // delete vow
-app.delete('/api/vow/:vowId', (req, res, next) => { });
+app.delete('/api/vow/:characterId/:vowId', (req, res, next) => {
+  intTest(req.params.characterId, next);
+  intTest(req.params.vowId, next);
+  const getSql = `
+    select "vowId"
+      from "vow"
+     where "vowId" = $1;
+  `;
+  const deleteSql = `
+    delete from "vow"
+     where "vowId" = $1;
+  `;
+  const value = [parseInt(req.params.vowId)];
+  db.query(getSql, value)
+    .then(getResult => {
+      if (!getResult.rows[0]) next(new ClientError(`vow id ${req.params.vowId} does not exist`, 404));
+      else {
+        db.query(deleteSql, value)
+          .then(deleteResult => res.status(204).json([]))
+          .catch(err => next(err));
+      }
+    })
+    .catch(err => next(err));
+});
 
 // get log
 app.get('/api/log/:logId', (req, res, next) => { });
