@@ -15,15 +15,16 @@ CREATE TABLE "user" (
 CREATE TABLE "character" (
 	"characterId" serial NOT NULL,
 	"characterName" varchar(255) NOT NULL,
-	"exprience" int NOT NULL,
-	"stat" int NOT NULL,
-	"momentum" int NOT NULL,
-	"health" int NOT NULL,
-	"spirit" int NOT NULL,
-	"supply" int NOT NULL,
-	"debilities" bool NOT NULL,
-	"bond" varchar(255) NOT NULL,
-	"equipment" varchar(255) NOT NULL,
+	"exprience" int NOT NULL DEFAULT 0,
+	"stat" int [],
+	"momentum" int [] NOT NULL DEFAULT ARRAY [2, 10, 2],
+	"health" int NOT NULL DEFAULT 5,
+	"spirit" int NOT NULL DEFAULT 5,
+	"supply" int NOT NULL DEFAULT 5,
+	"debilities" bool [] NOT NULL DEFAULT ARRAY [FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE],
+	"bond" varchar(255) [],
+	"asset" varchar(255) [] NOT NULL,
+	"equipment" varchar(255) [],
 	"location" varchar(255) NOT NULL,
 	"createdAt" timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT "character_pk" PRIMARY KEY ("characterId")
@@ -67,7 +68,7 @@ CREATE TABLE "characterVow" (
 CREATE TABLE "log" (
 	"logId" serial NOT NULL,
 	"note" varchar(255) NOT NULL,
-	"roll" int NOT NULL,
+	"roll" int,
 	"createdAt" timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT "log_pk" PRIMARY KEY ("logId")
 ) WITH (
@@ -87,13 +88,13 @@ CREATE TABLE "characterLog" (
 
 
 
-ALTER TABLE "userCharacter" ADD CONSTRAINT "userCharacter_fk0" FOREIGN KEY ("userId") REFERENCES "user"("userId");
-ALTER TABLE "userCharacter" ADD CONSTRAINT "userCharacter_fk1" FOREIGN KEY ("characterId") REFERENCES "character"("characterId");
+ALTER TABLE "userCharacter" ADD CONSTRAINT "userCharacter_fk0" FOREIGN KEY ("userId") REFERENCES "user"("userId") ON DELETE CASCADE;
+ALTER TABLE "userCharacter" ADD CONSTRAINT "userCharacter_fk1" FOREIGN KEY ("characterId") REFERENCES "character"("characterId") ON DELETE CASCADE;
 
 
-ALTER TABLE "characterVow" ADD CONSTRAINT "characterVow_fk0" FOREIGN KEY ("characterId") REFERENCES "character"("characterId");
-ALTER TABLE "characterVow" ADD CONSTRAINT "characterVow_fk1" FOREIGN KEY ("vowId") REFERENCES "vow"("vowId");
+ALTER TABLE "characterVow" ADD CONSTRAINT "characterVow_fk0" FOREIGN KEY ("characterId") REFERENCES "character"("characterId") ON DELETE CASCADE;
+ALTER TABLE "characterVow" ADD CONSTRAINT "characterVow_fk1" FOREIGN KEY ("vowId") REFERENCES "vow"("vowId") ON DELETE CASCADE;
 
 
-ALTER TABLE "characterLog" ADD CONSTRAINT "characterLog_fk0" FOREIGN KEY ("characterId") REFERENCES "character"("characterId");
-ALTER TABLE "characterLog" ADD CONSTRAINT "characterLog_fk1" FOREIGN KEY ("logId") REFERENCES "log"("logId");
+ALTER TABLE "characterLog" ADD CONSTRAINT "characterLog_fk0" FOREIGN KEY ("characterId") REFERENCES "character"("characterId") ON DELETE CASCADE;
+ALTER TABLE "characterLog" ADD CONSTRAINT "characterLog_fk1" FOREIGN KEY ("logId") REFERENCES "log"("logId") ON DELETE CASCADE;
