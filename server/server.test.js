@@ -161,8 +161,70 @@ describe('Initial Jest Test', () => {
     });
     expect(deleteCharacterBondRes.status).toBe(204);
 
-    const deleteCharaccterRes = await request.delete(`/api/character/${loginRes.body.userId}/${createCharacterRes.body}`);
-    expect(deleteCharaccterRes.status).toBe(204);
+    const missVowNameRes = await request.post('/api/vow').send({
+      vowRank: 1,
+      vowProgress: 2,
+      vowStatus: 3,
+      characterId: createCharacterRes.body
+    });
+    expect(missVowNameRes.status).toBe(400);
+    expect(missVowNameRes.body.error).toBe('missing vow name');
+    const createVowRes = await request.post('/api/vow').send({
+      vowName: 'vow 1',
+      vowRank: 1,
+      vowProgress: 2,
+      vowStatus: 3,
+      characterId: createCharacterRes.body
+    });
+    expect(createVowRes.status).toBe(201);
+    expect(typeof createVowRes.body).toBe('number');
+    const getVowRes = await request.get(`/api/vow/${createVowRes.body}`);
+    expect(getVowRes.status).toBe(200);
+    expect(getVowRes.body.rank).toBe(1);
+    const editVowNameRes = await request.put(`/api/vow/${createVowRes.body}`).send({
+      vowName: 'vow 2'
+    });
+    expect(editVowNameRes.status).toBe(200);
+    expect(editVowNameRes.body.name).toBe('vow 2');
+    const editVowRankRes = await request.put(`/api/vow/${createVowRes.body}`).send({
+      vowRank: 4
+    });
+    expect(editVowRankRes.status).toBe(200);
+    expect(editVowRankRes.body.rank).toBe(4);
+    const editVowProgressRes = await request.put(`/api/vow/${createVowRes.body}`).send({
+      vowProgress: 5
+    });
+    expect(editVowProgressRes.status).toBe(200);
+    expect(editVowProgressRes.body.progress).toBe(5);
+    const editVowStatusRes = await request.put(`/api/vow/${createVowRes.body}`).send({
+      vowStatus: 6
+    });
+    expect(editVowStatusRes.status).toBe(200);
+    expect(editVowStatusRes.body.status).toBe('6');
+    const deleteVowRes = await request.delete(`/api/vow/${createVowRes.body}`);
+    expect(deleteVowRes.status).toBe(204);
+
+    const missLogNoteRes = await request.post('/api/log').send({
+      roll: 1,
+      characterId: createCharacterRes.body
+    });
+    expect(missLogNoteRes.status).toBe(400);
+    expect(missLogNoteRes.body.error).toBe('missing note');
+    const createLogRes = await request.post('/api/log').send({
+      note: 'note 1',
+      roll: 1,
+      characterId: createCharacterRes.body
+    });
+    expect(createLogRes.status).toBe(201);
+    expect(typeof createLogRes.body).toBe('number');
+    const getLogRes = await request.get(`/api/log/${createLogRes.body}`);
+    expect(getLogRes.status).toBe(200);
+    expect(getLogRes.body.roll).toBe(1);
+    const deleteLogRes = await request.delete(`/api/log/${createLogRes.body}`);
+    expect(deleteLogRes.status).toBe(204);
+
+    const deleteCharacterRes = await request.delete(`/api/character/${createCharacterRes.body}`);
+    expect(deleteCharacterRes.status).toBe(204);
 
     const wrongPwdEditRes = await request.put('/api/auth/password').send({
       userName: 'alex',

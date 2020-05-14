@@ -68,7 +68,7 @@ CREATE TABLE "characterVow" (
 CREATE TABLE "log" (
 	"logId" serial NOT NULL,
 	"note" varchar(255) NOT NULL,
-	"roll" int NOT NULL,
+	"roll" int,
 	"createdAt" timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT "log_pk" PRIMARY KEY ("logId")
 ) WITH (

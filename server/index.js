@@ -295,8 +295,9 @@ app.get('/api/character/:characterId', (req, res, next) => {
 app.get('/api/character/:userId', (req, res, next) => {
   intTest(req.params.userId, next);
   const sql = `
-    select "characterId"
-      from "userCharacter"
+    select *
+      from "character" c
+      left join "userCharacter" u on c."characterId" = u."charaterId"
      where "userId" = $1;
   `;
   const value = [parseInt(req.params.userId)];
@@ -392,7 +393,6 @@ app.post('/api/character', (req, res, next) => {
 
 // edit character stat
 app.put('/api/character/:characterId', (req, res, next) => {
-  if (!req.params.characterId) next(new ClientError('missing character id', 400));
   intTest(req.params.characterId, next);
   if (req.body.characterName) {
     const nameSql = `
@@ -607,8 +607,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
 });
 
 // delete character
-app.delete('/api/character/:userId/:characterId', (req, res, next) => {
-  intTest(req.params.userId, next);
+app.delete('/api/character/:characterId', (req, res, next) => {
   intTest(req.params.characterId, next);
   const getSql = `
     select "characterId"
@@ -648,10 +647,33 @@ app.delete('/api/character/:userId/:characterId', (req, res, next) => {
     .catch(err => next(err));
 });
 // get vow
-app.get('/api/vow/:vowId', (req, res, next) => { });
+app.get('/api/vow/:vowId', (req, res, next) => {
+  intTest(req.params.vowId, next);
+  const sql = `
+    select *
+      from "vow"
+     where "vowId" = $1;
+  `;
+  const value = [parseInt(req.params.vowId)];
+  db.query(sql, value)
+    .then(result => res.status(200).json(result.rows[0]))
+    .catch(err => next(err));
+});
 
 // get all vows
-app.get('/api/vow/:characterId/:vowId', (req, res, next) => { });
+app.get('/api/vow/:characterId', (req, res, next) => {
+  intTest(req.params.characterId, next);
+  const sql = `
+    select *
+      from "vow" v
+      left join "characterVow" c on v."vowId" = c."vowId"
+     where "characterId" = $1;
+  `;
+  const value = [parseInt(req.params.characterId)];
+  db.query(sql, value)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
 
 // create vow
 app.post('/api/vow', (req, res, next) => {
@@ -678,18 +700,66 @@ app.post('/api/vow', (req, res, next) => {
     .then(createVowResult => {
       const setCharacterVowValue = [parseInt(req.body.characterId), parseInt(createVowResult.rows[0].vowId)];
       db.query(setCharacterVowSql, setCharacterVowValue)
-        .then(setCharacterCowResult => res.status(201).json(createVowResult.rows[0].vowId))
+        .then(setCharacterVowResult => res.status(201).json(createVowResult.rows[0].vowId))
         .catch(err => next(err));
     })
     .catch(err => next(err));
 });
 
 // edit vow
-app.put('/api/vow/:vowId', (req, res, next) => { });
+app.put('/api/vow/:vowId', (req, res, next) => {
+  intTest(req.params.vowId, next);
+  if (req.body.vowName) {
+    const nameSql = `
+      update "vow"
+         set "name" = $1
+       where "vowId" = $2
+      returning "name";
+    `;
+    const nameValue = [req.body.vowName, parseInt(req.params.vowId)];
+    db.query(nameSql, nameValue)
+      .then(nameResult => res.status(200).json(nameResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.vowRank) {
+    intTest(req.body.vowRank, next);
+    const rankSql = `
+      update "vow"
+         set "rank" = $1
+       where "vowId" = $2
+      returning "rank";
+    `;
+    const rankValue = [req.body.vowRank, parseInt(req.params.vowId)];
+    db.query(rankSql, rankValue)
+      .then(rankResult => res.status(200).json(rankResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.vowProgress) {
+    intTest(req.body.vowProgress, next);
+    const progressSql = `
+      update "vow"
+         set "progress" = $1
+       where "vowId" = $2
+      returning "progress";
+    `;
+    const progressValue = [req.body.vowProgress, parseInt(req.params.vowId)];
+    db.query(progressSql, progressValue)
+      .then(progressResult => res.status(200).json(progressResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.vowStatus) {
+    const statusSql = `
+      update "vow"
+         set "status" = $1
+       where "vowId" = $2
+      returning "status";
+    `;
+    const statusValue = [req.body.vowStatus, parseInt(req.params.vowId)];
+    db.query(statusSql, statusValue)
+      .then(statusResult => res.status(200).json(statusResult.rows[0]))
+      .catch(err => next(err));
+  }
+});
 
 // delete vow
-app.delete('/api/vow/:characterId/:vowId', (req, res, next) => {
-  intTest(req.params.characterId, next);
+app.delete('/api/vow/:vowId', (req, res, next) => {
   intTest(req.params.vowId, next);
   const getSql = `
     select "vowId"
@@ -714,84 +784,91 @@ app.delete('/api/vow/:characterId/:vowId', (req, res, next) => {
 });
 
 // get log
-app.get('/api/log/:logId', (req, res, next) => { });
+app.get('/api/log/:characterId', (req, res, next) => {
+  intTest(req.params.characterId, next);
+  const sql = `
+    select *
+      from "log" l
+      left join "characterLog" c on l."logId" = c."logId"
+     where "characterId" = $1;
+  `;
+  const value = [parseInt(req.params.characterId)];
+  db.query(sql, value)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
 
 // add log
 app.post('/api/log', (req, res, next) => {
-  // if (!req.body.characterName) next(new ClientError('missing character name', 400));
-  // else if (!req.body.stat_edge) next(new ClientError('missing stat - edge', 400));
-  // else if (!req.body.stat_heart) next(new ClientError('missing stat - heart', 400));
-  // else if (!req.body.stat_iron) next(new ClientError('missing stat - iron', 400));
-  // else if (!req.body.stat_shadow) next(new ClientError('missing stat - shadow', 400));
-  // else if (!req.body.stat_wits) next(new ClientError('missing stat - wits', 400));
-  // else if (!req.body.asset_1) next(new ClientError('missing first asset', 400));
-  // else if (!req.body.asset_2) next(new ClientError('missing second asset', 400));
-  // else if (!req.body.asset_3) next(new ClientError('missing third asset', 400));
-  // else if (!req.body.location) next(new ClientError('missing location', 400));
-  // intTest(req.body.stat_edge, next);
-  // intTest(req.body.stat_heart, next);
-  // intTest(req.body.stat_iron, next);
-  // intTest(req.body.stat_shadow, next);
-  // intTest(req.body.stat_wits, next);
-  // const createCharacterSql = `
-  //   insert into "character" ("characterName", "asset", "location")
-  //   values ($1, ARRAY [$2, $3, $4], $5)
-  //   returning "characterId";
-  // `;
-  // const updateStatSql = `
-  //   update "character"
-  //      set "stat" = ARRAY [$1::integer, $2::integer, $3::integer, $4::integer, $5::integer]
-  //    where "characterId" = $6;
-  // `;
-  // const updateBond1Sql = `
-  //   update "character"
-  //      set "bond" = ARRAY [$1]
-  //    where "characterId" = $2;
-  // `;
-  // const updateBond2Sql = `
-  //   update "character"
-  //      set "bond" = ARRAY [$1, $2]
-  //    where "characterId" = $3;
-  // `;
-  // const updateBond3Sql = `
-  //   update "character"
-  //      set "bond" = ARRAY [$1, $2, $3]
-  //    where "characterId" = $4;
-  // `;
-  // const createCharacterValue = [req.body.characterName, req.body.asset_1,
-  // req.body.asset_2, req.body.asset_3, req.body.location];
-  // db.query(createCharacterSql, createCharacterValue)
-  //   .then(createResult => {
-  //     const updateStatValue = [parseInt(req.body.stat_edge), parseInt(req.body.stat_heart),
-  //     parseInt(req.body.stat_iron), parseInt(req.body.stat_shadow), parseInt(req.body.stat_wits),
-  //     createResult.rows[0].characterId];
-  //     const updateBond1Value = [req.body.bond_1, createResult.rows[0].characterId];
-  //     const updateBond2Value = [req.body.bond_1, req.body.bond_2, createResult.rows[0].characterId];
-  //     const updateBond3Value = [req.body.bond_1, req.body.bond_2, req.body.bond_3,
-  //     createResult.rows[0].characterId];
-  //     db.query(updateStatSql, updateStatValue)
-  //       .then(statResult => {
-  //         if (req.body.bond_3) {
-  //           db.query(updateBond3Sql, updateBond3Value)
-  //             .then(bondResult => res.status(201).json(createResult.rows[0].characterId))
-  //             .catch(err => next(err));
-  //         } else if (req.body.bond_2) {
-  //           db.query(updateBond2Sql, updateBond2Value)
-  //             .then(bondResult => res.status(201).json(createResult.rows[0].characterId))
-  //             .catch(err => next(err));
-  //         } else if (req.body.bond_1) {
-  //           db.query(updateBond1Sql, updateBond1Value)
-  //             .then(bondResult => res.status(201).json(createResult.rows[0].characterId))
-  //             .catch(err => next(err));
-  //         } else res.status(201).json(createResult.rows[0].characterId);
-  //       })
-  //       .catch(err => next(err));
-  //   })
-  //   .catch(err => next(err));
+  if (!req.body.characterId) next(new ClientError('missing character id', 400));
+  else if (!req.body.note) next(new ClientError('missing note', 400));
+  intTest(req.body.characterId, next);
+  if (req.body.roll) {
+    intTest(req.body.roll, next);
+    const createLogSql = `
+      insert into "log" ("note", "roll")
+      values ($1, $2)
+      returning "logId";
+    `;
+    const createLogValue = [req.body.note, parseInt(req.body.roll)];
+    const setCharacterLogSql = `
+      insert into "characterLog" ("characterId", "logId")
+      values ($1, $2);
+    `;
+    db.query(createLogSql, createLogValue)
+      .then(createLogResult => {
+        const setCharacterLogValue = [parseInt(req.body.characterId), parseInt(createLogResult.rows[0].logId)];
+        db.query(setCharacterLogSql, setCharacterLogValue)
+          .then(setCharacterLogResult => res.status(201).json(createLogResult.rows[0].logId))
+          .catch(err => next(err));
+      })
+      .catch(err => next(err));
+  } else {
+    const createLogSql = `
+      insert into "log" ("note")
+      values ($1)
+      returning "logId";
+    `;
+    const createLogValue = [req.body.note];
+    const setCharacterLogSql = `
+      insert into "characterLog" ("characterId", "logId")
+      values ($1, $2);
+    `;
+    db.query(createLogSql, createLogValue)
+      .then(createLogResult => {
+        const setCharacterLogValue = [parseInt(req.body.characterId), parseInt(createLogResult.rows[0].logId)];
+        db.query(setCharacterLogSql, setCharacterLogValue)
+          .then(setCharacterLogResult => res.status(201).json(createLogResult.rows[0].logId))
+          .catch(err => next(err));
+      })
+      .catch(err => next(err));
+  }
 });
 
 // delete log
-app.delete('/api/log/:logId', (req, res, next) => { });
+app.delete('/api/log/:logId', (req, res, next) => {
+  intTest(req.params.logId, next);
+  const getSql = `
+    select "logId"
+      from "log"
+     where "logId" = $1;
+  `;
+  const deleteSql = `
+    delete from "log"
+     where "logId" = $1;
+  `;
+  const value = [parseInt(req.params.logId)];
+  db.query(getSql, value)
+    .then(getResult => {
+      if (!getResult.rows[0]) next(new ClientError(`log id ${req.params.logId} does not exist`, 404));
+      else {
+        db.query(deleteSql, value)
+          .then(deleteResult => res.status(204).json([]))
+          .catch(err => next(err));
+      }
+    })
+    .catch(err => next(err));
+});
 
 app.get('/api/health-check', (req, res, next) => {
   db.query('select \'successfully connected\' as "message"')
