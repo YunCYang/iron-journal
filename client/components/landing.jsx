@@ -3,7 +3,7 @@ import React from 'react';
 const Landing = () => {
   return (
     <div className='landing'>
-      <div className="landing-dice"></div>
+      <div className="landing-logo"></div>
       <div className="landing-action"></div>
     </div>
   );

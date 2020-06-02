@@ -1,3 +1,86 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,500;1,700;1,800;1,900&display=swap')
 
+// font size: 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72px
+// font weigth: 400 | 400 / 500 | 600 / 700
+// line length: 20 35em
+// space: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 640, 768px
+
+/*
+  single shadow:
+    0 1px 3px hsla(0, 0%, .2);
+    0 4px 6px hsla(0, 0%, .2);
+    0 5px 15px hsla(0, 0%, .2);
+    0 10px 24px hsla(0, 0%, .2);
+    0 15px 35px hsla(0, 0%, .2);
+
+    raise top example: box-shadow: inset 0 1px 0 hsl(224, 84%, 74%);
+    raise bot example: box-shadow: 0 1px 3px hsla(0, 0%, 0%, .2);
+
+  double shadows:
+    0 1px 3px hsla(0, 0%, .12);
+    0 1px 2px hsla(0, 0%, .24);
+
+    0 3px 6px hsla(0, 0%, .15);
+    0 2px 4px hsla(0, 0%, .12);
+
+    0 10px 20px hsla(0, 0%, .15);
+    0 3px 6px hsla(0, 0%, .10);
+
+    0 15px 25px hsla(0, 0%, .15);
+    0 5px 10px hsla(0, 0%, .5);
+
+    0 20px 40px hsla(0, 0%, .2);
+
+000F08 - Dark Jungle Green
+1C3738 - Outer Space (Crayola)
+4D4847 - Dark Liver
+F4FFF8 - Mint Cream
+8BAAAD - Pewter Blue
+*/
+
 $font-main: 'Alegreya', serif
+$color-grey_100: hsla(152, 0%, 97%, 1)
+$color-grey_200: hsla(152, 0%, 87%, 1)
+$color-grey_300: hsla(152, 0%, 75%, 1)
+$color-grey_400: hsla(152, 0%, 62%, 1)
+$color-grey_500: hsla(152, 0%, 50%, 1)
+$color-grey_600: hsla(152, 0%, 37%, 1)
+$color-grey_700: hsla(152, 0%, 25%, 1)
+$color-grey_800: hsla(152, 0%, 14%, 1)
+$color-grey_900: hsla(152, 0%, 3%, 1)
+$color-prime_100: hsla(152, 100%, 97%, 1)
+$color-prime_200: hsla(152, 100%, 87%, 1)
+$color-prime_300: hsla(152, 100%, 75%, 1)
+$color-prime_400: hsla(152, 100%, 62%, 1)
+$color-prime_500: hsla(152, 100%, 50%, 1)
+$color-prime_600: hsla(152, 100%, 37%, 1)
+$color-prime_700: hsla(152, 100%, 25%, 1)
+$color-prime_800: hsla(152, 100%, 14%, 1)
+$color-prime_900: hsla(152, 100%, 3%, 1)
+$color-ascent1_100: hsla(180, 33%, 84%, 1)
+$color-ascent1_200: hsla(182, 33%, 75%, 1)
+$color-ascent1_300: hsla(184, 33%, 67%, 1)
+$color-ascent1_400: hsla(187, 33%, 59%, 1)
+$color-ascent1_500: hsla(190, 33%, 50%, 1)
+$color-ascent1_600: hsla(187, 33%, 41%, 1)
+$color-ascent1_700: hsla(184, 33%, 33%, 1)
+$color-ascent1_800: hsla(182, 33%, 25%, 1)
+$color-ascent1_900: hsla(180, 33%, 16%, 1)
+$color-ascent2_100: hsla(10, 4%, 78%, 1)
+$color-ascent2_200: hsla(10, 4%, 71%, 1)
+$color-ascent2_300: hsla(10, 4%, 64%, 1)
+$color-ascent2_400: hsla(10, 4%, 57%, 1)
+$color-ascent2_500: hsla(10, 4%, 50%, 1)
+$color-ascent2_600: hsla(10, 4%, 43%, 1)
+$color-ascent2_700: hsla(10, 4%, 36%, 1)
+$color-ascent2_800: hsla(10, 4%, 29%, 1)
+$color-ascent2_900: hsla(10, 4%, 22%, 1)
+$color-ascent3_100: hsla(185, 32%, 72%, 1)
+$color-ascent3_200: hsla(185, 25%, 66%, 1)
+$color-ascent3_300: hsla(185, 17%, 61%, 1)
+$color-ascent3_400: hsla(185, 17%, 55%, 1)
+$color-ascent3_500: hsla(185, 17%, 50%, 1)
+$color-ascent3_600: hsla(185, 17%, 44%, 1)
+$color-ascent3_700: hsla(185, 17%, 39%, 1)
+$color-ascent3_800: hsla(185, 25%, 33%, 1)
+$color-ascent3_900: hsla(185, 32%, 28%, 1)
