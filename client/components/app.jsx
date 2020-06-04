@@ -7,7 +7,9 @@ const App = () => {
     <Router>
       <Switch>
         <>
-          <Route exact path="/" render={() => <Landing />} />
+          <div className="main">
+            <Route exact path="/" render={() => <Landing />} />
+          </div>
         </>
       </Switch>
     </Router>

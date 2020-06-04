@@ -4,39 +4,36 @@
 // font weigth: 400 | 400 / 500 | 600 / 700
 // line length: 20 35em
 // space: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 640, 768px
+// 000F08 - Dark Jungle Green
+// 1C3738 - Outer Space (Crayola)
+// 4D4847 - Dark Liver
+// F4FFF8 - Mint Cream
+// 8BAAAD - Pewter Blue
 
-/*
-  single shadow:
-    0 1px 3px hsla(0, 0%, .2);
-    0 4px 6px hsla(0, 0%, .2);
-    0 5px 15px hsla(0, 0%, .2);
-    0 10px 24px hsla(0, 0%, .2);
-    0 15px 35px hsla(0, 0%, .2);
+//  single shadow:
+//    0 1px 3px hsla(0, 0%, .2);
+//    0 4px 6px hsla(0, 0%, .2);
+//    0 5px 15px hsla(0, 0%, .2);
+//    0 10px 24px hsla(0, 0%, .2);
+//    0 15px 35px hsla(0, 0%, .2);
 
-    raise top example: box-shadow: inset 0 1px 0 hsl(224, 84%, 74%);
-    raise bot example: box-shadow: 0 1px 3px hsla(0, 0%, 0%, .2);
+//    raise top example: box-shadow: inset 0 1px 0 hsl(224, 84%, 74%);
+//    raise bot example: box-shadow: 0 1px 3px hsla(0, 0%, 0%, .2);
 
-  double shadows:
-    0 1px 3px hsla(0, 0%, .12);
-    0 1px 2px hsla(0, 0%, .24);
+//  double shadows:
+//    0 1px 3px hsla(0, 0%, .12);
+//    0 1px 2px hsla(0, 0%, .24);
 
-    0 3px 6px hsla(0, 0%, .15);
-    0 2px 4px hsla(0, 0%, .12);
+//    0 3px 6px hsla(0, 0%, .15);
+//    0 2px 4px hsla(0, 0%, .12);
 
-    0 10px 20px hsla(0, 0%, .15);
-    0 3px 6px hsla(0, 0%, .10);
+//    0 10px 20px hsla(0, 0%, .15);
+//    0 3px 6px hsla(0, 0%, .10);
 
-    0 15px 25px hsla(0, 0%, .15);
-    0 5px 10px hsla(0, 0%, .5);
+//    0 15px 25px hsla(0, 0%, .15);
+//    0 5px 10px hsla(0, 0%, .5);
 
-    0 20px 40px hsla(0, 0%, .2);
-
-000F08 - Dark Jungle Green
-1C3738 - Outer Space (Crayola)
-4D4847 - Dark Liver
-F4FFF8 - Mint Cream
-8BAAAD - Pewter Blue
-*/
+//    0 20px 40px hsla(0, 0%, .2);
 
 $font-main: 'Alegreya', serif
 $color-grey_100: hsla(152, 0%, 97%, 1)
@@ -84,3 +81,115 @@ $color-ascent3_600: hsla(185, 17%, 44%, 1)
 $color-ascent3_700: hsla(185, 17%, 39%, 1)
 $color-ascent3_800: hsla(185, 25%, 33%, 1)
 $color-ascent3_900: hsla(185, 32%, 28%, 1)
+
+*
+  box-sizing: border-box
+  font-family: $font-main
+
+div.main
+  background-color: $color-prime_100
+  width: 100vw
+  min-height: 100vh
+
+// landing
+div.landing
+  width: 100%
+  display: flex
+  flex-direction: column
+  align-items: center
+
+  &-logo
+    height: 120px
+    width: 120px
+    margin-top: 64px
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+
+    &__circle
+      width: 120px
+      height: 120px
+      background-color: $color-prime_800
+      border-radius: 100%
+      position: relative
+
+      > div
+        background-color: $color-prime_100
+        position: absolute
+
+    &__head
+      width: 14.4px
+      height: 10.8px
+      left: 52.8px
+      top: 13.2px
+      border-radius: 100%
+
+    &__handle
+      width: 14.4px
+      height: 0
+      left: 52.8px
+      top: 22.2px
+      background-color: $color-prime_800
+      border-bottom: 43.2px solid $color-prime_100
+      border-left: 1.8px solid $color-prime_800
+      border-right: 1.8px solid $color-prime_800
+
+    &__guard__left,
+    &__guard__right
+      width: 26px
+      height: 8px
+      top: 60.8px
+
+    &__guard__left
+      left: 30px
+      transform: rotate(-20deg)
+
+    &__guard__right
+      left: 64px
+      transform: rotate(20deg)
+
+    &__blade
+      height: 48px
+      width: 18px
+      left: 51px
+      top: 72px
+
+    &__shade__left,
+    &__shade__right
+      width: 50px
+      height: 50px
+      border-radius: 100%
+      top: 65px
+
+    div.shade
+      background-color: $color-prime_800
+
+    &__shade__left
+      left: 25.2px
+
+    &__shade__right
+      left: 44.8px
+
+  &-title
+    height: 50px
+    width: 200px
+    margin-top: 24px
+
+    &__main
+      font-size: 30px
+      color: $color-prime_900
+      display: flex
+      justify-content: center
+
+    &__secondary
+      font-size: 12px
+      color: $color-prime_900
+      display: flex
+      justify-content: center
+
+  &-action
+    height: 200px
+    width: 200px
+    background-color: $color-prime_500
+    margin-top: 30px
