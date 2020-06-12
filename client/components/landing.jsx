@@ -19,7 +19,7 @@ const Landing = () => {
           <span>Iron Journal</span>
         </div>
         <div className="landing-title__secondary">
-          <span>A journal for the RPG Ironsworn</span>
+          <span>A journal for Ironsworn RPG</span>
         </div>
       </div>
       <div className="landing-action">
@@ -35,9 +35,16 @@ const Landing = () => {
           <span className="landing-action__bar"></span>
           <label className="landing-action__label">Password</label>
         </div>
-        <div className="landing-action__forgetPwd"></div>
-        <div className="landing-action__signIn"></div>
-        <div className="landing-action__loginLink"></div>
+        <div className="landing-action__forgetPwd">
+          <span className="landing-action__forgetPwd__link">Forget password?</span>
+        </div>
+        <div className="landing-action__login">
+          <button className="landing-action__login__button" type="button">Log in</button>
+        </div>
+        <div className="landing-action__signUpLink">
+          <span className="landing-action__signUpLink__link">Don&apos;t have an account?</span>
+          <span className="landing-action__signUpLink__link">Sign up</span>
+        </div>
       </div>
     </div>
   );

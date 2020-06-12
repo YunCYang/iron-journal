@@ -5,7 +5,7 @@
 }
 
 div.main {
-  background-color: #f0fff8;
+  background-color: #f7f7f7;
   width: 100vw;
   min-height: 100vh;
 }
@@ -33,7 +33,7 @@ div.landing-logo__circle {
   position: relative;
 }
 div.landing-logo__circle > div {
-  background-color: #f0fff8;
+  background-color: #f7f7f7;
   position: absolute;
 }
 div.landing-logo__head {
@@ -49,7 +49,7 @@ div.landing-logo__handle {
   left: 52.8px;
   top: 22.2px;
   background-color: #004726;
-  border-bottom: 43.2px solid #f0fff8;
+  border-bottom: 43.2px solid #f7f7f7;
   border-left: 1.8px solid #004726;
   border-right: 1.8px solid #004726;
 }
@@ -93,24 +93,70 @@ div.landing-title {
   margin-top: 24px;
 }
 div.landing-title__main {
-  font-size: 30px;
+  font-size: 36px;
   font-weight: 500;
   color: #000f08;
   display: flex;
   justify-content: center;
 }
 div.landing-title__secondary {
-  font-size: 12px;
+  font-size: 14px;
   color: #000f08;
   display: flex;
   justify-content: center;
 }
 div.landing-action {
   width: 200px;
-  margin-top: 64px;
+  margin-top: 48px;
+}
+div.landing-action > div {
+  position: relative;
+  margin-bottom: 16px;
+  width: 200px;
 }
 div.landing-action input {
   border: none;
+  border-bottom: 1px solid #008044;
+  width: 184px;
+  padding: 8px 8px 8px 4px;
+  margin-left: 8px;
+  background-color: #f7f7f7;
+}
+div.landing-action input:focus {
+  outline: none;
+}
+div.landing-action input:focus ~ label, div.landing-action input:valid ~ label {
+  top: -16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #008044;
+}
+div.landing-action label {
+  color: gray;
+  position: absolute;
+  left: 12px;
+  top: 8px;
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+div.landing-action__forgetPwd {
+  font-size: 12px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 8px;
+}
+div.landing-action button {
+  width: 184px;
+  margin-left: 8px;
+  background-color: #004726;
+  border: none;
+  color: #f0fff8;
+  height: 32px;
+}
+div.landing-action__signUpLink {
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=styles.css.map */
