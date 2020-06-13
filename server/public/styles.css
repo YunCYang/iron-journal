@@ -113,6 +113,12 @@ div.landing-action > div {
   position: relative;
   width: 200px;
 }
+div.landing-action__container button:first-child {
+  margin-top: 48px;
+}
+div.landing-action__container button:nth-child(2) {
+  margin-top: 24px;
+}
 div.landing-action input {
   border: none;
   border-bottom: 1px solid #004726;
@@ -213,11 +219,12 @@ div.landing-action__signUpLink {
   display: flex;
   justify-content: center;
 }
-div.landing-action__signUpLink a {
+div.landing-action__signUpLink a,
+div.landing-action__signUpLink span {
   color: #559caa;
 }
 div.landing-action__signUpLink .left {
-  margin-right: 4px;
+  margin-right: 48px;
 }
 div.landing-action__signUpLink .right {
   font-weight: 500;

@@ -199,6 +199,13 @@ div.landing
       position: relative
       width: $mobile-size-1-landing-outer-width
 
+    &__container
+      button:first-child
+        margin-top: 48px
+
+      button:nth-child(2)
+        margin-top: 24px
+
     input
       border: none
       border-bottom: 1px solid $color-prime_800
@@ -302,11 +309,12 @@ div.landing
       display: flex
       justify-content: center
 
-      a
+      a,
+      span
         color: $color-accent1_500
 
       .left
-        margin-right: 4px
+        margin-right: 48px
 
       .right
         font-weight: 500
