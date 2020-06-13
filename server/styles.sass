@@ -63,15 +63,15 @@ $color-accent1_600: hsla(187, 33%, 41%, 1)
 $color-accent1_700: hsla(184, 33%, 33%, 1)
 $color-accent1_800: hsla(182, 33%, 25%, 1)
 $color-accent1_900: hsla(180, 33%, 16%, 1)
-$color-accent2_100: hsla(10, 4%, 78%, 1)
-$color-accent2_200: hsla(10, 4%, 71%, 1)
-$color-accent2_300: hsla(10, 4%, 64%, 1)
-$color-accent2_400: hsla(10, 4%, 57%, 1)
-$color-accent2_500: hsla(10, 4%, 50%, 1)
-$color-accent2_600: hsla(10, 4%, 43%, 1)
-$color-accent2_700: hsla(10, 4%, 36%, 1)
-$color-accent2_800: hsla(10, 4%, 29%, 1)
-$color-accent2_900: hsla(10, 4%, 22%, 1)
+$color-accent2_100: hsla(5, 64%, 78%, 1)
+$color-accent2_200: hsla(5, 64%, 71%, 1)
+$color-accent2_300: hsla(5, 64%, 64%, 1)
+$color-accent2_400: hsla(5, 64%, 57%, 1)
+$color-accent2_500: hsla(5, 64%, 50%, 1)
+$color-accent2_600: hsla(5, 64%, 43%, 1)
+$color-accent2_700: hsla(5, 64%, 36%, 1)
+$color-accent2_800: hsla(5, 64%, 29%, 1)
+$color-accent2_900: hsla(5, 64%, 22%, 1)
 $color-accent3_100: hsla(185, 32%, 72%, 1)
 $color-accent3_200: hsla(185, 25%, 66%, 1)
 $color-accent3_300: hsla(185, 17%, 61%, 1)
@@ -81,6 +81,8 @@ $color-accent3_600: hsla(185, 17%, 44%, 1)
 $color-accent3_700: hsla(185, 17%, 39%, 1)
 $color-accent3_800: hsla(185, 25%, 33%, 1)
 $color-accent3_900: hsla(185, 32%, 28%, 1)
+$mobile-size-1-landing-outer-width: 200px
+$mobile-size-1-landing-inner-width: 184px
 
 *
   box-sizing: border-box
@@ -101,7 +103,7 @@ div.landing
   &-logo
     height: 120px
     width: 120px
-    margin-top: 64px
+    margin-top: 48px
     display: flex
     justify-content: center
     align-items: center
@@ -173,7 +175,7 @@ div.landing
 
   &-title
     height: 50px
-    width: 200px
+    width: $mobile-size-1-landing-outer-width
     margin-top: 24px
 
     &__main
@@ -190,18 +192,17 @@ div.landing
       justify-content: center
 
   &-action
-    width: 200px
+    width: $mobile-size-1-landing-outer-width
     margin-top: 48px
 
     > div
       position: relative
-      margin-bottom: 16px
-      width: 200px
+      width: $mobile-size-1-landing-outer-width
 
     input
       border: none
-      border-bottom: 1px solid $color-prime_700
-      width: 184px
+      border-bottom: 1px solid $color-prime_800
+      width: $mobile-size-1-landing-inner-width
       padding: 8px 8px 8px 4px
       margin-left: 8px
       background-color: $color-grey_100
@@ -211,10 +212,32 @@ div.landing
 
       &:focus ~ label,
       &:valid ~ label
-        top: -16px
+        top: -12px
         font-size: 14px
         font-weight: 500
         color: $color-prime_700
+
+    .bar
+      position: relative
+      display: block
+      width: $mobile-size-1-landing-inner-width
+
+      &:before,
+      &:after
+        content: ''
+        position: absolute
+        height: 2px
+        bottom: 0px
+        background: $color-prime_700
+        width: 0
+        transition:0.2s ease all
+
+      &:before
+        left: 8px
+
+
+    input:focus ~ .bar:before
+      width: 100%
 
     label
       color: $color-grey_500
@@ -224,21 +247,69 @@ div.landing
       pointer-events: none
       transition: 0.2s ease all
 
+    &__userName
+      margin-bottom: 16px
+
+    &__password
+      margin-bottom: 8px
+
+    &__feedback
+      margin-bottom: 8px
+
+    &__forgetPwd
+      margin-bottom: 12px
+
+    &__login
+      margin-bottom: 12px
+
+    &__feedback
+      font-size: 12px
+      color: $color-accent2_800
+      display: flex
+      justify-content: center
+
+      span
+        background-color: $color-accent2_100
+        width: $mobile-size-1-landing-inner-width
+        padding: 4px 2px 4px 2px
+
     &__forgetPwd
       font-size: 12px
       display: flex
       justify-content: flex-end
       padding-right: 8px
 
+      a
+        color: $color-accent1_700
+
     button
-      width: 184px
+      width: $mobile-size-1-landing-inner-width
       margin-left: 8px
       background-color: $color-prime_800
       border: none
       color: $color-prime_100
-      height: 32px
+      height: 40px
+      border-top: solid 2px $color-prime_700
+      border-bottom: solid 2px $color-prime_900
+
+      &:focus
+        outline: none
+        border-top: solid 0px $color-prime_700
+        border-bottom: solid 0px $color-prime_900
 
     &__signUpLink
-      font-size: 12px
+      font-size: 14px
       display: flex
       justify-content: center
+
+      a
+        color: $color-accent1_500
+
+      .left
+        margin-right: 4px
+
+      .right
+        font-weight: 500
+
+.hide
+  display: none
