@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,500;1,700;1,800;1,900&display=swap')
+
+// font size: 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72px
+// font weigth: 400 | 400 / 500 | 600 / 700
+// line length: 20 35em
+// space: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 640, 768px
+// 000F08 - Dark Jungle Green
+// 1C3738 - Outer Space (Crayola)
+// 4D4847 - Dark Liver
+// F4FFF8 - Mint Cream
+// 8BAAAD - Pewter Blue
+
+//  single shadow:
+//    0 1px 3px hsla(0, 0%, .2);
+//    0 4px 6px hsla(0, 0%, .2);
+//    0 5px 15px hsla(0, 0%, .2);
+//    0 10px 24px hsla(0, 0%, .2);
+//    0 15px 35px hsla(0, 0%, .2);
+
+//    raise top example: box-shadow: inset 0 1px 0 hsl(224, 84%, 74%);
+//    raise bot example: box-shadow: 0 1px 3px hsla(0, 0%, 0%, .2);
+
+//  double shadows:
+//    0 1px 3px hsla(0, 0%, .12);
+//    0 1px 2px hsla(0, 0%, .24);
+
+//    0 3px 6px hsla(0, 0%, .15);
+//    0 2px 4px hsla(0, 0%, .12);
+
+//    0 10px 20px hsla(0, 0%, .15);
+//    0 3px 6px hsla(0, 0%, .10);
+
+//    0 15px 25px hsla(0, 0%, .15);
+//    0 5px 10px hsla(0, 0%, .5);
+
+//    0 20px 40px hsla(0, 0%, .2);
+
+$font-main: 'Alegreya', serif
+$color-grey_100: hsla(152, 0%, 97%, 1)
+$color-grey_200: hsla(152, 0%, 87%, 1)
+$color-grey_300: hsla(152, 0%, 75%, 1)
+$color-grey_400: hsla(152, 0%, 62%, 1)
+$color-grey_500: hsla(152, 0%, 50%, 1)
+$color-grey_600: hsla(152, 0%, 37%, 1)
+$color-grey_700: hsla(152, 0%, 25%, 1)
+$color-grey_800: hsla(152, 0%, 14%, 1)
+$color-grey_900: hsla(152, 0%, 3%, 1)
+$color-prime_100: hsla(152, 100%, 97%, 1)
+$color-prime_200: hsla(152, 100%, 87%, 1)
+$color-prime_300: hsla(152, 100%, 75%, 1)
+$color-prime_400: hsla(152, 100%, 62%, 1)
+$color-prime_500: hsla(152, 100%, 50%, 1)
+$color-prime_600: hsla(152, 100%, 37%, 1)
+$color-prime_700: hsla(152, 100%, 25%, 1)
+$color-prime_800: hsla(152, 100%, 14%, 1)
+$color-prime_900: hsla(152, 100%, 3%, 1)
+$color-accent1_100: hsla(180, 33%, 84%, 1)
+$color-accent1_200: hsla(182, 33%, 75%, 1)
+$color-accent1_300: hsla(184, 33%, 67%, 1)
+$color-accent1_400: hsla(187, 33%, 59%, 1)
+$color-accent1_500: hsla(190, 33%, 50%, 1)
+$color-accent1_600: hsla(187, 33%, 41%, 1)
+$color-accent1_700: hsla(184, 33%, 33%, 1)
+$color-accent1_800: hsla(182, 33%, 25%, 1)
+$color-accent1_900: hsla(180, 33%, 16%, 1)
+$color-accent2_100: hsla(5, 64%, 78%, 1)
+$color-accent2_200: hsla(5, 64%, 71%, 1)
+$color-accent2_300: hsla(5, 64%, 64%, 1)
+$color-accent2_400: hsla(5, 64%, 57%, 1)
+$color-accent2_500: hsla(5, 64%, 50%, 1)
+$color-accent2_600: hsla(5, 64%, 43%, 1)
+$color-accent2_700: hsla(5, 64%, 36%, 1)
+$color-accent2_800: hsla(5, 64%, 29%, 1)
+$color-accent2_900: hsla(5, 64%, 22%, 1)
+$color-accent3_100: hsla(185, 32%, 72%, 1)
+$color-accent3_200: hsla(185, 25%, 66%, 1)
+$color-accent3_300: hsla(185, 17%, 61%, 1)
+$color-accent3_400: hsla(185, 17%, 55%, 1)
+$color-accent3_500: hsla(185, 17%, 50%, 1)
+$color-accent3_600: hsla(185, 17%, 44%, 1)
+$color-accent3_700: hsla(185, 17%, 39%, 1)
+$color-accent3_800: hsla(185, 25%, 33%, 1)
+$color-accent3_900: hsla(185, 32%, 28%, 1)
+$mobile-size-1-landing-outer-width: 200px
+$mobile-size-1-landing-inner-width: 184px
+
+*
+  box-sizing: border-box
+  font-family: $font-main
+
+div.main
+  background-color: $color-grey_100
+  width: 100vw
+  min-height: 100vh
+
+// landing
+div.landing
+  width: 100%
+  display: flex
+  flex-direction: column
+  align-items: center
+
+  &-logo
+    height: 120px
+    width: 120px
+    margin-top: 48px
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+
+    &__circle
+      width: 120px
+      height: 120px
+      background-color: $color-prime_800
+      border-radius: 100%
+      position: relative
+
+      > div
+        background-color: $color-grey_100
+        position: absolute
+
+    &__head
+      width: 14.4px
+      height: 10.8px
+      left: 52.8px
+      top: 13.2px
+      border-radius: 100%
+
+    &__handle
+      width: 14.4px
+      height: 0
+      left: 52.8px
+      top: 22.2px
+      background-color: $color-prime_800
+      border-bottom: 43.2px solid $color-grey_100
+      border-left: 1.8px solid $color-prime_800
+      border-right: 1.8px solid $color-prime_800
+
+    &__guard__left,
+    &__guard__right
+      width: 26px
+      height: 8px
+      top: 60.8px
+
+    &__guard__left
+      left: 30px
+      transform: rotate(-20deg)
+
+    &__guard__right
+      left: 64px
+      transform: rotate(20deg)
+
+    &__blade
+      height: 48px
+      width: 18px
+      left: 51px
+      top: 72px
+
+    &__shade__left,
+    &__shade__right
+      width: 50px
+      height: 50px
+      border-radius: 100%
+      top: 65px
+
+    div.shade
+      background-color: $color-prime_800
+
+    &__shade__left
+      left: 25.2px
+
+    &__shade__right
+      left: 44.8px
+
+  &-title
+    height: 50px
+    width: $mobile-size-1-landing-outer-width
+    margin-top: 24px
+
+    &__main
+      font-size: 36px
+      font-weight: 500
+      color: $color-prime_900
+      display: flex
+      justify-content: center
+
+    &__secondary
+      font-size: 14px
+      color: $color-prime_900
+      display: flex
+      justify-content: center
+
+  &-action
+    width: $mobile-size-1-landing-outer-width
+    margin-top: 48px
+
+    > div
+      position: relative
+      width: $mobile-size-1-landing-outer-width
+
+    input
+      border: none
+      border-bottom: 1px solid $color-prime_800
+      width: $mobile-size-1-landing-inner-width
+      padding: 8px 8px 8px 4px
+      margin-left: 8px
+      background-color: $color-grey_100
+
+      &:focus
+        outline: none
+
+      &:focus ~ label,
+      &:valid ~ label
+        top: -12px
+        font-size: 14px
+        font-weight: 500
+        color: $color-prime_700
+
+    .bar
+      position: relative
+      display: block
+      width: $mobile-size-1-landing-inner-width
+
+      &:before,
+      &:after
+        content: ''
+        position: absolute
+        height: 2px
+        bottom: 0px
+        background: $color-prime_700
+        width: 0
+        transition:0.2s ease all
+
+      &:before
+        left: 8px
+
+
+    input:focus ~ .bar:before
+      width: 100%
+
+    label
+      color: $color-grey_500
+      position: absolute
+      left: 12px
+      top: 8px
+      pointer-events: none
+      transition: 0.2s ease all
+
+    &__userName
+      margin-bottom: 16px
+
+    &__password
+      margin-bottom: 8px
+
+    &__feedback
+      margin-bottom: 8px
+
+    &__forgetPwd
+      margin-bottom: 12px
+
+    &__login
+      margin-bottom: 12px
+
+    &__feedback
+      font-size: 12px
+      color: $color-accent2_800
+      display: flex
+      justify-content: center
+
+      span
+        background-color: $color-accent2_100
+        width: $mobile-size-1-landing-inner-width
+        padding: 4px 2px 4px 2px
+
+    &__forgetPwd
+      font-size: 12px
+      display: flex
+      justify-content: flex-end
+      padding-right: 8px
+
+      a
+        color: $color-accent1_700
+
+    button
+      width: $mobile-size-1-landing-inner-width
+      margin-left: 8px
+      background-color: $color-prime_800
+      border: none
+      color: $color-prime_100
+      height: 40px
+      border-top: solid 2px $color-prime_700
+      border-bottom: solid 2px $color-prime_900
+
+      &:focus
+        outline: none
+        border-top: solid 0px $color-prime_700
+        border-bottom: solid 0px $color-prime_900
+
+    &__signUpLink
+      font-size: 14px
+      display: flex
+      justify-content: center
+
+      a
+        color: $color-accent1_500
+
+      .left
+        margin-right: 4px
+
+      .right
+        font-weight: 500
+
+.hide
+  display: none

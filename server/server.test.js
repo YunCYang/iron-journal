@@ -219,7 +219,6 @@ describe('Initial Jest Test', () => {
     expect(typeof createLogRes.body).toBe('number');
     const getLogRes = await request.get(`/api/log/${createLogRes.body}`);
     expect(getLogRes.status).toBe(200);
-    expect(getLogRes.body.roll).toBe(1);
     const deleteLogRes = await request.delete(`/api/log/${createLogRes.body}`);
     expect(deleteLogRes.status).toBe(204);
 
