@@ -83,14 +83,18 @@ $color-accent3_800: hsla(185, 25%, 33%, 1)
 $color-accent3_900: hsla(185, 32%, 28%, 1)
 $mobile-size-1-landing-outer-width: 200px
 $mobile-size-1-landing-inner-width: 184px
+$mobile-size-1-main-outer-width: 210px
 
 *
   box-sizing: border-box
   font-family: $font-main
 
+body
+  margin: 0
+
 div.main
   background-color: $color-grey_100
-  width: 100vw
+  width: 100%
   min-height: 100vh
 
 // landing
@@ -288,6 +292,7 @@ div.landing
 
       a
         color: $color-accent1_700
+        text-decoration: none
 
     button
       width: $mobile-size-1-landing-inner-width
@@ -312,12 +317,45 @@ div.landing
       a,
       span
         color: $color-accent1_500
+        text-decoration: none
 
       .left
         margin-right: 48px
 
       .right
         font-weight: 500
+
+div.main-page
+  width: 100%
+  min-height: 100vh
+  background: url('../images/background-forest.jpg') no-repeat
+  background-size: cover
+  display: flex
+  flex-direction: column
+  align-items: center
+
+  div.main-title
+    color: $color-prime_100
+    font-size: 30px
+    font-weight: 600
+    margin: 12px  0 8px 0
+
+  div.main-menu
+    display: flex
+    color: $color-prime_200
+    opacity: 0.8
+    width: $mobile-size-1-main-outer-width
+    margin-bottom: 12px
+    font-size: 14px
+
+    &__game
+      margin:0 16px 0 12px
+
+  div.main-container
+    width: $mobile-size-1-main-outer-width
+    height: 441px
+    background-color: $color-prime_100
+    border-radius: 5px
 
 .hide
   display: none
