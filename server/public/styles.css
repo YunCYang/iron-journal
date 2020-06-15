@@ -145,7 +145,7 @@ div.landing-action .bar {
   display: block;
   width: 184px;
 }
-div.landing-action .bar:before, div.landing-action .bar:after {
+div.landing-action .bar:before {
   content: "";
   position: absolute;
   height: 2px;
@@ -236,7 +236,7 @@ div.landing-action__signUpLink .right {
   font-weight: 500;
 }
 
-div.main-page {
+.main-page {
   width: 100%;
   min-height: 100vh;
   background: url("../images/background-forest.jpg") no-repeat;
@@ -245,28 +245,74 @@ div.main-page {
   flex-direction: column;
   align-items: center;
 }
-div.main-page div.main-title {
+.main-page .main-title {
   color: #f0fff8;
   font-size: 30px;
   font-weight: 600;
   margin: 12px 0 8px 0;
 }
-div.main-page div.main-menu {
+.main-page .main-menu {
   display: flex;
   color: #bdffe0;
-  opacity: 0.8;
   width: 210px;
   margin-bottom: 12px;
   font-size: 14px;
 }
-div.main-page div.main-menu__game {
+.main-page .main-menu .bar {
+  position: relative;
+  display: block;
+}
+.main-page .main-menu .bar:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  background-color: #bdffe0;
+  transition: 0.2s ease all;
+}
+.main-page .main-menu > div {
+  opacity: 0.6;
+  position: relative;
+}
+.main-page .main-menu > div:hover {
+  opacity: 1;
+}
+.main-page .main-menu > div:hover .bar:before {
+  width: 100%;
+}
+.main-page .main-menu__game {
   margin: 0 16px 0 12px;
 }
-div.main-page div.main-container {
+.main-page .main-menu__resource {
+  margin-right: 12px;
+}
+.main-page .main-container {
   width: 210px;
   height: 441px;
   background-color: #f0fff8;
   border-radius: 5px;
+}
+.main-page .main-container .sub-title {
+  font-weight: 600;
+  margin: 8px 0 0 16px;
+  color: #000f08;
+}
+.main-page .main-container__game__content__newBlock {
+  border: 2px dashed gray;
+  margin: 8px 0 16px 16px;
+  height: 64px;
+  width: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  color: gray;
+  font-size: 30px;
+}
+.main-page .main-container__game__content__newBlock:hover {
+  color: #559caa;
+  border-color: #559caa;
+  cursor: pointer;
 }
 
 .hide {

@@ -57,7 +57,7 @@ const Login = props => {
             <button className="landing-action__login__button" type="button" onClick={loginHandler}>Log in</button>
           </div>
           <div className="landing-action__signUpLink">
-            <span className='left' onClick={switchLogin}>Play as a guest</span>
+            <span className='left' onClick={switchLogin}>Use as a guest</span>
             <Link to='/signup' className='right'>Sign up</Link>
           </div>
         </>
@@ -66,7 +66,7 @@ const Login = props => {
       return (
         <>
           <div className="landing-action__container">
-            <button type='button' onClick={guestLoginHandler}>Play as a guest</button>
+            <button type='button' onClick={guestLoginHandler}>Use as a guest</button>
             <button type='button' onClick={switchLogin}>I want to log in</button>
           </div>
         </>
