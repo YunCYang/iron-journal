@@ -81,9 +81,6 @@ $color-accent3_600: hsla(185, 17%, 44%, 1)
 $color-accent3_700: hsla(185, 17%, 39%, 1)
 $color-accent3_800: hsla(185, 25%, 33%, 1)
 $color-accent3_900: hsla(185, 32%, 28%, 1)
-$mobile-size-1-landing-outer-width: 200px
-$mobile-size-1-landing-inner-width: 184px
-$mobile-size-1-main-outer-width: 210px
 
 *
   box-sizing: border-box
@@ -179,7 +176,7 @@ div.landing
 
   &-title
     height: 50px
-    width: $mobile-size-1-landing-outer-width
+    width: 200px
     margin-top: 24px
 
     &__main
@@ -196,12 +193,12 @@ div.landing
       justify-content: center
 
   &-action
-    width: $mobile-size-1-landing-outer-width
+    width: 200px
     margin-top: 48px
 
     > div
       position: relative
-      width: $mobile-size-1-landing-outer-width
+      width: 200px
 
     &__container
       button:first-child
@@ -213,7 +210,7 @@ div.landing
     input
       border: none
       border-bottom: 1px solid $color-prime_800
-      width: $mobile-size-1-landing-inner-width
+      width: 184px
       padding: 8px 8px 8px 4px
       margin-left: 8px
       background-color: $color-grey_100
@@ -231,7 +228,7 @@ div.landing
     .bar
       position: relative
       display: block
-      width: $mobile-size-1-landing-inner-width
+      width: 184px
 
       &:before
         content: ''
@@ -280,7 +277,7 @@ div.landing
 
       span
         background-color: $color-accent2_100
-        width: $mobile-size-1-landing-inner-width
+        width: 184px
         padding: 4px 2px 4px 2px
 
     &__forgetPwd
@@ -294,7 +291,7 @@ div.landing
         text-decoration: none
 
     button
-      width: $mobile-size-1-landing-inner-width
+      width: 184px
       margin-left: 8px
       background-color: $color-prime_800
       border: none
@@ -342,7 +339,7 @@ div.landing
   .main-menu
     display: flex
     color: $color-prime_200
-    width: $mobile-size-1-main-outer-width
+    width: 210px
     margin-bottom: 12px
     font-size: 14px
 
@@ -361,6 +358,7 @@ div.landing
     > div
       opacity: 0.6
       position: relative
+      cursor: pointer
 
       &:hover
         opacity: 1
@@ -375,7 +373,7 @@ div.landing
       margin-right: 12px
 
   .main-container
-    width: $mobile-size-1-main-outer-width
+    width: 210px
     height: 441px
     background-color: $color-prime_100
     border-radius: 5px
@@ -387,7 +385,7 @@ div.landing
 
     &__game__content__newBlock
       border: 2px dashed $color-grey_500
-      margin: 8px 0 16px 16px
+      margin: 8px 0 0 16px
       height: 64px
       width: 64px
       display: flex
@@ -396,11 +394,77 @@ div.landing
       border-radius: 10px
       color: $color-grey_500
       font-size: 30px
+      position: relative
 
       &:hover
         color: $color-accent1_500
         border-color: $color-accent1_500
         cursor: pointer
+
+        .game-tag
+          color: $color-accent1_500
+          cursor: pointer
+
+    .game-tag
+      font-size: 12px
+      width: 64px
+      display: flex
+      justify-content: center
+      color: $color-grey_900
+      position: absolute
+      top: 72px
+
+    &__newGame
+      position: relative
+
+      &__backLink
+        position: absolute
+        right: 16px
+        display: flex
+        flex-direction: column
+        align-items: center
+        top: 0
+
+        i
+          font-size: 24px
+          color: $color-prime_900
+          cursor: pointer
+
+          &:hover
+            color: $color-accent1_500
+
+      &__content
+        overflow-y: scroll
+
+        &__form
+          display: flex
+
+          > div
+            margin-top: 8px
+
+          .left
+            background-color: $color-grey_200
+            font-size: 14px
+            font-weight: 500
+            padding: 4px 8px 0 16px
+
+        &__confirm
+          button
+            width: 146px
+            margin: 16px 0 0 32px
+            background-color: $color-prime_800
+            border: none
+            color: $color-prime_100
+            height: 40px
+            border-top: solid 2px $color-prime_700
+            border-bottom: solid 2px $color-prime_900
+
+            &:focus
+              outline: none
+              border-top: solid 0px $color-prime_700
+              border-bottom: solid 0px $color-prime_900
+
+
 
 .hide
   display: none

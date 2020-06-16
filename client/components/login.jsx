@@ -17,20 +17,12 @@ const Login = props => {
     }
   };
 
-  const usernameInputHandler = () => {
-    validateInput();
-  };
-  const passwordInputHandler = () => {
-    validateInput();
-  };
+  const usernameInputHandler = () => validateInput();
+  const passwordInputHandler = () => validateInput();
 
-  const guestLoginHandler = () => {
-    props.history.push('/main');
-  };
+  const guestLoginHandler = () => props.history.push('/main');
 
-  const switchLogin = () => {
-    setIsLogin(!isLogin);
-  };
+  const switchLogin = () => setIsLogin(!isLogin);
 
   const switchAction = () => {
     if (isLogin) {

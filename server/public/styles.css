@@ -273,6 +273,7 @@ div.landing-action__signUpLink .right {
 .main-page .main-menu > div {
   opacity: 0.6;
   position: relative;
+  cursor: pointer;
 }
 .main-page .main-menu > div:hover {
   opacity: 1;
@@ -299,7 +300,7 @@ div.landing-action__signUpLink .right {
 }
 .main-page .main-container__game__content__newBlock {
   border: 2px dashed gray;
-  margin: 8px 0 16px 16px;
+  margin: 8px 0 0 16px;
   height: 64px;
   width: 64px;
   display: flex;
@@ -308,11 +309,74 @@ div.landing-action__signUpLink .right {
   border-radius: 10px;
   color: gray;
   font-size: 30px;
+  position: relative;
 }
 .main-page .main-container__game__content__newBlock:hover {
   color: #559caa;
   border-color: #559caa;
   cursor: pointer;
+}
+.main-page .main-container__game__content__newBlock:hover .game-tag {
+  color: #559caa;
+  cursor: pointer;
+}
+.main-page .main-container .game-tag {
+  font-size: 12px;
+  width: 64px;
+  display: flex;
+  justify-content: center;
+  color: #080808;
+  position: absolute;
+  top: 72px;
+}
+.main-page .main-container__newGame {
+  position: relative;
+}
+.main-page .main-container__newGame__backLink {
+  position: absolute;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 0;
+}
+.main-page .main-container__newGame__backLink i {
+  font-size: 24px;
+  color: #000f08;
+  cursor: pointer;
+}
+.main-page .main-container__newGame__backLink i:hover {
+  color: #559caa;
+}
+.main-page .main-container__newGame__content {
+  overflow-y: scroll;
+}
+.main-page .main-container__newGame__content__form {
+  display: flex;
+}
+.main-page .main-container__newGame__content__form > div {
+  margin-top: 8px;
+}
+.main-page .main-container__newGame__content__form .left {
+  background-color: #dedede;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 8px 0 16px;
+}
+.main-page .main-container__newGame__content__confirm button {
+  width: 146px;
+  margin: 16px 0 0 32px;
+  background-color: #004726;
+  border: none;
+  color: #f0fff8;
+  height: 40px;
+  border-top: solid 2px #008044;
+  border-bottom: solid 2px #000f08;
+}
+.main-page .main-container__newGame__content__confirm button:focus {
+  outline: none;
+  border-top: solid 0px #008044;
+  border-bottom: solid 0px #000f08;
 }
 
 .hide {
