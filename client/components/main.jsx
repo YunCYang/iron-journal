@@ -12,7 +12,7 @@ const Main = props => {
       return (
         <>
           <div className="main-container__game__title sub-title">
-            <span>Game List</span>
+            <span>Character List</span>
           </div>
           <div className="main-container__game__content">
             <div className="main-container__game__content__container">
@@ -22,7 +22,7 @@ const Main = props => {
                 }>
                 <i className="fas fa-plus"></i>
                 <div className="main-container__game__content__newTag game-tag">
-                  <span>New Game</span>
+                  <span>New Character</span>
                 </div>
               </div>
             </div>
@@ -62,7 +62,7 @@ const Main = props => {
         <>
           <div className="main-container__newGame">
             <div className="main-container__newGame__title sub-title">
-              <span>New Game</span>
+              <span>New Character</span>
             </div>
             <div className="main-container__newGame__backLink" onClick={
               () => returnGamePage()
@@ -71,74 +71,200 @@ const Main = props => {
             </div>
             <div className="main-container__newGame__content">
               <div className="main-container__newGame__content__form">
-                <div className="left">
-                  <div className="Character">
+                <div className="character">
+                  <div className="character-title subtitle">
                     <span>Character</span>
                   </div>
-                  <div className="Experience">
-                    <span>Experience</span>
+                  <div className="character-input__container input__container">
+                    <div className="character-input__container__name">
+                      <div className="input__container__left">
+                        <span>Name</span>
+                      </div>
+                      <div className="input__container__right">
+                        <input type="text" name="characterName" id="characterName" />
+                      </div>
+                    </div>
                   </div>
-                  <div className="Stats">
+                </div>
+                <div className="divider"></div>
+                <div className="stats">
+                  <div className="stats-title subtitle">
                     <span>Stats</span>
                   </div>
-                  <div className="Bonds">
+                  <div className="stats-input__container input__container">
+                    <div className="stats-input__container__edge">
+                      <div className="input__container__left">
+                        <span>Edge</span>
+                      </div>
+                      <div className="input__container__right">
+                        <input type="radio" name="statsEdge" id="statsEdge__1" value="1"/>
+                        <label htmlFor="statsEdge__1">1</label>
+                        <input type="radio" name="statsEdge" id="statsEdge__2" value="2"/>
+                        <label htmlFor="statsEdge__2">2</label>
+                        <input type="radio" name="statsEdge" id="statsEdge__3" value="3"/>
+                        <label htmlFor="statsEdge__3">3</label>
+                      </div>
+                    </div>
+                    <div className="stats-input__container__heart">
+                      <div className="input__container__left">
+                        <span>Heart</span>
+                      </div>
+                      <div className="input__container__right">
+                        <input type="radio" name="statsHeart" id="statsHeart__1" value="1"/>
+                        <label htmlFor="statsHeart__1">1</label>
+                        <input type="radio" name="statsHeart" id="statsHeart__2" value="2"/>
+                        <label htmlFor="statsHeart__2">2</label>
+                        <input type="radio" name="statsHeart" id="statsHeart__3" value="3"/>
+                        <label htmlFor="statsHeart__3">3</label>
+                      </div>
+                    </div>
+                    <div className="stats-input__container__iron">
+                      <div className="input__container__left">
+                        <span>Iron</span>
+                      </div>
+                      <div className="input__container__right">
+                        <input type="radio" name="statsIron" id="statsIron__1" value="1"/>
+                        <label htmlFor="statsIron__1">1</label>
+                        <input type="radio" name="statsIron" id="statsIron__2" value="2"/>
+                        <label htmlFor="statsIron__2">2</label>
+                        <input type="radio" name="statsIron" id="statsIron__3" value="3"/>
+                        <label htmlFor="statsIron__3">3</label>
+                      </div>
+                    </div>
+                    <div className="stats-input__container__shadow">
+                      <div className="input__container__left">
+                        <span>Shadow</span>
+                      </div>
+                      <div className="input__container__right">
+                        <input type="radio" name="statsShadow" id="statsShadow__1" value="1"/>
+                        <label htmlFor="statsShadow__1">1</label>
+                        <input type="radio" name="statsShadow" id="statsShadow__2" value="2"/>
+                        <label htmlFor="statsShadow__2">2</label>
+                        <input type="radio" name="statsShadow" id="statsShadow__3" value="3"/>
+                        <label htmlFor="statsShadow__3">3</label>
+                      </div>
+                    </div>
+                    <div className="stats-input__container__wits">
+                      <div className="input__container__left">
+                        <span>Wits</span>
+                      </div>
+                      <div className="input__container__right">
+                        <input type="radio" name="statsWits" id="statsWits__1" value="1"/>
+                        <label htmlFor="statsWits__1">1</label>
+                        <input type="radio" name="statsWits" id="statsWits__2" value="2"/>
+                        <label htmlFor="statsWits__2">2</label>
+                        <input type="radio" name="statsWits" id="statsWits__3" value="3"/>
+                        <label htmlFor="statsWits__3">3</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="divider"></div>
+                <div className="bonds">
+                  <div className="bonds-title subtitle">
                     <span>Bonds</span>
                   </div>
-                  <div className="Momentum">
-                    <span>Momentum</span>
+                  <div className="bonds-input__container input__container">
+                    <div className="bonds-input__container__name">
+                      <div className="input__container__left">
+                        <span>Name</span>
+                      </div>
+                      <div className="input__container__right">
+                        <input type="text" name="bondName1" id="bondName1" />
+                      </div>
+                    </div>
+                    <div className="bonds-input__container__name">
+                      <div className="input__container__left">
+                        <span>Name</span>
+                      </div>
+                      <div className="input__container__right">
+                        <input type="text" name="bondName2" id="bondName2" />
+                      </div>
+                    </div>
+                    <div className="bonds-input__container__name">
+                      <div className="input__container__left">
+                        <span>Name</span>
+                      </div>
+                      <div className="input__container__right">
+                        <input type="text" name="bondName3" id="bondName3" />
+                      </div>
+                    </div>
                   </div>
-                  <div className="Health">
-                    <span>Health</span>
-                  </div>
-                  <div className="Spirit">
-                    <span>Spirit</span>
-                  </div>
-                  <div className="Supply">
-                    <span>Supply</span>
-                  </div>
-                  <div className="Vows">
+                </div>
+                <div className="divider"></div>
+                <div className="vows">
+                  <div className="vows-title subtitle">
                     <span>Vows</span>
                   </div>
-                  <div className="Debilities">
-                    <span>Debilities</span>
+                  <div className="vows-input__container input__container">
+                    <div className="vows-input__container__name">
+                      <div className="input__container__left">
+                        <span>Name</span>
+                      </div>
+                      <div className="input__container__right">
+                        <input type="text" name="vowName1" id="vowName1" />
+                      </div>
+                    </div>
+                    <div className="vows-input__container__rank">
+                      <div className="input__container__left">
+                        <span>Rank</span>
+                      </div>
+                      <div className="input__container__right">
+                        <input type="text" name="vowRank1" id="vowRank1" />
+                      </div>
+                    </div>
+                    <div className="vows-input__container__name">
+                      <div className="input__container__left">
+                        <span>Name</span>
+                      </div>
+                      <div className="input__container__right">
+                        <input type="text" name="vowName2" id="vowName2" />
+                      </div>
+                    </div>
+                    <div className="vows-input__container__rank">
+                      <div className="input__container__left">
+                        <span>Rank</span>
+                      </div>
+                      <div className="input__container__right">
+                        <input type="text" name="vowRank2" id="vowRank2" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* <div className="left">
+                  <div className="character">
+                    <span>Character</span>
+                  </div>
+                  <div className="stats">
+                    <span>Stats</span>
+                  </div>
+                  <div className="bonds">
+                    <span>Bonds</span>
+                  </div>
+                  <div className="vows">
+                    <span>Vows</span>
                   </div>
                 </div>
                 <div className="right">
-                  <div className="Character">
+                  <div className="character">
                     <input type="text" name="characterName" id="characterName"/>
                   </div>
-                  <div className="Experience">
-                    <input type="number" name="characterExperience" id="characterExperience"/>
-                  </div>
-                  <div className="Stats">
+                  <div className="stats">
+                    <span className="stats-head">0 0 0 0 0</span>
+                    <button type="button">+</button>
                     <input type="number" name="characterEdge" id="characterEdge"/>
                     <input type="number" name="characterHeart" id="characterHeart" />
                     <input type="number" name="characterIron" id="characterIron" />
                     <input type="number" name="characterShadow" id="characterShadow" />
                     <input type="number" name="characterWits" id="characterWits" />
                   </div>
-                  <div className="Bonds">
+                  <div className="bonds">
                     <span>Bonds</span>
                   </div>
-                  <div className="Momentum">
-                    <span>Momentum</span>
-                  </div>
-                  <div className="Health">
-                    <span>Health</span>
-                  </div>
-                  <div className="Spirit">
-                    <span>Spirit</span>
-                  </div>
-                  <div className="Supply">
-                    <span>Supply</span>
-                  </div>
-                  <div className="Vows">
+                  <div className="vows">
                     <span>Vows</span>
                   </div>
-                  <div className="Debilities">
-                    <span>Debilities</span>
-                  </div>
-                </div>
+                </div> */}
               </div>
               <div className="main-container__newGame__content__confirm">
                 <button>Create</button>

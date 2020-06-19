@@ -377,6 +377,7 @@ div.landing
     height: 441px
     background-color: $color-prime_100
     border-radius: 5px
+    overflow-y: scroll
 
     .sub-title
       font-weight: 600
@@ -434,19 +435,70 @@ div.landing
             color: $color-accent1_500
 
       &__content
-        overflow-y: scroll
-
         &__form
           display: flex
+          flex-direction: column
 
-          > div
-            margin-top: 8px
+          .divider
+            height: 2px
+            border-radius: 2px
+            background-color: $color-grey_300
+            margin: 16px 16px 0 16px
 
-          .left
-            background-color: $color-grey_200
-            font-size: 14px
-            font-weight: 500
-            padding: 4px 8px 0 16px
+          .subtitle
+            margin: 8px 0 8px 16px
+
+          .input__container
+            display: flex
+            flex-direction: column
+
+            >div
+              display: flex
+              margin: 4px 0 0 0
+
+            &__left
+              margin: 0 0 0 16px
+              width: 68px
+              font-size: 14px
+
+            &__right
+              input
+                width: 110px
+
+          .stats-input__container
+            .input__container__right
+              display: flex
+
+              input
+                width: auto
+
+          .vows-input__container__name ~ .vows-input__container__name
+            margin-top: 12px
+
+          // > div
+          //   margin-top: 8px
+
+          // .left
+          //   background-color: $color-grey_200
+          //   font-size: 14px
+          //   font-weight: 500
+          //   padding: 4px 8px 0 16px
+
+          //   .experience,
+          //   .stats,
+          //   .bonds
+          //     margin-top: 16px
+
+          // .right
+          //   input
+          //     border-style: solid
+          //     margin: 8px 0 0 12px
+
+          //   #characterName
+          //     width: 92px
+
+          //   #characterExperience
+          //     width: 30px
 
         &__confirm
           button
