@@ -210,7 +210,16 @@ const Main = props => {
                         <span>Rank</span>
                       </div>
                       <div className="input__container__right">
-                        <input type="text" name="vowRank1" id="vowRank1" />
+                        <input className="radio-vow1" type="radio" name="rank1-troublesome" id="rank1-troublesome" />
+                        <label className="label-vow1" htmlFor="rank1-troublesome">Troublesome</label>
+                        <input className="radio-vow1" type="radio" name="rank1-dangerous" id="rank1-dangerous" />
+                        <label className="label-vow1" htmlFor="rank1-dangerous">Dangerous</label>
+                        <input className="radio-vow1" type="radio" name="rank1-formidable" id="rank1-formidable" />
+                        <label className="label-vow1" htmlFor="rank1-formidable">Formidable</label>
+                        <input className="radio-vow1" type="radio" name="rank1-extreme" id="rank1-extreme" />
+                        <label className="label-vow1" htmlFor="rank1-extreme">Extreme</label>
+                        <input className="radio-vow1" type="radio" name="rank1-epic" id="rank1-epic" />
+                        <label className="label-vow1" htmlFor="rank1-epic">Epic</label>
                       </div>
                     </div>
                     <div className="vows-input__container__name">
@@ -226,45 +235,20 @@ const Main = props => {
                         <span>Rank</span>
                       </div>
                       <div className="input__container__right">
-                        <input type="text" name="vowRank2" id="vowRank2" />
+                        <input className="radio-vow2" type="radio" name="rank2-troublesome" id="rank2-troublesome" />
+                        <label className="label-vow2" htmlFor="rank2-troublesome">Troublesome</label>
+                        <input className="radio-vow2" type="radio" name="rank2-dangerous" id="rank2-dangerous" />
+                        <label className="label-vow2" htmlFor="rank2-dangerous">Dangerous</label>
+                        <input className="radio-vow2" type="radio" name="rank2-formidable" id="rank2-formidable" />
+                        <label className="label-vow2" htmlFor="rank2-formidable">Formidable</label>
+                        <input className="radio-vow2" type="radio" name="rank2-extreme" id="rank2-extreme" />
+                        <label className="label-vow2" htmlFor="rank2-extreme">Extreme</label>
+                        <input className="radio-vow2" type="radio" name="rank2-epic" id="rank2-epic" />
+                        <label className="label-vow2" htmlFor="rank2-epic">Epic</label>
                       </div>
                     </div>
                   </div>
                 </div>
-                {/* <div className="left">
-                  <div className="character">
-                    <span>Character</span>
-                  </div>
-                  <div className="stats">
-                    <span>Stats</span>
-                  </div>
-                  <div className="bonds">
-                    <span>Bonds</span>
-                  </div>
-                  <div className="vows">
-                    <span>Vows</span>
-                  </div>
-                </div>
-                <div className="right">
-                  <div className="character">
-                    <input type="text" name="characterName" id="characterName"/>
-                  </div>
-                  <div className="stats">
-                    <span className="stats-head">0 0 0 0 0</span>
-                    <button type="button">+</button>
-                    <input type="number" name="characterEdge" id="characterEdge"/>
-                    <input type="number" name="characterHeart" id="characterHeart" />
-                    <input type="number" name="characterIron" id="characterIron" />
-                    <input type="number" name="characterShadow" id="characterShadow" />
-                    <input type="number" name="characterWits" id="characterWits" />
-                  </div>
-                  <div className="bonds">
-                    <span>Bonds</span>
-                  </div>
-                  <div className="vows">
-                    <span>Vows</span>
-                  </div>
-                </div> */}
               </div>
               <div className="main-container__newGame__content__confirm">
                 <button>Create</button>

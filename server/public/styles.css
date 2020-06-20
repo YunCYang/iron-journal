@@ -383,9 +383,20 @@ div.landing-action__signUpLink .right {
 }
 .main-page .main-container__newGame__content__form .stats-input__container .input__container__right input {
   width: auto;
+  margin-left: 12px;
 }
 .main-page .main-container__newGame__content__form .vows-input__container__name ~ .vows-input__container__name {
   margin-top: 12px;
+}
+.main-page .main-container__newGame__content__form .vows-input__container__rank .input__container__right {
+  display: flex;
+}
+.main-page .main-container__newGame__content__form .vows-input__container__rank .input__container__right input {
+  width: 0;
+  height: 0;
+}
+.main-page .main-container__newGame__content__form .vows-input__container__rank .input__container__right label {
+  font-size: 12px;
 }
 .main-page .main-container__newGame__content__confirm button {
   width: 146px;
