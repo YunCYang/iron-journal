@@ -119,9 +119,11 @@ div.landing-action > div {
 }
 div.landing-action__container button:first-child {
   margin-top: 48px;
+  border-radius: 4px;
 }
 div.landing-action__container button:nth-child(2) {
   margin-top: 24px;
+  border-radius: 4px;
 }
 div.landing-action input {
   border: none;
@@ -213,6 +215,7 @@ div.landing-action button {
   height: 40px;
   border-top: solid 2px #008044;
   border-bottom: solid 2px #000f08;
+  border-radius: 4px;
 }
 div.landing-action button:focus {
   outline: none;
@@ -378,18 +381,72 @@ div.landing-action__signUpLink .right {
 .main-page .main-container__newGame__content__form .input__container__right input {
   width: 110px;
 }
+.main-page .main-container__newGame__content__form .input__container__right input[type=text] {
+  border-style: solid;
+  border-color: #bfbfbf;
+  border-radius: 4px;
+  width: 110px;
+  background-color: #f0fff8;
+  transition: 0.2s ease all;
+}
+.main-page .main-container__newGame__content__form .input__container__right input[type=text]:focus {
+  outline: none;
+  border-color: #008044;
+}
 .main-page .main-container__newGame__content__form .stats-input__container .input__container__right {
   display: flex;
+  width: 110px;
+  justify-content: space-evenly;
 }
 .main-page .main-container__newGame__content__form .stats-input__container .input__container__right input {
-  width: auto;
-  margin-left: 12px;
+  width: 0;
+  height: 0;
+}
+.main-page .main-container__newGame__content__form .stats-input__container .input__container__right label {
+  font-size: 14px;
+  width: 30px;
+  height: 30px;
+  background-color: #bdffe0;
+  text-align: center;
+  padding-top: 4px;
+  border-radius: 100%;
+  cursor: pointer;
+  transition: all 300ms linear;
+  position: relative;
+  z-index: 1;
+  border: 1px solid #80ffc4;
+}
+.main-page .main-container__newGame__content__form .stats-input__container .input__container__right label::before {
+  background-image: linear-gradient(298deg, #00ff88, #46838b);
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 100%;
+  transition: all 300ms linear;
+}
+.main-page .main-container__newGame__content__form .stats-input__container .input__container__right input:checked + label {
+  background-color: transparent;
+  color: #f0fff8;
+  font-weight: 500;
+}
+.main-page .main-container__newGame__content__form .stats-input__container .input__container__right input:not(:checked) + label::before {
+  opacity: 0;
 }
 .main-page .main-container__newGame__content__form .vows-input__container__name ~ .vows-input__container__name {
-  margin-top: 12px;
+  margin-top: 32px;
+}
+.main-page .main-container__newGame__content__form .vows-input__container__rank > div {
+  margin-top: 4px;
 }
 .main-page .main-container__newGame__content__form .vows-input__container__rank .input__container__right {
   display: flex;
+  flex-direction: column;
+  width: 110px;
+  align-items: center;
 }
 .main-page .main-container__newGame__content__form .vows-input__container__rank .input__container__right input {
   width: 0;
@@ -397,16 +454,52 @@ div.landing-action__signUpLink .right {
 }
 .main-page .main-container__newGame__content__form .vows-input__container__rank .input__container__right label {
   font-size: 12px;
+  width: 100px;
+  height: 60px;
+  background-color: #bdffe0;
+  text-align: center;
+  padding: 22px 0;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 300ms linear;
+  position: relative;
+  z-index: 1;
+  border: 1px solid #80ffc4;
+}
+.main-page .main-container__newGame__content__form .vows-input__container__rank .input__container__right label::before {
+  background-image: linear-gradient(298deg, #00ff88, #46838b);
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 3px;
+  transition: all 300ms linear;
+}
+.main-page .main-container__newGame__content__form .vows-input__container__rank .input__container__right input:checked + label {
+  background-color: transparent;
+  color: #f0fff8;
+  font-weight: 500;
+}
+.main-page .main-container__newGame__content__form .vows-input__container__rank .input__container__right input:not(:checked) + label::before {
+  opacity: 0;
+}
+.main-page .main-container__newGame__content__confirm {
+  margin-bottom: 24px;
 }
 .main-page .main-container__newGame__content__confirm button {
   width: 146px;
-  margin: 16px 0 0 32px;
+  margin: 24px 0 0 32px;
   background-color: #004726;
   border: none;
   color: #f0fff8;
   height: 40px;
   border-top: solid 2px #008044;
   border-bottom: solid 2px #000f08;
+  border-radius: 4px;
 }
 .main-page .main-container__newGame__content__confirm button:focus {
   outline: none;

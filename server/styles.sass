@@ -203,9 +203,11 @@ div.landing
     &__container
       button:first-child
         margin-top: 48px
+        border-radius: 4px
 
       button:nth-child(2)
         margin-top: 24px
+        border-radius: 4px
 
     input
       border: none
@@ -299,6 +301,7 @@ div.landing
       height: 40px
       border-top: solid 2px $color-prime_700
       border-bottom: solid 2px $color-prime_900
+      border-radius: 4px
 
       &:focus
         outline: none
@@ -353,7 +356,7 @@ div.landing
         width: 0
         height: 1px
         background-color: $color-prime_200
-        transition:0.2s ease all
+        transition: 0.2s ease all
 
     > div
       opacity: 0.6
@@ -465,20 +468,75 @@ div.landing
               input
                 width: 110px
 
+                &[type="text"]
+                  border-style: solid
+                  border-color: $color-grey_300
+                  border-radius: 4px
+                  width: 110px
+                  background-color: $color-prime_100
+                  transition: 0.2s ease all
+
+                  &:focus
+                    outline: none
+                    border-color: $color-prime_700
+
           .stats-input__container
             .input__container__right
               display: flex
+              width: 110px
+              justify-content: space-evenly
 
               input
-                width: auto
-                margin-left: 12px
+                width: 0
+                height: 0
+
+              label
+                font-size: 14px
+                width: 30px
+                height: 30px
+                background-color: $color-prime_200
+                text-align: center
+                padding-top: 4px
+                border-radius: 100%
+                cursor: pointer
+                transition: all 300ms linear
+                position: relative
+                z-index: 1
+                border: 1px solid $color-prime_300
+
+                &::before
+                  background-image: linear-gradient(298deg, $color-prime_500, $color-accent1_600)
+                  content: ''
+                  width: 100%
+                  height: 100%
+                  position: absolute
+                  top: 0
+                  left: 0
+                  z-index: -1
+                  border-radius: 100%
+                  transition: all 300ms linear
+
+              input:checked + label
+                background-color: transparent
+                color: $color-prime_100
+                font-weight: 500
+
+              input:not(:checked) + label::before
+                opacity: 0
 
           .vows-input__container__name ~ .vows-input__container__name
-            margin-top: 12px
+            margin-top: 32px
 
           .vows-input__container__rank
+
+            > div
+              margin-top: 4px
+
             .input__container__right
               display: flex
+              flex-direction: column
+              width: 110px
+              align-items: center
 
               input
                 width: 0
@@ -486,49 +544,57 @@ div.landing
 
               label
                 font-size: 12px
+                width: 100px
+                height: 60px
+                background-color: $color-prime_200
+                text-align: center
+                padding: 22px 0
+                border-radius: 4px
+                cursor: pointer
+                text-transform: uppercase
+                transition: all 300ms linear
+                position: relative
+                z-index: 1
+                border: 1px solid $color-prime_300
 
-          // > div
-          //   margin-top: 8px
+                &::before
+                  background-image: linear-gradient(298deg, $color-prime_500, $color-accent1_600)
+                  content: ''
+                  width: 100%
+                  height: 100%
+                  position: absolute
+                  top: 0
+                  left: 0
+                  z-index: -1
+                  border-radius: 3px
+                  transition: all 300ms linear
 
-          // .left
-          //   background-color: $color-grey_200
-          //   font-size: 14px
-          //   font-weight: 500
-          //   padding: 4px 8px 0 16px
+              input:checked + label
+                background-color: transparent
+                color: $color-prime_100
+                font-weight: 500
 
-          //   .experience,
-          //   .stats,
-          //   .bonds
-          //     margin-top: 16px
-
-          // .right
-          //   input
-          //     border-style: solid
-          //     margin: 8px 0 0 12px
-
-          //   #characterName
-          //     width: 92px
-
-          //   #characterExperience
-          //     width: 30px
+              input:not(:checked) + label::before
+                opacity: 0
 
         &__confirm
+          margin-bottom: 24px
+
           button
             width: 146px
-            margin: 16px 0 0 32px
+            margin: 24px 0 0 32px
             background-color: $color-prime_800
             border: none
             color: $color-prime_100
             height: 40px
             border-top: solid 2px $color-prime_700
             border-bottom: solid 2px $color-prime_900
+            border-radius: 4px
 
             &:focus
               outline: none
               border-top: solid 0px $color-prime_700
               border-bottom: solid 0px $color-prime_900
-
-
 
 .hide
   display: none

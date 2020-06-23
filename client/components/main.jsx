@@ -97,12 +97,18 @@ const Main = props => {
                         <span>Edge</span>
                       </div>
                       <div className="input__container__right">
-                        <input type="radio" name="statsEdge" id="statsEdge__1" value="1"/>
-                        <label htmlFor="statsEdge__1">1</label>
-                        <input type="radio" name="statsEdge" id="statsEdge__2" value="2"/>
-                        <label htmlFor="statsEdge__2">2</label>
-                        <input type="radio" name="statsEdge" id="statsEdge__3" value="3"/>
-                        <label htmlFor="statsEdge__3">3</label>
+                        <input className="radio-stat__edge" type="radio" name="stat__edge-radio" id="stat__edge-1" />
+                        <label className="label-stat__edge" htmlFor="stat__edge-1">
+                          <span>1</span>
+                        </label>
+                        <input className="radio-stat__edge" type="radio" name="stat__edge-radio" id="stat__edge-2" />
+                        <label className="label-stat__edge" htmlFor="stat__edge-2">
+                          <span>2</span>
+                        </label>
+                        <input className="radio-stat__edge" type="radio" name="stat__edge-radio" id="stat__edge-3" />
+                        <label className="label-stat__edge" htmlFor="stat__edge-3">
+                          <span>3</span>
+                        </label>
                       </div>
                     </div>
                     <div className="stats-input__container__heart">
@@ -110,12 +116,18 @@ const Main = props => {
                         <span>Heart</span>
                       </div>
                       <div className="input__container__right">
-                        <input type="radio" name="statsHeart" id="statsHeart__1" value="1"/>
-                        <label htmlFor="statsHeart__1">1</label>
-                        <input type="radio" name="statsHeart" id="statsHeart__2" value="2"/>
-                        <label htmlFor="statsHeart__2">2</label>
-                        <input type="radio" name="statsHeart" id="statsHeart__3" value="3"/>
-                        <label htmlFor="statsHeart__3">3</label>
+                        <input className="radio-stat__heart" type="radio" name="stat__heart-radio" id="stat__heart-1" />
+                        <label className="label-stat__heart" htmlFor="stat__heart-1">
+                          <span>1</span>
+                        </label>
+                        <input className="radio-stat__heart" type="radio" name="stat__heart-radio" id="stat__heart-2" />
+                        <label className="label-stat__heart" htmlFor="stat__heart-2">
+                          <span>2</span>
+                        </label>
+                        <input className="radio-stat__heart" type="radio" name="stat__heart-radio" id="stat__heart-3" />
+                        <label className="label-stat__heart" htmlFor="stat__heart-3">
+                          <span>3</span>
+                        </label>
                       </div>
                     </div>
                     <div className="stats-input__container__iron">
@@ -123,12 +135,18 @@ const Main = props => {
                         <span>Iron</span>
                       </div>
                       <div className="input__container__right">
-                        <input type="radio" name="statsIron" id="statsIron__1" value="1"/>
-                        <label htmlFor="statsIron__1">1</label>
-                        <input type="radio" name="statsIron" id="statsIron__2" value="2"/>
-                        <label htmlFor="statsIron__2">2</label>
-                        <input type="radio" name="statsIron" id="statsIron__3" value="3"/>
-                        <label htmlFor="statsIron__3">3</label>
+                        <input className="radio-stat__iron" type="radio" name="stat__iron-radio" id="stat__iron-1" />
+                        <label className="label-stat__iron" htmlFor="stat__iron-1">
+                          <span>1</span>
+                        </label>
+                        <input className="radio-stat__iron" type="radio" name="stat__iron-radio" id="stat__iron-2" />
+                        <label className="label-stat__iron" htmlFor="stat__iron-2">
+                          <span>2</span>
+                        </label>
+                        <input className="radio-stat__iron" type="radio" name="stat__iron-radio" id="stat__iron-3" />
+                        <label className="label-stat__iron" htmlFor="stat__iron-3">
+                          <span>3</span>
+                        </label>
                       </div>
                     </div>
                     <div className="stats-input__container__shadow">
@@ -136,12 +154,18 @@ const Main = props => {
                         <span>Shadow</span>
                       </div>
                       <div className="input__container__right">
-                        <input type="radio" name="statsShadow" id="statsShadow__1" value="1"/>
-                        <label htmlFor="statsShadow__1">1</label>
-                        <input type="radio" name="statsShadow" id="statsShadow__2" value="2"/>
-                        <label htmlFor="statsShadow__2">2</label>
-                        <input type="radio" name="statsShadow" id="statsShadow__3" value="3"/>
-                        <label htmlFor="statsShadow__3">3</label>
+                        <input className="radio-stat__shadow" type="radio" name="stat__shadow-radio" id="stat__shadow-1" />
+                        <label className="label-stat__shadow" htmlFor="stat__shadow-1">
+                          <span>1</span>
+                        </label>
+                        <input className="radio-stat__shadow" type="radio" name="stat__shadow-radio" id="stat__shadow-2" />
+                        <label className="label-stat__shadow" htmlFor="stat__shadow-2">
+                          <span>2</span>
+                        </label>
+                        <input className="radio-stat__shadow" type="radio" name="stat__shadow-radio" id="stat__shadow-3" />
+                        <label className="label-stat__shadow" htmlFor="stat__shadow-3">
+                          <span>3</span>
+                        </label>
                       </div>
                     </div>
                     <div className="stats-input__container__wits">
@@ -149,12 +173,18 @@ const Main = props => {
                         <span>Wits</span>
                       </div>
                       <div className="input__container__right">
-                        <input type="radio" name="statsWits" id="statsWits__1" value="1"/>
-                        <label htmlFor="statsWits__1">1</label>
-                        <input type="radio" name="statsWits" id="statsWits__2" value="2"/>
-                        <label htmlFor="statsWits__2">2</label>
-                        <input type="radio" name="statsWits" id="statsWits__3" value="3"/>
-                        <label htmlFor="statsWits__3">3</label>
+                        <input className="radio-stat__wits" type="radio" name="stat__wits-radio" id="stat__wits-1" />
+                        <label className="label-stat__wits" htmlFor="stat__wits-1">
+                          <span>1</span>
+                        </label>
+                        <input className="radio-stat__wits" type="radio" name="stat__wits-radio" id="stat__wits-2" />
+                        <label className="label-stat__wits" htmlFor="stat__wits-2">
+                          <span>2</span>
+                        </label>
+                        <input className="radio-stat__wits" type="radio" name="stat__wits-radio" id="stat__wits-3" />
+                        <label className="label-stat__wits" htmlFor="stat__wits-3">
+                          <span>3</span>
+                        </label>
                       </div>
                     </div>
                   </div>
@@ -210,16 +240,26 @@ const Main = props => {
                         <span>Rank</span>
                       </div>
                       <div className="input__container__right">
-                        <input className="radio-vow1" type="radio" name="rank1-troublesome" id="rank1-troublesome" />
-                        <label className="label-vow1" htmlFor="rank1-troublesome">Troublesome</label>
-                        <input className="radio-vow1" type="radio" name="rank1-dangerous" id="rank1-dangerous" />
-                        <label className="label-vow1" htmlFor="rank1-dangerous">Dangerous</label>
-                        <input className="radio-vow1" type="radio" name="rank1-formidable" id="rank1-formidable" />
-                        <label className="label-vow1" htmlFor="rank1-formidable">Formidable</label>
-                        <input className="radio-vow1" type="radio" name="rank1-extreme" id="rank1-extreme" />
-                        <label className="label-vow1" htmlFor="rank1-extreme">Extreme</label>
-                        <input className="radio-vow1" type="radio" name="rank1-epic" id="rank1-epic" />
-                        <label className="label-vow1" htmlFor="rank1-epic">Epic</label>
+                        <input className="radio-vow1" type="radio" name="rank1-radio" id="rank1-troublesome"/>
+                        <label className="label-vow1" htmlFor="rank1-troublesome">
+                          <span>Troublesome</span>
+                        </label>
+                        <input className="radio-vow1" type="radio" name="rank1-radio" id="rank1-dangerous" />
+                        <label className="label-vow1" htmlFor="rank1-dangerous">
+                          <span>Dangerous</span>
+                        </label>
+                        <input className="radio-vow1" type="radio" name="rank1-radio" id="rank1-formidable" />
+                        <label className="label-vow1" htmlFor="rank1-formidable">
+                          <span>Formidable</span>
+                        </label>
+                        <input className="radio-vow1" type="radio" name="rank1-radio" id="rank1-extreme" />
+                        <label className="label-vow1" htmlFor="rank1-extreme">
+                          <span>Extreme</span>
+                        </label>
+                        <input className="radio-vow1" type="radio" name="rank1-radio" id="rank1-epic" />
+                        <label className="label-vow1" htmlFor="rank1-epic">
+                          <span>Epic</span>
+                        </label>
                       </div>
                     </div>
                     <div className="vows-input__container__name">
@@ -235,16 +275,26 @@ const Main = props => {
                         <span>Rank</span>
                       </div>
                       <div className="input__container__right">
-                        <input className="radio-vow2" type="radio" name="rank2-troublesome" id="rank2-troublesome" />
-                        <label className="label-vow2" htmlFor="rank2-troublesome">Troublesome</label>
-                        <input className="radio-vow2" type="radio" name="rank2-dangerous" id="rank2-dangerous" />
-                        <label className="label-vow2" htmlFor="rank2-dangerous">Dangerous</label>
-                        <input className="radio-vow2" type="radio" name="rank2-formidable" id="rank2-formidable" />
-                        <label className="label-vow2" htmlFor="rank2-formidable">Formidable</label>
-                        <input className="radio-vow2" type="radio" name="rank2-extreme" id="rank2-extreme" />
-                        <label className="label-vow2" htmlFor="rank2-extreme">Extreme</label>
-                        <input className="radio-vow2" type="radio" name="rank2-epic" id="rank2-epic" />
-                        <label className="label-vow2" htmlFor="rank2-epic">Epic</label>
+                        <input className="radio-vow2" type="radio" name="rank2-radio" id="rank2-troublesome" />
+                        <label className="label-vow2" htmlFor="rank2-troublesome">
+                          <span>Troublesome</span>
+                        </label>
+                        <input className="radio-vow2" type="radio" name="rank2-radio" id="rank2-dangerous" />
+                        <label className="label-vow2" htmlFor="rank2-dangerous">
+                          <span>Dangerous</span>
+                        </label>
+                        <input className="radio-vow2" type="radio" name="rank2-radio" id="rank2-formidable" />
+                        <label className="label-vow2" htmlFor="rank2-formidable">
+                          <span>Formidable</span>
+                        </label>
+                        <input className="radio-vow2" type="radio" name="rank2-radio" id="rank2-extreme"/>
+                        <label className="label-vow2" htmlFor="rank2-extreme">
+                          <span>Extreme</span>
+                        </label>
+                        <input className="radio-vow2" type="radio" name="rank2-radio" id="rank2-epic" />
+                        <label className="label-vow2" htmlFor="rank2-epic">
+                          <span>Epic</span>
+                        </label>
                       </div>
                     </div>
                   </div>
