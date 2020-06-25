@@ -176,9 +176,6 @@ div.landing-action__userName {
 div.landing-action__password {
   margin-bottom: 8px;
 }
-div.landing-action__feedback {
-  margin-bottom: 8px;
-}
 div.landing-action__forgetPwd {
   margin-bottom: 12px;
 }
@@ -186,6 +183,7 @@ div.landing-action__login {
   margin-bottom: 12px;
 }
 div.landing-action__feedback {
+  margin-bottom: 8px;
   font-size: 12px;
   color: #79231b;
   display: flex;
@@ -397,6 +395,7 @@ div.landing-action__signUpLink .right {
   display: flex;
   width: 110px;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 .main-page .main-container__newGame__content__form .stats-input__container .input__container__right input {
   width: 0;
@@ -487,6 +486,19 @@ div.landing-action__signUpLink .right {
 }
 .main-page .main-container__newGame__content__form .vows-input__container__rank .input__container__right input:not(:checked) + label::before {
   opacity: 0;
+}
+.main-page .main-container__newGame__content .newGame__feedback {
+  margin: 8px 0 12px 0;
+  font-size: 12px;
+  color: #79231b;
+  display: flex;
+  justify-content: center;
+}
+.main-page .main-container__newGame__content .newGame__feedback span {
+  background-color: #eba9a3;
+  width: 110px;
+  padding: 4px;
+  border-radius: 4px;
 }
 .main-page .main-container__newGame__content__confirm {
   margin-bottom: 24px;

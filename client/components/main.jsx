@@ -7,6 +7,7 @@ const Main = props => {
 
   const createNewGame = () => setIsPage('new');
   const returnGamePage = () => setIsPage('game');
+  const characterPage = () => setIsPage('character');
 
   const createPage = () => {
     if (isPage === 'game') {
@@ -61,7 +62,7 @@ const Main = props => {
     } else if (isPage === 'new') {
       return (
         <>
-          <NewCharacter returnGamePage={returnGamePage} />
+          <NewCharacter returnGamePage={returnGamePage} characterPage={characterPage} />
         </>
       );
     } else return null;

@@ -262,9 +262,6 @@ div.landing
     &__password
       margin-bottom: 8px
 
-    &__feedback
-      margin-bottom: 8px
-
     &__forgetPwd
       margin-bottom: 12px
 
@@ -272,6 +269,7 @@ div.landing
       margin-bottom: 12px
 
     &__feedback
+      margin-bottom: 8px
       font-size: 12px
       color: $color-accent2_800
       display: flex
@@ -485,6 +483,7 @@ div.landing
               display: flex
               width: 110px
               justify-content: space-evenly
+              flex-wrap: wrap
 
               input
                 width: 0
@@ -577,6 +576,19 @@ div.landing
 
               input:not(:checked) + label::before
                 opacity: 0
+
+        .newGame__feedback
+          margin: 8px 0 12px 0
+          font-size: 12px
+          color: $color-accent2_800
+          display: flex
+          justify-content: center
+
+          span
+            background-color: $color-accent2_100
+            width: 110px
+            padding: 4px
+            border-radius: 4px
 
         &__confirm
           margin-bottom: 24px
