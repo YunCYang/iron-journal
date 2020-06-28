@@ -82,6 +82,18 @@ $color-accent3_700: hsla(185, 17%, 39%, 1)
 $color-accent3_800: hsla(185, 25%, 33%, 1)
 $color-accent3_900: hsla(185, 32%, 28%, 1)
 
+=feedback($feedback-width)
+  font-size: 12px
+  color: $color-accent2_800
+  display: flex
+  justify-content: center
+  flex-direction: column
+  border-radius: 4px
+  background-color: $color-accent2_100
+
+  span
+    width: $feedback-width
+
 *
   box-sizing: border-box
   font-family: $font-main
@@ -93,6 +105,9 @@ div.main
   background-color: $color-grey_100
   width: 100%
   min-height: 100vh
+  display: flex
+  flex-direction: column
+  align-items: center
 
 // landing
 div.landing
@@ -104,7 +119,7 @@ div.landing
   &-logo
     height: 120px
     width: 120px
-    margin-top: 48px
+    margin-top: 64px
     display: flex
     justify-content: center
     align-items: center
@@ -269,15 +284,10 @@ div.landing
       margin-bottom: 12px
 
     &__feedback
+      @include feedback($feedback-width: 184px)
       margin-bottom: 8px
-      font-size: 12px
-      color: $color-accent2_800
-      display: flex
-      justify-content: center
 
       span
-        background-color: $color-accent2_100
-        width: 184px
         padding: 4px 2px 4px 2px
 
     &__forgetPwd
@@ -321,6 +331,103 @@ div.landing
 
       .right
         font-weight: 500
+
+.signup-container
+  width: 224px
+  height: 440px
+  background-color: $color-grey_100
+  margin-top: 48px
+  display: flex
+  flex-direction: column
+  align-items: center
+  // justify-content: center
+  // border-radius: 8px
+
+  .signup-container__username,
+  .signup-container__email,
+  .signup-container__password
+    display: flex
+    margin-top: 24px
+    flex-wrap: wrap
+
+  // space: 4, 8, 12, 16, 24, 32, 48px
+  .signup-container
+    &__title
+      color: $color-prime_900
+      font-size: 30px
+      margin-bottom: 16px
+
+    &__left
+      margin: 0 24px 0 0
+      width: 66px
+      font-size: 14px
+
+    &__right
+      display: flex
+      flex-direction: column
+
+      .signup__input
+        position: relative
+
+        i
+          position: absolute
+          right: 3px
+          top: 3px
+
+          &.fa-check-circle
+            color: $color-prime_700
+
+          &.fa-times-circle
+            color: $color-accent2_500
+
+      input
+        width: 134px
+        border-style: solid
+        border-color: $color-grey_300
+        border-radius: 4px
+        background-color: $color-prime_100
+        transition: 0.2s ease all
+        padding-right: 20px
+
+        &:focus
+          outline: none
+          border-color: $color-prime_700
+
+    &__feedback
+      @include feedback($feedback-width: 224px)
+      margin: 8px 0 0 0
+
+      span
+        padding: 4px 8px
+
+    &__submit
+      margin-top: 24px
+
+      button
+        width: 146px
+        background-color: $color-prime_800
+        border: none
+        color: $color-prime_100
+        height: 40px
+        border-top: solid 2px $color-prime_700
+        border-bottom: solid 2px $color-prime_900
+        border-radius: 4px
+
+        &:focus
+          outline: none
+          border-top: solid 0px $color-prime_700
+          border-bottom: solid 0px $color-prime_900
+
+    &__loginLink
+      margin-top: 16px
+      font-size: 14px
+      display: flex
+      justify-content: center
+
+      a,
+      span
+        color: $color-accent1_500
+        text-decoration: none
 
 .main-page
   width: 100%
@@ -578,17 +685,11 @@ div.landing
                 opacity: 0
 
         .newGame__feedback
+          @include feedback($feedback-width: 110px)
           margin: 8px 0 12px 0
-          font-size: 12px
-          color: $color-accent2_800
-          display: flex
-          justify-content: center
 
           span
-            background-color: $color-accent2_100
-            width: 110px
             padding: 4px
-            border-radius: 4px
 
         &__confirm
           margin-bottom: 24px

@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import NewCharacter from './newCharacter';
+import Character from './character';
 
 const Main = props => {
   const [isPage, setIsPage] = React.useState('game');
@@ -63,6 +64,12 @@ const Main = props => {
       return (
         <>
           <NewCharacter returnGamePage={returnGamePage} characterPage={characterPage} />
+        </>
+      );
+    } else if (isPage === 'character') {
+      return (
+        <>
+          <Character />
         </>
       );
     } else return null;

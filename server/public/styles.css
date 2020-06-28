@@ -12,6 +12,9 @@ div.main {
   background-color: #f7f7f7;
   width: 100%;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 div.landing {
@@ -23,7 +26,7 @@ div.landing {
 div.landing-logo {
   height: 120px;
   width: 120px;
-  margin-top: 48px;
+  margin-top: 64px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -183,15 +186,19 @@ div.landing-action__login {
   margin-bottom: 12px;
 }
 div.landing-action__feedback {
-  margin-bottom: 8px;
   font-size: 12px;
   color: #79231b;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  border-radius: 4px;
+  background-color: #eba9a3;
+  margin-bottom: 8px;
 }
 div.landing-action__feedback span {
-  background-color: #eba9a3;
   width: 184px;
+}
+div.landing-action__feedback span {
   padding: 4px 2px 4px 2px;
 }
 div.landing-action__forgetPwd {
@@ -235,6 +242,109 @@ div.landing-action__signUpLink .left {
 }
 div.landing-action__signUpLink .right {
   font-weight: 500;
+}
+
+.signup-container {
+  width: 224px;
+  height: 440px;
+  background-color: #f7f7f7;
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.signup-container .signup-container__username,
+.signup-container .signup-container__email,
+.signup-container .signup-container__password {
+  display: flex;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.signup-container .signup-container__title {
+  color: #000f08;
+  font-size: 30px;
+  margin-bottom: 16px;
+}
+.signup-container .signup-container__left {
+  margin: 0 24px 0 0;
+  width: 66px;
+  font-size: 14px;
+}
+.signup-container .signup-container__right {
+  display: flex;
+  flex-direction: column;
+}
+.signup-container .signup-container__right .signup__input {
+  position: relative;
+}
+.signup-container .signup-container__right .signup__input i {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+}
+.signup-container .signup-container__right .signup__input i.fa-check-circle {
+  color: #008044;
+}
+.signup-container .signup-container__right .signup__input i.fa-times-circle {
+  color: #d13c2e;
+}
+.signup-container .signup-container__right input {
+  width: 134px;
+  border-style: solid;
+  border-color: #bfbfbf;
+  border-radius: 4px;
+  background-color: #f0fff8;
+  transition: 0.2s ease all;
+  padding-right: 20px;
+}
+.signup-container .signup-container__right input:focus {
+  outline: none;
+  border-color: #008044;
+}
+.signup-container .signup-container__feedback {
+  font-size: 12px;
+  color: #79231b;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 4px;
+  background-color: #eba9a3;
+  margin: 8px 0 0 0;
+}
+.signup-container .signup-container__feedback span {
+  width: 224px;
+}
+.signup-container .signup-container__feedback span {
+  padding: 4px 8px;
+}
+.signup-container .signup-container__submit {
+  margin-top: 24px;
+}
+.signup-container .signup-container__submit button {
+  width: 146px;
+  background-color: #004726;
+  border: none;
+  color: #f0fff8;
+  height: 40px;
+  border-top: solid 2px #008044;
+  border-bottom: solid 2px #000f08;
+  border-radius: 4px;
+}
+.signup-container .signup-container__submit button:focus {
+  outline: none;
+  border-top: solid 0px #008044;
+  border-bottom: solid 0px #000f08;
+}
+.signup-container .signup-container__loginLink {
+  margin-top: 16px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+}
+.signup-container .signup-container__loginLink a,
+.signup-container .signup-container__loginLink span {
+  color: #559caa;
+  text-decoration: none;
 }
 
 .main-page {
@@ -488,17 +598,20 @@ div.landing-action__signUpLink .right {
   opacity: 0;
 }
 .main-page .main-container__newGame__content .newGame__feedback {
-  margin: 8px 0 12px 0;
   font-size: 12px;
   color: #79231b;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  border-radius: 4px;
+  background-color: #eba9a3;
+  margin: 8px 0 12px 0;
 }
 .main-page .main-container__newGame__content .newGame__feedback span {
-  background-color: #eba9a3;
   width: 110px;
+}
+.main-page .main-container__newGame__content .newGame__feedback span {
   padding: 4px;
-  border-radius: 4px;
 }
 .main-page .main-container__newGame__content__confirm {
   margin-bottom: 24px;
