@@ -1,7 +1,149 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
-const Signup = () => {
+const Signup = props => {
+  const [isNameValid, setIsNameValid] = React.useState(null);
+  const [isEmailValid, setIsEmailValid] = React.useState(null);
+  const [isPasswordValid, setIsPasswordValid] = React.useState(null);
+
+  const specialCharCheck = /\W/;
+  const usernameLengthCheck = /^.{6,30}/;
+  const passwordLengthCheck = /^.{8,32}/;
+  const passwordNumberCheck = /(?=.*[0-9])/;
+  const passwordUppercaseCheck = /(?=.*[A-Z])/;
+  const passwordLowercaseCheck = /(?=.*[a-z])/;
+  const passwordSpecialCheck = /(?=.*[\W])/;
+
+  const invalidDisplay = state => {
+    if (state === null) return 'hide';
+    else if (!state) return '';
+    else return 'hide';
+  };
+
+  const validDisplay = state => {
+    if (!state) return 'hide';
+    else return '';
+  };
+
+  const nameInputHandler = () => {
+    const nameInput = document.getElementById('input-signup__username');
+    const nameLengthFeedback = document.getElementsByClassName('username-feedback__length')[0];
+    const nameSpecialFeedback = document.getElementsByClassName('username-feedback__special')[0];
+    if (nameInput.checkValidity()) {
+      setIsNameValid(true);
+      nameLengthFeedback.classList.add('hide');
+      nameSpecialFeedback.classList.add('hide');
+    } else {
+      setIsNameValid(false);
+      if (specialCharCheck.test(nameInput.value)) {
+        nameSpecialFeedback.classList.remove('hide');
+      } else nameSpecialFeedback.classList.add('hide');
+      if (!usernameLengthCheck.test(nameInput.value)) {
+        nameLengthFeedback.classList.remove('hide');
+      } else nameLengthFeedback.classList.add('hide');
+    }
+  };
+
+  const emailInputHandler = () => {
+    const emailInput = document.getElementById('input-signup__email');
+    const emailFormatFeedback = document.getElementsByClassName('email-feedback__format')[0];
+    if (emailInput.checkValidity()) {
+      setIsEmailValid(true);
+      emailFormatFeedback.classList.add('hide');
+    } else {
+      setIsEmailValid(false);
+      emailFormatFeedback.classList.remove('hide');
+    }
+  };
+
+  const passwordInputHandler = () => {
+    const passwordInput = document.getElementById('input-signup__password');
+    const passwordLengthFeedback = document.getElementsByClassName('password-feedback__length')[0];
+    const passwordUppercaseFeedback = document.getElementsByClassName('password-feedback__uppercase')[0];
+    const passwordLowercaseFeedback = document.getElementsByClassName('password-feedback__lowercase')[0];
+    const passwordNumberFeedback = document.getElementsByClassName('password-feedback__number')[0];
+    const passwordSpecialFeedback = document.getElementsByClassName('password-feedback__special')[0];
+    if (passwordInput.checkValidity()) {
+      setIsPasswordValid(true);
+      passwordLengthFeedback.classList.add('hide');
+      passwordUppercaseFeedback.classList.add('hide');
+      passwordLowercaseFeedback.classList.add('hide');
+      passwordNumberFeedback.classList.add('hide');
+      passwordSpecialFeedback.classList.add('hide');
+    } else {
+      setIsPasswordValid(false);
+      if (!passwordLengthCheck.test(passwordInput.value)) {
+        passwordLengthFeedback.classList.remove('hide');
+      } else passwordLengthFeedback.classList.add('hide');
+      if (!passwordNumberCheck.test(passwordInput.value)) {
+        passwordNumberFeedback.classList.remove('hide');
+      } else passwordNumberFeedback.classList.add('hide');
+      if (!passwordUppercaseCheck.test(passwordInput.value)) {
+        passwordUppercaseFeedback.classList.remove('hide');
+      } else passwordUppercaseFeedback.classList.add('hide');
+      if (!passwordLowercaseCheck.test(passwordInput.value)) {
+        passwordLowercaseFeedback.classList.remove('hide');
+      } else passwordLowercaseFeedback.classList.add('hide');
+      if (!passwordSpecialCheck.test(passwordInput.value)) {
+        passwordSpecialFeedback.classList.remove('hide');
+      } else passwordSpecialFeedback.classList.add('hide');
+    }
+  };
+
+  const submitHandler = () => {
+    const nameInput = document.getElementById('input-signup__username');
+    const nameLengthFeedback = document.getElementsByClassName('username-feedback__length')[0];
+    const nameSpecialFeedback = document.getElementsByClassName('username-feedback__special')[0];
+    const emailInput = document.getElementById('input-signup__email');
+    const emailFormatFeedback = document.getElementsByClassName('email-feedback__format')[0];
+    const passwordInput = document.getElementById('input-signup__password');
+    const passwordLengthFeedback = document.getElementsByClassName('password-feedback__length')[0];
+    const passwordUppercaseFeedback = document.getElementsByClassName('password-feedback__uppercase')[0];
+    const passwordLowercaseFeedback = document.getElementsByClassName('password-feedback__lowercase')[0];
+    const passwordNumberFeedback = document.getElementsByClassName('password-feedback__number')[0];
+    const passwordSpecialFeedback = document.getElementsByClassName('password-feedback__special')[0];
+    if (nameInput.checkValidity()) {
+      nameLengthFeedback.classList.add('hide');
+      nameSpecialFeedback.classList.add('hide');
+    } else {
+      if (specialCharCheck.test(nameInput.value)) {
+        nameSpecialFeedback.classList.remove('hide');
+      } else nameSpecialFeedback.classList.add('hide');
+      if (!usernameLengthCheck.test(nameInput.value)) {
+        nameLengthFeedback.classList.remove('hide');
+      } else nameLengthFeedback.classList.add('hide');
+    }
+    if (emailInput.checkValidity()) {
+      emailFormatFeedback.classList.add('hide');
+    } else emailFormatFeedback.classList.remove('hide');
+    if (passwordInput.checkValidity()) {
+      passwordLengthFeedback.classList.add('hide');
+      passwordUppercaseFeedback.classList.add('hide');
+      passwordLowercaseFeedback.classList.add('hide');
+      passwordNumberFeedback.classList.add('hide');
+      passwordSpecialFeedback.classList.add('hide');
+    } else {
+      if (!passwordLengthCheck.test(passwordInput.value)) {
+        passwordLengthFeedback.classList.remove('hide');
+      } else passwordLengthFeedback.classList.add('hide');
+      if (!passwordNumberCheck.test(passwordInput.value)) {
+        passwordNumberFeedback.classList.remove('hide');
+      } else passwordNumberFeedback.classList.add('hide');
+      if (!passwordUppercaseCheck.test(passwordInput.value)) {
+        passwordUppercaseFeedback.classList.remove('hide');
+      } else passwordUppercaseFeedback.classList.add('hide');
+      if (!passwordLowercaseCheck.test(passwordInput.value)) {
+        passwordLowercaseFeedback.classList.remove('hide');
+      } else passwordLowercaseFeedback.classList.add('hide');
+      if (!passwordSpecialCheck.test(passwordInput.value)) {
+        passwordSpecialFeedback.classList.remove('hide');
+      } else passwordSpecialFeedback.classList.add('hide');
+    }
+    if (nameInput.checkValidity() && emailInput.checkValidity() && passwordInput.checkValidity()) {
+      props.history.push('/');
+    }
+  };
+
   return (
     <>
       <div className="signup-container">
@@ -14,9 +156,10 @@ const Signup = () => {
           </div>
           <div className="signup-container__right">
             <div className="signup__input">
-              <input type="text" name="input-signup__username" id="input-signup__username" />
-              <i className="fas fa-check-circle hide"></i>
-              <i className="fas fa-times-circle hide"></i>
+              <input type="text" name="input-signup__username" id="input-signup__username"
+                pattern="^[\w]{6,30}" onChange={nameInputHandler} required/>
+              <i className={`fas fa-check-circle ${validDisplay(isNameValid)}`}></i>
+              <i className={`fas fa-times-circle ${invalidDisplay(isNameValid)}`}></i>
             </div>
           </div>
           <div className="signup-container__feedback">
@@ -30,9 +173,10 @@ const Signup = () => {
           </div>
           <div className="signup-container__right">
             <div className="signup__input">
-              <input type="text" name="input-signup__email" id="input-signup__email" />
-              <i className="fas fa-check-circle hide"></i>
-              <i className="fas fa-times-circle hide"></i>
+              <input type="email" name="input-signup__email" id="input-signup__email"
+                onChange={emailInputHandler} required/>
+              <i className={`fas fa-check-circle ${validDisplay(isEmailValid)}`}></i>
+              <i className={`fas fa-times-circle ${invalidDisplay(isEmailValid)}`}></i>
             </div>
           </div>
           <div className="signup-container__feedback">
@@ -45,21 +189,23 @@ const Signup = () => {
           </div>
           <div className="signup-container__right">
             <div className="signup__input">
-              <input type="password" name="input-signup__password" id="input-signup__password" />
-              <i className="fas fa-check-circle hide"></i>
-              <i className="fas fa-times-circle hide"></i>
+              <input type="password" name="input-signup__password" id="input-signup__password"
+                pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,32}$"
+                onChange={passwordInputHandler} required/>
+              <i className={`fas fa-check-circle ${validDisplay(isPasswordValid)}`}></i>
+              <i className={`fas fa-times-circle ${invalidDisplay(isPasswordValid)}`}></i>
             </div>
           </div>
           <div className="signup-container__feedback">
-            <span className="pwd-feedback__length hide">Password needs at least 8 characters.</span>
-            <span className="pwd-feedback__uppercase hide">Password needs at least 1 uppercase letter.</span>
-            <span className="pwd-feedback__lowercase hide">Password needs at least 1 lowercase letter.</span>
-            <span className="pwd-feedback__number hide">Password needs at least 1 number.</span>
-            <span className="pwd-feedback__special hide">Password needs at least 1 special symbol.</span>
+            <span className="password-feedback__length hide">Password needs at least 8 characters.</span>
+            <span className="password-feedback__uppercase hide">Password needs at least 1 uppercase letter.</span>
+            <span className="password-feedback__lowercase hide">Password needs at least 1 lowercase letter.</span>
+            <span className="password-feedback__number hide">Password needs at least 1 number.</span>
+            <span className="password-feedback__special hide">Password needs at least 1 special symbol.</span>
           </div>
         </div>
         <div className="signup-container__submit">
-          <button type="button">Sign Up</button>
+          <button type="button" onClick={submitHandler}>Sign Up</button>
         </div>
         <div className="signup-container__loginLink">
           <Link to='/' className='right'>Back to log in</Link>
@@ -69,4 +215,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default withRouter(Signup);
