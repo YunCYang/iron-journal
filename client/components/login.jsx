@@ -3,22 +3,59 @@ import { Link, withRouter } from 'react-router-dom';
 
 const Login = props => {
   const [isLogin, setIsLogin] = React.useState(true);
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
   const loginHandler = () => {
     const inputUsername = document.getElementById('input-username');
     const inputPassword = document.getElementById('input-password');
     const emptyFeedback = document.getElementById('login-feedback__empty');
-    // const invalidFeedback = document.getElementById('login-feedback__invalid');
+    const invalidFeedback = document.getElementById('login-feedback__invalid');
+    const errorFeedback = document.getElementById('login-feedback__error');
     if (!inputUsername.checkValidity() || !inputPassword.checkValidity()) {
       emptyFeedback.classList.remove('hide');
     } else {
+      invalidFeedback.classList.add('hide');
       emptyFeedback.classList.add('hide');
-      props.history.push('/main');
+      errorFeedback.classList.add('hide');
+      const init = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      };
+      fetch('/api/auth/login', init)
+        .then(res => res.json())
+        .then(res => {
+          if (res.status === 401) invalidFeedback.classList.remove('hide');
+          else if (res.status === 200) props.history.push('/main');
+          else errorFeedback.classList.remove('hide');
+        });
     }
   };
 
-  const usernameInputHandler = () => validateInput();
-  const passwordInputHandler = () => validateInput();
+  const validateInput = () => {
+    const inputUsername = document.getElementById('input-username');
+    const inputPassword = document.getElementById('input-password');
+    const emptyFeedback = document.getElementById('login-feedback__empty');
+    if (inputUsername.checkValidity() && inputPassword.checkValidity()) {
+      emptyFeedback.classList.add('hide');
+    }
+  };
+
+  const usernameInputHandler = () => {
+    const inputUsername = document.getElementById('input-username');
+    validateInput();
+    if (inputUsername.checkValidity()) setUsername(inputUsername.value);
+  };
+
+  const passwordInputHandler = () => {
+    const inputPassword = document.getElementById('input-password');
+    validateInput();
+    if (inputPassword.checkValidity()) setPassword(inputPassword.value);
+  };
 
   const guestLoginHandler = () => props.history.push('/main');
 
@@ -41,6 +78,7 @@ const Login = props => {
           <div className="landing-action__feedback">
             <span id='login-feedback__empty' className="empty hide">Username &amp; password are required.</span>
             <span id='login-feedback__invalid' className="wrongCredential hide">Incorrect username or password.</span>
+            <span id='login-feedback__error' className="loginError hide">Unknown error happened.</span>
           </div>
           <div className="landing-action__forgetPwd">
             <Link to='/forgetpassword' className='forgetPwd'>Forget password?</Link>
@@ -63,15 +101,6 @@ const Login = props => {
           </div>
         </>
       );
-    }
-  };
-
-  const validateInput = () => {
-    const inputUsername = document.getElementById('input-username');
-    const inputPassword = document.getElementById('input-password');
-    const emptyFeedback = document.getElementById('login-feedback__empty');
-    if (inputUsername.checkValidity() && inputPassword.checkValidity()) {
-      emptyFeedback.classList.add('hide');
     }
   };
 

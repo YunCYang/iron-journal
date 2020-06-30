@@ -5,6 +5,9 @@ const Signup = props => {
   const [isNameValid, setIsNameValid] = React.useState(null);
   const [isEmailValid, setIsEmailValid] = React.useState(null);
   const [isPasswordValid, setIsPasswordValid] = React.useState(null);
+  const [username, setUsername] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
   const specialCharCheck = /\W/;
   const usernameLengthCheck = /^.{6,30}/;
@@ -33,6 +36,7 @@ const Signup = props => {
       setIsNameValid(true);
       nameLengthFeedback.classList.add('hide');
       nameSpecialFeedback.classList.add('hide');
+      setUsername(nameInput.value);
     } else {
       setIsNameValid(false);
       if (specialCharCheck.test(nameInput.value)) {
@@ -50,6 +54,7 @@ const Signup = props => {
     if (emailInput.checkValidity()) {
       setIsEmailValid(true);
       emailFormatFeedback.classList.add('hide');
+      setEmail(emailInput.value);
     } else {
       setIsEmailValid(false);
       emailFormatFeedback.classList.remove('hide');
@@ -70,6 +75,7 @@ const Signup = props => {
       passwordLowercaseFeedback.classList.add('hide');
       passwordNumberFeedback.classList.add('hide');
       passwordSpecialFeedback.classList.add('hide');
+      setPassword(passwordInput.value);
     } else {
       setIsPasswordValid(false);
       if (!passwordLengthCheck.test(passwordInput.value)) {
@@ -140,7 +146,20 @@ const Signup = props => {
       } else passwordSpecialFeedback.classList.add('hide');
     }
     if (nameInput.checkValidity() && emailInput.checkValidity() && passwordInput.checkValidity()) {
-      props.history.push('/');
+      const init = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          password: password
+        })
+      };
+      fetch('/api/auth/signup', init)
+        .then(res => res.json())
+        .then(res => {
+          props.history.push('/');
+        });
     }
   };
 

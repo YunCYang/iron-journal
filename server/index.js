@@ -35,15 +35,15 @@ const transporter = nodemailer.createTransport({
 // sign up
 app.post('/api/auth/signup', (req, res, next) => {
   const saltRounds = 11;
-  if (!req.body.userName) next(new ClientError('missing user name', 400));
+  if (!req.body.username) next(new ClientError('missing user name', 400));
   else if (!req.body.email) next(new ClientError('missing email', 400));
   else if (!req.body.password) next(new ClientError('missing password', 400));
   const pwdTest = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*_=+-])(?=.{8,})/;
   if (!pwdTest.exec(req.body.password)) next(new ClientError('password is not valid', 400));
-  const checkUserNameSql = `
-    select "userName"
+  const checkUsernameSql = `
+    select "username"
       from "user"
-     where "userName" = $1;
+     where "username" = $1;
   `;
   const checkEmailSql = `
     select "email"
@@ -51,19 +51,19 @@ app.post('/api/auth/signup', (req, res, next) => {
      where "email" = $1;
   `;
   const insertSql = `
-    insert into "user" ("userName", "email", "password")
+    insert into "user" ("username", "email", "password")
     values ($1, $2, $3)
-    returning "userName", "email";
+    returning "username", "email";
   `;
-  const userNameValue = [req.body.userName];
+  const usernameValue = [req.body.username];
   const emailValue = [req.body.email];
   if (pwdTest.exec(req.body.password)) {
     bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
       if (err) next(err);
-      const insertValue = [req.body.userName, req.body.email, hash];
-      db.query(checkUserNameSql, userNameValue)
-        .then(userNameResult => {
-          if (userNameResult.rows[0]) next(new ClientError(`user name ${req.body.userName} already exists`, 400));
+      const insertValue = [req.body.username, req.body.email, hash];
+      db.query(checkUsernameSql, usernameValue)
+        .then(usernameResult => {
+          if (usernameResult.rows[0]) next(new ClientError(`user name ${req.body.username} already exists`, 400));
           else {
             db.query(checkEmailSql, emailValue)
               .then(emailResult => {
@@ -87,24 +87,24 @@ app.post('/api/auth/signup', (req, res, next) => {
 
 // log in
 app.post('/api/auth/login', (req, res, next) => {
-  if (!req.body.userName) next(new ClientError('missing user name', 400));
+  if (!req.body.username) next(new ClientError('missing user name', 400));
   else if (!req.body.password) next(new ClientError('missing password', 400));
   const sql = `
-    select "userName", "password", "userId"
+    select "username", "password", "userId"
       from "user"
-     where "userName" = $1;
+     where "username" = $1;
   `;
-  const value = [req.body.userName];
+  const value = [req.body.username];
   db.query(sql, value)
     .then(result => {
-      if (!result.rows[0]) next(new ClientError(`user name ${req.body.userName} does not exist`, 404));
+      if (!result.rows[0]) next(new ClientError(`user name ${req.body.username} does not exist`, 404));
       else {
         bcrypt.compare(req.body.password, result.rows[0].password, (err, pwdResult) => {
           if (err) next(err);
           if (pwdResult) {
             res.status(200).json({
               userId: result.rows[0].userId,
-              userName: result.rows[0].userName,
+              username: result.rows[0].username,
               status: 200
             });
           } else next(new ClientError('password does not match', 401));
@@ -163,7 +163,7 @@ app.put('/api/auth/update', (req, res, next) => {
     update "user"
        set "password" = $1
      where "userId" = $2
-    returning "userId", "userName";
+    returning "userId", "username";
   `;
   const checkUserIdValue = [parseInt(req.body.userId)];
   const tokenArray = req.body.token.split('');
@@ -204,24 +204,24 @@ app.put('/api/auth/update', (req, res, next) => {
 
 // delete account
 app.delete('/api/auth/delete', (req, res, next) => {
-  if (!req.body.userName) next(new ClientError('missing user name', 400));
+  if (!req.body.username) next(new ClientError('missing user name', 400));
   else if (!req.body.userId) next(new ClientError('missing user id', 400));
   else if (!req.body.password) next(new ClientError('missing password', 400));
   intTest(req.body.userId, next);
   const searchSql = `
-    select "userName", "password"
+    select "username", "password"
       from "user"
-     where "userName" = $1;
+     where "username" = $1;
   `;
   const deleteSql = `
     delete from "user"
      where "userId" = $1;
   `;
-  const value = [req.body.userName];
+  const value = [req.body.username];
   const deleteValue = [parseInt(req.body.userId)];
   db.query(searchSql, value)
     .then(searchResult => {
-      if (!searchResult.rows[0]) next(new ClientError(`user name ${req.body.userName} does not exist`, 404));
+      if (!searchResult.rows[0]) next(new ClientError(`user name ${req.body.username} does not exist`, 404));
       else {
         bcrypt.compare(req.body.password, searchResult.rows[0].password, (err, pwdResult) => {
           if (err) next(err);
@@ -239,33 +239,33 @@ app.delete('/api/auth/delete', (req, res, next) => {
 // change password
 app.put('/api/auth/password', (req, res, next) => {
   const saltRounds = 11;
-  if (!req.body.userName) next(new ClientError('missing user name', 400));
+  if (!req.body.username) next(new ClientError('missing user name', 400));
   else if (!req.body.oldPassword) next(new ClientError('missing old password', 400));
   else if (!req.body.newPassword) next(new ClientError('missing new password', 400));
   const pwdTest = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*_=+-])(?=.{8,})/;
   if (!pwdTest.exec(req.body.newPassword)) next(new ClientError('new password is not valid', 400));
   const searchSql = `
-    select "userName", "password"
+    select "username", "password"
       from "user"
-     where "userName" = $1;
+     where "username" = $1;
   `;
   const updatePwSql = `
     update "user"
        set "password" = $1
-     where "userName" = $2
+     where "username" = $2
     returning *;
   `;
-  const searchValue = [req.body.userName];
+  const searchValue = [req.body.username];
   db.query(searchSql, searchValue)
     .then(searchResult => {
-      if (!searchResult.rows[0]) next(new ClientError(`user name ${req.body.userName} does not exist`, 404));
+      if (!searchResult.rows[0]) next(new ClientError(`user name ${req.body.username} does not exist`, 404));
       else {
         bcrypt.compare(req.body.oldPassword, searchResult.rows[0].password, (err, pwdResult) => {
           if (err) next(err);
           if (pwdResult) {
             bcrypt.hash(req.body.newPassword, saltRounds, (err, hash) => {
               if (err) next(err);
-              const updateValue = [hash, req.body.userName];
+              const updateValue = [hash, req.body.username];
               db.query(updatePwSql, updateValue)
                 .then(updateResult => res.status(200).json([]))
                 .catch(err => next(err));

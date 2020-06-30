@@ -1,6 +1,6 @@
 CREATE TABLE "user" (
 	"userId" serial NOT NULL,
-	"userName" varchar(255) NOT NULL,
+	"username" varchar(255) NOT NULL,
 	"email" varchar(255) NOT NULL,
 	"password" varchar(255) NOT NULL,
 	"createdAt" timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
