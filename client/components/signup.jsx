@@ -15,7 +15,7 @@ const Signup = props => {
   const passwordNumberCheck = /(?=.*[0-9])/;
   const passwordUppercaseCheck = /(?=.*[A-Z])/;
   const passwordLowercaseCheck = /(?=.*[a-z])/;
-  const passwordSpecialCheck = /(?=.*[\W])/;
+  const passwordSpecialCheck = /(?=.*[!@#$%^&*_=+-])/;
 
   const invalidDisplay = state => {
     if (state === null) return 'hide';

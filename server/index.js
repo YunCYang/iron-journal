@@ -38,7 +38,7 @@ app.post('/api/auth/signup', (req, res, next) => {
   if (!req.body.username) next(new ClientError('missing user name', 400));
   else if (!req.body.email) next(new ClientError('missing email', 400));
   else if (!req.body.password) next(new ClientError('missing password', 400));
-  const pwdTest = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*_=+-])(?=.{8,})/;
+  const pwdTest = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*_=+-])(?=.{8,32})/;
   if (!pwdTest.exec(req.body.password)) next(new ClientError('password is not valid', 400));
   const checkUsernameSql = `
     select "username"

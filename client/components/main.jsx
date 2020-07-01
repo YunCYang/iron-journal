@@ -4,7 +4,8 @@ import NewCharacter from './newCharacter';
 import Character from './character';
 
 const Main = props => {
-  const [isPage, setIsPage] = React.useState('game');
+  // const [isPage, setIsPage] = React.useState('game');
+  const [isPage, setIsPage] = React.useState('character');
 
   const createNewGame = () => setIsPage('new');
   const returnGamePage = () => setIsPage('game');

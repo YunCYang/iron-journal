@@ -15,6 +15,7 @@ div.main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 
 div.landing {
@@ -26,7 +27,7 @@ div.landing {
 div.landing-logo {
   height: 120px;
   width: 120px;
-  margin-top: 64px;
+  margin-top: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -199,7 +200,7 @@ div.landing-action__feedback span {
   width: 184px;
 }
 div.landing-action__feedback span {
-  padding: 4px 2px 4px 2px;
+  padding: 4px 8px 4px 8px;
 }
 div.landing-action__forgetPwd {
   font-size: 12px;

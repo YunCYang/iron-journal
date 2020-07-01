@@ -1,23 +1,23 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { IdContext } from './app';
 
 const Login = props => {
   const [isLogin, setIsLogin] = React.useState(true);
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const id = React.useContext(IdContext);
 
   const loginHandler = () => {
     const inputUsername = document.getElementById('input-username');
     const inputPassword = document.getElementById('input-password');
     const emptyFeedback = document.getElementById('login-feedback__empty');
     const invalidFeedback = document.getElementById('login-feedback__invalid');
-    const errorFeedback = document.getElementById('login-feedback__error');
     if (!inputUsername.checkValidity() || !inputPassword.checkValidity()) {
       emptyFeedback.classList.remove('hide');
     } else {
       invalidFeedback.classList.add('hide');
       emptyFeedback.classList.add('hide');
-      errorFeedback.classList.add('hide');
       const init = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -30,8 +30,11 @@ const Login = props => {
         .then(res => res.json())
         .then(res => {
           if (res.status === 401) invalidFeedback.classList.remove('hide');
-          else if (res.status === 200) props.history.push('/main');
-          else errorFeedback.classList.remove('hide');
+          else if (res.status === 200) {
+            sessionStorage.setItem('id', res.userId);
+            id.setId(res.userId);
+            props.history.push('/main');
+          } else invalidFeedback.classList.remove('hide');
         });
     }
   };
@@ -57,7 +60,11 @@ const Login = props => {
     if (inputPassword.checkValidity()) setPassword(inputPassword.value);
   };
 
-  const guestLoginHandler = () => props.history.push('/main');
+  const guestLoginHandler = () => {
+    sessionStorage.setItem('id', '0');
+    id.setId('0');
+    props.history.push('/main');
+  };
 
   const switchLogin = () => setIsLogin(!isLogin);
 
