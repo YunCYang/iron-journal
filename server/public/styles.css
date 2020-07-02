@@ -633,6 +633,52 @@ div.landing-action__signUpLink .right {
   border-top: solid 0px #008044;
   border-bottom: solid 0px #000f08;
 }
+.main-page .main-container__character {
+  display: flex;
+  flex-wrap: wrap;
+}
+.main-page .main-container__character .width-1-1 {
+  width: 194px;
+}
+.main-page .main-container__character .width-2-3 {
+  width: 124px;
+}
+.main-page .main-container__character .width-1-3 {
+  width: 54px;
+}
+.main-page .main-container__character .width-3-5 {
+  width: 118px;
+}
+.main-page .main-container__character .width-1-5 {
+  width: 34px;
+}
+.main-page .main-container__character .label {
+  font-size: 12px;
+}
+.main-page .main-container__character .content {
+  font-size: 18px;
+}
+.main-page .main-container__character > div {
+  height: 40px;
+  overflow-y: hidden;
+  margin: 4px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-page .main-container__character__name {
+  font-size: 20px;
+}
+.main-page .main-container__character__exp {
+  flex-direction: column;
+}
+.main-page .main-container__character__5stats > div, .main-page .main-container__character__status > div, .main-page .main-container__character__momentum > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 4px;
+}
 
 .hide {
   display: none;
