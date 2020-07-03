@@ -86,146 +86,27 @@ const Character = () => {
   const createBonds = () => {
     return (
       <>
-        <div className="bonds-container title">
+        <div className="bonds-container title width-1-4">
           <span>Bonds</span>
         </div>
-        <div className="bonds-container score">
+        <div className="bonds-container expand width-1-4">
+          <i className="fas fa-caret-down"></i>
+        </div>
+        <div className="bonds-container score width-2-4">
           <span className="label">Score</span>
           <span className="score">10</span>
         </div>
-        <div className="bonds-container level">
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-        </div>
-        <div className="bonds-container level">
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-        </div>
-        <div className="bonds-container level">
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-        </div>
-        <div className="bonds-container level">
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-        </div>
-        <div className="bonds-container level">
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-        </div>
-        <div className="bonds-container level">
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-        </div>
-        <div className="bonds-container level">
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-        </div>
-        <div className="bonds-container level">
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-        </div>
-        <div className="bonds-container level">
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-        </div>
-        <div className="bonds-container level">
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
-          <div className="bonds-container bond">
-            <span className="content">Pike Trickfoot</span>
-          </div>
+        <div className="bonds-container counter height-single width-1-1">
+          <div className="counter-container"></div>
+          <div className="counter-container"></div>
+          <div className="counter-container"></div>
+          <div className="counter-container"></div>
+          <div className="counter-container"></div>
+          <div className="counter-container"></div>
+          <div className="counter-container"></div>
+          <div className="counter-container"></div>
+          <div className="counter-container"></div>
+          <div className="counter-container"></div>
         </div>
       </>
     );
@@ -234,87 +115,113 @@ const Character = () => {
   const createVows = () => {
     return (
       <>
-        <div className="vows-container title">
+        <div className="vows-container title width-1-4">
           <span>Vows</span>
         </div>
-        <div className="vows-container vow">
-          <div className="vows-container name">
-            <span className="content">Something I want to do</span>
+        <div className="vows-container expand width-1-4">
+          <i className="fas fa-caret-down"></i>
+        </div>
+        <div className="vows-container score width-2-4">
+          <span className="score">0 / 5</span>
+        </div>
+        <div className="vows-container vow height-double-half">
+          <div className="vows-container name height-single width-1-1">
+            <span className="vowName">Something I want to do</span>
           </div>
-          <div className="vows-container score">
-            <span className="label">Score</span>
-            <span className="score">10</span>
+          <div className="vows-container rank height-half width-1-1">
+            <span className="vowRank">Troublesome</span>
           </div>
-          <div className="vows-container rank">
-            <span>Epic</span>
-          </div>
-          <div className="vows-container progress">
-            <span className="label">Progress</span>
-            <span className="score">10</span>
+          <div className="vows-container counter height-half width-1-1">
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
           </div>
         </div>
-        <div className="vows-container vow">
-          <div className="vows-container name">
-            <span className="content">Something I want to do</span>
+        <div className="vows-container vow height-double-half">
+          <div className="vows-container name height-single width-1-1">
+            <span className="vowName">Something I want to do</span>
           </div>
-          <div className="vows-container score">
-            <span className="label">Score</span>
-            <span className="score">10</span>
+          <div className="vows-container rank height-half width-1-1">
+            <span className="vowRank">Troublesome</span>
           </div>
-          <div className="vows-container rank">
-            <span>Epic</span>
-          </div>
-          <div className="vows-container progress">
-            <span className="label">Progress</span>
-            <span className="score">10</span>
-          </div>
-        </div>
-        <div className="vows-container vow">
-          <div className="vows-container name">
-            <span className="content">Something I want to do</span>
-          </div>
-          <div className="vows-container score">
-            <span className="label">Score</span>
-            <span className="score">10</span>
-          </div>
-          <div className="vows-container rank">
-            <span>Epic</span>
-          </div>
-          <div className="vows-container progress">
-            <span className="label">Progress</span>
-            <span className="score">10</span>
+          <div className="vows-container counter height-half width-1-1">
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
           </div>
         </div>
-        <div className="vows-container vow">
-          <div className="vows-container name">
-            <span className="content">Something I want to do</span>
+        <div className="vows-container vow height-double-half">
+          <div className="vows-container name height-single width-1-1">
+            <span className="vowName">Something I want to do</span>
           </div>
-          <div className="vows-container score">
-            <span className="label">Score</span>
-            <span className="score">10</span>
+          <div className="vows-container rank height-half width-1-1">
+            <span className="vowRank">Troublesome</span>
           </div>
-          <div className="vows-container rank">
-            <span>Epic</span>
-          </div>
-          <div className="vows-container progress">
-            <span className="label">Progress</span>
-            <span className="score">10</span>
+          <div className="vows-container counter height-half width-1-1">
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
           </div>
         </div>
-        <div className="vows-container vow">
-          <div className="vows-container name">
-            <span className="content">Something I want to do</span>
+        <div className="vows-container vow height-double-half">
+          <div className="vows-container name height-single width-1-1">
+            <span className="vowName">Something I want to do</span>
           </div>
-          <div className="vows-container score">
-            <span className="label">Score</span>
-            <span className="score">10</span>
+          <div className="vows-container rank height-half width-1-1">
+            <span className="vowRank">Troublesome</span>
           </div>
-          <div className="vows-container rank">
-            <span>Epic</span>
+          <div className="vows-container counter height-half width-1-1">
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
           </div>
-          <div className="vows-container progress">
-            <span className="label">Progress</span>
-            <span className="score">10</span>
+        </div>
+        <div className="vows-container vow height-double-half">
+          <div className="vows-container name height-single width-1-1">
+            <span className="vowName">Something I want to do</span>
+          </div>
+          <div className="vows-container rank height-half width-1-1">
+            <span className="vowRank">Troublesome</span>
+          </div>
+          <div className="vows-container counter height-half width-1-1">
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
+            <div className="counter-container"></div>
           </div>
         </div>
       </>
@@ -324,12 +231,12 @@ const Character = () => {
   const createDebilities = () => {
     return (
       <>
-        <div className="debilities-container title">
+        <div className="debilities-container title width-1-1">
           <span>Debilities</span>
         </div>
         <div className="debilities-container__conditions">
           <div className="debilities-container__conditions title-s">
-            <span className="title">Conditions</span>
+            <span>Conditions</span>
           </div>
           <input className="radio-conditions__wounded" type="radio" name="radio-conditions"
             id="radio-conditions__wounded"/>
@@ -354,7 +261,7 @@ const Character = () => {
         </div>
         <div className="debilities-container__banes">
           <div className="debilities-container__banes title-s">
-            <span className="title">Banes</span>
+            <span>Banes</span>
           </div>
           <input className="radio-banes__maimed" type="radio" name="radio-banes"
             id="radio-banes__maimed" />
@@ -369,7 +276,7 @@ const Character = () => {
         </div>
         <div className="debilities-container__burdens">
           <div className="debilities-container__burdens title-s">
-            <span className="title">Burdens</span>
+            <span>Burdens</span>
           </div>
           <input className="radio-burdens__cursed" type="radio" name="radio-burdens"
             id="radio-burdens__cursed" />
@@ -389,25 +296,25 @@ const Character = () => {
   return (
     <>
       <div className="main-container__character">
-        <div className="main-container__character__name width-2-3">
+        <div className="main-container__character__name width-2-3 height-single">
           {createName()}
         </div>
-        <div className="main-container__character__exp width-1-3">
+        <div className="main-container__character__exp width-1-3 height-single">
           {createExp()}
         </div>
-        <div className="main-container__character__5stats width-1-1">
+        <div className="main-container__character__5stats width-1-1 height-single">
           {create5stats()}
         </div>
-        <div className="main-container__character__status width-1-1">
+        <div className="main-container__character__status width-1-1 height-single">
           {createStatus()}
         </div>
-        <div className="main-container__character__momentum width-1-1">
+        <div className="main-container__character__momentum width-1-1 height-single">
           {createMomentum()}
         </div>
-        <div className="main-container__character__bonds width-1-1">
+        <div className="main-container__character__bonds width-1-1 height-double">
           {createBonds()}
         </div>
-        <div className="main-container__character__vows width-1-1">
+        <div className="main-container__character__vows width-1-1 height-11-col">
           {createVows()}
         </div>
         <div className="main-container__character__debilities width-1-1">
@@ -426,6 +333,10 @@ const Character = () => {
             <span className="label">Save</span>
             <i className="fas fa-check"></i>
             <i className="fas fa-times"></i>
+          </div>
+          <div className="main-container__character__actions__delete">
+            <span className="label">Delete</span>
+            <i className="fas fa-ban"></i>
           </div>
         </div>
       </div>
