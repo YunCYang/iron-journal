@@ -96,17 +96,21 @@ const Character = () => {
           <span className="label">Score</span>
           <span className="score">10</span>
         </div>
-        <div className="bonds-container counter height-single width-1-1">
-          <div className="counter-container"></div>
-          <div className="counter-container"></div>
-          <div className="counter-container"></div>
-          <div className="counter-container"></div>
-          <div className="counter-container"></div>
-          <div className="counter-container"></div>
-          <div className="counter-container"></div>
-          <div className="counter-container"></div>
-          <div className="counter-container"></div>
-          <div className="counter-container"></div>
+        <div className="bonds-container counter">
+          <div className="counter-container height-3-4 width-1-1">
+            <div className="counter-block"></div>
+            <div className="counter-block"></div>
+            <div className="counter-block"></div>
+            <div className="counter-block"></div>
+            <div className="counter-block"></div>
+          </div>
+          <div className="counter-container height-3-4 width-1-1">
+            <div className="counter-block"></div>
+            <div className="counter-block"></div>
+            <div className="counter-block"></div>
+            <div className="counter-block"></div>
+            <div className="counter-block"></div>
+          </div>
         </div>
       </>
     );
@@ -124,104 +128,124 @@ const Character = () => {
         <div className="vows-container score width-2-4">
           <span className="score">0 / 5</span>
         </div>
-        <div className="vows-container vow height-double-half">
-          <div className="vows-container name height-single width-1-1">
+        <div className="vows-container vow">
+          <div className="vows-container name height-3-4 width-1-1">
             <span className="vowName">Something I want to do</span>
           </div>
           <div className="vows-container rank height-half width-1-1">
             <span className="vowRank">Troublesome</span>
           </div>
-          <div className="vows-container counter height-half width-1-1">
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
+          <div className="vows-container counter">
+            <div className="counter-container height-3-4 width-1-1">
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+            </div>
+            <div className="counter-container height-3-4 width-1-1">
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+            </div>
           </div>
         </div>
-        <div className="vows-container vow height-double-half">
-          <div className="vows-container name height-single width-1-1">
+        <div className="vows-container vow">
+          <div className="vows-container name height-3-4 width-1-1">
             <span className="vowName">Something I want to do</span>
           </div>
           <div className="vows-container rank height-half width-1-1">
             <span className="vowRank">Troublesome</span>
           </div>
-          <div className="vows-container counter height-half width-1-1">
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
+          <div className="vows-container counter">
+            <div className="counter-container height-3-4 width-1-1">
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+            </div>
+            <div className="counter-container height-3-4 width-1-1">
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+            </div>
           </div>
         </div>
-        <div className="vows-container vow height-double-half">
-          <div className="vows-container name height-single width-1-1">
+        <div className="vows-container vow">
+          <div className="vows-container name height-3-4 width-1-1">
             <span className="vowName">Something I want to do</span>
           </div>
           <div className="vows-container rank height-half width-1-1">
             <span className="vowRank">Troublesome</span>
           </div>
-          <div className="vows-container counter height-half width-1-1">
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
+          <div className="vows-container counter">
+            <div className="counter-container height-3-4 width-1-1">
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+            </div>
+            <div className="counter-container height-3-4 width-1-1">
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+            </div>
           </div>
         </div>
-        <div className="vows-container vow height-double-half">
-          <div className="vows-container name height-single width-1-1">
+        <div className="vows-container vow">
+          <div className="vows-container name height-3-4 width-1-1">
             <span className="vowName">Something I want to do</span>
           </div>
           <div className="vows-container rank height-half width-1-1">
             <span className="vowRank">Troublesome</span>
           </div>
-          <div className="vows-container counter height-half width-1-1">
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
+          <div className="vows-container counter">
+            <div className="counter-container height-3-4 width-1-1">
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+            </div>
+            <div className="counter-container height-3-4 width-1-1">
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+            </div>
           </div>
         </div>
-        <div className="vows-container vow height-double-half">
-          <div className="vows-container name height-single width-1-1">
+        <div className="vows-container vow">
+          <div className="vows-container name height-3-4 width-1-1">
             <span className="vowName">Something I want to do</span>
           </div>
           <div className="vows-container rank height-half width-1-1">
             <span className="vowRank">Troublesome</span>
           </div>
-          <div className="vows-container counter height-half width-1-1">
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
-            <div className="counter-container"></div>
+          <div className="vows-container counter">
+            <div className="counter-container height-3-4 width-1-1">
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+            </div>
+            <div className="counter-container height-3-4 width-1-1">
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+              <div className="counter-block"></div>
+            </div>
           </div>
         </div>
       </>
@@ -231,63 +255,69 @@ const Character = () => {
   const createDebilities = () => {
     return (
       <>
-        <div className="debilities-container title width-1-1">
+        <div className="debilities-container title height-single width-1-1">
           <span>Debilities</span>
         </div>
         <div className="debilities-container__conditions">
-          <div className="debilities-container__conditions title-s">
+          <div className="debilities-container__conditions title-s height-3-4 width-1-1">
             <span>Conditions</span>
           </div>
-          <input className="radio-conditions__wounded" type="radio" name="radio-conditions"
-            id="radio-conditions__wounded"/>
-          <label className="label-conditions__wounded" htmlFor="radio-conditions__wounded">
-            <span>Wounded</span>
-          </label>
-          <input className="radio-conditions__shaken" type="radio" name="radio-conditions"
-            id="radio-conditions__shaken" />
-          <label className="label-conditions__shaken" htmlFor="radio-conditions__shaken">
-            <span>Shaken</span>
-          </label>
-          <input className="radio-conditions__unprepared" type="radio" name="radio-conditions"
-            id="radio-conditions__unprepared" />
-          <label className="label-conditions__unprepared" htmlFor="radio-conditions__unprepared">
-            <span>Unprepared</span>
-          </label>
-          <input className="radio-conditions__encumbered" type="radio" name="radio-conditions"
-            id="radio-conditions__encumbered" />
-          <label className="label-conditions__encumbered" htmlFor="radio-conditions__encumbered">
-            <span>Encumbered</span>
-          </label>
+          <div className="radio-container height-double width-1-1">
+            <input className="radio-conditions__wounded" type="radio" name="radio-conditions__wounded"
+              id="radio-conditions__wounded" />
+            <label className="label-conditions__wounded" htmlFor="radio-conditions__wounded">
+              <span>Wounded</span>
+            </label>
+            <input className="radio-conditions__shaken" type="radio" name="radio-conditions__shaken"
+              id="radio-conditions__shaken" />
+            <label className="label-conditions__shaken" htmlFor="radio-conditions__shaken">
+              <span>Shaken</span>
+            </label>
+            <input className="radio-conditions__unprepared" type="radio" name="radio-conditions__unprepared"
+              id="radio-conditions__unprepared" />
+            <label className="label-conditions__unprepared" htmlFor="radio-conditions__unprepared">
+              <span>Unprepared</span>
+            </label>
+            <input className="radio-conditions__encumbered" type="radio" name="radio-conditions__encumbered"
+              id="radio-conditions__encumbered" />
+            <label className="label-conditions__encumbered" htmlFor="radio-conditions__encumbered">
+              <span>Encumbered</span>
+            </label>
+          </div>
         </div>
         <div className="debilities-container__banes">
-          <div className="debilities-container__banes title-s">
+          <div className="debilities-container__banes title-s height-3-4 width-1-1">
             <span>Banes</span>
           </div>
-          <input className="radio-banes__maimed" type="radio" name="radio-banes"
-            id="radio-banes__maimed" />
-          <label className="label-banes__maimed" htmlFor="radio-banes__maimed">
-            <span>Maimed</span>
-          </label>
-          <input className="radio-banes__corrupted" type="radio" name="radio-banes"
-            id="radio-banes__corrupted" />
-          <label className="label-banes__corrupted" htmlFor="radio-banes__corrupted">
-            <span>Corrupted</span>
-          </label>
+          <div className="radio-container height-single width-1-1">
+            <input className="radio-banes__maimed" type="radio" name="radio-banes__maimed"
+              id="radio-banes__maimed" />
+            <label className="label-banes__maimed" htmlFor="radio-banes__maimed">
+              <span>Maimed</span>
+            </label>
+            <input className="radio-banes__corrupted" type="radio" name="radio-banes__corrupted"
+              id="radio-banes__corrupted" />
+            <label className="label-banes__corrupted" htmlFor="radio-banes__corrupted">
+              <span>Corrupted</span>
+            </label>
+          </div>
         </div>
         <div className="debilities-container__burdens">
-          <div className="debilities-container__burdens title-s">
+          <div className="debilities-container__burdens title-s height-3-4 width-1-1">
             <span>Burdens</span>
           </div>
-          <input className="radio-burdens__cursed" type="radio" name="radio-burdens"
-            id="radio-burdens__cursed" />
-          <label className="label-burdens__cursed" htmlFor="radio-burdens__cursed">
-            <span>Cursed</span>
-          </label>
-          <input className="radio-burdens__tormented" type="radio" name="radio-burdens"
-            id="radio-burdens__tormented" />
-          <label className="label-burdens__tormented" htmlFor="radio-burdens__tormented">
-            <span>Tormented</span>
-          </label>
+          <div className="radio-container height-single width-1-1">
+            <input className="radio-burdens__cursed" type="radio" name="radio-burdens__cursed"
+              id="radio-burdens__cursed" />
+            <label className="label-burdens__cursed" htmlFor="radio-burdens__cursed">
+              <span>Cursed</span>
+            </label>
+            <input className="radio-burdens__tormented" type="radio" name="radio-burdens__tormented"
+              id="radio-burdens__tormented" />
+            <label className="label-burdens__tormented" htmlFor="radio-burdens__tormented">
+              <span>Tormented</span>
+            </label>
+          </div>
         </div>
       </>
     );
@@ -302,22 +332,22 @@ const Character = () => {
         <div className="main-container__character__exp width-1-3 height-single">
           {createExp()}
         </div>
-        <div className="main-container__character__5stats width-1-1 height-single">
+        <div className="main-container__character__5stats height-single">
           {create5stats()}
         </div>
-        <div className="main-container__character__status width-1-1 height-single">
+        <div className="main-container__character__status height-single">
           {createStatus()}
         </div>
-        <div className="main-container__character__momentum width-1-1 height-single">
+        <div className="main-container__character__momentum height-single">
           {createMomentum()}
         </div>
-        <div className="main-container__character__bonds width-1-1 height-double">
+        <div className="main-container__character__bonds height-bond-container">
           {createBonds()}
         </div>
-        <div className="main-container__character__vows width-1-1 height-11-col">
+        <div className="main-container__character__vows height-vows-container">
           {createVows()}
         </div>
-        <div className="main-container__character__debilities width-1-1">
+        <div className="main-container__character__debilities height-deb-container">
           {createDebilities()}
         </div>
         <div className="main-container__character__actions">
