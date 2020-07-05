@@ -670,25 +670,22 @@ div.landing-action__signUpLink .right {
   font-size: 18px;
 }
 .main-page .main-container__character .height-half {
-  height: 25 px;
+  height: 25px;
 }
 .main-page .main-container__character .height-single {
   height: 40px;
 }
+.main-page .main-container__character .height-single-half {
+  height: 60px;
+}
 .main-page .main-container__character .height-3-4 {
   height: 30px;
-}
-.main-page .main-container__character .height-bond-expand {
-  height: 100px;
 }
 .main-page .main-container__character .height-double-half {
   height: 100px;
 }
 .main-page .main-container__character .height-double {
   height: 80px;
-}
-.main-page .main-container__character .height-bonds-container {
-  height: 540px;
 }
 .main-page .main-container__character .height-vows-container {
   height: 635px;
@@ -720,6 +717,9 @@ div.landing-action__signUpLink .right {
   display: flex;
   flex-wrap: wrap;
 }
+.main-page .main-container__character__bonds {
+  overflow: hidden;
+}
 .main-page .main-container__character__bonds .title {
   font-size: 18px;
 }
@@ -746,6 +746,32 @@ div.landing-action__signUpLink .right {
   height: 25px;
   width: 25px;
   border: solid 2px #000f08;
+  position: relative;
+}
+.main-page .main-container__character__bonds .counter-block__square {
+  height: 42%;
+  width: 42%;
+  background-color: #000f08;
+  position: absolute;
+}
+.main-page .main-container__character__bonds .counter-block .square-1 {
+  top: 6%;
+  left: 6%;
+}
+.main-page .main-container__character__bonds .counter-block .square-2 {
+  top: 6%;
+  right: 4%;
+}
+.main-page .main-container__character__bonds .counter-block .square-3 {
+  bottom: 4%;
+  left: 6%;
+}
+.main-page .main-container__character__bonds .counter-block .square-4 {
+  bottom: 4%;
+  right: 4%;
+}
+.main-page .main-container__character__vows {
+  overflow: hidden;
 }
 .main-page .main-container__character__vows .title {
   font-size: 18px;
@@ -754,6 +780,9 @@ div.landing-action__signUpLink .right {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.main-page .main-container__character__vows .score {
+  flex-direction: column;
 }
 .main-page .main-container__character__vows .vow {
   flex-wrap: wrap;
@@ -782,13 +811,49 @@ div.landing-action__signUpLink .right {
   height: 25px;
   width: 25px;
   border: solid 2px #000f08;
+  position: relative;
+}
+.main-page .main-container__character__vows .vow .counter-block__square {
+  height: 42%;
+  width: 42%;
+  background-color: #000f08;
+  position: absolute;
+}
+.main-page .main-container__character__vows .vow .counter-block .square-1 {
+  top: 5%;
+  left: 6%;
+}
+.main-page .main-container__character__vows .vow .counter-block .square-2 {
+  top: 5%;
+  right: 4%;
+}
+.main-page .main-container__character__vows .vow .counter-block .square-3 {
+  bottom: 5%;
+  left: 6%;
+}
+.main-page .main-container__character__vows .vow .counter-block .square-4 {
+  bottom: 5%;
+  right: 4%;
+}
+.main-page .main-container__character__debilities {
+  overflow: hidden;
 }
 .main-page .main-container__character__debilities .title {
-  justify-content: flex-start;
   font-size: 18px;
 }
 .main-page .main-container__character__debilities .title-s {
   font-size: 14px;
+  padding-left: 12px;
+}
+.main-page .main-container__character__debilities .title,
+.main-page .main-container__character__debilities .expand,
+.main-page .main-container__character__debilities .score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-page .main-container__character__debilities .score {
+  flex-direction: column;
 }
 .main-page .main-container__character__debilities .radio-container {
   display: flex;
@@ -833,6 +898,16 @@ div.landing-action__signUpLink .right {
 }
 .main-page .main-container__character__debilities .radio-container input:not(:checked) + label::before {
   opacity: 0;
+}
+.main-page .main-container__character__actions {
+  display: flex;
+  justify-content: space-evenly;
+}
+.main-page .main-container__character__actions > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .hide {

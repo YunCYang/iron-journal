@@ -1,6 +1,57 @@
 import React from 'react';
 
 const Character = () => {
+  const bondExpandHandler = () => {
+    const bondContainer = document.getElementsByClassName('main-container__character__bonds')[0];
+    const bondExpand = document.getElementById('bond-expand');
+    const bondShrink = document.getElementById('bond-shrink');
+    if (bondContainer.classList.contains('height-double-half')) {
+      bondContainer.classList.add('height-single');
+      bondContainer.classList.remove('height-double-half');
+      bondShrink.classList.add('hide');
+      bondExpand.classList.remove('hide');
+    } else {
+      bondContainer.classList.add('height-double-half');
+      bondContainer.classList.remove('height-single');
+      bondExpand.classList.add('hide');
+      bondShrink.classList.remove('hide');
+    }
+  };
+
+  const vowExpandHandler = () => {
+    const vowContainer = document.getElementsByClassName('main-container__character__vows')[0];
+    const vowExpand = document.getElementById('vow-expand');
+    const vowShrink = document.getElementById('vow-shrink');
+    if (vowContainer.classList.contains('height-vows-container')) {
+      vowContainer.classList.add('height-single');
+      vowContainer.classList.remove('height-vows-container');
+      vowShrink.classList.add('hide');
+      vowExpand.classList.remove('hide');
+    } else {
+      vowContainer.classList.add('height-vows-container');
+      vowContainer.classList.remove('height-single');
+      vowExpand.classList.add('hide');
+      vowShrink.classList.remove('hide');
+    }
+  };
+
+  const debExpandHandler = () => {
+    const debContainer = document.getElementsByClassName('main-container__character__debilities')[0];
+    const debExpand = document.getElementById('deb-expand');
+    const debShrink = document.getElementById('deb-shrink');
+    if (debContainer.classList.contains('height-deb-container')) {
+      debContainer.classList.add('height-single');
+      debContainer.classList.remove('height-deb-container');
+      debShrink.classList.add('hide');
+      debExpand.classList.remove('hide');
+    } else {
+      debContainer.classList.add('height-deb-container');
+      debContainer.classList.remove('height-single');
+      debExpand.classList.add('hide');
+      debShrink.classList.remove('hide');
+    }
+  };
+
   const createName = () => {
     return (
       <>
@@ -86,30 +137,81 @@ const Character = () => {
   const createBonds = () => {
     return (
       <>
-        <div className="bonds-container title width-1-4">
+        <div className="bonds-container title width-1-34">
           <span>Bonds</span>
         </div>
-        <div className="bonds-container expand width-1-4">
-          <i className="fas fa-caret-down"></i>
+        <div className="bonds-container expand width-1-3" onClick={bondExpandHandler}>
+          <i id="bond-expand" className="fas fa-caret-down"></i>
+          <i id="bond-shrink" className="fas fa-caret-up hide"></i>
         </div>
-        <div className="bonds-container score width-2-4">
+        <div className="bonds-container score width-1-3">
           <span className="label">Score</span>
           <span className="score">10</span>
         </div>
         <div className="bonds-container counter">
           <div className="counter-container height-3-4 width-1-1">
-            <div className="counter-block"></div>
-            <div className="counter-block"></div>
-            <div className="counter-block"></div>
-            <div className="counter-block"></div>
-            <div className="counter-block"></div>
+            <div className="counter-block">
+              <div className="counter-block__square square-1"></div>
+              <div className="counter-block__square square-2"></div>
+              <div className="counter-block__square square-3"></div>
+              <div className="counter-block__square square-4"></div>
+            </div>
+            <div className="counter-block">
+              <div className="counter-block__square square-1"></div>
+              <div className="counter-block__square square-2"></div>
+              <div className="counter-block__square square-3"></div>
+              <div className="counter-block__square square-4"></div>
+            </div>
+            <div className="counter-block">
+              <div className="counter-block__square square-1"></div>
+              <div className="counter-block__square square-2"></div>
+              <div className="counter-block__square square-3"></div>
+              <div className="counter-block__square square-4"></div>
+            </div>
+            <div className="counter-block">
+              <div className="counter-block__square square-1"></div>
+              <div className="counter-block__square square-2"></div>
+              <div className="counter-block__square square-3"></div>
+              <div className="counter-block__square square-4"></div>
+            </div>
+            <div className="counter-block">
+              <div className="counter-block__square square-1"></div>
+              <div className="counter-block__square square-2"></div>
+              <div className="counter-block__square square-3"></div>
+              <div className="counter-block__square square-4"></div>
+            </div>
           </div>
           <div className="counter-container height-3-4 width-1-1">
-            <div className="counter-block"></div>
-            <div className="counter-block"></div>
-            <div className="counter-block"></div>
-            <div className="counter-block"></div>
-            <div className="counter-block"></div>
+            <div className="counter-block">
+              <div className="counter-block__square square-1"></div>
+              <div className="counter-block__square square-2"></div>
+              <div className="counter-block__square square-3"></div>
+              <div className="counter-block__square square-4"></div>
+            </div>
+            <div className="counter-block">
+              <div className="counter-block__square square-1"></div>
+              <div className="counter-block__square square-2"></div>
+              <div className="counter-block__square square-3"></div>
+              <div className="counter-block__square square-4"></div>
+            </div>
+            <div className="counter-block">
+              <div className="counter-block__square square-1"></div>
+              <div className="counter-block__square square-2"></div>
+              <div className="counter-block__square square-3"></div>
+              <div className="counter-block__square square-4"></div>
+            </div>
+            <div className="counter-block">
+              <div className="counter-block__square square-1"></div>
+              <div className="counter-block__square square-2"></div>
+              <div className="counter-block__square square-3"></div>
+              <div className="counter-block__square square-4"></div>
+            </div>
+            <div className="counter-block">
+              <div className="counter-block__square square-1"></div>
+              <div className="counter-block__square square-2"></div>
+              <div className="counter-block__square square-3"></div>
+              <div className="counter-block__square square-4"></div>
+            </div>
           </div>
         </div>
       </>
@@ -119,13 +221,15 @@ const Character = () => {
   const createVows = () => {
     return (
       <>
-        <div className="vows-container title width-1-4">
+        <div className="vows-container title width-1-3">
           <span>Vows</span>
         </div>
-        <div className="vows-container expand width-1-4">
-          <i className="fas fa-caret-down"></i>
+        <div className="vows-container expand width-1-3" onClick={vowExpandHandler}>
+          <i id="vow-expand" className="fas fa-caret-down"></i>
+          <i id="vow-shrink" className="fas fa-caret-up hide"></i>
         </div>
-        <div className="vows-container score width-2-4">
+        <div className="vows-container score width-1-3">
+          <span className="label">Count</span>
           <span className="score">0 / 5</span>
         </div>
         <div className="vows-container vow">
@@ -137,90 +241,68 @@ const Character = () => {
           </div>
           <div className="vows-container counter">
             <div className="counter-container height-3-4 width-1-1">
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
             </div>
             <div className="counter-container height-3-4 width-1-1">
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-            </div>
-          </div>
-        </div>
-        <div className="vows-container vow">
-          <div className="vows-container name height-3-4 width-1-1">
-            <span className="vowName">Something I want to do</span>
-          </div>
-          <div className="vows-container rank height-half width-1-1">
-            <span className="vowRank">Troublesome</span>
-          </div>
-          <div className="vows-container counter">
-            <div className="counter-container height-3-4 width-1-1">
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-            </div>
-            <div className="counter-container height-3-4 width-1-1">
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-            </div>
-          </div>
-        </div>
-        <div className="vows-container vow">
-          <div className="vows-container name height-3-4 width-1-1">
-            <span className="vowName">Something I want to do</span>
-          </div>
-          <div className="vows-container rank height-half width-1-1">
-            <span className="vowRank">Troublesome</span>
-          </div>
-          <div className="vows-container counter">
-            <div className="counter-container height-3-4 width-1-1">
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-            </div>
-            <div className="counter-container height-3-4 width-1-1">
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-            </div>
-          </div>
-        </div>
-        <div className="vows-container vow">
-          <div className="vows-container name height-3-4 width-1-1">
-            <span className="vowName">Something I want to do</span>
-          </div>
-          <div className="vows-container rank height-half width-1-1">
-            <span className="vowRank">Troublesome</span>
-          </div>
-          <div className="vows-container counter">
-            <div className="counter-container height-3-4 width-1-1">
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-            </div>
-            <div className="counter-container height-3-4 width-1-1">
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -233,18 +315,290 @@ const Character = () => {
           </div>
           <div className="vows-container counter">
             <div className="counter-container height-3-4 width-1-1">
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
             </div>
             <div className="counter-container height-3-4 width-1-1">
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
-              <div className="counter-block"></div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="vows-container vow">
+          <div className="vows-container name height-3-4 width-1-1">
+            <span className="vowName">Something I want to do</span>
+          </div>
+          <div className="vows-container rank height-half width-1-1">
+            <span className="vowRank">Troublesome</span>
+          </div>
+          <div className="vows-container counter">
+            <div className="counter-container height-3-4 width-1-1">
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+            </div>
+            <div className="counter-container height-3-4 width-1-1">
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="vows-container vow">
+          <div className="vows-container name height-3-4 width-1-1">
+            <span className="vowName">Something I want to do</span>
+          </div>
+          <div className="vows-container rank height-half width-1-1">
+            <span className="vowRank">Troublesome</span>
+          </div>
+          <div className="vows-container counter">
+            <div className="counter-container height-3-4 width-1-1">
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+            </div>
+            <div className="counter-container height-3-4 width-1-1">
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="vows-container vow">
+          <div className="vows-container name height-3-4 width-1-1">
+            <span className="vowName">Something I want to do</span>
+          </div>
+          <div className="vows-container rank height-half width-1-1">
+            <span className="vowRank">Troublesome</span>
+          </div>
+          <div className="vows-container counter">
+            <div className="counter-container height-3-4 width-1-1">
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+            </div>
+            <div className="counter-container height-3-4 width-1-1">
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
+              <div className="counter-block">
+                <div className="counter-block__square square-1"></div>
+                <div className="counter-block__square square-2"></div>
+                <div className="counter-block__square square-3"></div>
+                <div className="counter-block__square square-4"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -255,8 +609,16 @@ const Character = () => {
   const createDebilities = () => {
     return (
       <>
-        <div className="debilities-container title height-single width-1-1">
+        <div className="debilities-container title width-1-3">
           <span>Debilities</span>
+        </div>
+        <div className="debilities-container expand width-1-3" onClick={debExpandHandler}>
+          <i id="deb-expand" className="fas fa-caret-down"></i>
+          <i id="deb-shrink" className="fas fa-caret-up hide"></i>
+        </div>
+        <div className="debilities-container score width-1-3">
+          <span className="label">Count</span>
+          <span className="score">0 / 8</span>
         </div>
         <div className="debilities-container__conditions">
           <div className="debilities-container__conditions title-s height-3-4 width-1-1">
@@ -341,32 +703,31 @@ const Character = () => {
         <div className="main-container__character__momentum height-single">
           {createMomentum()}
         </div>
-        <div className="main-container__character__bonds height-bond-container">
+        <div className="main-container__character__bonds height-single">
           {createBonds()}
         </div>
-        <div className="main-container__character__vows height-vows-container">
+        <div className="main-container__character__vows height-single">
           {createVows()}
         </div>
-        <div className="main-container__character__debilities height-deb-container">
+        <div className="main-container__character__debilities height-single">
           {createDebilities()}
         </div>
-        <div className="main-container__character__actions">
-          <div className="main-container__character__actions__back">
-            <span className="label">Back</span>
+        <div className="main-container__character__actions width-1-1">
+          <div className="main-container__character__actions__back height-single-half width-1-4">
             <i className="fas fa-long-arrow-alt-left"></i>
+            <span className="label">Back</span>
           </div>
-          <div className="main-container__character__actions__roll">
-            <span className="label">Roll</span>
+          <div className="main-container__character__actions__roll height-single-half width-1-4">
             <i className="fas fa-dice-d6"></i>
+            <span className="label">Roll</span>
           </div>
-          <div className="main-container__character__actions__save">
+          <div className="main-container__character__actions__save height-single-half width-1-4">
+            <i className="fas fa-save"></i>
             <span className="label">Save</span>
-            <i className="fas fa-check"></i>
-            <i className="fas fa-times"></i>
           </div>
-          <div className="main-container__character__actions__delete">
-            <span className="label">Delete</span>
+          <div className="main-container__character__actions__delete height-single-half width-1-4">
             <i className="fas fa-ban"></i>
+            <span className="label">Delete</span>
           </div>
         </div>
       </div>

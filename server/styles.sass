@@ -749,25 +749,22 @@ div.landing
         font-size: 18px
 
       .height-half
-        height: 25  px
+        height: 25px
 
       .height-single
         height: 40px
 
+      .height-single-half
+        height: 60px
+
       .height-3-4
         height: 30px
-
-      .height-bond-expand
-        height: 100px
 
       .height-double-half
         height: 100px
 
       .height-double
         height: 80px
-
-      .height-bonds-container
-        height: 540px
 
       .height-vows-container
         height: 635px
@@ -805,6 +802,8 @@ div.landing
         flex-wrap: wrap
 
       &__bonds
+        overflow: hidden
+
         .title
           font-size: 18px
 
@@ -831,8 +830,33 @@ div.landing
             height: 25px
             width: 25px
             border: solid 2px $color-prime_900
+            position: relative
+
+            &__square
+              height: 42%
+              width: 42%
+              background-color: $color-prime_900
+              position: absolute
+
+            .square-1
+              top: 6%
+              left: 6%
+
+            .square-2
+              top: 6%
+              right: 4%
+
+            .square-3
+              bottom: 4%
+              left: 6%
+
+            .square-4
+              bottom: 4%
+              right: 4%
 
       &__vows
+        overflow: hidden
+
         .title
           font-size: 18px
 
@@ -840,6 +864,9 @@ div.landing
           display: flex
           justify-content: center
           align-items: center
+
+        .score
+          flex-direction: column
 
         .vow
           flex-wrap: wrap
@@ -868,14 +895,49 @@ div.landing
               height: 25px
               width: 25px
               border: solid 2px $color-prime_900
+              position: relative
+
+              &__square
+                height: 42%
+                width: 42%
+                background-color: $color-prime_900
+                position: absolute
+
+              .square-1
+                top: 5%
+                left: 6%
+
+              .square-2
+                top: 5%
+                right: 4%
+
+              .square-3
+                bottom: 5%
+                left: 6%
+
+              .square-4
+                bottom: 5%
+                right: 4%
 
       &__debilities
+        overflow: hidden
+
         .title
-          justify-content: flex-start
           font-size: 18px
 
         .title-s
           font-size: 14px
+          padding-left: 12px
+
+        .title,
+        .expand,
+        .score
+          display: flex
+          justify-content: center
+          align-items: center
+
+        .score
+          flex-direction: column
 
         .radio-container
           display: flex
@@ -920,6 +982,16 @@ div.landing
 
           input:not(:checked) + label::before
             opacity: 0
+
+      &__actions
+        display: flex
+        justify-content: space-evenly
+
+        >div
+          display: flex
+          flex-direction: column
+          justify-content: space-evenly
+          align-items: center
 
 .hide
   display: none
