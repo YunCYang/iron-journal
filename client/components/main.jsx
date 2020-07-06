@@ -2,10 +2,26 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import NewCharacter from './newCharacter';
 import Character from './character';
+import { IdContext } from './app';
+
+export const CharacterContext = React.createContext([]);
 
 const Main = props => {
   // const [isPage, setIsPage] = React.useState('game');
   const [isPage, setIsPage] = React.useState('character');
+  const id = React.useContext(IdContext);
+  const [characterList, setCharacterList] = React.useState(
+    sessionStorage.getItem('character') || []
+  );
+
+  React.useEffect(
+    () => {
+      const sessionId = sessionStorage.getItem('id');
+      if ((!id.id && parseInt(id.id) !== 0) && (!sessionId && parseInt(sessionId) !== 0)) {
+        props.history.push('/');
+      }
+    }
+  );
 
   const createNewGame = () => setIsPage('new');
   const returnGamePage = () => setIsPage('game');
@@ -77,28 +93,30 @@ const Main = props => {
   };
 
   return (
-    <div className="main-page">
-      <div className="main-title">
-        <span>Iron Journal</span>
-      </div>
-      <div className="main-menu">
-        <div className="main-menu__game" onClick={() => setIsPage('game')}>
-          <span>Game</span>
-          <span className="bar"></span>
+    <CharacterContext.Provider value={{ characterList, setCharacterList }}>
+      <div className="main-page">
+        <div className="main-title">
+          <span>Iron Journal</span>
         </div>
-        <div className="main-menu__resource" onClick={() => setIsPage('resource')}>
-          <span>Resource</span>
-          <span className="bar"></span>
+        <div className="main-menu">
+          <div className="main-menu__game" onClick={() => setIsPage('game')}>
+            <span>Game</span>
+            <span className="bar"></span>
+          </div>
+          <div className="main-menu__resource" onClick={() => setIsPage('resource')}>
+            <span>Resource</span>
+            <span className="bar"></span>
+          </div>
+          <div className="main-menu__option" onClick={() => setIsPage('option')}>
+            <span>Option</span>
+            <span className="bar"></span>
+          </div>
         </div>
-        <div className="main-menu__option" onClick={() => setIsPage('option')}>
-          <span>Option</span>
-          <span className="bar"></span>
+        <div className="main-container">
+          {createPage()}
         </div>
       </div>
-      <div className="main-container">
-        {createPage()}
-      </div>
-    </div>
+    </CharacterContext.Provider>
   );
 };
 
