@@ -684,6 +684,67 @@ div.landing
               input:not(:checked) + label::before
                 opacity: 0
 
+          .asset
+            &-input__container
+              &__asset
+                >div
+                  height: 40px
+                  width: 178px
+                  margin: 0 0 16px 16px
+                  border-radius: 4px
+
+                .asset-block
+                  &__new
+                    border: 2px dashed $color-grey_500
+                    display: flex
+                    align-items: center
+                    color: $color-grey_500
+                    cursor: pointer
+
+                    i,
+                    span
+                      margin: 0 0 0 8px
+
+                    &:hover
+                      color: $color-accent1_500
+                      border-color: $color-accent1_500
+
+                  &__exist
+                    border: 2px solid $color-prime_900
+                    display: flex
+                    align-items: center
+
+                    &__name
+                      width: 102px
+                      margin: 0 0 0 8px
+                      color: $color-prime_900
+
+                    &__action
+                      width: 64px
+                      display: flex
+                      justify-content: space-evenly
+
+                      i
+                        font-size: 20px
+                        opacity: 0.7
+                        cursor: pointer
+
+                        &:hover
+                          opacity: 1
+
+                      .fa-edit
+                        color: $color-accent1_700
+
+                      .fa-ban
+                        color: $color-accent2_600
+
+            .newGame__feedback
+              width: 178px
+              margin: 0 0 0 16px
+
+              span
+                width: 100%
+
         .newGame__feedback
           @include feedback($feedback-width: 110px)
           margin: 8px 0 12px 0
@@ -710,8 +771,6 @@ div.landing
               border-top: solid 0px $color-prime_700
               border-bottom: solid 0px $color-prime_900
 
-    // space: 4, 8, 12, 16, 24, 32, 48px
-    // font size: 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72px
     &__character
       display: flex
       flex-wrap: wrap

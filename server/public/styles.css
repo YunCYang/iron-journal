@@ -598,6 +598,63 @@ div.landing-action__signUpLink .right {
 .main-page .main-container__newGame__content__form .vows-input__container__rank .input__container__right input:not(:checked) + label::before {
   opacity: 0;
 }
+.main-page .main-container__newGame__content__form .asset-input__container__asset > div {
+  height: 40px;
+  width: 178px;
+  margin: 0 0 16px 16px;
+  border-radius: 4px;
+}
+.main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__new {
+  border: 2px dashed gray;
+  display: flex;
+  align-items: center;
+  color: gray;
+  cursor: pointer;
+}
+.main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__new i,
+.main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__new span {
+  margin: 0 0 0 8px;
+}
+.main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__new:hover {
+  color: #559caa;
+  border-color: #559caa;
+}
+.main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__exist {
+  border: 2px solid #000f08;
+  display: flex;
+  align-items: center;
+}
+.main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__exist__name {
+  width: 102px;
+  margin: 0 0 0 8px;
+  color: #000f08;
+}
+.main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__exist__action {
+  width: 64px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__exist__action i {
+  font-size: 20px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+.main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__exist__action i:hover {
+  opacity: 1;
+}
+.main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__exist__action .fa-edit {
+  color: #386c70;
+}
+.main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__exist__action .fa-ban {
+  color: #b43327;
+}
+.main-page .main-container__newGame__content__form .asset .newGame__feedback {
+  width: 178px;
+  margin: 0 0 0 16px;
+}
+.main-page .main-container__newGame__content__form .asset .newGame__feedback span {
+  width: 100%;
+}
 .main-page .main-container__newGame__content .newGame__feedback {
   font-size: 12px;
   color: #79231b;

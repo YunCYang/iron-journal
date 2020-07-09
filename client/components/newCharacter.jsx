@@ -25,6 +25,52 @@ const NewCharacter = props => {
     vow2Name: '',
     vow2Rank: 0
   });
+  const [locationState, setLocationState] = React.useState('');
+  const [assetState, setAssetState] = React.useState({
+    asset1: '',
+    asset2: '',
+    asset3: ''
+  });
+  const [characterState, setCharacterState] = React.useState({
+    name: '',
+    stat: [0, 0, 0, 0, 0],
+    debilities: [false, false, false, false, false, false, false, false],
+    bond: [],
+    asset: [],
+    equipment: [],
+    location: []
+  });
+
+  const displayAsset = () => {
+    return (
+      Object.values(assetState).map((item, index) => {
+        if (!item) {
+          return (
+            <div key={`asset${index}`} className="asset-input__container__asset">
+              <div className="asset-block__new">
+                <i className="fas fa-plus"></i>
+                <span>Add new asset</span>
+              </div>
+            </div>
+          );
+        } else {
+          return (
+            <div key={`asset${index}`} className="asset-input__container__asset">
+              <div className="asset-block__exist">
+                <div className="asset-block__exist__name">
+                  <span>{item}</span>
+                </div>
+                <div className="asset-block__exist__action">
+                  <i className="fas fa-edit"></i>
+                  <i className="fas fa-ban"></i>
+                </div>
+              </div>
+            </div>
+          );
+        }
+      })
+    );
+  };
 
   const rankEdgeCheck = () => {
     const radioEdge1 = document.getElementById('radio-stat__edge__1');
@@ -95,13 +141,20 @@ const NewCharacter = props => {
     } else return false;
   };
 
+  const assetCheck = () => {
+    if (assetState.asset1 && assetState.asset2 && assetState.asset3) return true;
+    else return false;
+  };
+
   const validateInput = () => {
     const inputCharName = document.getElementById('input-characterName');
     const inputVowName1 = document.getElementById('input-vowName1');
     const inputVowName2 = document.getElementById('input-vowName2');
+    const inputLocName = document.getElementById('input-locationName');
     if (inputCharName.checkValidity() && inputVowName1.checkValidity() &&
       (rankEdgeCheck() && rankHeartCheck() && rankIronCheck() && rankShadowCheck() && rankWitsCheck()) &&
-      inputVowName2.checkValidity() && vow1Check() && vow2Check()) {
+      inputVowName2.checkValidity() && vow1Check() && vow2Check() && inputLocName.checkValidity() &&
+      assetCheck()) {
       return true;
     } else {
       return false;
@@ -112,6 +165,7 @@ const NewCharacter = props => {
     const inputCharName = document.getElementById('input-characterName');
     const inputVow1Name = document.getElementById('input-vowName1');
     const inputVow2Name = document.getElementById('input-vowName2');
+    const inputLocName = document.getElementById('input-locationName');
     const emptyCharName = document.getElementById('character-feedback__empty');
     const emptyVow1Name = document.getElementById('vowName1-feedback__empty');
     const emptyVow2Name = document.getElementById('vowName2-feedback__empty');
@@ -122,11 +176,17 @@ const NewCharacter = props => {
     const emptyStatsWits = document.getElementById('statsWits-feedback__empty');
     const emptyVow1Rank = document.getElementById('vowRank1-feedback__empty');
     const emptyVow2Rank = document.getElementById('vowRank2-feedback__empty');
+    const emptyLocName = document.getElementById('location-feedback__empty');
+    const emptyAsset = document.getElementById('asset-feedback__empty');
     if (validateInput()) {
       if (id.id === '0') {
         sessionStorage.setItem('character', null);
         charList.setCharacterList(null);
-        if (nameState) return null; // just so I can commit
+        if (nameState || locationState || characterState) return null; // just so I can commit
+        if (locationState === 'saveOnly') {
+          setAssetState('');
+          setCharacterState('');
+        }
       } else {
         return null;
       }
@@ -135,6 +195,7 @@ const NewCharacter = props => {
       if (!inputCharName.checkValidity()) emptyCharName.classList.remove('hide');
       if (!inputVow1Name.checkValidity()) emptyVow1Name.classList.remove('hide');
       if (!inputVow2Name.checkValidity()) emptyVow2Name.classList.remove('hide');
+      if (!inputLocName.checkValidity()) emptyLocName.classList.remove('hide');
       if (!rankEdgeCheck()) emptyStatsEdge.classList.remove('hide');
       if (!rankHeartCheck()) emptyStatsHeart.classList.remove('hide');
       if (!rankIronCheck()) emptyStatsIron.classList.remove('hide');
@@ -142,6 +203,7 @@ const NewCharacter = props => {
       if (!rankWitsCheck()) emptyStatsWits.classList.remove('hide');
       if (!vow1Check()) emptyVow1Rank.classList.remove('hide');
       if (!vow2Check()) emptyVow2Rank.classList.remove('hide');
+      if (!assetCheck()) emptyAsset.classList.remove('hide');
     }
   };
 
@@ -153,6 +215,7 @@ const NewCharacter = props => {
     const emptyStatsWits = document.getElementById('statsWits-feedback__empty');
     const emptyVow1Rank = document.getElementById('vowRank1-feedback__empty');
     const emptyVow2Rank = document.getElementById('vowRank2-feedback__empty');
+    const emptyAsset = document.getElementById('asset-feedback__empty');
     if (inputId) {
       if (document.getElementById(inputId).checkValidity()) {
         document.getElementById(feedbackId).classList.add('hide');
@@ -165,6 +228,7 @@ const NewCharacter = props => {
       if (rankWitsCheck()) emptyStatsWits.classList.add('hide');
       if (vow1Check()) emptyVow1Rank.classList.add('hide');
       if (vow2Check()) emptyVow2Rank.classList.add('hide');
+      if (assetCheck()) emptyAsset.classList.add('hide');
     }
   };
 
@@ -762,10 +826,50 @@ const NewCharacter = props => {
                 </div>
               </div>
             </div>
+            <div className="divider"></div>
+            <div className="location">
+              <div className="location-title subtitle">
+                <span>Location</span>
+              </div>
+              <div className="location-input__container input__container">
+                <div className="location-input__container__name">
+                  <div className="input__container__left">
+                    <span>Loc Name</span>
+                  </div>
+                  <div className="input__container__right">
+                    <input type="text" name="locationName" id="input-locationName" required
+                      onChange={
+                        e => {
+                          setLocationState(e.target.value);
+                          inputFeedbackHandler('location-feedback__empty', 'input-locationName');
+                        }
+                      } />
+                    <div className="newGame__feedback">
+                      <span id='location-feedback__empty' className="empty hide">Location is required.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="divider"></div>
+            <div className="asset">
+              <div className="asset-title subtitle">
+                <span>Asset</span>
+              </div>
+              <div className="asset-input__container input__container">
+                {displayAsset()}
+              </div>
+              <div className="newGame__feedback">
+                <span id='asset-feedback__empty' className="empty hide">Three assets are required.</span>
+              </div>
+            </div>
           </div>
           <div className="main-container__newGame__content__confirm">
             <button type="button" onClick={createHandler}>Create</button>
           </div>
+        </div>
+        <div className="modal-shadow">
+          <div className="modal-container"></div>
         </div>
       </div>
     </>
