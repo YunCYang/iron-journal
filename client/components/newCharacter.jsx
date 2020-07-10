@@ -29,7 +29,7 @@ const NewCharacter = props => {
   const [assetState, setAssetState] = React.useState({
     asset1: '',
     asset2: '',
-    asset3: ''
+    asset3: 'test'
   });
   const [characterState, setCharacterState] = React.useState({
     name: '',
@@ -40,6 +40,8 @@ const NewCharacter = props => {
     equipment: [],
     location: []
   });
+  const [modalType, setModalType] = React.useState('');
+  const [activeAsset, setActiveAsset] = React.useState('');
 
   const displayAsset = () => {
     return (
@@ -47,7 +49,12 @@ const NewCharacter = props => {
         if (!item) {
           return (
             <div key={`asset${index}`} className="asset-input__container__asset">
-              <div className="asset-block__new">
+              <div className="asset-block__new" onClick={
+                () => {
+                  setModalType('new');
+                  props.setModalShown(true);
+                }
+              }>
                 <i className="fas fa-plus"></i>
                 <span>Add new asset</span>
               </div>
@@ -61,8 +68,20 @@ const NewCharacter = props => {
                   <span>{item}</span>
                 </div>
                 <div className="asset-block__exist__action">
-                  <i className="fas fa-edit"></i>
-                  <i className="fas fa-ban"></i>
+                  <i className="fas fa-edit" onClick={
+                    () => {
+                      props.setModalShown(true);
+                      setActiveAsset(item);
+                      setModalType('edit');
+                    }
+                  }></i>
+                  <i className="fas fa-times" onClick={
+                    () => {
+                      props.setModalShown(true);
+                      setActiveAsset(item);
+                      setModalType('delete');
+                    }
+                  }></i>
                 </div>
               </div>
             </div>
@@ -70,6 +89,49 @@ const NewCharacter = props => {
         }
       })
     );
+  };
+
+  const displayShadow = () => {
+    if (props.modalShown) return '';
+    else return 'hide';
+  };
+
+  const displayModal = () => {
+    if (modalType === 'new') {
+      return (
+        <div className="modal-container new">
+          <div className="modal-header"></div>
+          <div className="modal-body">
+            <i className="fas fa-plus-circle"></i>
+          </div>
+          <div className="modal-action"></div>
+        </div>
+      );
+    } else if (modalType === 'delete') {
+      return (
+        <div className="modal-container delete">
+          <div className="modal-header"></div>
+          <div className="modal-body">
+            <i className="fas fa-fire-alt"></i>
+            <span>{`Delete ${activeAsset}?`}</span>
+          </div>
+          <div className="modal-action">
+            <button className="delete-confirm">Delete</button>
+            <button className="delete-cancel">Cancel</button>
+          </div>
+        </div>
+      );
+    } else if (modalType === 'edit') {
+      return (
+        <div className="modal-container edit">
+          <div className="modal-header"></div>
+          <div className="modal-body">
+            <i className="fas fa-pen-fancy"></i>
+          </div>
+          <div className="modal-action"></div>
+        </div>
+      );
+    }
   };
 
   const rankEdgeCheck = () => {
@@ -868,9 +930,15 @@ const NewCharacter = props => {
             <button type="button" onClick={createHandler}>Create</button>
           </div>
         </div>
-        <div className="modal-shadow">
-          <div className="modal-container"></div>
-        </div>
+      </div>
+      <div className={`modal-shadow ${displayShadow()}`} onClick={
+        e => {
+          if (e.target.contains(document.getElementsByClassName('modal-shadow')[0])) {
+            props.setModalShown(false);
+          }
+        }
+      }>
+        {displayModal()}
       </div>
     </>
   );

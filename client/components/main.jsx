@@ -13,6 +13,7 @@ const Main = props => {
   const [characterList, setCharacterList] = React.useState(
     sessionStorage.getItem('character') || []
   );
+  const [modalShown, setModalShown] = React.useState(false);
 
   React.useEffect(
     () => {
@@ -80,7 +81,8 @@ const Main = props => {
     } else if (isPage === 'new') {
       return (
         <>
-          <NewCharacter returnGamePage={returnGamePage} characterPage={characterPage} />
+          <NewCharacter returnGamePage={returnGamePage} characterPage={characterPage}
+            modalShown={modalShown} setModalShown={setModalShown}/>
         </>
       );
     } else if (isPage === 'character') {
@@ -94,7 +96,13 @@ const Main = props => {
 
   return (
     <CharacterContext.Provider value={{ characterList, setCharacterList }}>
-      <div className="main-page">
+      <div className="main-page" onClick={
+        e => {
+          if (e.target.contains(document.getElementsByClassName('modal-shadow')[0])) {
+            setModalShown(false);
+          }
+        }
+      }>
         <div className="main-title">
           <span>Iron Journal</span>
         </div>
