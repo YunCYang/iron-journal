@@ -854,15 +854,37 @@ div.landing
 
           .modal-body
             height: 285px
-            display: flex
-            flex-wrap: wrap
+
+            >div
+              width: 100%
+              height: 100%
+              display: flex
+
+            &__back
+              width: 100%
+              display: flex
+              justify-content: flex-end
+              height: 30px
+              align-items: center
+
+              i
+                margin-right: 16px
+                color: $color-prime_900
+                cursor: pointer
+
+                &:hover
+                  color: $color-accent1_600
 
             &__type
-              width: 50%
-              height: 50%
-              display: flex
-              justify-content: center
-              align-items: center
+              padding: 28px 8px
+              flex-wrap: wrap
+
+              &__container
+                width: 50%
+                height: 50%
+                display: flex
+                justify-content: center
+                align-items: center
 
               &__button
                 width: 70px
@@ -874,12 +896,22 @@ div.landing
                 color: $color-prime_900
                 border: solid 1px $color-prime_800
                 border-radius: 4px
+                cursor: pointer
 
                 i
                   font-size: 24px
 
                 span
                   font-size: 12px
+
+                &:hover
+                  color: $color-prime_600
+                  border-color: $color-prime_600
+
+            &__list
+              flex-direction: column
+              height: 255px
+              overflow-y: scroll
 
         &.edit
           height: 300px

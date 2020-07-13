@@ -772,10 +772,32 @@ div.landing-action__signUpLink .right {
 }
 .main-page .main-container .modal-shadow .modal-container.new .modal-body {
   height: 285px;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body > div {
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-wrap: wrap;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__back {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  height: 30px;
+  align-items: center;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__back i {
+  margin-right: 16px;
+  color: #000f08;
+  cursor: pointer;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__back i:hover {
+  color: #46838b;
 }
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__type {
+  padding: 28px 8px;
+  flex-wrap: wrap;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__type__container {
   width: 50%;
   height: 50%;
   display: flex;
@@ -792,12 +814,22 @@ div.landing-action__signUpLink .right {
   color: #000f08;
   border: solid 1px #004726;
   border-radius: 4px;
+  cursor: pointer;
 }
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__type__button i {
   font-size: 24px;
 }
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__type__button span {
   font-size: 12px;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__type__button:hover {
+  color: #00bd65;
+  border-color: #00bd65;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__list {
+  flex-direction: column;
+  height: 255px;
+  overflow-y: scroll;
 }
 .main-page .main-container .modal-shadow .modal-container.edit {
   height: 300px;

@@ -1037,7 +1037,7 @@ const assets = [
   },
   {
     id: 45,
-    type: 'Combat Talent',
+    type: 'Combat',
     name: 'Archer',
     text: 'If you wield a bow...',
     option: [
@@ -1064,7 +1064,7 @@ const assets = [
   },
   {
     id: 46,
-    type: 'Combat Talent',
+    type: 'Combat',
     name: 'Berserker',
     text: 'If you are clad only in animal pelts...',
     option: [
@@ -1091,7 +1091,7 @@ const assets = [
   },
   {
     id: 47,
-    type: 'Combat Talent',
+    type: 'Combat',
     name: 'Brawler',
     text: 'If you are unarmed or fighting with a non-deadly weapon...',
     option: [
@@ -1114,7 +1114,7 @@ const assets = [
   },
   {
     id: 48,
-    type: 'Combat Talent',
+    type: 'Combat',
     name: 'Cutthroat',
     text: 'If you wield a dagger or knife...',
     option: [
@@ -1141,7 +1141,7 @@ const assets = [
   },
   {
     id: 49,
-    type: 'Combat Talent',
+    type: 'Combat',
     name: 'Duelist',
     text: 'If you wield a bladed weapon in each hand...',
     option: [
@@ -1168,7 +1168,7 @@ const assets = [
   },
   {
     id: 50,
-    type: 'Combat Talent',
+    type: 'Combat',
     name: 'Fletcher',
     text: '',
     option: [
@@ -1195,7 +1195,7 @@ const assets = [
   },
   {
     id: 51,
-    type: 'Combat Talent',
+    type: 'Combat',
     name: 'Ironclad',
     text: 'If you wear armor...',
     option: [
@@ -1222,7 +1222,7 @@ const assets = [
   },
   {
     id: 52,
-    type: 'Combat Talent',
+    type: 'Combat',
     name: 'Long-Arm',
     text: 'If you wield a staff...',
     option: [
@@ -1245,7 +1245,7 @@ const assets = [
   },
   {
     id: 53,
-    type: 'Combat Talent',
+    type: 'Combat',
     name: 'Shield-Bearer',
     text: 'If you wield a shield...',
     option: [
@@ -1268,7 +1268,7 @@ const assets = [
   },
   {
     id: 54,
-    type: 'Combat Talent',
+    type: 'Combat',
     name: 'Skirmisher',
     text: 'If you wield a spear...',
     option: [
@@ -1295,7 +1295,7 @@ const assets = [
   },
   {
     id: 55,
-    type: 'Combat Talent',
+    type: 'Combat',
     name: 'Slinger',
     text: 'If you wield a sling...',
     option: [
@@ -1322,7 +1322,7 @@ const assets = [
   },
   {
     id: 56,
-    type: 'Combat Talent',
+    type: 'Combat',
     name: 'Sunderer',
     text: 'If you wield an axe...',
     option: [
@@ -1345,7 +1345,7 @@ const assets = [
   },
   {
     id: 57,
-    type: 'Combat Talent',
+    type: 'Combat',
     name: 'Swordmaster',
     text: 'If you wield a sword...',
     option: [
@@ -1368,7 +1368,7 @@ const assets = [
   },
   {
     id: 58,
-    type: 'Combat Talent',
+    type: 'Combat',
     name: 'Thunder-Bringer',
     text: 'If you wield a mighty hammer...',
     option: [
