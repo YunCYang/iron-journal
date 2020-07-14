@@ -743,22 +743,32 @@ div.landing-action__signUpLink .right {
   border: none;
   color: #f0fff8;
 }
-.main-page .main-container .modal-shadow .modal-container .modal-action button.delete-confirm {
+.main-page .main-container .modal-shadow .modal-container .modal-action button.confirm {
+  background-color: #008044;
+  border-top: solid 2px #00bd65;
+  border-bottom: solid 2px #004726;
+}
+.main-page .main-container .modal-shadow .modal-container .modal-action button.confirm:focus {
+  outline: none;
+  border-top: solid 1px #00bd65;
+  border-bottom: solid 1px #004726;
+}
+.main-page .main-container .modal-shadow .modal-container .modal-action button.delete {
   background-color: #972b21;
   border-top: solid 2px #b43327;
   border-bottom: solid 2px #79231b;
 }
-.main-page .main-container .modal-shadow .modal-container .modal-action button.delete-confirm:focus {
+.main-page .main-container .modal-shadow .modal-container .modal-action button.delete:focus {
   outline: none;
   border-top: solid 1px #b43327;
   border-bottom: solid 1px #79231b;
 }
-.main-page .main-container .modal-shadow .modal-container .modal-action button.delete-cancel {
+.main-page .main-container .modal-shadow .modal-container .modal-action button.cancel {
   background-color: #5e5e5e;
   border-top: solid 2px gray;
   border-bottom: solid 2px #404040;
 }
-.main-page .main-container .modal-shadow .modal-container .modal-action button.delete-cancel:focus {
+.main-page .main-container .modal-shadow .modal-container .modal-action button.cancel:focus {
   outline: none;
   border-top: solid 1px gray;
   border-bottom: solid 1px #404040;
@@ -812,7 +822,7 @@ div.landing-action__signUpLink .right {
   justify-content: space-evenly;
   align-items: center;
   color: #000f08;
-  border: solid 1px #004726;
+  border: solid 2px #004726;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -830,6 +840,61 @@ div.landing-action__signUpLink .right {
   flex-direction: column;
   height: 255px;
   overflow-y: scroll;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container {
+  margin: 4px 0 0 0;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container .list {
+  margin: 8px 16px;
+  border: solid 2px #004726;
+  border-radius: 4px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container .list span {
+  margin-left: 8px;
+  color: #000f08;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container .list:hover {
+  border-color: #00bd65;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container .list:hover span {
+  color: #00bd65;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail {
+  flex-direction: column;
+  height: 255px;
+  overflow-y: scroll;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container {
+  margin: 4px 0 0 0;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail {
+  display: flex;
+  flex-direction: column;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail > div {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-name {
+  font-size: 18px;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-text {
+  font-size: 14px;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__name {
+  font-size: 14px;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__description {
+  font-size: 12px;
 }
 .main-page .main-container .modal-shadow .modal-container.edit {
   height: 300px;

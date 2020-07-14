@@ -4,18 +4,95 @@ import assets from '../assets/assetSets/assets';
 const AssetModal = props => {
   const [newAssetState, setNewAssetState] = React.useState('type');
   const [selectedType, setSelectedType] = React.useState('');
+  const [selectedAsset, setSelectedAsset] = React.useState('');
 
-  const selectList = () => {
+  const showList = () => {
     const listArray = assets.filter(item => item.type === selectedType);
     return (
       listArray.map(item => {
-        // need key
         return (
-          <div className="list" key={`asset${item.id}`}>
+          <div className="list" key={`asset${item.id}`} onClick={
+            () => {
+              setSelectedAsset(item.name);
+              setNewAssetState('detail');
+            }
+          }>
             <span>{item.name}</span>
           </div>
         );
       })
+    );
+  };
+
+  const displayLabel = (assetId, optionIndex) => {
+    const selected = assets.filter(item => parseInt(item.id) === parseInt(assetId));
+    const showName = () => selected[0].option[optionIndex].name || null;
+    const showDescription = () => {
+      return selected[0].option[optionIndex].description;
+    };
+    const showOption = () => {
+      if ('option' in selected[0].option[optionIndex]) {
+        return selected[0].option[optionIndex].option.map((item, index) => {
+          return (
+            <div className="option-detail" key={`${selected[0].name}-option-${optionIndex}-${index}`}>
+              <span >{item}</span>
+            </div>
+          );
+        });
+      } else return null;
+    };
+    return (
+      <div className="detail-option__container">
+        <div className="detail-option__container__name">
+          {showName()}
+        </div>
+        <div className="detail-option__container__description">
+          {showDescription()}
+        </div>
+        <div className="detail-option__container__option">
+          {showOption()}
+        </div>
+      </div>
+    );
+  };
+
+  const showDetail = () => {
+    const assetDetail = assets.filter(item => item.name === selectedAsset);
+    const hiddenDisplay = shown => shown ? '' : 'hide';
+    return (
+      <div className="detail">
+        <div className="detail-name">
+          <span>{assetDetail[0].name}</span>
+        </div>
+        <div className="detail-text">
+          <span>{assetDetail[0].text}</span>
+        </div>
+        <div className={`detail-uniqueName ${hiddenDisplay(assetDetail[0].uniqueName)}`}>
+          <input type="text" name="detail-uniqueName__input" id="detail-uniqueName__input"/>
+        </div>
+        <div className={`detail-health ${hiddenDisplay(assetDetail[0].maxHealth)}`}>
+          <span>{assetDetail[0].maxHealth}</span>
+        </div>
+        <div className="detail-option">
+          <ul>
+            <li className="option__1">
+              <input type="radio" name="detail-option" id="detail-option__1"/>
+              <label htmlFor="detail-option__1">{displayLabel(assetDetail[0].id, 0)}</label>
+              <div className="check"></div>
+            </li>
+            <li className="option__2">
+              <input type="radio" name="detail-option" id="detail-option__2" />
+              <label htmlFor="detail-option__2">{displayLabel(assetDetail[0].id, 1)}</label>
+              <div className="check"></div>
+            </li>
+            <li className="option__3">
+              <input type="radio" name="detail-option" id="detail-option__3" />
+              <label htmlFor="detail-option__3">{displayLabel(assetDetail[0].id, 2)}</label>
+              <div className="check"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
     );
   };
 
@@ -85,7 +162,7 @@ const AssetModal = props => {
               }></i>
             </div>
             <div className="modal-body__list__container">
-              {selectList()}
+              {showList()}
             </div>
           </div>
         );
@@ -96,6 +173,13 @@ const AssetModal = props => {
               <i className="fas fa-long-arrow-alt-left" onClick={
                 () => setNewAssetState('list')
               }></i>
+            </div>
+            <div className="modal-body__detail__container">
+              {showDetail()}
+            </div>
+            <div className="modal-action">
+              <button className="confirm">Confirm</button>
+              <button className="cancel">Cancel</button>
             </div>
           </div>
         );
@@ -109,7 +193,6 @@ const AssetModal = props => {
           <div className="modal-body">
             {assetSelection()}
           </div>
-          <div className="modal-action"></div>
         </div>
       );
     } else if (props.modalType === 'delete') {
@@ -121,8 +204,8 @@ const AssetModal = props => {
             <span>{`Delete ${props.activeAsset}?`}</span>
           </div>
           <div className="modal-action">
-            <button className="delete-confirm">Delete</button>
-            <button className="delete-cancel">Cancel</button>
+            <button className="delete">Delete</button>
+            <button className="cancel">Cancel</button>
           </div>
         </div>
       );
