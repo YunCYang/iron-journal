@@ -281,7 +281,7 @@ div.landing-action__signUpLink .right {
 .signup-container .signup-container__right .signup__input i {
   position: absolute;
   right: 3px;
-  top: 3px;
+  top: 6px;
 }
 .signup-container .signup-container__right .signup__input i.fa-check-circle {
   color: #008044;
@@ -290,17 +290,13 @@ div.landing-action__signUpLink .right {
   color: #d13c2e;
 }
 .signup-container .signup-container__right input {
-  width: 134px;
-  border-style: solid;
-  border-color: #bfbfbf;
+  border: none;
+  background-color: #f7f7f7;
   border-radius: 4px;
-  background-color: #f0fff8;
-  transition: 0.2s ease all;
-  padding-right: 20px;
-}
-.signup-container .signup-container__right input:focus {
-  outline: none;
-  border-color: #008044;
+  box-shadow: inset 0 2px 2px #bfbfbf, 0 2px 0 #dedede;
+  padding: 0 20px 0 8px;
+  height: 28px;
+  width: 134px;
 }
 .signup-container .signup-container__feedback {
   font-size: 12px;
@@ -480,27 +476,24 @@ div.landing-action__signUpLink .right {
 }
 .main-page .main-container__newGame__content__form .input__container > div {
   display: flex;
-  margin: 4px 0 0 0;
+  margin: 8px 0 0 0;
 }
 .main-page .main-container__newGame__content__form .input__container__left {
   margin: 0 0 0 16px;
   width: 68px;
   font-size: 14px;
+  padding-top: 4px;
 }
 .main-page .main-container__newGame__content__form .input__container__right input {
   width: 110px;
+  height: 28px;
 }
 .main-page .main-container__newGame__content__form .input__container__right input[type=text] {
-  border-style: solid;
-  border-color: #bfbfbf;
+  border: none;
+  background-color: #f7f7f7;
   border-radius: 4px;
-  width: 110px;
-  background-color: #f0fff8;
-  transition: 0.2s ease all;
-}
-.main-page .main-container__newGame__content__form .input__container__right input[type=text]:focus {
-  outline: none;
-  border-color: #008044;
+  box-shadow: inset 0 2px 2px #bfbfbf, 0 2px 0 #dedede;
+  padding: 0 8px;
 }
 .main-page .main-container__newGame__content__form .stats-input__container .input__container__right {
   display: flex;
@@ -738,10 +731,12 @@ div.landing-action__signUpLink .right {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  cursor: pointer;
 }
 .main-page .main-container .modal-shadow .modal-container .modal-action button {
   border: none;
   color: #f0fff8;
+  margin: 10px 0;
 }
 .main-page .main-container .modal-shadow .modal-container .modal-action button.confirm {
   background-color: #008044;
@@ -782,6 +777,7 @@ div.landing-action__signUpLink .right {
 }
 .main-page .main-container .modal-shadow .modal-container.new .modal-body {
   height: 285px;
+  color: #000f08;
 }
 .main-page .main-container .modal-shadow .modal-container.new .modal-body > div {
   width: 100%;
@@ -882,19 +878,128 @@ div.landing-action__signUpLink .right {
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-name {
   font-size: 18px;
 }
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-text, .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-uniqueName, .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health {
+  margin-top: 12px;
+}
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-text {
   font-size: 14px;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-uniqueName input {
+  border: none;
+  background-color: #f7f7f7;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 2px #bfbfbf, 0 2px 0 #dedede;
+  padding: 0 8px;
+  height: 28px;
+  width: 148px;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__container {
+  display: flex;
+  width: 148px;
+  justify-content: center;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block {
+  height: 28px;
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.active {
+  border-style: solid;
+  border-width: 2px 2px 2px 0;
+  border-color: #008044;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.active span {
+  color: #008044;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.active:first-child {
+  border-width: 2px;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.inactivate {
+  border-style: solid;
+  border-width: 2px 2px 2px 0;
+  border-color: #bfbfbf;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.inactivate span {
+  color: #bfbfbf;
 }
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li input {
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li label {
+  display: flex;
+  cursor: pointer;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li .check {
+  width: 18px;
+  padding: 6px;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li .check-light {
+  background-color: #dedede;
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  transition: 0.2s ease all;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li input:checked ~ label .detail-option__container {
+  color: #004726;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li input:checked ~ label .check-light {
+  background-color: #00ff88;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li input:disabled ~ label .detail-option__container {
+  color: #bfbfbf;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li input:disabled ~ label .check-light {
+  background-color: #9e9e9e;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container {
+  width: 130px;
+  padding: 4px;
+}
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__name {
   font-size: 14px;
+  margin-bottom: 8px;
 }
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__description {
   font-size: 12px;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__option {
+  font-size: 12px;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__option div.option-detail {
+  margin-top: 8px;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__option div.option-detail span {
+  color: #004726;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .uniqueName__feedback,
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .option__feedback {
+  font-size: 12px;
+  color: #79231b;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 4px;
+  background-color: #eba9a3;
+  margin: 8px 0;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .uniqueName__feedback span,
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .option__feedback span {
+  width: 148px;
+}
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .uniqueName__feedback span,
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .option__feedback span {
+  padding: 4px;
 }
 .main-page .main-container .modal-shadow .modal-container.edit {
   height: 300px;

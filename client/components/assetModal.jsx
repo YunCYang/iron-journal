@@ -6,6 +6,14 @@ const AssetModal = props => {
   const [selectedType, setSelectedType] = React.useState('');
   const [selectedAsset, setSelectedAsset] = React.useState('');
 
+  React.useEffect(
+    () => {
+      if (document.getElementsByClassName('modal-body__detail')[0]) {
+        document.getElementsByClassName('modal-body__detail')[0].scrollTop = 0;
+      }
+    }, [newAssetState]
+  );
+
   const showList = () => {
     const listArray = assets.filter(item => item.type === selectedType);
     return (
@@ -27,6 +35,7 @@ const AssetModal = props => {
   const displayLabel = (assetId, optionIndex) => {
     const selected = assets.filter(item => parseInt(item.id) === parseInt(assetId));
     const showName = () => selected[0].option[optionIndex].name || null;
+    const nameMargin = () => selected[0].option[optionIndex].name ? '' : 'hide';
     const showDescription = () => {
       return selected[0].option[optionIndex].description;
     };
@@ -43,7 +52,7 @@ const AssetModal = props => {
     };
     return (
       <div className="detail-option__container">
-        <div className="detail-option__container__name">
+        <div className={`detail-option__container__name ${nameMargin()}`}>
           {showName()}
         </div>
         <div className="detail-option__container__description">
@@ -59,38 +68,84 @@ const AssetModal = props => {
   const showDetail = () => {
     const assetDetail = assets.filter(item => item.name === selectedAsset);
     const hiddenDisplay = shown => shown ? '' : 'hide';
+    const healthDisplay = (display, health) => {
+      if (display <= health) return 'active';
+      else return 'inactivate';
+    };
+    const defaultCheck = () => !!assetDetail[0].default;
     return (
       <div className="detail">
-        <div className="detail-name">
+        <div className={`detail-name ${hiddenDisplay(assetDetail[0].name)}`}>
           <span>{assetDetail[0].name}</span>
         </div>
-        <div className="detail-text">
+        <div className={`detail-text ${hiddenDisplay(assetDetail[0].text)}`}>
           <span>{assetDetail[0].text}</span>
         </div>
-        <div className={`detail-uniqueName ${hiddenDisplay(assetDetail[0].uniqueName)}`}>
-          <input type="text" name="detail-uniqueName__input" id="detail-uniqueName__input"/>
+        <div className={`detail-uniqueName ${hiddenDisplay(assetDetail[0].uniqueName.show)}`}>
+          <input type="text" name="detail-uniqueName__input" id="detail-uniqueName__input"
+            placeholder={`Enter ${assetDetail[0].uniqueName.detail}.`}/>
+          <div className="uniqueName__feedback">
+            <span id='uniqueName-feedback__empty' className="empty hide">{`Please enter a(n) ${assetDetail[0].uniqueName.detail}`}</span>
+          </div>
         </div>
         <div className={`detail-health ${hiddenDisplay(assetDetail[0].maxHealth)}`}>
-          <span>{assetDetail[0].maxHealth}</span>
+          <div className="detail-health__container">
+            <div className={`detail-health__block ${healthDisplay(1, assetDetail[0].maxHealth)}`}>
+              <span>1</span>
+            </div>
+            <div className={`detail-health__block ${healthDisplay(2, assetDetail[0].maxHealth)}`}>
+              <span>2</span>
+            </div>
+            <div className={`detail-health__block ${healthDisplay(3, assetDetail[0].maxHealth)}`}>
+              <span>3</span>
+            </div>
+            <div className={`detail-health__block ${healthDisplay(4, assetDetail[0].maxHealth)}`}>
+              <span>4</span>
+            </div>
+            <div className={`detail-health__block ${healthDisplay(5, assetDetail[0].maxHealth)}`}>
+              <span>5</span>
+            </div>
+            <div className={`detail-health__block ${healthDisplay(6, assetDetail[0].maxHealth)}`}>
+              <span>6</span>
+            </div>
+          </div>
         </div>
         <div className="detail-option">
           <ul>
             <li className="option__1">
-              <input type="radio" name="detail-option" id="detail-option__1"/>
-              <label htmlFor="detail-option__1">{displayLabel(assetDetail[0].id, 0)}</label>
-              <div className="check"></div>
+              <input type="radio" name="detail-option" id="detail-option__1"
+                className="detail-option__input" defaultChecked={defaultCheck()}/>
+              <label htmlFor="detail-option__1">
+                <div className="check">
+                  <div className="check-light"></div>
+                </div>
+                {displayLabel(assetDetail[0].id, 0)}
+              </label>
             </li>
             <li className="option__2">
-              <input type="radio" name="detail-option" id="detail-option__2" />
-              <label htmlFor="detail-option__2">{displayLabel(assetDetail[0].id, 1)}</label>
-              <div className="check"></div>
+              <input type="radio" name="detail-option" id="detail-option__2"
+                className="detail-option__input" disabled={defaultCheck()}/>
+              <label htmlFor="detail-option__2">
+                <div className="check">
+                  <div className="check-light"></div>
+                </div>
+                {displayLabel(assetDetail[0].id, 1)}
+              </label>
             </li>
             <li className="option__3">
-              <input type="radio" name="detail-option" id="detail-option__3" />
-              <label htmlFor="detail-option__3">{displayLabel(assetDetail[0].id, 2)}</label>
-              <div className="check"></div>
+              <input type="radio" name="detail-option" id="detail-option__3"
+                className="detail-option__input" disabled={defaultCheck()}/>
+              <label htmlFor="detail-option__3">
+                <div className="check">
+                  <div className="check-light"></div>
+                </div>
+                {displayLabel(assetDetail[0].id, 2)}
+              </label>
             </li>
           </ul>
+          <div className="option__feedback">
+            <span id='option-feedback__empty' className="empty hide">An asset ability is required.</span>
+          </div>
         </div>
       </div>
     );

@@ -39,7 +39,10 @@ const Main = props => {
             <div className="main-container__game__content__container">
               <div className="main-container__game__content__newBlock game-block"
                 onClick={
-                  () => createNewGame()
+                  () => {
+                    createNewGame();
+                    setModalShown(false);
+                  }
                 }>
                 <i className="fas fa-plus"></i>
                 <div className="main-container__game__content__newTag game-tag">

@@ -18,7 +18,10 @@ const assets = [
         description: 'When you \'Make Camp\', your cat is alert to trouble. If you or an ally choose to relax, take +1 spirit. If you focus, take +1 momentum.'
       }
     ],
-    uniqueName: true,
+    uniqueName: {
+      show: true,
+      detail: 'cave lion name'
+    },
     maxHealth: 4,
     default: false
   },
@@ -41,7 +44,10 @@ const assets = [
         description: 'When your spider sets a trap, add +1 as you \'Enter the Fray\' +shadow. On a strong hit, also inflict 2 harm.'
       }
     ],
-    uniqueName: true,
+    uniqueName: {
+      show: true,
+      detail: 'giant spider name'
+    },
     maxHealth: 4,
     default: false
   },
@@ -64,7 +70,10 @@ const assets = [
         description: 'When you \'Face Danger\' +wits to detect an approaching threat, or when you \'Enter the Fray\' +wits against an ambush, add +2.'
       }
     ],
-    uniqueName: true,
+    uniqueName: {
+      show: true,
+      detail: 'hawk name'
+    },
     maxHealth: 3,
     default: false
   },
@@ -87,7 +96,10 @@ const assets = [
         description: 'When you \'Strike\' or \'Clash\' at close range while mounted, add +1 and inflict +1 harm on a hit.'
       }
     ],
-    uniqueName: true,
+    uniqueName: {
+      show: true,
+      detail: 'horse name'
+    },
     maxHealth: 5,
     default: false
   },
@@ -110,7 +122,10 @@ const assets = [
         description: 'When you \'Endure Stress\' in the company of your hound, add +1.'
       }
     ],
-    uniqueName: true,
+    uniqueName: {
+      show: true,
+      detail: 'hound name'
+    },
     maxHealth: 4,
     default: false
   },
@@ -133,7 +148,10 @@ const assets = [
         description: 'Once you mark a bond with your conpanionm add +1 when you \'Face Desolation\' in their presence.'
       }
     ],
-    uniqueName: true,
+    uniqueName: {
+      show: true,
+      detail: 'kindred name'
+    },
     maxHealth: 4,
     default: false
   },
@@ -156,7 +174,10 @@ const assets = [
         description: 'When you \'Strike\' or \'Clash\' by riding your mammoth against a pack of foes, add +1 and inflict +1 harm on a hit.'
       }
     ],
-    uniqueName: true,
+    uniqueName: {
+      show: true,
+      detail: 'mammoth name'
+    },
     maxHealth: 5,
     default: false
   },
@@ -179,7 +200,10 @@ const assets = [
         description: 'When you \'Face Death\', take your owl\'s health as +momentum before you roll.'
       }
     ],
-    uniqueName: true,
+    uniqueName: {
+      show: true,
+      detail: 'owl name'
+    },
     maxHealth: 3,
     default: false
   },
@@ -202,7 +226,10 @@ const assets = [
         description: 'When your raven carries messages for you, you may \'Secure an Advantage\', \'Gather Information\', or \'Compel\' from distance.'
       }
     ],
-    uniqueName: true,
+    uniqueName: {
+      show: true,
+      detail: 'raven name'
+    },
     maxHealth: 2,
     default: false
   },
@@ -225,7 +252,10 @@ const assets = [
         description: 'When you \'Strike\' by commanding your wyvern to attack, roll +heart. Your wyvern inflicts 3 harm on a hit.'
       }
     ],
-    uniqueName: true,
+    uniqueName: {
+      show: true,
+      detail: 'wyvern name'
+    },
     maxHealth: 5,
     default: false
   },
@@ -248,7 +278,10 @@ const assets = [
         description: 'When you prepare an elixir, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -271,7 +304,10 @@ const assets = [
         description: 'Once per fight, when you leverage your animal or beast companion to make a move, reroll any dice. On a hit, take +1 momentum.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -294,7 +330,10 @@ const assets = [
         description: 'When you \'Enter the Fray\' bearing your banner, add +1 and take +1 momentum on a hit. When you burn momentum while carrying your banner in combat, take +1 momentum after you reset.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -317,7 +356,10 @@ const assets = [
         description: 'You have stared down death before: When you are at 0 health and \'Endure Harm\', you may roll +wits or +heart (instead of +health or +iron). If you do, take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: false
   },
@@ -340,7 +382,10 @@ const assets = [
         description: 'When you \'Strike\' with your kin-blade to inflict savage harm (decide before rolling), add +1 and inflict +2 harm on a hit. Then, \'Endure Stress\' (2 stress).'
       }
     ],
-    uniqueName: true,
+    uniqueName: {
+      show: true,
+      detail: 'spirit name'
+    },
     maxHealth: null,
     default: false
   },
@@ -363,7 +408,10 @@ const assets = [
         description: 'When you make a move in a crucial moment and score a miss, you may cling to thoughts of your bond-kin for courage or encouragement.If you do, reroll any dice.On another miss, in addition to the outcome of the move, you must mark shaken or corrupted. If both debilities are already marked, \'Face Desolation.\''
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -386,7 +434,10 @@ const assets = [
         description: 'When you or an ally make a progress move and score a hit, you may perform a dance to commemorate the event. If you do, roll +edge. On a strong hit, you and each of your allies take +2 momentum and +1 spirit. On a weak hit, you take +1 momentum or +1 spirit, but your allies are unmoved.'
       }
     ],
-    uniqueName: null,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -409,7 +460,10 @@ const assets = [
         description: 'When you \'Sojourn\' by sharing the word of your god, you may roll + your god\'s stat. If you do, take +1 momentum on a hit.'
       }
     ],
-    uniqueName: true,
+    uniqueName: {
+      show: true,
+      detail: 'god\'s name'
+    },
     maxHealth: null,
     default: true
   },
@@ -432,7 +486,10 @@ const assets = [
         description: 'When you forgo your title or lineage and \'Forge a Bond\' as an equal, or when you \'Swear an Iron Vow\' to serve someone of a lower station, add +1 and take +1 momentum or +1 spirit on a hit.'
       }
     ],
-    uniqueName: true,
+    uniqueName: {
+      show: true,
+      detail: 'title / lineage'
+    },
     maxHealth: null,
     default: true
   },
@@ -455,7 +512,10 @@ const assets = [
         description: ''
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: 5,
     default: true
   },
@@ -478,7 +538,10 @@ const assets = [
         description: 'When you \'Make Camp\' and choose the option to partake, you can create a restorative meal. If you do, you and your companions take +1 health. Any allies who choose to partake also take +1 health, and do not suffer -supply.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -501,7 +564,10 @@ const assets = [
         description: 'When you \'Fulfill Your Vow\' and score a miss, you may reroll one challenge die. If you score a miss again, reduce your maximum spirit by 1. You may recover this lost spirit when you next \'Fulfill Your Vow\' and score a strong hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -524,7 +590,10 @@ const assets = [
         description: 'When you throw caution to the wind and make an impulsive move in a risky situation, you may add +2. If you do, take +1 momentum on a strong hit, but count a weak hit as a miss.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -547,7 +616,10 @@ const assets = [
         description: 'When you \'Resupply\' within an enemy area by scavenging or looting, you may roll +shadow (instead of +wits). If you do, take +1 momentum or +1 supply on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -570,7 +642,10 @@ const assets = [
         description: 'When you stand with your ally as they make a progress move, envision how you support them. Then, roll one challenge die. On a 1-9, your ally may replace one of their challenge dice with yours. On a 10, envision how you inadvertently undermine their action; your ally must replace their lowest challenge die with yours.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -599,7 +674,10 @@ const assets = [
         description: 'When you \'Face Death\' or \'Face Desolation\' while wearing the mask, you may roll +wits (instead of +heart).'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -622,7 +700,10 @@ const assets = [
         description: 'When you \'Fulfill Your Vow\' on your marked quest and score a hit, you find redemption and automatically activate this ability at no cost. You may then improve one of your stats by +1 and discard this asset.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -645,7 +726,10 @@ const assets = [
         description: 'When you \'Reach Your Destination\' and score a strong hit, you recall or recognize something helpful about this place. Envision what it is, and take +2 momentum.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -668,7 +752,10 @@ const assets = [
         description: 'When you \'Secure an Advantage\' by revealing your true identity in a dramatic moment, reroll any dice.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -691,7 +778,10 @@ const assets = [
         description: 'When you bring death to your foe to \'End the Fight\', you may burn momentum to cancel one (not both) of the challenge dice if your momentum is greater than the value of that die. If you do, \'Endure Stress\' (2 stress).'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -714,7 +804,10 @@ const assets = [
         description: 'When you \'Secure an Advantage\' +wits by sizing up a perilous situation from the saddle, you are one with your horse\'s instincts. Add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -737,7 +830,10 @@ const assets = [
         description: 'When you tattoo the essence of a new ritual onto your skin, envision the mark you create. You may then purchase and upgrade that ritual asset for 1 fewer experience.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -760,7 +856,10 @@ const assets = [
         description: 'You know the sly ways of death: When you \'Face Death\', you may roll +shadow (instead of +heart). On a weak hit, if you choose to undertake a deathbound quest, you may roll +shadow (instead of +heart) and reroll any dice as you \'Swear an Iron Vow\'. When you \'Fulfill Your Vow\' on that quest and and mark experience, take +2 experience.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: false
   },
@@ -783,7 +882,10 @@ const assets = [
         description: 'When you \'Secure an Advantage\' by studying someone or something in a charged situation, add +1 and take +1 momentum on a hit. When you also pierce the veil to explore deeper truths (decide before rolling), you may reroll any dice.If you do, count a weak hit as a miss.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -810,7 +912,10 @@ const assets = [
         ]
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -838,7 +943,10 @@ const assets = [
 
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -861,7 +969,10 @@ const assets = [
         description: 'When you \'Sojourn\' within a community with which you share a bond, add +2 (instead of +1).'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -888,7 +999,10 @@ const assets = [
         ]
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -911,7 +1025,10 @@ const assets = [
         description: 'When you \'Resupply\' by looting the dead on a field of battle, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -939,7 +1056,10 @@ const assets = [
         description: 'When you \'Enter the Fray\' aboard a boat or ship, reroll any dice.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -962,7 +1082,10 @@ const assets = [
         description: 'When you \'Swear an Iron Vow\' to safely guide someone on a perilous journey, you may reroll any dice. When you \'Fulfill Your Vow\' and mark experience, take +1 experience.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -985,7 +1108,10 @@ const assets = [
         description: 'When you \'Turn the Tide\' with a sudden change of weapon or technique, and your next move is a \'Strike\', add +1 and inflict +2 harm on a strong hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1008,7 +1134,10 @@ const assets = [
         description: 'When you \'Make Camp\' in the woodlands, you may roll +wits (instead of +supply). If you do, you and your allies each choose 1 more option on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1031,7 +1160,10 @@ const assets = [
         description: 'When you give the item you create as a gift to commemorate an important event or relationship, you may (one time only) reroll any dice when you \'Compel\', \'Forge a Bond\', or \'Test Your Bond.\''
       }
     ],
-    uniqueName: true,
+    uniqueName: {
+      show: true,
+      detail: 'crafting specialty'
+    },
     maxHealth: null,
     default: true
   },
@@ -1058,7 +1190,10 @@ const assets = [
         description: 'When you \'Resupply\' by hunting, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1085,7 +1220,10 @@ const assets = [
         description: 'When you \'Endure Harm\' in a fight, and your health is above 0, you may let the pain inflame your wildness (decide before rolling). If you then score a strong hit and choose to embrace the pain, take +momentum equal to your remaining health. A weak hit counts as a miss.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1108,7 +1246,10 @@ const assets = [
         description: 'When you \'Face Danger\' or \'Clash\' against a brawling attack, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1135,7 +1276,10 @@ const assets = [
         description: 'Once per fight, when you \'Secure an Advantage\' +shadow by performing a feint or misdirection, reroll any dice and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1162,7 +1306,10 @@ const assets = [
         ]
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1189,7 +1336,10 @@ const assets = [
         ]
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1216,7 +1366,10 @@ const assets = [
         description: 'When you \'Compel\' in a situation where strength of arms is a factor, add +2.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1239,7 +1392,10 @@ const assets = [
         description: 'When you \'Undertake a Journey\' and score a strong hit, or if you accompany an ally who scores a strong hit on that move, your staff provides support and comfort in your travels; take +1 momentum.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1262,7 +1418,10 @@ const assets = [
         description: 'When forced to \'Endure Harm\' in a fight, you may instead sacrifice your shield and ignore all harm. If you do, the shield is destroyed. Once per fight, you also take initiative when you sacrifice your shield to avoid harm.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1289,7 +1448,10 @@ const assets = [
         description: 'When you \'Secure an Advantage\' by bracing your spear against a charging foe, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1316,7 +1478,10 @@ const assets = [
         description: 'When you \'Secure an Advantage\' by preparing stones of a special quality or material, add +1. Then, take +1 momentum or +1 supply on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1339,7 +1504,10 @@ const assets = [
         description: 'When you make a tribute to a fallen foe (formidable or greater) by carving a rune in the haft of your axe, roll +heart. On a strong hit, inflict +1d6 harm (one time only) when you \'Strike\' or \'Clash\'. On a weak hit, as above, but this death weighs on you; \'Endure Stress\' (2 stress).'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1362,7 +1530,10 @@ const assets = [
         description: 'When you \'Swear an Iron Vow\' by kneeling and grasping your sword\'s blade, add +1 and take +1 momentum on a hit. If you let the edge draw blood from your hands, \'Endure Harm\' (1 harm) in exchange for an additional +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1385,7 +1556,10 @@ const assets = [
         description: 'When you \'Turn the Tide\', you may \'Strike\' with all the fury and power you can muster. If you do (decide before rolling), you may reroll any dice and inflict +2 harm on a strong hit, but count a weak hit as a miss.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1408,7 +1582,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1431,7 +1608,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: 6,
     default: true
   },
@@ -1454,7 +1634,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 momentum on a hit'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1477,7 +1660,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1500,7 +1686,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1523,7 +1712,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 essence on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: 6,
     default: true
   },
@@ -1546,7 +1738,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1569,7 +1764,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1592,7 +1790,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: 6,
     default: true
   },
@@ -1620,7 +1821,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1643,7 +1847,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1666,7 +1873,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1689,7 +1899,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1712,7 +1925,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1735,7 +1951,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1758,7 +1977,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   },
@@ -1786,7 +2008,10 @@ const assets = [
         description: 'When you perform this ritual, add +1 and take +1 momentum on a hit.'
       }
     ],
-    uniqueName: false,
+    uniqueName: {
+      show: false,
+      detail: ''
+    },
     maxHealth: null,
     default: true
   }
