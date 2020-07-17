@@ -29,9 +29,24 @@ const NewCharacter = props => {
   });
   const [locationState, setLocationState] = React.useState('');
   const [assetState, setAssetState] = React.useState({
-    asset1: '',
-    asset2: '',
-    asset3: 'test'
+    asset1: {
+      name: '',
+      uniqueName: '',
+      option: 0,
+      index: 1
+    },
+    asset2: {
+      name: '',
+      uniqueName: '',
+      option: 0,
+      index: 2
+    },
+    asset3: {
+      name: '',
+      uniqueName: '',
+      option: 0,
+      index: 3
+    }
   });
   const [characterState, setCharacterState] = React.useState({
     name: '',
@@ -43,7 +58,12 @@ const NewCharacter = props => {
     location: []
   });
   const [modalType, setModalType] = React.useState('');
-  const [activeAsset, setActiveAsset] = React.useState('');
+  const [activeAsset, setActiveAsset] = React.useState({
+    name: '',
+    uniqueName: '',
+    option: 0,
+    index: 0
+  });
 
   const displayShadow = () => {
     if (props.modalShown) return '';
@@ -120,7 +140,7 @@ const NewCharacter = props => {
   };
 
   const assetCheck = () => {
-    if (assetState.asset1 && assetState.asset2 && assetState.asset3) return true;
+    if (assetState.asset1.name && assetState.asset2.name && assetState.asset3.name) return true;
     else return false;
   };
 
@@ -856,7 +876,8 @@ const NewCharacter = props => {
         }
       }>
         <AssetModal modalType={modalType} activeAsset={activeAsset}
-          modalShown={props.modalShown}/>
+          modalShown={props.modalShown} setModalShown={props.setModalShown}
+          setAssetState={setAssetState} assetState={assetState}/>
       </div>
     </>
   );

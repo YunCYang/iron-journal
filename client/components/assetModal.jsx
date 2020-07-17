@@ -5,11 +5,15 @@ const AssetModal = props => {
   const [newAssetState, setNewAssetState] = React.useState('type');
   const [selectedType, setSelectedType] = React.useState('');
   const [selectedAsset, setSelectedAsset] = React.useState('');
+  const [uniqueNameState, setUniquNameState] = React.useState('');
+  const [optionState, setOptionState] = React.useState(0);
 
   React.useEffect(
     () => {
       if (document.getElementsByClassName('modal-body__detail')[0]) {
         document.getElementsByClassName('modal-body__detail')[0].scrollTop = 0;
+      } else if (document.getElementsByClassName('modal-body__list')[0]) {
+        document.getElementsByClassName('modal-body__list')[0].scrollTop = 0;
       }
     }, [newAssetState]
   );
@@ -73,6 +77,11 @@ const AssetModal = props => {
       else return 'inactivate';
     };
     const defaultCheck = () => !!assetDetail[0].default;
+    const nameFeedbackCheck = () => {
+      if (assetDetail[0].uniqueName.detail) {
+        return assetDetail[0].uniqueName.detail[0].toUpperCase() + assetDetail[0].uniqueName.detail.split('').slice(1).join('');
+      } else return null;
+    };
     return (
       <div className="detail">
         <div className={`detail-name ${hiddenDisplay(assetDetail[0].name)}`}>
@@ -83,9 +92,16 @@ const AssetModal = props => {
         </div>
         <div className={`detail-uniqueName ${hiddenDisplay(assetDetail[0].uniqueName.show)}`}>
           <input type="text" name="detail-uniqueName__input" id="detail-uniqueName__input"
-            placeholder={`Enter ${assetDetail[0].uniqueName.detail}.`}/>
+            placeholder={`Enter ${assetDetail[0].uniqueName.detail}.`} required
+            onChange={
+              e => {
+                setUniquNameState(e.target.value);
+                if (document.getElementById('detail-uniqueName__input').checkValidity()) document.getElementById('uniqueName-feedback__empty').classList.add('hide');
+                else document.getElementById('uniqueName-feedback__empty').classList.remove('hide');
+              }
+            }/>
           <div className="uniqueName__feedback">
-            <span id='uniqueName-feedback__empty' className="empty hide">{`Please enter a(n) ${assetDetail[0].uniqueName.detail}`}</span>
+            <span id='uniqueName-feedback__empty' className="empty hide">{`${nameFeedbackCheck()} is required.`}</span>
           </div>
         </div>
         <div className={`detail-health ${hiddenDisplay(assetDetail[0].maxHealth)}`}>
@@ -114,7 +130,15 @@ const AssetModal = props => {
           <ul>
             <li className="option__1">
               <input type="radio" name="detail-option" id="detail-option__1"
-                className="detail-option__input" defaultChecked={defaultCheck()}/>
+                className="detail-option__input" defaultChecked={defaultCheck()}
+                onChange={
+                  e => {
+                    if (e.target.value === 'on') {
+                      setOptionState(1);
+                      document.getElementById('option-feedback__empty').classList.add('hide');
+                    }
+                  }
+                }/>
               <label htmlFor="detail-option__1">
                 <div className="check">
                   <div className="check-light"></div>
@@ -124,7 +148,15 @@ const AssetModal = props => {
             </li>
             <li className="option__2">
               <input type="radio" name="detail-option" id="detail-option__2"
-                className="detail-option__input" disabled={defaultCheck()}/>
+                className="detail-option__input" disabled={defaultCheck()}
+                onChange={
+                  e => {
+                    if (e.target.value === 'on') {
+                      setOptionState(2);
+                      document.getElementById('option-feedback__empty').classList.add('hide');
+                    }
+                  }
+                }/>
               <label htmlFor="detail-option__2">
                 <div className="check">
                   <div className="check-light"></div>
@@ -134,7 +166,15 @@ const AssetModal = props => {
             </li>
             <li className="option__3">
               <input type="radio" name="detail-option" id="detail-option__3"
-                className="detail-option__input" disabled={defaultCheck()}/>
+                className="detail-option__input" disabled={defaultCheck()}
+                onChange={
+                  e => {
+                    if (e.target.value === 'on') {
+                      setOptionState(3);
+                      document.getElementById('option-feedback__empty').classList.add('hide');
+                    }
+                  }
+                }/>
               <label htmlFor="detail-option__3">
                 <div className="check">
                   <div className="check-light"></div>
@@ -147,6 +187,11 @@ const AssetModal = props => {
             <span id='option-feedback__empty' className="empty hide">An asset ability is required.</span>
           </div>
         </div>
+        <div className="detail-feedback">
+          <div className="duplicate__feedback">
+            <span id='duplicate-feedback' className="duplicate hide">{`${assetDetail[0].name} is already selected.`}</span>
+          </div>
+        </div>
       </div>
     );
   };
@@ -156,6 +201,85 @@ const AssetModal = props => {
       setNewAssetState('type');
     }, [props.modalShown]
   );
+
+  const confirmHandler = () => {
+    const assetDetail = assets.filter(item => item.name === selectedAsset);
+    const inputUniqueName = document.getElementById('detail-uniqueName__input');
+    const inputOption1 = document.getElementById('detail-option__1');
+    const inputOption2 = document.getElementById('detail-option__2');
+    const inputOption3 = document.getElementById('detail-option__3');
+    const emptyUniqueName = document.getElementById('uniqueName-feedback__empty');
+    const emptyOption = document.getElementById('option-feedback__empty');
+    const duplicateAsset = document.getElementById('duplicate-feedback');
+    const checkDuplicate = () => {
+      if (assetDetail[0].name === props.assetState.asset1.name ||
+          assetDetail[0].name === props.assetState.asset2.name ||
+          assetDetail[0].name === props.assetState.asset3.name) {
+        if (assetDetail[0].id > 10) return true;
+        else return false;
+      } else return false;
+    };
+    const validateInput = () => {
+      if (inputOption1.checked || inputOption2.checked || inputOption3.checked) {
+        if (assetDetail[0].uniqueName.show) {
+          if (inputUniqueName.checkValidity()) {
+            if (checkDuplicate()) return false;
+            else return true;
+          } else return false;
+        } else {
+          if (checkDuplicate()) return false;
+          else return true;
+        }
+      } else return false;
+    };
+    if (validateInput()) {
+      duplicateAsset.classList.add('hide');
+      emptyUniqueName.classList.add('hide');
+      emptyOption.classList.add('hide');
+      if (props.activeAsset.index === 1) {
+        props.setAssetState({
+          ...props.assetState,
+          asset1: {
+            name: assetDetail[0].name,
+            uniqueName: uniqueNameState,
+            option: optionState,
+            index: 1
+          }
+        });
+      } else if (props.activeAsset.index === 2) {
+        props.setAssetState({
+          ...props.assetState,
+          asset2: {
+            name: assetDetail[0].name,
+            uniqueName: uniqueNameState,
+            option: optionState,
+            index: 2
+          }
+        });
+      } else if (props.activeAsset.index === 3) {
+        props.setAssetState({
+          ...props.assetState,
+          asset3: {
+            name: assetDetail[0].name,
+            uniqueName: uniqueNameState,
+            option: optionState,
+            index: 3
+          }
+        });
+      }
+      props.setModalShown(false);
+    } else {
+      if (assetDetail[0].uniqueName.show) {
+        if (!inputUniqueName.checkValidity()) emptyUniqueName.classList.remove('hide');
+      }
+      if (!(inputOption1.checked || inputOption2.checked || inputOption3.checked)) {
+        emptyOption.classList.remove('hide');
+      }
+      if (checkDuplicate()) {
+        duplicateAsset.classList.remove('hide');
+      }
+    }
+  };
 
   const displayModal = () => {
     const assetSelection = () => {
@@ -233,8 +357,10 @@ const AssetModal = props => {
               {showDetail()}
             </div>
             <div className="modal-action">
-              <button className="confirm">Confirm</button>
-              <button className="cancel">Cancel</button>
+              <button className="confirm" onClick={confirmHandler}>Confirm</button>
+              <button className="cancel" onClick={
+                () => props.setModalShown(false)
+              }>Cancel</button>
             </div>
           </div>
         );
@@ -256,11 +382,48 @@ const AssetModal = props => {
           <div className="modal-header"></div>
           <div className="modal-body">
             <i className="fas fa-fire-alt"></i>
-            <span>{`Delete ${props.activeAsset}?`}</span>
+            <span>{`Delete ${props.activeAsset.name}?`}</span>
           </div>
           <div className="modal-action">
-            <button className="delete">Delete</button>
-            <button className="cancel">Cancel</button>
+            <button className="delete" onClick={
+              () => {
+                if (props.activeAsset.index === 1) {
+                  props.setAssetState({
+                    ...props.assetState,
+                    asset1: {
+                      name: '',
+                      uniqueName: '',
+                      option: 0,
+                      index: 1
+                    }
+                  });
+                } else if (props.activeAsset.index === 2) {
+                  props.setAssetState({
+                    ...props.assetState,
+                    asset2: {
+                      name: '',
+                      uniqueName: '',
+                      option: 0,
+                      index: 2
+                    }
+                  });
+                } else if (props.activeAsset.index === 3) {
+                  props.setAssetState({
+                    ...props.assetState,
+                    asset3: {
+                      name: '',
+                      uniqueName: '',
+                      option: 0,
+                      index: 3
+                    }
+                  });
+                }
+                props.setModalShown(false);
+              }
+            }>Delete</button>
+            <button className="cancel" onClick={
+              () => props.setModalShown(false)
+            }>Cancel</button>
           </div>
         </div>
       );

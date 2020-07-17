@@ -4,13 +4,14 @@ const ShowAsset = props => {
   const displayAsset = () => {
     return (
       Object.values(props.assetState).map((item, index) => {
-        if (!item) {
+        if (!item.name) {
           return (
             <div key={`asset${index}`} className="asset-input__container__asset">
               <div className="asset-block__new" onClick={
                 () => {
                   props.setModalType('new');
                   props.setModalShown(true);
+                  props.setActiveAsset(item);
                 }
               }>
                 <i className="fas fa-plus"></i>
@@ -23,7 +24,7 @@ const ShowAsset = props => {
             <div key={`asset${index}`} className="asset-input__container__asset">
               <div className="asset-block__exist">
                 <div className="asset-block__exist__name">
-                  <span>{item}</span>
+                  <span>{item.name}</span>
                 </div>
                 <div className="asset-block__exist__action">
                   <i className="fas fa-edit" onClick={

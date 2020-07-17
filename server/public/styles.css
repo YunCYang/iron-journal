@@ -983,7 +983,8 @@ div.landing-action__signUpLink .right {
   color: #004726;
 }
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .uniqueName__feedback,
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .option__feedback {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .option__feedback,
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .duplicate__feedback {
   font-size: 12px;
   color: #79231b;
   display: flex;
@@ -994,12 +995,15 @@ div.landing-action__signUpLink .right {
   margin: 8px 0;
 }
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .uniqueName__feedback span,
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .option__feedback span {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .option__feedback span,
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .duplicate__feedback span {
   width: 148px;
 }
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .uniqueName__feedback span,
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .option__feedback span {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .option__feedback span,
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .duplicate__feedback span {
   padding: 4px;
+  color: #79231b;
 }
 .main-page .main-container .modal-shadow .modal-container.edit {
   height: 300px;

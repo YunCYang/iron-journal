@@ -2,7 +2,7 @@ const assets = [
   {
     id: 1,
     type: 'Companion',
-    name: 'Cave Lion',
+    name: 'Cave lion',
     text: 'Your cat takes down its prey.',
     option: [
       {
@@ -28,7 +28,7 @@ const assets = [
   {
     id: 2,
     type: 'Companion',
-    name: 'Giant Spider',
+    name: 'Giant spider',
     text: 'Your spider uncovers secrets.',
     option: [
       {
@@ -236,7 +236,7 @@ const assets = [
   {
     id: 10,
     type: 'Companion',
-    name: 'Young Wyvern',
+    name: 'Young wyvern',
     text: 'Your wyvern won\'t devour you. For now.',
     option: [
       {
@@ -288,7 +288,7 @@ const assets = [
   {
     id: 12,
     type: 'Path',
-    name: 'Animal Kin',
+    name: 'Animal kin',
     text: '',
     option: [
       {
@@ -314,7 +314,7 @@ const assets = [
   {
     id: 13,
     type: 'Path',
-    name: 'Banner-Sworn',
+    name: 'Banner-sworn',
     text: 'Once you mark a bond with a leader or faction...',
     option: [
       {
@@ -340,7 +340,7 @@ const assets = [
   {
     id: 14,
     type: 'Path',
-    name: 'Battle-Scarred',
+    name: 'Battle-scarred',
     text: 'Once you become maimed...',
     option: [
       {
@@ -366,7 +366,7 @@ const assets = [
   {
     id: 15,
     type: 'Path',
-    name: 'Blade-Bound',
+    name: 'Blade-bound',
     text: 'Once you mark a bond with a kin-blade, a sentient weapon imbued with the spirit of your ancestor...',
     option: [
       {
@@ -496,7 +496,7 @@ const assets = [
   {
     id: 20,
     type: 'Path',
-    name: 'Fortune Hunter',
+    name: 'Fortune hunter',
     text: 'Gains and loses wealth.',
     option: [
       {
@@ -840,7 +840,7 @@ const assets = [
   {
     id: 33,
     type: 'Path',
-    name: 'Shadow-Kin',
+    name: 'Shadow-kin',
     text: 'Once you become corrupted...',
     option: [
       {
@@ -922,7 +922,7 @@ const assets = [
   {
     id: 36,
     type: 'Path',
-    name: 'Spirit-Bound',
+    name: 'Spirit-bound',
     text: '',
     option: [
       {
@@ -1376,7 +1376,7 @@ const assets = [
   {
     id: 52,
     type: 'Combat',
-    name: 'Long-Arm',
+    name: 'Long-arm',
     text: 'If you wield a staff...',
     option: [
       {
@@ -1402,7 +1402,7 @@ const assets = [
   {
     id: 53,
     type: 'Combat',
-    name: 'Shield-Bearer',
+    name: 'Shield-bearer',
     text: 'If you wield a shield...',
     option: [
       {
@@ -1540,7 +1540,7 @@ const assets = [
   {
     id: 58,
     type: 'Combat',
-    name: 'Thunder-Bringer',
+    name: 'Thunder-bringer',
     text: 'If you wield a mighty hammer...',
     option: [
       {
@@ -1831,7 +1831,7 @@ const assets = [
   {
     id: 69,
     type: 'Ritual',
-    name: 'Shadow-Walk',
+    name: 'Shadow-walk',
     text: '',
     option: [
       {
