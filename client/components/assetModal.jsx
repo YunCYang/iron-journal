@@ -10,12 +10,34 @@ const AssetModal = props => {
 
   React.useEffect(
     () => {
+      if (props.modalType === 'new') {
+        setNewAssetState('type');
+      } else if (props.modalType === 'edit') {
+        const assetDetail = assets.filter(item => item.name === props.activeAsset.name);
+        setSelectedType(assetDetail[0].type);
+        setSelectedAsset(props.activeAsset.name);
+        setNewAssetState('detail');
+      }
+    }, [props.modalShown]
+  );
+
+  React.useEffect(
+    () => {
       if (document.getElementsByClassName('modal-body__detail')[0]) {
         document.getElementsByClassName('modal-body__detail')[0].scrollTop = 0;
       } else if (document.getElementsByClassName('modal-body__list')[0]) {
         document.getElementsByClassName('modal-body__list')[0].scrollTop = 0;
+        setUniquNameState('');
+        setOptionState(0);
       }
     }, [newAssetState]
+  );
+
+  React.useEffect(
+    () => {
+      setUniquNameState(props.activeAsset.uniqueName);
+      setOptionState(props.activeAsset.option);
+    }, [props.activeAsset.index]
   );
 
   const showList = () => {
@@ -76,7 +98,13 @@ const AssetModal = props => {
       if (display <= health) return 'active';
       else return 'inactivate';
     };
-    const defaultCheck = () => !!assetDetail[0].default;
+    const defaultCheck = index => {
+      if (assetDetail[0].default) {
+        return index === 1 || index === 4;
+      } else {
+        return index === optionState;
+      }
+    };
     const nameFeedbackCheck = () => {
       if (assetDetail[0].uniqueName.detail) {
         return assetDetail[0].uniqueName.detail[0].toUpperCase() + assetDetail[0].uniqueName.detail.split('').slice(1).join('');
@@ -93,7 +121,7 @@ const AssetModal = props => {
         <div className={`detail-uniqueName ${hiddenDisplay(assetDetail[0].uniqueName.show)}`}>
           <input type="text" name="detail-uniqueName__input" id="detail-uniqueName__input"
             placeholder={`Enter ${assetDetail[0].uniqueName.detail}.`} required
-            onChange={
+            value={uniqueNameState} onChange={
               e => {
                 setUniquNameState(e.target.value);
                 if (document.getElementById('detail-uniqueName__input').checkValidity()) document.getElementById('uniqueName-feedback__empty').classList.add('hide');
@@ -130,7 +158,7 @@ const AssetModal = props => {
           <ul>
             <li className="option__1">
               <input type="radio" name="detail-option" id="detail-option__1"
-                className="detail-option__input" defaultChecked={defaultCheck()}
+                className="detail-option__input" defaultChecked={defaultCheck(1)}
                 onChange={
                   e => {
                     if (e.target.value === 'on') {
@@ -148,8 +176,8 @@ const AssetModal = props => {
             </li>
             <li className="option__2">
               <input type="radio" name="detail-option" id="detail-option__2"
-                className="detail-option__input" disabled={defaultCheck()}
-                onChange={
+                className="detail-option__input" disabled={defaultCheck(4)}
+                defaultChecked={defaultCheck(2)} onChange={
                   e => {
                     if (e.target.value === 'on') {
                       setOptionState(2);
@@ -166,8 +194,8 @@ const AssetModal = props => {
             </li>
             <li className="option__3">
               <input type="radio" name="detail-option" id="detail-option__3"
-                className="detail-option__input" disabled={defaultCheck()}
-                onChange={
+                className="detail-option__input" disabled={defaultCheck(4)}
+                defaultChecked={defaultCheck(3)} onChange={
                   e => {
                     if (e.target.value === 'on') {
                       setOptionState(3);
@@ -196,12 +224,6 @@ const AssetModal = props => {
     );
   };
 
-  React.useEffect(
-    () => {
-      setNewAssetState('type');
-    }, [props.modalShown]
-  );
-
   const confirmHandler = () => {
     const assetDetail = assets.filter(item => item.name === selectedAsset);
     const inputUniqueName = document.getElementById('detail-uniqueName__input');
@@ -223,12 +245,20 @@ const AssetModal = props => {
       if (inputOption1.checked || inputOption2.checked || inputOption3.checked) {
         if (assetDetail[0].uniqueName.show) {
           if (inputUniqueName.checkValidity()) {
-            if (checkDuplicate()) return false;
-            else return true;
+            if (checkDuplicate()) {
+              if ((props.activeAsset.index === 1 && assetDetail[0].name === props.assetState.asset1.name) ||
+                (props.activeAsset.index === 2 && assetDetail[0].name === props.assetState.asset2.name) ||
+                (props.activeAsset.index === 3 && assetDetail[0].name === props.assetState.asset3.name)) return true;
+              else return false;
+            } else return true;
           } else return false;
         } else {
-          if (checkDuplicate()) return false;
-          else return true;
+          if (checkDuplicate()) {
+            if ((props.activeAsset.index === 1 && assetDetail[0].name === props.assetState.asset1.name) ||
+              (props.activeAsset.index === 2 && assetDetail[0].name === props.assetState.asset2.name) ||
+              (props.activeAsset.index === 3 && assetDetail[0].name === props.assetState.asset3.name)) return true;
+            else return false;
+          } else return true;
         }
       } else return false;
     };
@@ -387,6 +417,8 @@ const AssetModal = props => {
           <div className="modal-action">
             <button className="delete" onClick={
               () => {
+                setUniquNameState('');
+                setOptionState(0);
                 if (props.activeAsset.index === 1) {
                   props.setAssetState({
                     ...props.assetState,
@@ -432,9 +464,8 @@ const AssetModal = props => {
         <div className="modal-container edit">
           <div className="modal-header"></div>
           <div className="modal-body">
-            <i className="fas fa-pen-fancy"></i>
+            {assetSelection()}
           </div>
-          <div className="modal-action"></div>
         </div>
       );
     }

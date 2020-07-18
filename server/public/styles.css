@@ -713,12 +713,6 @@ div.landing-action__signUpLink .right {
   font-size: 20px;
   margin-top: 8px;
 }
-.main-page .main-container .modal-shadow .modal-container .modal-body i.fa-plus-circle {
-  color: #004726;
-}
-.main-page .main-container .modal-shadow .modal-container .modal-body i.fa-pen-fancy {
-  color: #2b5355;
-}
 .main-page .main-container .modal-shadow .modal-container .modal-body i.fa-fire-alt {
   color: #972b21;
 }
@@ -768,49 +762,46 @@ div.landing-action__signUpLink .right {
   border-top: solid 1px gray;
   border-bottom: solid 1px #404040;
 }
-.main-page .main-container .modal-shadow .modal-container.new {
+.main-page .main-container .modal-shadow .modal-container.new, .main-page .main-container .modal-shadow .modal-container.edit {
   height: 300px;
   top: 70px;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-header {
-  background-color: #00bd65;
-}
-.main-page .main-container .modal-shadow .modal-container.new .modal-body {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body, .main-page .main-container .modal-shadow .modal-container.edit .modal-body {
   height: 285px;
   color: #000f08;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body > div {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body > div, .main-page .main-container .modal-shadow .modal-container.edit .modal-body > div {
   width: 100%;
   height: 100%;
   display: flex;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__back {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__back, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__back {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   height: 30px;
   align-items: center;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__back i {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__back i, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__back i {
   margin-right: 16px;
   color: #000f08;
   cursor: pointer;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__back i:hover {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__back i:hover, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__back i:hover {
   color: #46838b;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__type {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__type, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__type {
   padding: 28px 8px;
   flex-wrap: wrap;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__type__container {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__type__container, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__type__container {
   width: 50%;
   height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__type__button {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__type__button, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__type__button {
   width: 70px;
   height: 100px;
   display: flex;
@@ -822,25 +813,25 @@ div.landing-action__signUpLink .right {
   border-radius: 4px;
   cursor: pointer;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__type__button i {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__type__button i, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__type__button i {
   font-size: 24px;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__type__button span {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__type__button span, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__type__button span {
   font-size: 12px;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__type__button:hover {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__type__button:hover, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__type__button:hover {
   color: #00bd65;
   border-color: #00bd65;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__list {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__list, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__list {
   flex-direction: column;
   height: 255px;
   overflow-y: scroll;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__list__container {
   margin: 4px 0 0 0;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container .list {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container .list, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__list__container .list {
   margin: 8px 16px;
   border: solid 2px #004726;
   border-radius: 4px;
@@ -849,42 +840,42 @@ div.landing-action__signUpLink .right {
   align-items: center;
   cursor: pointer;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container .list span {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container .list span, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__list__container .list span {
   margin-left: 8px;
   color: #000f08;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container .list:hover {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container .list:hover, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__list__container .list:hover {
   border-color: #00bd65;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container .list:hover span {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container .list:hover span, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__list__container .list:hover span {
   color: #00bd65;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail {
   flex-direction: column;
   height: 255px;
   overflow-y: scroll;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container {
   margin: 4px 0 0 0;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail {
   display: flex;
   flex-direction: column;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail > div {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail > div, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail > div {
   margin-left: 16px;
   margin-right: 16px;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-name {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-name, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-name {
   font-size: 18px;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-text, .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-uniqueName, .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-text, .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-uniqueName, .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-text, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-uniqueName, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health {
   margin-top: 12px;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-text {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-text, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-text {
   font-size: 14px;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-uniqueName input {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-uniqueName input, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-uniqueName input {
   border: none;
   background-color: #f7f7f7;
   border-radius: 4px;
@@ -893,56 +884,56 @@ div.landing-action__signUpLink .right {
   height: 28px;
   width: 148px;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__container {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__container, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__container {
   display: flex;
   width: 148px;
   justify-content: center;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__block {
   height: 28px;
   width: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.active {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.active, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__block.active {
   border-style: solid;
   border-width: 2px 2px 2px 0;
   border-color: #008044;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.active span {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.active span, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__block.active span {
   color: #008044;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.active:first-child {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.active:first-child, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__block.active:first-child {
   border-width: 2px;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.inactivate {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.inactivate, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__block.inactivate {
   border-style: solid;
   border-width: 2px 2px 2px 0;
   border-color: #bfbfbf;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.inactivate span {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.inactivate span, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__block.inactivate span {
   color: #bfbfbf;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li input {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li input, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option ul li input {
   width: 0;
   height: 0;
   margin: 0;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li label {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li label, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option ul li label {
   display: flex;
   cursor: pointer;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li .check {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li .check, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option ul li .check {
   width: 18px;
   padding: 6px;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li .check-light {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li .check-light, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option ul li .check-light {
   background-color: #dedede;
   content: "";
   width: 100%;
@@ -950,41 +941,43 @@ div.landing-action__signUpLink .right {
   border-radius: 4px;
   transition: 0.2s ease all;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li input:checked ~ label .detail-option__container {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li input:checked ~ label .detail-option__container, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option ul li input:checked ~ label .detail-option__container {
   color: #004726;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li input:checked ~ label .check-light {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li input:checked ~ label .check-light, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option ul li input:checked ~ label .check-light {
   background-color: #00ff88;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li input:disabled ~ label .detail-option__container {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li input:disabled ~ label .detail-option__container, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option ul li input:disabled ~ label .detail-option__container {
   color: #bfbfbf;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li input:disabled ~ label .check-light {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li input:disabled ~ label .check-light, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option ul li input:disabled ~ label .check-light {
   background-color: #9e9e9e;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option__container {
   width: 130px;
   padding: 4px;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__name {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__name, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option__container__name {
   font-size: 14px;
   margin-bottom: 8px;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__description {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__description, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option__container__description {
   font-size: 12px;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__option {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__option, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option__container__option {
   font-size: 12px;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__option div.option-detail {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__option div.option-detail, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option__container__option div.option-detail {
   margin-top: 8px;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__option div.option-detail span {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__option div.option-detail span, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option__container__option div.option-detail span {
   color: #004726;
 }
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .uniqueName__feedback,
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .option__feedback,
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .duplicate__feedback {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .duplicate__feedback, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .uniqueName__feedback,
+.main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .option__feedback,
+.main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .duplicate__feedback {
   font-size: 12px;
   color: #79231b;
   display: flex;
@@ -996,24 +989,24 @@ div.landing-action__signUpLink .right {
 }
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .uniqueName__feedback span,
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .option__feedback span,
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .duplicate__feedback span {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .duplicate__feedback span, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .uniqueName__feedback span,
+.main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .option__feedback span,
+.main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .duplicate__feedback span {
   width: 148px;
 }
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .uniqueName__feedback span,
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .option__feedback span,
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .duplicate__feedback span {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .duplicate__feedback span, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .uniqueName__feedback span,
+.main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .option__feedback span,
+.main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .duplicate__feedback span {
   padding: 4px;
   color: #79231b;
 }
-.main-page .main-container .modal-shadow .modal-container.edit {
-  height: 300px;
-  top: 70px;
+.main-page .main-container .modal-shadow .modal-container.new .modal-header {
+  background-color: #00bd65;
 }
 .main-page .main-container .modal-shadow .modal-container.edit .modal-header {
   background-color: #559caa;
-}
-.main-page .main-container .modal-shadow .modal-container.edit .modal-body {
-  height: 285px;
 }
 .main-page .main-container .modal-shadow .modal-container.delete {
   height: 120px;

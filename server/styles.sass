@@ -818,12 +818,6 @@ div.landing
             font-size: 20px
             margin-top: 8px
 
-            &.fa-plus-circle
-              color: $color-prime_800
-
-            &.fa-pen-fancy
-              color: $color-accent1_800
-
             &.fa-fire-alt
               color: $color-accent2_700
 
@@ -873,12 +867,10 @@ div.landing
                 border-top: solid 1px $color-grey_500
                 border-bottom: solid 1px $color-grey_700
 
-        &.new
+        &.new,
+        &.edit
           height: 300px
           top: 70px
-
-          .modal-header
-            background-color: $color-prime_600
 
           .modal-body
             height: 285px
@@ -1105,15 +1097,13 @@ div.landing
                       padding: 4px
                       color: $color-accent2_800
 
-        &.edit
-          height: 300px
-          top: 70px
+        &.new
+          .modal-header
+            background-color: $color-prime_600
 
+        &.edit
           .modal-header
             background-color: $color-accent1_500
-
-          .modal-body
-            height: 285px
 
         &.delete
           height: 120px
