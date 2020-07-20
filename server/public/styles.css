@@ -407,18 +407,26 @@ div.landing-action__signUpLink .right {
   margin: 8px 0 0 16px;
   color: #000f08;
 }
-.main-page .main-container__game__content__newBlock {
-  border: 2px dashed gray;
-  margin: 8px 0 0 16px;
-  height: 64px;
-  width: 64px;
+.main-page .main-container__game__content__container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 16px;
+}
+.main-page .main-container__game__content__newBlock, .main-page .main-container__game__content__oldBlock {
+  margin: 8px 5px 48px 5px;
+  height: 60px;
+  width: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  color: gray;
   font-size: 30px;
   position: relative;
+}
+.main-page .main-container__game__content__newBlock {
+  border: 2px dashed gray;
+  color: gray;
 }
 .main-page .main-container__game__content__newBlock:hover {
   color: #559caa;
@@ -429,14 +437,34 @@ div.landing-action__signUpLink .right {
   color: #559caa;
   cursor: pointer;
 }
+.main-page .main-container__game__content__oldBlock {
+  border: 2px solid #004726;
+  color: #004726;
+}
+.main-page .main-container__game__content__oldBlock:hover {
+  color: #559caa;
+  border-color: #559caa;
+  cursor: pointer;
+}
+.main-page .main-container__game__content__oldBlock:hover .game-tag {
+  color: #559caa;
+  cursor: pointer;
+}
 .main-page .main-container .game-tag {
   font-size: 12px;
-  width: 64px;
+  width: 60px;
   display: flex;
   justify-content: center;
-  color: #080808;
   position: absolute;
-  top: 72px;
+  top: 68px;
+  height: 32px;
+  overflow: hidden;
+}
+.main-page .main-container__game__content__newTag {
+  color: #080808;
+}
+.main-page .main-container__game__content__oldTag {
+  color: #004726;
 }
 .main-page .main-container__newGame {
   position: relative;
@@ -1008,14 +1036,14 @@ div.landing-action__signUpLink .right {
 .main-page .main-container .modal-shadow .modal-container.edit .modal-header {
   background-color: #559caa;
 }
-.main-page .main-container .modal-shadow .modal-container.delete {
+.main-page .main-container .modal-shadow .modal-container.delete, .main-page .main-container .modal-shadow .modal-container.full {
   height: 120px;
   top: 160px;
 }
-.main-page .main-container .modal-shadow .modal-container.delete .modal-header {
+.main-page .main-container .modal-shadow .modal-container.delete .modal-header, .main-page .main-container .modal-shadow .modal-container.full .modal-header {
   background-color: #d8574b;
 }
-.main-page .main-container .modal-shadow .modal-container.delete .modal-body {
+.main-page .main-container .modal-shadow .modal-container.delete .modal-body, .main-page .main-container .modal-shadow .modal-container.full .modal-body {
   height: 60px;
 }
 .main-page .main-container__character {

@@ -500,18 +500,40 @@ div.landing
       margin: 8px 0 0 16px
       color: $color-prime_900
 
-    &__game__content__newBlock
-      border: 2px dashed $color-grey_500
-      margin: 8px 0 0 16px
-      height: 64px
-      width: 64px
+    &__game__content__container
+      display: flex
+      flex-wrap: wrap
+      width: 100%
+      margin-top: 16px
+
+    &__game__content__newBlock,
+    &__game__content__oldBlock
+      margin: 8px 5px 48px 5px
+      height: 60px
+      width: 60px
       display: flex
       justify-content: center
       align-items: center
       border-radius: 10px
-      color: $color-grey_500
       font-size: 30px
       position: relative
+
+    &__game__content__newBlock
+      border: 2px dashed $color-grey_500
+      color: $color-grey_500
+
+      &:hover
+        color: $color-accent1_500
+        border-color: $color-accent1_500
+        cursor: pointer
+
+        .game-tag
+          color: $color-accent1_500
+          cursor: pointer
+
+    &__game__content__oldBlock
+      border: 2px solid $color-prime_800
+      color: $color-prime_800
 
       &:hover
         color: $color-accent1_500
@@ -524,12 +546,19 @@ div.landing
 
     .game-tag
       font-size: 12px
-      width: 64px
+      width: 60px
       display: flex
       justify-content: center
-      color: $color-grey_900
       position: absolute
-      top: 72px
+      top: 68px
+      height: 32px
+      overflow: hidden
+
+    &__game__content__newTag
+      color: $color-grey_900
+
+    &__game__content__oldTag
+      color: $color-prime_800
 
     &__newGame
       position: relative
@@ -1105,7 +1134,8 @@ div.landing
           .modal-header
             background-color: $color-accent1_500
 
-        &.delete
+        &.delete,
+        &.full
           height: 120px
           top: 160px
 

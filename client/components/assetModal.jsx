@@ -468,6 +468,21 @@ const AssetModal = props => {
           </div>
         </div>
       );
+    } else if (props.modalType === 'full') {
+      return (
+        <div className="modal-container full">
+          <div className="modal-header"></div>
+          <div className="modal-body">
+            <i className="fas fa-pen-fancy"></i>
+            <span>You&apos;ve reached the maximum amount for stored characters!</span>
+          </div>
+          <div className="modal-action">
+            <button className="confirm" onClick={
+              () => props.setModalShown(false)
+            }>Confirm</button>
+          </div>
+        </div>
+      );
     }
   };
 

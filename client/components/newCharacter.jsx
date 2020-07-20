@@ -48,15 +48,6 @@ const NewCharacter = props => {
       index: 3
     }
   });
-  const [characterState, setCharacterState] = React.useState({
-    name: '',
-    stat: [0, 0, 0, 0, 0],
-    debilities: [false, false, false, false, false, false, false, false],
-    bond: [],
-    asset: [],
-    equipment: [],
-    location: []
-  });
   const [modalType, setModalType] = React.useState('');
   const [activeAsset, setActiveAsset] = React.useState({
     name: '',
@@ -178,12 +169,98 @@ const NewCharacter = props => {
     const emptyAsset = document.getElementById('asset-feedback__empty');
     if (validateInput()) {
       if (id.id === '0') {
-        sessionStorage.setItem('character', null);
-        charList.setCharacterList(null);
-        if (nameState || locationState || characterState) return null; // just so I can commit
-        if (locationState === 'saveOnly') {
-          setAssetState('');
-          setCharacterState('');
+        const sessionCharList = (Array.isArray(JSON.parse(sessionStorage.getItem('character')))) || [];
+        const deepCopy = inObj => {
+          let value, key;
+          const outObj = Array.isArray(inObj) ? [] : {};
+          if (typeof inObj !== 'object' || inObj === null) return inObj;
+          for (key in inObj) {
+            value = inObj[key];
+            outObj[key] = deepCopy(value);
+          }
+          return outObj;
+        };
+        let newCharList = [];
+        if (charList.characterList.length === 0 && sessionCharList.length > 0) {
+          newCharList = deepCopy(sessionCharList);
+        } else newCharList = deepCopy(charList.characterList);
+        if (sessionCharList.length === 8) {
+          setModalType('full');
+          props.setModalShown(true);
+        } else {
+          const bondCount = () => {
+            let count = 0;
+            for (const bond in bondState) {
+              if (bondState[bond]) count++;
+            }
+            return count;
+          };
+          const newChar = {
+            name: nameState,
+            exp: 0,
+            stats: {
+              edge: statState.edge,
+              heart: statState.heart,
+              iron: statState.iron,
+              shadow: statState.shadow,
+              wits: statState.wits
+            },
+            status: {
+              health: 5,
+              spirit: 5,
+              supply: 5
+            },
+            momentum: {
+              momentum: 2,
+              max: 10,
+              reset: 2
+            },
+            bonds: bondCount(),
+            vows: [
+              {
+                name: vowState.vow1Name,
+                rank: vowState.vow1Rank
+              },
+              {
+                name: vowState.vow2Name,
+                rank: vowState.vow2Rank
+              }
+            ],
+            debilities: {
+              wounded: false,
+              shaken: false,
+              unprepared: false,
+              encumbered: false,
+              maimed: false,
+              corrupted: false,
+              cursed: false,
+              tormented: false
+            },
+            location: locationState,
+            assets: [
+              {
+                name: assetState.asset1.name,
+                uniqueName: assetState.asset1.UniqueName,
+                option: assetState.asset1.option,
+                index: 1
+              },
+              {
+                name: assetState.asset2.name,
+                uniqueName: assetState.asset2.UniqueName,
+                option: assetState.asset2.option,
+                index: 2
+              },
+              {
+                name: assetState.asset3.name,
+                uniqueName: assetState.asset3.UniqueName,
+                option: assetState.asset3.option,
+                index: 3
+              }
+            ]
+          };
+          newCharList.push(newChar);
+          charList.setCharacterList(newCharList);
+          sessionStorage.setItem('character', JSON.stringify(newCharList));
         }
       } else {
         return null;
@@ -229,6 +306,12 @@ const NewCharacter = props => {
       if (assetCheck()) emptyAsset.classList.add('hide');
     }
   };
+
+  React.useEffect(
+    () => {
+      if (assetCheck()) document.getElementById('asset-feedback__empty').classList.add('hide');
+    }, [assetState]
+  );
 
   return (
     <>

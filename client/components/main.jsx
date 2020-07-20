@@ -10,19 +10,43 @@ const Main = props => {
   // const [isPage, setIsPage] = React.useState('game');
   const [isPage, setIsPage] = React.useState('character');
   const id = React.useContext(IdContext);
+  // const [characterList, setCharacterList] = React.useState([]);
   const [characterList, setCharacterList] = React.useState(
-    sessionStorage.getItem('character') || []
+    JSON.parse(sessionStorage.getItem('character')) || []
   );
   const [modalShown, setModalShown] = React.useState(false);
 
   React.useEffect(
     () => {
-      const sessionId = sessionStorage.getItem('id');
+      const sessionId = JSON.parse(sessionStorage.getItem('id'));
       if ((!id.id && parseInt(id.id) !== 0) && (!sessionId && parseInt(sessionId) !== 0)) {
         props.history.push('/');
       }
+      // sessionStorage.clear();
+      // console.log(sessionStorage.getItem('character'));
     }
   );
+
+  const showCharBlock = () => {
+    return (
+      characterList.map((char, index) => {
+        return (
+          <div className="main-container__game__content__oldBlock game-block"
+            key={`${char.name}-${index}`} onClick={
+              () => {
+                characterPage();
+                setModalShown(false);
+              }
+            }>
+            <span>{char.name[0].toUpperCase()}</span>
+            <div className="main-container__game__content__oldTag game-tag">
+              <span>{char.name}</span>
+            </div>
+          </div>
+        );
+      })
+    );
+  };
 
   const createNewGame = () => setIsPage('new');
   const returnGamePage = () => setIsPage('game');
@@ -49,6 +73,7 @@ const Main = props => {
                   <span>New Character</span>
                 </div>
               </div>
+              {showCharBlock()}
             </div>
           </div>
         </>
