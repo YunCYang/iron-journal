@@ -314,9 +314,6 @@ app.post('/api/character', (req, res, next) => {
   else if (!req.body.stat_iron) next(new ClientError('missing stat - iron', 400));
   else if (!req.body.stat_shadow) next(new ClientError('missing stat - shadow', 400));
   else if (!req.body.stat_wits) next(new ClientError('missing stat - wits', 400));
-  else if (!req.body.asset_1) next(new ClientError('missing first asset', 400));
-  else if (!req.body.asset_2) next(new ClientError('missing second asset', 400));
-  else if (!req.body.asset_3) next(new ClientError('missing third asset', 400));
   else if (!req.body.location) next(new ClientError('missing location', 400));
   else if (!req.body.bond) next(new ClientError('missing bond', 400));
   else if (!req.body.userId) next(new ClientError('missing user id', 400));
@@ -329,8 +326,8 @@ app.post('/api/character', (req, res, next) => {
   intTest(req.body.userId, next);
   const createCharacterSql = `
     insert into "character" ("characterName", "edge", "heart", "iron", "shadow",
-      "wits", "bond", "location", "asset")
-    values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+      "wits", "bond", "location")
+    values ($1, $2, $3, $4, $5, $6, $7, $8)
     returning "characterId";
   `;
   const setUserCharacterSql = `
@@ -339,8 +336,7 @@ app.post('/api/character', (req, res, next) => {
   `;
   const createCharacterValue = [req.body.characterName, parseInt(req.body.stat_edge),
     parseInt(req.body.stat_heart), parseInt(req.body.stat_iron), parseInt(req.body.stat_shadow),
-    parseInt(req.body.stat_wits), parseInt(req.body.bond), req.body.location, req.body.asset_1,
-    req.body.asset_2, req.body.asset_3];
+    parseInt(req.body.stat_wits), parseInt(req.body.bond), req.body.location];
   db.query(createCharacterSql, createCharacterValue)
     .then(createResult => {
       const setUserCharacterValue = [req.body.userId, createResult.rows[0].characterId];
@@ -665,22 +661,173 @@ app.delete('/api/character/:characterId', (req, res, next) => {
 });
 
 // get asset
-app.get('/api/asset/asset/:assetId', (req, res, next) => {});
+app.get('/api/asset/asset/:assetId', (req, res, next) => {
+  intTest(req.params.assetId, next);
+  const sql = `
+    select *
+      from "asset"
+     where "assetId" = $1;
+  `;
+  const value = [parseInt(req.params.assetId)];
+  db.query(sql, value)
+    .then(result => res.status(200).json(result.rows[0]))
+    .catch(err => next(err));
+});
 
 // get all assets
-app.get('/api/asset/all/:characterId', (req, res, next) => {});
+app.get('/api/asset/all/:characterId', (req, res, next) => {
+  intTest(req.params.characterId, next);
+  const sql = `
+    select *
+      from "asset" a
+      left join "characterAsset" c on a."assetId" = c."assetId"
+     where "characterId" = $1;
+  `;
+  const value = [parseInt(req.params.characterId)];
+  db.query(sql, value)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
 
-// add asset
-app.post('/api/asset', (req, res, next) => {});
+// create asset
+app.post('/api/asset', (req, res, next) => {
+  if (!req.body.characterId) next(new ClientError('missing character id', 400));
+  else if (!req.body.assetName) next(new ClientError('missing asset name', 400));
+  else if (!req.body.health) next(new ClientError('missing asset health', 400));
+  else if (!req.body.option1 && typeof req.body.option1 !== 'boolean') next(new ClientError('missing asset option 1', 400));
+  else if (!req.body.option2 && typeof req.body.option2 !== 'boolean') next(new ClientError('missing asset option 2', 400));
+  else if (!req.body.option3 && typeof req.body.option3 !== 'boolean') next(new ClientError('missing asset option 3', 400));
+  intTest(req.body.characterId, next);
+  intTest(req.body.health, next);
+  if (req.body.uniqueName) {
+    const createAssetSql = `
+    insert into "asset" ("assetName", "health", "option1", "option2", "option3", "uniqueName")
+    values ($1, $2, $3, $4, $5, $6)
+    returning "assetId";
+  `;
+    const setCharacterAssetSql = `
+    insert into "characterAsset" ("characterId", "assetId")
+    values ($1, $2);
+  `;
+    const createAssetValue = [req.body.assetName, parseInt(req.body.health), req.body.option1,
+      req.body.option2, req.body.option3, req.body.uniqueName];
+    db.query(createAssetSql, createAssetValue)
+      .then(createAssetResult => {
+        const setCharacterAssetValue = [parseInt(req.body.characterId), parseInt(createAssetResult.rows[0].assetId)];
+        db.query(setCharacterAssetSql, setCharacterAssetValue)
+          .then(setCharacterAssetResult => res.status(201).json(createAssetResult.rows[0].assetId))
+          .catch(err => next(err));
+      })
+      .catch(err => next(err));
+  } else {
+    const createAssetSql = `
+    insert into "asset" ("assetName", "health", "option1", "option2", "option3")
+    values ($1, $2, $3, $4, $5)
+    returning "assetId";
+  `;
+    const setCharacterAssetSql = `
+    insert into "characterAsset" ("characterId", "assetId")
+    values ($1, $2);
+  `;
+    const createAssetValue = [req.body.assetName, parseInt(req.body.health), req.body.option1,
+      req.body.option2, req.body.option3];
+    db.query(createAssetSql, createAssetValue)
+      .then(createAssetResult => {
+        const setCharacterAssetValue = [parseInt(req.body.characterId), parseInt(createAssetResult.rows[0].assetId)];
+        db.query(setCharacterAssetSql, setCharacterAssetValue)
+          .then(setCharacterAssetResult => res.status(201).json(createAssetResult.rows[0].assetId))
+          .catch(err => next(err));
+      })
+      .catch(err => next(err));
+  }
+});
 
 // edit asset
-app.put('/api/asset/:assetId', (req, res, next) => {});
+app.put('/api/asset/:assetId', (req, res, next) => {
+  intTest(req.params.assetId, next);
+  if (req.body.uniqueName) {
+    const nameSql = `
+      update "asset"
+         set "uniqueName" = $1
+       where "assetId" = $2
+      returning "uniqueName";
+    `;
+    const nameValue = [req.body.uniqueName, parseInt(req.params.assetId)];
+    db.query(nameSql, nameValue)
+      .then(nameResult => res.status(200).json(nameResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.health) {
+    intTest(req.body.health, next);
+    const healthSql = `
+      update "asset"
+         set "health" = $1
+       where "assetId" = $2
+      returning "health";
+    `;
+    const healthValue = [parseInt(req.body.health), parseInt(req.params.vowId)];
+    db.query(healthSql, healthValue)
+      .then(healthResult => res.status(200).json(healthResult.rows[0]))
+      .catch(err => next(err));
+  } else if (typeof req.body.option1 === 'boolean') {
+    const option1Sql = `
+      update "asset"
+         set "option1" = $1
+       where "assetId" = $2
+      returning "option1";
+    `;
+    const option1Value = [req.body.option1, parseInt(req.params.assetId)];
+    db.query(option1Sql, option1Value)
+      .then(option1Result => res.status(200).json(option1Result.rows[0]))
+      .catch(err => next(err));
+  } else if (typeof req.body.option2 === 'boolean') {
+    const option2Sql = `
+      update "asset"
+         set "option2" = $1
+       where "assetId" = $2
+      returning "option2";
+    `;
+    const option2Value = [req.body.option2, parseInt(req.params.assetId)];
+    db.query(option2Sql, option2Value)
+      .then(option2Result => res.status(200).json(option2Result.rows[0]))
+      .catch(err => next(err));
+  } else if (typeof req.body.option3 === 'boolean') {
+    const option3Sql = `
+      update "asset"
+         set "option3" = $1
+       where "assetId" = $2
+      returning "option3";
+    `;
+    const option3Value = [req.body.option3, parseInt(req.params.assetId)];
+    db.query(option3Sql, option3Value)
+      .then(option3Result => res.status(200).json(option3Result.rows[0]))
+      .catch(err => next(err));
+  }
+});
 
 // delete asset
-app.delete('/api/asset/asset/:assetId', (req, res, next) => { });
-
-// delete all assets
-app.delete('/api/asset/all/:characterId', (req, res, next) => { });
+app.delete('/api/asset/asset/:assetId', (req, res, next) => {
+  intTest(req.params.assetId, next);
+  const getSql = `
+    select "assetId"
+      from "asset"
+     where "assetId" = $1;
+  `;
+  const deleteSql = `
+    delete from "asset"
+     where "assetId" = $1;
+  `;
+  const value = [parseInt(req.params.assetId)];
+  db.query(getSql, value)
+    .then(getResult => {
+      if (!getResult.rows[0]) next(new ClientError(`asset id ${req.params.assetId} does not exist`, 404));
+      else {
+        db.query(deleteSql, value)
+          .then(deleteResult => res.status(204).json([]))
+          .catch(err => next(err));
+      }
+    })
+    .catch(err => next(err));
+});
 
 // get vow
 app.get('/api/vow/vow/:vowId', (req, res, next) => {
@@ -818,9 +965,6 @@ app.delete('/api/vow/vow/:vowId', (req, res, next) => {
     })
     .catch(err => next(err));
 });
-
-// delete all vows
-app.delete('/api/vow/all/:characterId', (req, res, next) => {});
 
 // get log
 app.get('/api/log/:characterId', (req, res, next) => {

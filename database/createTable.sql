@@ -78,9 +78,9 @@ CREATE TABLE "characterVow" (
 
 CREATE TABLE "asset" (
 	"assetId" serial NOT NULL,
-	"name" varchar(255) NOT NULL,
+	"assetName" varchar(255) NOT NULL,
 	"uniqueName" varchar(255),
-	"health" int,
+	"health" int NOT NULL DEFAULT 0,
 	"option1" bool NOT NULL DEFAULT FALSE,
 	"option2" bool NOT NULL DEFAULT FALSE,
 	"option3" bool NOT NULL DEFAULT FALSE,

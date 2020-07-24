@@ -83,12 +83,8 @@ describe('Initial Jest Test', () => {
       stat_iron: 3,
       stat_shadow: 4,
       stat_wits: 5,
-      asset_1: 'asset 1',
-      asset_2: 'asset 2',
-      asset_3: 'asset 3',
       location: 'location a',
-      bond_1: 'bond 1',
-      bond_2: 'bond 2',
+      bond: 2,
       userId: loginRes.body.userId
     });
     expect(createCharacterRes.status).toBe(201);
@@ -107,59 +103,82 @@ describe('Initial Jest Test', () => {
       stat_edge: 6
     });
     expect(editCharacterEdgeRes.status).toBe(200);
-    expect(editCharacterEdgeRes.body.stat).toBe(6);
+    expect(editCharacterEdgeRes.body.edge).toBe(6);
     const editCharacterHeartRes = await request.put(`/api/character/${createCharacterRes.body}`).send({
       stat_heart: 7
     });
     expect(editCharacterHeartRes.status).toBe(200);
-    expect(editCharacterHeartRes.body.stat).toBe(7);
+    expect(editCharacterHeartRes.body.heart).toBe(7);
     const editCharacterIronRes = await request.put(`/api/character/${createCharacterRes.body}`).send({
       stat_iron: 8
     });
     expect(editCharacterIronRes.status).toBe(200);
-    expect(editCharacterIronRes.body.stat).toBe(8);
+    expect(editCharacterIronRes.body.iron).toBe(8);
     const editCharacterShadowRes = await request.put(`/api/character/${createCharacterRes.body}`).send({
       stat_shadow: 9
     });
     expect(editCharacterShadowRes.status).toBe(200);
-    expect(editCharacterShadowRes.body.stat).toBe(9);
+    expect(editCharacterShadowRes.body.shadow).toBe(9);
     const editCharacterWitsRes = await request.put(`/api/character/${createCharacterRes.body}`).send({
       stat_wits: 10
     });
     expect(editCharacterWitsRes.status).toBe(200);
-    expect(editCharacterWitsRes.body.stat).toBe(10);
-    const addCharacterAssetRes = await request.put(`/api/character/${createCharacterRes.body}`).send({
-      asset: 'asset 4'
-    });
-    expect(addCharacterAssetRes.status).toBe(201);
-    expect(addCharacterAssetRes.body.asset[3]).toBe('asset 4');
-    const deleteCharacterAssetRes = await request.put(`/api/character/${createCharacterRes.body}`).send({
-      asset: 'asset 1'
-    });
-    expect(deleteCharacterAssetRes.status).toBe(204);
-    const addCharacterEquipmentRes = await request.put(`/api/character/${createCharacterRes.body}`).send({
-      equipment: 'equipment 1'
-    });
-    expect(addCharacterEquipmentRes.status).toBe(201);
-    expect(addCharacterEquipmentRes.body.equipment[0]).toBe('equipment 1');
-    const deleteCharacterEquipmentRes = await request.put(`/api/character/${createCharacterRes.body}`).send({
-      equipment: 'equipment 1'
-    });
-    expect(deleteCharacterEquipmentRes.status).toBe(204);
+    expect(editCharacterWitsRes.body.wits).toBe(10);
     const editCharacterLocationRes = await request.put(`/api/character/${createCharacterRes.body}`).send({
       location: 'location b'
     });
     expect(editCharacterLocationRes.status).toBe(200);
     expect(editCharacterLocationRes.body.location).toBe('location b');
-    const addCharacterBondRes = await request.put(`/api/character/${createCharacterRes.body}`).send({
-      bond: 'bond 3'
+    const editCharacterBondRes = await request.put(`/api/character/${createCharacterRes.body}`).send({
+      bond: 3
     });
-    expect(addCharacterBondRes.status).toBe(201);
-    expect(addCharacterBondRes.body.bond[2]).toBe('bond 3');
-    const deleteCharacterBondRes = await request.put(`/api/character/${createCharacterRes.body}`).send({
-      bond: 'bond 1'
+    expect(editCharacterBondRes.status).toBe(200);
+    expect(editCharacterBondRes.body.bond).toBe(3);
+
+    const missAssetOption2Res = await request.post('/api/asset').send({
+      assetName: 'asset1',
+      health: 1,
+      option1: true,
+      option3: false,
+      characterId: createCharacterRes.body
     });
-    expect(deleteCharacterBondRes.status).toBe(204);
+    expect(missAssetOption2Res.status).toBe(400);
+    expect(missAssetOption2Res.body.error).toBe('missing asset option 2');
+    const createAssetRes = await request.post('/api/asset').send({
+      assetName: 'asset 1',
+      health: 1,
+      option1: true,
+      option2: false,
+      option3: false,
+      uniqueName: 'special name',
+      characterId: createCharacterRes.body
+    });
+    expect(createAssetRes.status).toBe(201);
+    expect(typeof createAssetRes.body).toBe('number');
+    const getAssetRes = await request.get(`/api/asset/asset/${createAssetRes.body}`);
+    expect(getAssetRes.status).toBe(200);
+    expect(getAssetRes.body.health).toBe(1);
+    const editAssetNameRes = await request.put(`/api/asset/${createAssetRes.body}`).send({
+      uniqueName: 'changed name'
+    });
+    expect(editAssetNameRes.status).toBe(200);
+    expect(editAssetNameRes.body.uniqueName).toBe('changed name');
+    const editAssetOption1Res = await request.put(`/api/asset/${createAssetRes.body}`).send({
+      option1: false
+    });
+    expect(editAssetOption1Res.status).toBe(200);
+    expect(editAssetOption1Res.body.option1).toBe(false);
+    const editAssetOption2Res = await request.put(`/api/asset/${createAssetRes.body}`).send({
+      option2: true
+    });
+    expect(editAssetOption2Res.status).toBe(200);
+    const editAssetOption3Res = await request.put(`/api/asset/${createAssetRes.body}`).send({
+      option3: true
+    });
+    expect(editAssetOption3Res.status).toBe(200);
+    expect(editAssetOption3Res.body.option3).toBe(true);
+    const deleteAssetRes = await request.delete(`/api/asset/asset/${createAssetRes.body}`);
+    expect(deleteAssetRes.status).toBe(204);
 
     const missVowNameRes = await request.post('/api/vow').send({
       vowRank: 1,
@@ -178,7 +197,7 @@ describe('Initial Jest Test', () => {
     });
     expect(createVowRes.status).toBe(201);
     expect(typeof createVowRes.body).toBe('number');
-    const getVowRes = await request.get(`/api/vow/${createVowRes.body}`);
+    const getVowRes = await request.get(`/api/vow/vow/${createVowRes.body}`);
     expect(getVowRes.status).toBe(200);
     expect(getVowRes.body.rank).toBe(1);
     const editVowNameRes = await request.put(`/api/vow/${createVowRes.body}`).send({
@@ -201,7 +220,7 @@ describe('Initial Jest Test', () => {
     });
     expect(editVowStatusRes.status).toBe(200);
     expect(editVowStatusRes.body.status).toBe('6');
-    const deleteVowRes = await request.delete(`/api/vow/${createVowRes.body}`);
+    const deleteVowRes = await request.delete(`/api/vow/vow/${createVowRes.body}`);
     expect(deleteVowRes.status).toBe(204);
 
     const missLogNoteRes = await request.post('/api/log').send({
