@@ -224,6 +224,11 @@ const AssetModal = props => {
     );
   };
 
+  const assetHealthLookUp = name => {
+    const assetDetail = assets.filter(item => item.name === name);
+    return assetDetail[0].maxHealth;
+  };
+
   const confirmHandler = () => {
     const assetDetail = assets.filter(item => item.name === selectedAsset);
     const inputUniqueName = document.getElementById('detail-uniqueName__input');
@@ -273,6 +278,7 @@ const AssetModal = props => {
             name: assetDetail[0].name,
             uniqueName: uniqueNameState,
             option: optionState,
+            health: assetHealthLookUp(assetDetail[0].name),
             index: 1
           }
         });
@@ -283,6 +289,7 @@ const AssetModal = props => {
             name: assetDetail[0].name,
             uniqueName: uniqueNameState,
             option: optionState,
+            health: assetHealthLookUp(assetDetail[0].name),
             index: 2
           }
         });
@@ -293,6 +300,7 @@ const AssetModal = props => {
             name: assetDetail[0].name,
             uniqueName: uniqueNameState,
             option: optionState,
+            health: assetHealthLookUp(assetDetail[0].name),
             index: 3
           }
         });

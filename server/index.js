@@ -278,7 +278,7 @@ app.put('/api/auth/password', (req, res, next) => {
 });
 
 // get character
-app.get('/api/character/:characterId', (req, res, next) => {
+app.get('/api/character/character/:characterId', (req, res, next) => {
   intTest(req.params.characterId, next);
   const sql = `
     select *
@@ -292,7 +292,7 @@ app.get('/api/character/:characterId', (req, res, next) => {
 });
 
 // get all characters
-app.get('/api/character/:userId', (req, res, next) => {
+app.get('/api/character/all/:userId', (req, res, next) => {
   intTest(req.params.userId, next);
   const sql = `
     select *

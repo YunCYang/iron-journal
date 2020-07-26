@@ -90,7 +90,7 @@ describe('Initial Jest Test', () => {
     expect(createCharacterRes.status).toBe(201);
     expect(typeof createCharacterRes.body).toBe('number');
 
-    const getCharacterRes = await request.get(`/api/character/${createCharacterRes.body}`);
+    const getCharacterRes = await request.get(`/api/character/character/${createCharacterRes.body}`);
     expect(getCharacterRes.status).toBe(200);
     expect(getCharacterRes.body.health).toBe(5);
 
