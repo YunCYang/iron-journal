@@ -10,20 +10,36 @@ const Main = props => {
   // const [isPage, setIsPage] = React.useState('game');
   const [isPage, setIsPage] = React.useState('character');
   const id = React.useContext(IdContext);
-  // const [characterList, setCharacterList] = React.useState([]);
-  const [characterList, setCharacterList] = React.useState(
-    JSON.parse(sessionStorage.getItem('character')) || []
-  );
+  const [characterList, setCharacterList] = React.useState([]);
+  // const [characterList, setCharacterList] = React.useState(
+  //   JSON.parse(sessionStorage.getItem('character')) || []
+  // );
   const [modalShown, setModalShown] = React.useState(false);
 
   React.useEffect(
     () => {
-      const sessionId = JSON.parse(sessionStorage.getItem('id'));
+      // const sessionId = JSON.parse(sessionStorage.getItem('id'));
+      const sessionId = sessionStorage.getItem('id');
       if ((!id.id && parseInt(id.id) !== 0) && (!sessionId && parseInt(sessionId) !== 0)) {
         props.history.push('/');
       }
       // sessionStorage.clear();
       // console.log(sessionStorage.getItem('character'));
+    }
+  );
+
+  React.useEffect(
+    () => {
+      if (parseInt(id.id) === 0 && parseInt(sessionStorage.getItem('id')) === 0) {
+        setCharacterList(JSON.parse(sessionStorage.getItem('character')));
+      } else {
+        let tempId = 0;
+        if (parseInt(id.id) !== 0) tempId = parseInt(id.id);
+        else tempId = parseInt(sessionStorage.getItem('id'));
+        fetch(`/api/character/all/${tempId}`)
+          .then(res => res.json())
+          .then(res => setCharacterList(res));
+      }
     }
   );
 

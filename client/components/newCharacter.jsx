@@ -269,6 +269,10 @@ const NewCharacter = props => {
           sessionStorage.setItem('character', JSON.stringify(newCharList));
         }
       } else {
+        // if (sessionCharList.length === 8) {
+        //   setModalType('full');
+        //   props.setModalShown(true);
+        // } else {
         const characterInit = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -354,9 +358,10 @@ const NewCharacter = props => {
               fetch('/api/asset', asset2Init),
               fetch('/api/asset', asset3Init)
             ])
-              .then()
-              .then();
+              .then(res => res.json())
+              .then(res => null);
           });
+        // }
       }
       props.characterPage();
     } else {
