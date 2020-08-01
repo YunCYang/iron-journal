@@ -297,7 +297,7 @@ app.get('/api/character/all/:userId', (req, res, next) => {
   const sql = `
     select *
       from "character" c
-      left join "userCharacter" u on c."characterId" = u."charaterId"
+      left join "userCharacter" u on c."characterId" = u."characterId"
      where "userId" = $1;
   `;
   const value = [parseInt(req.params.userId)];
@@ -308,14 +308,14 @@ app.get('/api/character/all/:userId', (req, res, next) => {
 
 // create character
 app.post('/api/character', (req, res, next) => {
-  if (!req.body.characterName) next(new ClientError('missing character name', 400));
+  if (!req.body.characterName && req.body.characterName !== '') next(new ClientError('missing character name', 400));
   else if (!req.body.stat_edge) next(new ClientError('missing stat - edge', 400));
   else if (!req.body.stat_heart) next(new ClientError('missing stat - heart', 400));
   else if (!req.body.stat_iron) next(new ClientError('missing stat - iron', 400));
   else if (!req.body.stat_shadow) next(new ClientError('missing stat - shadow', 400));
   else if (!req.body.stat_wits) next(new ClientError('missing stat - wits', 400));
-  else if (!req.body.location) next(new ClientError('missing location', 400));
-  else if (!req.body.bond) next(new ClientError('missing bond', 400));
+  else if (!req.body.location && req.body.location !== '') next(new ClientError('missing location', 400));
+  else if (!req.body.bond && req.body.bond !== 0) next(new ClientError('missing bond', 400));
   else if (!req.body.userId) next(new ClientError('missing user id', 400));
   intTest(req.body.stat_edge, next);
   intTest(req.body.stat_heart, next);
@@ -432,7 +432,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(locationSql, locationValue)
       .then(locationResult => res.status(200).json(locationResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.bond) {
+  } else if (req.body.bond || req.body.bond === 0) {
     intTest(req.body.bond, next);
     const bondSql = `
       update "character"
@@ -444,7 +444,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(bondSql, bondValue)
       .then(bondResult => res.status(200).json(bondResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.exp) {
+  } else if (req.body.exp || req.body.exp === 0) {
     intTest(req.body.exp, next);
     const expSql = `
       update "character"
@@ -456,7 +456,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(expSql, expValue)
       .then(expResult => res.status(200).json(expResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.health) {
+  } else if (req.body.health || req.body.health === 0) {
     intTest(req.body.health, next);
     const healthSql = `
       update "character"
@@ -468,7 +468,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(healthSql, healthValue)
       .then(healthResult => res.status(200).json(healthResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.spirit) {
+  } else if (req.body.spirit || req.body.spirit === 0) {
     intTest(req.body.spirit, next);
     const spiritSql = `
       update "character"
@@ -480,7 +480,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(spiritSql, spiritValue)
       .then(spiritResult => res.status(200).json(spiritResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.supply) {
+  } else if (req.body.supply || req.body.supply === 0) {
     intTest(req.body.supply, next);
     const supplySql = `
       update "character"
@@ -492,7 +492,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(supplySql, supplyValue)
       .then(supplyResult => res.status(200).json(supplyResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.momentum) {
+  } else if (req.body.momentum || req.body.momentum === 0) {
     intTest(req.body.momentum, next);
     const momentumSql = `
       update "character"
@@ -504,7 +504,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(momentumSql, momentumValue)
       .then(momentumResult => res.status(200).json(momentumResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.maxMo) {
+  } else if (req.body.maxMo || req.body.maxMo === 0) {
     intTest(req.body.maxMo, next);
     const maxMoSql = `
       update "character"
@@ -516,7 +516,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(maxMoSql, maxMoValue)
       .then(maxMoResult => res.status(200).json(maxMoResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.resetMo) {
+  } else if (req.body.resetMo || req.body.resetMo === 0) {
     intTest(req.body.resetMo, next);
     const resetMoSql = `
       update "character"
@@ -528,7 +528,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(resetMoSql, resetMoValue)
       .then(resetMoResult => res.status(200).json(resetMoResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.wounded) {
+  } else if (req.body.wounded || req.body.wounded === false) {
     const woundedSql = `
       update "character"
          set "wounded" = $1
@@ -539,7 +539,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(woundedSql, woundedValue)
       .then(woundedResult => res.status(200).json(woundedResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.shaken) {
+  } else if (req.body.shaken || req.body.shaken === false) {
     const shakenSql = `
       update "character"
          set "shaken" = $1
@@ -550,7 +550,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(shakenSql, shakenValue)
       .then(shakenResult => res.status(200).json(shakenResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.unprepared) {
+  } else if (req.body.unprepared || req.body.unprepared === false) {
     const unpreparedSql = `
       update "character"
          set "unprepared" = $1
@@ -561,7 +561,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(unpreparedSql, unpreparedValue)
       .then(unpreparedResult => res.status(200).json(unpreparedResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.encumbered) {
+  } else if (req.body.encumbered || req.body.encumbered === false) {
     const encumberedSql = `
       update "character"
          set "encumbered" = $1
@@ -572,7 +572,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(encumberedSql, encumberedValue)
       .then(encumberedResult => res.status(200).json(encumberedResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.maimed) {
+  } else if (req.body.maimed || req.body.maimed === false) {
     const maimedSql = `
       update "character"
          set "maimed" = $1
@@ -583,7 +583,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(maimedSql, maimedValue)
       .then(maimedResult => res.status(200).json(maimedResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.corrupted) {
+  } else if (req.body.corrupted || req.body.corrupted === false) {
     const corruptedSql = `
       update "character"
          set "corrupted" = $1
@@ -594,7 +594,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(corruptedSql, corruptedValue)
       .then(corruptedResult => res.status(200).json(corruptedResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.cursed) {
+  } else if (req.body.cursed || req.body.cursed === false) {
     const cursedSql = `
       update "character"
          set "cursed" = $1
@@ -605,7 +605,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(cursedSql, cursedValue)
       .then(cursedResult => res.status(200).json(cursedResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.tormented) {
+  } else if (req.body.tormented || req.body.tormented === false) {
     const tormentedSql = `
       update "character"
          set "tormented" = $1
@@ -693,10 +693,10 @@ app.get('/api/asset/all/:characterId', (req, res, next) => {
 app.post('/api/asset', (req, res, next) => {
   if (!req.body.characterId) next(new ClientError('missing character id', 400));
   else if (!req.body.assetName) next(new ClientError('missing asset name', 400));
-  else if (!req.body.health) next(new ClientError('missing asset health', 400));
-  else if (!req.body.option1 && typeof req.body.option1 !== 'boolean') next(new ClientError('missing asset option 1', 400));
-  else if (!req.body.option2 && typeof req.body.option2 !== 'boolean') next(new ClientError('missing asset option 2', 400));
-  else if (!req.body.option3 && typeof req.body.option3 !== 'boolean') next(new ClientError('missing asset option 3', 400));
+  else if (!req.body.health && req.body.health !== 0) next(new ClientError('missing asset health', 400));
+  else if (!req.body.option1 && req.body.option1 !== false) next(new ClientError('missing asset option 1', 400));
+  else if (!req.body.option2 && req.body.option2 !== false) next(new ClientError('missing asset option 2', 400));
+  else if (!req.body.option3 && req.body.option3 !== false) next(new ClientError('missing asset option 3', 400));
   intTest(req.body.characterId, next);
   intTest(req.body.health, next);
   if (req.body.uniqueName) {
@@ -756,7 +756,7 @@ app.put('/api/asset/:assetId', (req, res, next) => {
     db.query(nameSql, nameValue)
       .then(nameResult => res.status(200).json(nameResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.health) {
+  } else if (req.body.health || req.body.health === 0) {
     intTest(req.body.health, next);
     const healthSql = `
       update "asset"
@@ -768,7 +768,7 @@ app.put('/api/asset/:assetId', (req, res, next) => {
     db.query(healthSql, healthValue)
       .then(healthResult => res.status(200).json(healthResult.rows[0]))
       .catch(err => next(err));
-  } else if (typeof req.body.option1 === 'boolean') {
+  } else if (req.body.option1 || req.body.option1 === false) {
     const option1Sql = `
       update "asset"
          set "option1" = $1
@@ -779,7 +779,7 @@ app.put('/api/asset/:assetId', (req, res, next) => {
     db.query(option1Sql, option1Value)
       .then(option1Result => res.status(200).json(option1Result.rows[0]))
       .catch(err => next(err));
-  } else if (typeof req.body.option2 === 'boolean') {
+  } else if (req.body.option2 || req.body.option2 === false) {
     const option2Sql = `
       update "asset"
          set "option2" = $1
@@ -790,7 +790,7 @@ app.put('/api/asset/:assetId', (req, res, next) => {
     db.query(option2Sql, option2Value)
       .then(option2Result => res.status(200).json(option2Result.rows[0]))
       .catch(err => next(err));
-  } else if (typeof req.body.option3 === 'boolean') {
+  } else if (req.body.option3 || req.body.option3 === false) {
     const option3Sql = `
       update "asset"
          set "option3" = $1
@@ -861,10 +861,10 @@ app.get('/api/vow/all/:characterId', (req, res, next) => {
 // create vow
 app.post('/api/vow', (req, res, next) => {
   if (!req.body.characterId) next(new ClientError('missing character id', 400));
-  else if (!req.body.vowName) next(new ClientError('missing vow name', 400));
-  else if (!req.body.vowRank) next(new ClientError('missing vow rank', 400));
-  else if (!req.body.vowProgress) next(new ClientError('missing vow progress', 400));
-  else if (!req.body.vowStatus) next(new ClientError('missing vow status', 400));
+  else if (!req.body.vowName && req.body.vowName !== '') next(new ClientError('missing vow name', 400));
+  else if (!req.body.vowRank && req.body.vowRank !== 0) next(new ClientError('missing vow rank', 400));
+  else if (!req.body.vowProgress && req.body.vowProgress !== 0) next(new ClientError('missing vow progress', 400));
+  else if (!req.body.vowStatus && req.body.vowStatus !== false) next(new ClientError('missing vow status', 400));
   intTest(req.body.characterId, next);
   intTest(req.body.vowRank, next);
   intTest(req.body.vowProgress, next);
@@ -892,7 +892,7 @@ app.post('/api/vow', (req, res, next) => {
 // edit vow
 app.put('/api/vow/:vowId', (req, res, next) => {
   intTest(req.params.vowId, next);
-  if (req.body.vowName) {
+  if (req.body.vowName || req.body.vowName === '') {
     const nameSql = `
       update "vow"
          set "name" = $1
@@ -903,7 +903,7 @@ app.put('/api/vow/:vowId', (req, res, next) => {
     db.query(nameSql, nameValue)
       .then(nameResult => res.status(200).json(nameResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.vowRank) {
+  } else if (req.body.vowRank || req.body.vowRank === 0) {
     intTest(req.body.vowRank, next);
     const rankSql = `
       update "vow"
@@ -915,7 +915,7 @@ app.put('/api/vow/:vowId', (req, res, next) => {
     db.query(rankSql, rankValue)
       .then(rankResult => res.status(200).json(rankResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.vowProgress) {
+  } else if (req.body.vowProgress || req.body.vowProgress === 0) {
     intTest(req.body.vowProgress, next);
     const progressSql = `
       update "vow"
@@ -927,7 +927,7 @@ app.put('/api/vow/:vowId', (req, res, next) => {
     db.query(progressSql, progressValue)
       .then(progressResult => res.status(200).json(progressResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.vowStatus) {
+  } else if (req.body.vowStatus || req.body.vowStatus === false) {
     const statusSql = `
       update "vow"
          set "status" = $1

@@ -40,28 +40,32 @@ const Main = props => {
           .then(res => res.json())
           .then(res => setCharacterList(res));
       }
-    }
+    }, [isPage]
   );
 
   const showCharBlock = () => {
-    return (
-      characterList.map((char, index) => {
-        return (
-          <div className="main-container__game__content__oldBlock game-block"
-            key={`${char.name}-${index}`} onClick={
-              () => {
-                characterPage();
-                setModalShown(false);
-              }
-            }>
-            <span>{char.name[0].toUpperCase()}</span>
-            <div className="main-container__game__content__oldTag game-tag">
-              <span>{char.name}</span>
+    if (!characterList) {
+      return null;
+    } else {
+      return (
+        characterList.map((char, index) => {
+          return (
+            <div className="main-container__game__content__oldBlock game-block"
+              key={`${char.characterName}-${index}`} onClick={
+                () => {
+                  characterPage();
+                  setModalShown(false);
+                }
+              }>
+              <span>{char.characterName[0].toUpperCase()}</span>
+              <div className="main-container__game__content__oldTag game-tag">
+                <span>{char.characterName}</span>
+              </div>
             </div>
-          </div>
-        );
-      })
-    );
+          );
+        })
+      );
+    }
   };
 
   const createNewGame = () => setIsPage('new');
