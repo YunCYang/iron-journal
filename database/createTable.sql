@@ -15,7 +15,7 @@ CREATE TABLE "user" (
 CREATE TABLE "character" (
 	"characterId" serial NOT NULL,
 	"characterName" varchar(255) NOT NULL,
-	"exprience" int NOT NULL DEFAULT 0,
+	"experience" int NOT NULL DEFAULT 0,
 	"edge" int NOT NULL DEFAULT 0,
 	"heart" int NOT NULL DEFAULT 0,
 	"iron" int NOT NULL DEFAULT 0,

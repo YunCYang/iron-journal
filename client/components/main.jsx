@@ -3,18 +3,21 @@ import { withRouter } from 'react-router-dom';
 import NewCharacter from './newCharacter';
 import Character from './character';
 import { IdContext } from './app';
+import AssetModal from './assetModal';
 
 export const CharacterContext = React.createContext([]);
 
 const Main = props => {
-  // const [isPage, setIsPage] = React.useState('game');
-  const [isPage, setIsPage] = React.useState('character');
+  // sessionStorage.clear();
+  const [isPage, setIsPage] = React.useState('game');
   const id = React.useContext(IdContext);
   const [characterList, setCharacterList] = React.useState([]);
   // const [characterList, setCharacterList] = React.useState(
   //   JSON.parse(sessionStorage.getItem('character')) || []
   // );
   const [modalShown, setModalShown] = React.useState(false);
+  const [selectedChar, setSelectedChar] = React.useState({});
+  const [charListIndex, setCharListIndex] = React.useState(0);
 
   React.useEffect(
     () => {
@@ -44,6 +47,7 @@ const Main = props => {
   );
 
   const showCharBlock = () => {
+    // console.log(characterList);
     if (!characterList) {
       return null;
     } else {
@@ -55,6 +59,8 @@ const Main = props => {
                 () => {
                   characterPage();
                   setModalShown(false);
+                  setSelectedChar(characterList[index]);
+                  setCharListIndex(index);
                 }
               }>
               <span>{char.characterName[0].toUpperCase()}</span>
@@ -72,6 +78,11 @@ const Main = props => {
   const returnGamePage = () => setIsPage('game');
   const characterPage = () => setIsPage('character');
 
+  const displayShadow = () => {
+    if (modalShown) return '';
+    else return 'hide';
+  };
+
   const createPage = () => {
     if (isPage === 'game') {
       return (
@@ -84,8 +95,15 @@ const Main = props => {
               <div className="main-container__game__content__newBlock game-block"
                 onClick={
                   () => {
-                    createNewGame();
-                    setModalShown(false);
+                    if (!characterList) {
+                      createNewGame();
+                      setModalShown(false);
+                    } else if (characterList.length >= 8) {
+                      setModalShown(true);
+                    } else {
+                      createNewGame();
+                      setModalShown(false);
+                    }
                   }
                 }>
                 <i className="fas fa-plus"></i>
@@ -94,6 +112,17 @@ const Main = props => {
                 </div>
               </div>
               {showCharBlock()}
+              <div className={`modal-shadow ${displayShadow()}`} onClick={
+                e => {
+                  if (e.target.contains(document.getElementsByClassName('modal-shadow')[0])) {
+                    setModalShown(false);
+                  }
+                }
+              }>
+                <AssetModal modalType="full" modalShown={modalShown}
+                  setModalShown={setModalShown} activeAsset=''
+                  assetState={{}}/>
+              </div>
             </div>
           </div>
         </>
@@ -136,7 +165,8 @@ const Main = props => {
     } else if (isPage === 'character') {
       return (
         <>
-          <Character />
+          <Character selectedChar={selectedChar} charListIndex={charListIndex}
+            returnGamePage={returnGamePage}/>
         </>
       );
     } else return null;

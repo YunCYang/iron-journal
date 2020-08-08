@@ -3,6 +3,7 @@ import { IdContext } from './app';
 import { CharacterContext } from './main';
 import ShowAsset from './showAsset';
 import AssetModal from './assetModal';
+import deepCopy from '../tools/deepCopy';
 
 const NewCharacter = props => {
   const id = React.useContext(IdContext);
@@ -171,16 +172,6 @@ const NewCharacter = props => {
     const emptyLocName = document.getElementById('location-feedback__empty');
     const emptyAsset = document.getElementById('asset-feedback__empty');
     if (validateInput()) {
-      const deepCopy = inObj => {
-        let value, key;
-        const outObj = Array.isArray(inObj) ? [] : {};
-        if (typeof inObj !== 'object' || inObj === null) return inObj;
-        for (key in inObj) {
-          value = inObj[key];
-          outObj[key] = deepCopy(value);
-        }
-        return outObj;
-      };
       const bondCount = () => {
         let count = 0;
         for (const bond in bondState) {
@@ -188,197 +179,179 @@ const NewCharacter = props => {
         }
         return count;
       };
-      // if (id.id === '0') {
       if (parseInt(id.id) === 0 && parseInt(sessionStorage.getItem('id')) === 0) {
         const sessionCharList = (Array.isArray(JSON.parse(sessionStorage.getItem('character')))) || [];
         let newCharList = [];
-        // console.log('charList', charList.characterList); // null
-        // console.log('session', sessionCharList); // []
         if (sessionCharList.length > 0) {
           if (charList.characterList) {
             if (charList.characterList.length === 0) newCharList = deepCopy(sessionCharList);
             else newCharList = deepCopy(charList.characterList);
           } else newCharList = deepCopy(sessionCharList);
         } else if (charList.characterList) newCharList = deepCopy(charList.characterList);
-        // if (!charList.characterList && sessionCharList.length > 0) {
-        //   newCharList = deepCopy(sessionCharList);
-        // } else
-        // if (charList.characterList.length === 0 && sessionCharList.length > 0) {
-        //   newCharList = deepCopy(sessionCharList);
-        // } else newCharList = deepCopy(charList.characterList);
-        if (sessionCharList.length === 8) {
-          setModalType('full');
-          props.setModalShown(true);
-        } else {
-          const newChar = {
-            characterName: nameState,
-            exp: 0,
-            stats: {
-              edge: statState.edge,
-              heart: statState.heart,
-              iron: statState.iron,
-              shadow: statState.shadow,
-              wits: statState.wits
+        const newChar = {
+          characterName: nameState,
+          experience: 0,
+          edge: statState.edge,
+          heart: statState.heart,
+          iron: statState.iron,
+          shadow: statState.shadow,
+          wits: statState.wits,
+          health: 5,
+          spirit: 5,
+          supply: 5,
+          momentum: 2,
+          maxMomentum: 10,
+          resetMomentum: 2,
+          bonds: bondCount(),
+          vows: [
+            {
+              name: vowState.vow1Name,
+              rank: vowState.vow1Rank,
+              progress: 0,
+              status: false
             },
-            status: {
-              health: 5,
-              spirit: 5,
-              supply: 5
+            {
+              name: vowState.vow2Name,
+              rank: vowState.vow2Rank,
+              progress: 0,
+              status: false
+            }
+          ],
+          wounded: false,
+          shaken: false,
+          unprepared: false,
+          encumbered: false,
+          maimed: false,
+          corrupted: false,
+          cursed: false,
+          tormented: false,
+          location: locationState,
+          assets: [
+            {
+              assetName: assetState.asset1.name,
+              uniqueName: assetState.asset1.UniqueName,
+              option1: assetState.asset1.option === 1,
+              option2: assetState.asset1.option === 2,
+              option3: assetState.asset1.option === 3,
+              health: assetState.asset1.health,
+              index: 1
             },
-            momentum: {
-              momentum: 2,
-              max: 10,
-              reset: 2
+            {
+              assetName: assetState.asset2.name,
+              uniqueName: assetState.asset2.UniqueName,
+              option1: assetState.asset2.option === 1,
+              option2: assetState.asset2.option === 2,
+              option3: assetState.asset2.option === 3,
+              health: assetState.asset2.health,
+              index: 2
             },
-            bonds: bondCount(),
-            vows: [
-              {
-                name: vowState.vow1Name,
-                rank: vowState.vow1Rank
-              },
-              {
-                name: vowState.vow2Name,
-                rank: vowState.vow2Rank
-              }
-            ],
-            debilities: {
-              wounded: false,
-              shaken: false,
-              unprepared: false,
-              encumbered: false,
-              maimed: false,
-              corrupted: false,
-              cursed: false,
-              tormented: false
-            },
-            location: locationState,
-            assets: [
-              {
-                name: assetState.asset1.name,
-                uniqueName: assetState.asset1.UniqueName,
-                option: assetState.asset1.option,
-                health: assetState.asset1.health,
-                index: 1
-              },
-              {
-                name: assetState.asset2.name,
-                uniqueName: assetState.asset2.UniqueName,
-                option: assetState.asset2.option,
-                health: assetState.asset2.health,
-                index: 2
-              },
-              {
-                name: assetState.asset3.name,
-                uniqueName: assetState.asset3.UniqueName,
-                option: assetState.asset3.option,
-                health: assetState.asset3.health,
-                index: 3
-              }
-            ]
-          };
-          newCharList.push(newChar);
-          charList.setCharacterList(newCharList);
-          sessionStorage.setItem('character', JSON.stringify(newCharList));
-          props.returnGamePage();
-        }
+            {
+              assetName: assetState.asset3.name,
+              uniqueName: assetState.asset3.UniqueName,
+              option1: assetState.asset3.option === 1,
+              option2: assetState.asset3.option === 2,
+              option3: assetState.asset3.option === 3,
+              health: assetState.asset3.health,
+              index: 3
+            }
+          ]
+        };
+        newCharList.push(newChar);
+        charList.setCharacterList(newCharList);
+        sessionStorage.setItem('character', JSON.stringify(newCharList));
+        props.returnGamePage();
       } else {
-        if (charList.characterList.length >= 8) {
-          setModalType('full');
-          props.setModalShown(true);
-        } else {
-          const characterInit = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              characterName: nameState,
-              stat_edge: statState.edge,
-              stat_heart: statState.heart,
-              stat_iron: statState.iron,
-              stat_shadow: statState.shadow,
-              stat_wits: statState.wits,
-              bond: bondCount(),
-              location: locationState,
-              userId: parseInt(id.id)
-            })
-          };
-          fetch('/api/character', characterInit)
-            .then(res => res.json())
-            .then(characterRes => {
-              const vow1Init = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  characterId: characterRes,
-                  vowName: vowState.vow1Name,
-                  vowRank: vowState.vow1Rank,
-                  vowProgress: 0,
-                  vowStatus: false
-                })
-              };
-              const vow2Init = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  characterId: characterRes,
-                  vowName: vowState.vow1Name,
-                  vowRank: vowState.vow1Rank,
-                  vowProgress: 0,
-                  vowStatus: false
-                })
-              };
-              const asset1Init = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  characterId: characterRes,
-                  assetName: assetState.asset1.name,
-                  health: assetState.asset1.health || 0,
-                  option1: assetState.asset1.option === 1,
-                  option2: assetState.asset1.option === 2,
-                  option3: assetState.asset1.option === 3,
-                  uniqueName: assetState.asset1.UniqueName || false
-                })
-              };
-              const asset2Init = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  characterId: characterRes,
-                  assetName: assetState.asset2.name,
-                  health: assetState.asset2.health || 0,
-                  option1: assetState.asset2.option === 1,
-                  option2: assetState.asset2.option === 2,
-                  option3: assetState.asset2.option === 3,
-                  uniqueName: assetState.asset2.UniqueName || false
-                })
-              };
-              const asset3Init = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  characterId: characterRes,
-                  assetName: assetState.asset3.name,
-                  health: assetState.asset3.health || 0,
-                  option1: assetState.asset3.option === 1,
-                  option2: assetState.asset3.option === 2,
-                  option3: assetState.asset3.option === 3,
-                  uniqueName: assetState.asset3.UniqueName || false
-                })
-              };
-              Promise.all([
-                fetch('/api/vow', vow1Init),
-                fetch('/api/vow', vow2Init),
-                fetch('/api/asset', asset1Init),
-                fetch('/api/asset', asset2Init),
-                fetch('/api/asset', asset3Init)
-              ])
-                // .then(res => res.json())
+        const characterInit = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            characterName: nameState,
+            stat_edge: statState.edge,
+            stat_heart: statState.heart,
+            stat_iron: statState.iron,
+            stat_shadow: statState.shadow,
+            stat_wits: statState.wits,
+            bond: bondCount(),
+            location: locationState,
+            userId: parseInt(id.id)
+          })
+        };
+        fetch('/api/character', characterInit)
+          .then(res => res.json())
+          .then(characterRes => {
+            const vow1Init = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                characterId: characterRes,
+                vowName: vowState.vow1Name,
+                vowRank: vowState.vow1Rank,
+                vowProgress: 0,
+                vowStatus: false
+              })
+            };
+            const vow2Init = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                characterId: characterRes,
+                vowName: vowState.vow1Name,
+                vowRank: vowState.vow1Rank,
+                vowProgress: 0,
+                vowStatus: false
+              })
+            };
+            const asset1Init = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                characterId: characterRes,
+                assetName: assetState.asset1.name,
+                health: assetState.asset1.health || 0,
+                option1: assetState.asset1.option === 1,
+                option2: assetState.asset1.option === 2,
+                option3: assetState.asset1.option === 3,
+                uniqueName: assetState.asset1.UniqueName || false
+              })
+            };
+            const asset2Init = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                characterId: characterRes,
+                assetName: assetState.asset2.name,
+                health: assetState.asset2.health || 0,
+                option1: assetState.asset2.option === 1,
+                option2: assetState.asset2.option === 2,
+                option3: assetState.asset2.option === 3,
+                uniqueName: assetState.asset2.UniqueName || false
+              })
+            };
+            const asset3Init = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                characterId: characterRes,
+                assetName: assetState.asset3.name,
+                health: assetState.asset3.health || 0,
+                option1: assetState.asset3.option === 1,
+                option2: assetState.asset3.option === 2,
+                option3: assetState.asset3.option === 3,
+                uniqueName: assetState.asset3.UniqueName || false
+              })
+            };
+            Promise.all([
+              fetch('/api/vow', vow1Init),
+              fetch('/api/vow', vow2Init),
+              fetch('/api/asset', asset1Init),
+              fetch('/api/asset', asset2Init),
+              fetch('/api/asset', asset3Init)
+            ])
+            // .then(res => res.json())
               // fetch('/api/vow', vow1Init)
-                .then(res => props.returnGamePage());
-            });
-        }
+              .then(res => props.returnGamePage());
+          });
       }
-      props.characterPage();
     } else {
       if (!inputCharName.checkValidity()) emptyCharName.classList.remove('hide');
       if (!inputVow1Name.checkValidity()) emptyVow1Name.classList.remove('hide');
@@ -455,7 +428,7 @@ const NewCharacter = props => {
                           setNameState(e.target.value);
                           inputFeedbackHandler('character-feedback__empty', 'input-characterName');
                         }
-                      }/>
+                      } value={nameState}/>
                     <div className="newGame__feedback">
                       <span id='character-feedback__empty' className="empty hide">Character name is required.</span>
                     </div>
@@ -765,7 +738,7 @@ const NewCharacter = props => {
                             bond1: e.target.value
                           });
                         }
-                      }/>
+                      } value={bondState.bond1}/>
                   </div>
                 </div>
                 <div className="bonds-input__container__name">
@@ -781,7 +754,7 @@ const NewCharacter = props => {
                             bond2: e.target.value
                           });
                         }
-                      }/>
+                      } value={bondState.bond2}/>
                   </div>
                 </div>
                 <div className="bonds-input__container__name">
@@ -797,7 +770,7 @@ const NewCharacter = props => {
                             bond3: e.target.value
                           });
                         }
-                      }/>
+                      } value={bondState.bond3}/>
                   </div>
                 </div>
               </div>
@@ -822,7 +795,7 @@ const NewCharacter = props => {
                           });
                           inputFeedbackHandler('vowName1-feedback__empty', 'input-vowName1');
                         }
-                      }/>
+                      } value={vowState.vow1Name}/>
                     <div className="newGame__feedback">
                       <span id='vowName1-feedback__empty' className="empty hide">1st vow name is required.</span>
                     </div>
@@ -927,7 +900,7 @@ const NewCharacter = props => {
                           });
                           inputFeedbackHandler('vowName2-feedback__empty', 'input-vowName2');
                         }
-                      }/>
+                      } value={vowState.vow2Name}/>
                     <div className="newGame__feedback">
                       <span id='vowName2-feedback__empty' className="empty hide">2nd vow name is required.</span>
                     </div>
@@ -1037,7 +1010,7 @@ const NewCharacter = props => {
                           setLocationState(e.target.value);
                           inputFeedbackHandler('location-feedback__empty', 'input-locationName');
                         }
-                      } />
+                      } value={locationState}/>
                     <div className="newGame__feedback">
                       <span id='location-feedback__empty' className="empty hide">Location is required.</span>
                     </div>

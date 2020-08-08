@@ -1,6 +1,34 @@
 import React from 'react';
+import AssetModal from './assetModal';
 
-const Character = () => {
+const Character = props => {
+  const [editTarget, setEditTarget] = React.useState({
+    name: '',
+    content: null
+  });
+
+  const [modalShown, setModalShown] = React.useState({
+    display: false,
+    modal: ''
+  });
+
+  const displayShadow = () => {
+    if (modalShown.display) return '';
+    else return 'hide';
+  };
+
+  const modalBg = () => {
+    if (modalShown.modal === 'deleteChar') {
+      return '';
+    } else return 'transparent';
+  };
+
+  const signDisplay = num => {
+    if (num > 0) return '+';
+    else if (num < 0) return '-';
+    else return '';
+  };
+
   const bondExpandHandler = () => {
     const bondContainer = document.getElementsByClassName('main-container__character__bonds')[0];
     const bondExpand = document.getElementById('bond-expand');
@@ -53,19 +81,79 @@ const Character = () => {
   };
 
   const createName = () => {
+    const switchName = () => {
+      if (editTarget.name === 'name') {
+        return (
+          <>
+            <input type="text" name="characterInput__name" id="characterInput__name"
+              placeholder={props.selectedChar.characterName} onChange={
+                e => {
+                  setEditTarget({
+                    ...editTarget,
+                    content: e.target.value
+                  });
+                }
+              } value={editTarget.content}/>
+            <i className='fas fa-check-circle' ></i>
+            <i className='fas fa-times-circle' onClick={
+              () => {
+                setEditTarget({
+                  name: '',
+                  content: null
+                });
+              }
+            }></i>
+          </>
+        );
+      } else {
+        return (
+          <>
+            <span className="content">{props.selectedChar.characterName}</span>
+          </>
+        );
+      }
+    };
     return (
-      <>
-        <span className="content">Percival Derolo</span>
-      </>
+      <div className="name-container" onClick={
+        () => {
+          if (editTarget.name !== 'name') {
+            setEditTarget({
+              name: 'name',
+              content: ''
+            });
+          }
+        }
+      }>
+        {switchName()}
+      </div>
     );
   };
 
   const createExp = () => {
+    const switchExp = () => {
+      if (editTarget.name === 'exp') {
+        return (
+          <>
+            <div className="exp-container__adjustment">
+              <i className="fas fa-long-arrow-alt-down"></i>
+              <span className="content">{props.selectedChar.experience}</span>
+              <i className="fas fa-long-arrow-alt-up"></i>
+            </div>
+          </>
+        );
+      } else {
+        return (
+          <>
+            <span className="content">{props.selectedChar.experience}</span>
+          </>
+        );
+      }
+    };
     return (
-      <>
+      <div className="exp-container">
         <span className="label">Exp</span>
-        <span className="content">30</span>
-      </>
+        {switchExp()}
+      </div>
     );
   };
 
@@ -74,23 +162,23 @@ const Character = () => {
       <>
         <div className="5stats-container edge width-1-5">
           <span className="label">Edge</span>
-          <span className="content">3</span>
+          <span className="content">{props.selectedChar.edge}</span>
         </div>
         <div className="5stats-container heart width-1-5">
           <span className="label">Heart</span>
-          <span className="content">2</span>
+          <span className="content">{props.selectedChar.heart}</span>
         </div>
         <div className="5stats-container iron width-1-5">
           <span className="label">Iron</span>
-          <span className="content">1</span>
+          <span className="content">{props.selectedChar.iron}</span>
         </div>
         <div className="5stats-container shadow width-1-5">
           <span className="label">Shadow</span>
-          <span className="content">2</span>
+          <span className="content">{props.selectedChar.shadow}</span>
         </div>
         <div className="5stats-container wits width-1-5">
           <span className="label">Wits</span>
-          <span className="content">3</span>
+          <span className="content">{props.selectedChar.wits}</span>
         </div>
       </>
     );
@@ -101,15 +189,15 @@ const Character = () => {
       <>
         <div className="status-container health width-1-3">
           <span className="label">Health</span>
-          <span className="content">+5</span>
+          <span className="content">{`${signDisplay(props.selectedChar.health)}${props.selectedChar.health}`}</span>
         </div>
         <div className="status-container spirit width-1-3">
           <span className="label">Spirit</span>
-          <span className="content">+4</span>
+          <span className="content">{`${signDisplay(props.selectedChar.spirit)}${props.selectedChar.spirit}`}</span>
         </div>
         <div className="status-container supply width-1-3">
           <span className="label">Supply</span>
-          <span className="content">+3</span>
+          <span className="content">{`${signDisplay(props.selectedChar.supply)}${props.selectedChar.supply}`}</span>
         </div>
       </>
     );
@@ -725,11 +813,34 @@ const Character = () => {
             <i className="fas fa-save"></i>
             <span className="label">Save</span>
           </div>
-          <div className="main-container__character__actions__delete height-single-half width-1-4">
-            <i className="fas fa-ban"></i>
+          <div className="main-container__character__actions__delete height-single-half width-1-4"
+            onClick={
+              () => {
+                setModalShown({
+                  display: true,
+                  modal: 'deleteChar'
+                });
+              }
+            }>
+            <i className="fas fa-times"></i>
             <span className="label">Delete</span>
           </div>
         </div>
+      </div>
+      <div className={`modal-shadow ${displayShadow()} ${modalBg()}`} onClick={
+        e => {
+          if (e.target.contains(document.getElementsByClassName('modal-shadow')[0])) {
+            setModalShown({
+              display: false,
+              modal: ''
+            });
+          }
+        }
+      }>
+        <AssetModal modalType={modalShown.modal} activeAsset=''
+          modalShown={modalShown.display} setModalShown={setModalShown}
+          assetState={{}} characterName={props.selectedChar.characterName}
+          characterId={props.selectedChar.characterId} returnGamePage={props.returnGamePage}/>
       </div>
     </>
   );

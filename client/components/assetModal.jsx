@@ -1,5 +1,8 @@
 import React from 'react';
 import assets from '../assets/assetSets/assets';
+import { IdContext } from './app';
+import { CharacterContext } from './main';
+import deepCopy from '../tools/deepCopy';
 
 const AssetModal = props => {
   const [newAssetState, setNewAssetState] = React.useState('type');
@@ -7,6 +10,9 @@ const AssetModal = props => {
   const [selectedAsset, setSelectedAsset] = React.useState('');
   const [uniqueNameState, setUniquNameState] = React.useState('');
   const [optionState, setOptionState] = React.useState(0);
+
+  const id = React.useContext(IdContext);
+  const charList = React.useContext(CharacterContext);
 
   React.useEffect(
     () => {
@@ -482,12 +488,54 @@ const AssetModal = props => {
           <div className="modal-header"></div>
           <div className="modal-body">
             <i className="fas fa-pen-fancy"></i>
-            <span>You&apos;ve reached the maximum amount for stored characters!</span>
+            <span>Only 8 characters allowed!</span>
           </div>
           <div className="modal-action">
             <button className="confirm" onClick={
               () => props.setModalShown(false)
             }>Confirm</button>
+          </div>
+        </div>
+      );
+    } else if (props.modalType === 'deleteChar') {
+      return (
+        <div className="modal-container delete">
+          <div className="modal-header"></div>
+          <div className="modal-body">
+            <i className="fas fa-fire-alt"></i>
+            <span>{`Delete ${props.characterName}?`}</span>
+          </div>
+          <div className="modal-action">
+            <button className="delete" onClick={
+              () => {
+                if (parseInt(id.id) === 0 && parseInt(sessionStorage.getItem('id')) === 0) {
+                  const sessionCharList = (Array.isArray(JSON.parse(sessionStorage.getItem('character')))) || [];
+                  let newCharList = [];
+                  if (sessionCharList.length > 0) {
+                    if (charList.characterList) {
+                      if (charList.characterList.length === 0) newCharList = deepCopy(sessionCharList);
+                      else newCharList = deepCopy(charList.characterList);
+                    } else newCharList = deepCopy(sessionCharList);
+                  } else if (charList.characterList) newCharList = deepCopy(charList.characterList);
+                  newCharList.splice(props.charListIndex, 1);
+                  charList.setCharacterList(newCharList);
+                  sessionStorage.setItem('character', JSON.stringify(newCharList));
+                  props.returnGamePage();
+                } else {
+                  const deleteCharInit = {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' }
+                  };
+                  fetch(`/api/character/${props.characterId}`, deleteCharInit)
+                    .then(res => {
+                      props.returnGamePage();
+                    });
+                }
+              }
+            }>Delete</button>
+            <button className="cancel" onClick={
+              () => props.setModalShown(false)
+            }>Cancel</button>
           </div>
         </div>
       );
