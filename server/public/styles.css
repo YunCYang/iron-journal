@@ -1226,12 +1226,89 @@ div.landing-action__signUpLink .right {
   align-items: center;
   position: relative;
 }
+.main-page .main-container__character__exp .exp-container button {
+  position: absolute;
+  border: solid 1px #bfbfbf;
+  border-radius: 4px;
+  background-color: #f0fff8;
+  padding: 1px 2px;
+}
+.main-page .main-container__character__exp .exp-container button.dec {
+  left: 0;
+  bottom: 0;
+  color: #d13c2e;
+}
+.main-page .main-container__character__exp .exp-container button.inc {
+  right: 0;
+  bottom: 0;
+  color: #008044;
+}
 .main-page .main-container__character__5stats > div, .main-page .main-container__character__status > div, .main-page .main-container__character__momentum > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0 4px;
+}
+.main-page .main-container__character__5stats .stats5-container {
+  position: relative;
+}
+.main-page .main-container__character__5stats .stats5-container button {
+  position: absolute;
+  border: solid 1px #bfbfbf;
+  border-radius: 4px;
+  background-color: #f0fff8;
+  padding: 1px 2px;
+}
+.main-page .main-container__character__5stats .stats5-container button.dec {
+  left: -4px;
+  bottom: 0;
+  color: #d13c2e;
+}
+.main-page .main-container__character__5stats .stats5-container button.inc {
+  right: -4px;
+  bottom: 0;
+  color: #008044;
+}
+.main-page .main-container__character__status .status-container {
+  position: relative;
+}
+.main-page .main-container__character__status .status-container button {
+  position: absolute;
+  border: solid 1px #bfbfbf;
+  border-radius: 4px;
+  background-color: #f0fff8;
+  padding: 1px 2px;
+}
+.main-page .main-container__character__status .status-container button.dec {
+  left: 0;
+  bottom: 0;
+  color: #d13c2e;
+}
+.main-page .main-container__character__status .status-container button.inc {
+  right: 0;
+  bottom: 0;
+  color: #008044;
+}
+.main-page .main-container__character__momentum .momentum-container {
+  position: relative;
+}
+.main-page .main-container__character__momentum .momentum-container button {
+  position: absolute;
+  border: solid 1px #bfbfbf;
+  border-radius: 4px;
+  background-color: #f0fff8;
+  padding: 1px 2px;
+}
+.main-page .main-container__character__momentum .momentum-container button.dec {
+  left: 0;
+  bottom: 0;
+  color: #d13c2e;
+}
+.main-page .main-container__character__momentum .momentum-container button.inc {
+  right: 0;
+  bottom: 0;
+  color: #008044;
 }
 .main-page .main-container__character__bonds, .main-page .main-container__character__vows, .main-page .main-container__character__debilities {
   display: flex;

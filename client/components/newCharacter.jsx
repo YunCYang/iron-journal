@@ -347,8 +347,6 @@ const NewCharacter = props => {
               fetch('/api/asset', asset2Init),
               fetch('/api/asset', asset3Init)
             ])
-            // .then(res => res.json())
-              // fetch('/api/vow', vow1Init)
               .then(res => props.returnGamePage());
           });
       }

@@ -119,7 +119,7 @@ const Character = props => {
           if (editTarget.name !== 'name') {
             setEditTarget({
               name: 'name',
-              content: ''
+              content: props.selectedChar.characterName
             });
           }
         }
@@ -134,89 +134,333 @@ const Character = props => {
       if (editTarget.name === 'exp') {
         return (
           <>
-            <div className="exp-container__adjustment">
-              <i className="fas fa-long-arrow-alt-down"></i>
-              <span className="content">{props.selectedChar.experience}</span>
-              <i className="fas fa-long-arrow-alt-up"></i>
-            </div>
-          </>
-        );
-      } else {
-        return (
-          <>
-            <span className="content">{props.selectedChar.experience}</span>
+            <button type="button" className="active dec">
+              <i className="fas fa-long-arrow-alt-down active"></i>
+            </button>
+            <button type="button" className="active inc">
+              <i className="fas fa-long-arrow-alt-up active"></i>
+            </button>
           </>
         );
       }
     };
     return (
-      <div className="exp-container">
+      <div className="exp-container" onClick={
+        e => {
+          if (editTarget.name !== 'exp') {
+            setEditTarget({
+              name: 'exp',
+              content: props.selectedChar.experience
+            });
+          } else {
+            if (!Object.values(e.target.classList).includes('active')) {
+              setEditTarget({
+                name: '',
+                content: ''
+              });
+            }
+          }
+        }
+      }>
         <span className="label">Exp</span>
+        <span className="content">{props.selectedChar.experience}</span>
         {switchExp()}
       </div>
     );
   };
 
   const create5stats = () => {
+    const switchStats = stat => {
+      if ((editTarget.name === 'edge' || editTarget.name === 'heart' || editTarget.name === 'iron' ||
+        editTarget.name === 'shadow' || editTarget.name === 'wits') && editTarget.name === stat) {
+        return (
+          <>
+            <button type="button" className="active dec">
+              <i className="fas fa-long-arrow-alt-down active"></i>
+            </button>
+            <button type="button" className="active inc">
+              <i className="fas fa-long-arrow-alt-up active"></i>
+            </button>
+          </>
+        );
+      }
+    };
     return (
       <>
-        <div className="5stats-container edge width-1-5">
+        <div className="stats5-container edge width-1-5" onClick={
+          e => {
+            if (editTarget.name !== 'edge') {
+              setEditTarget({
+                name: 'edge',
+                content: props.selectedChar.edge
+              });
+            } else {
+              if (!Object.values(e.target.classList).includes('active')) {
+                setEditTarget({
+                  name: '',
+                  content: ''
+                });
+              }
+            }
+          }
+        }>
           <span className="label">Edge</span>
           <span className="content">{props.selectedChar.edge}</span>
+          {switchStats('edge')}
         </div>
-        <div className="5stats-container heart width-1-5">
+        <div className="stats5-container heart width-1-5" onClick={
+          e => {
+            if (editTarget.name !== 'heart') {
+              setEditTarget({
+                name: 'heart',
+                content: props.selectedChar.heart
+              });
+            } else {
+              if (!Object.values(e.target.classList).includes('active')) {
+                setEditTarget({
+                  name: '',
+                  content: ''
+                });
+              }
+            }
+          }
+        }>
           <span className="label">Heart</span>
           <span className="content">{props.selectedChar.heart}</span>
+          {switchStats('heart')}
         </div>
-        <div className="5stats-container iron width-1-5">
+        <div className="stats5-container iron width-1-5" onClick={
+          e => {
+            if (editTarget.name !== 'iron') {
+              setEditTarget({
+                name: 'iron',
+                content: props.selectedChar.iron
+              });
+            } else {
+              if (!Object.values(e.target.classList).includes('active')) {
+                setEditTarget({
+                  name: '',
+                  content: ''
+                });
+              }
+            }
+          }
+        }>
           <span className="label">Iron</span>
           <span className="content">{props.selectedChar.iron}</span>
+          {switchStats('iron')}
         </div>
-        <div className="5stats-container shadow width-1-5">
+        <div className="stats5-container shadow width-1-5" onClick={
+          e => {
+            if (editTarget.name !== 'shadow') {
+              setEditTarget({
+                name: 'shadow',
+                content: props.selectedChar.shadow
+              });
+            } else {
+              if (!Object.values(e.target.classList).includes('active')) {
+                setEditTarget({
+                  name: '',
+                  content: ''
+                });
+              }
+            }
+          }
+        }>
           <span className="label">Shadow</span>
           <span className="content">{props.selectedChar.shadow}</span>
+          {switchStats('shadow')}
         </div>
-        <div className="5stats-container wits width-1-5">
+        <div className="stats5-container wits width-1-5" onClick={
+          e => {
+            if (editTarget.name !== 'wits') {
+              setEditTarget({
+                name: 'wits',
+                content: props.selectedChar.wits
+              });
+            } else {
+              if (!Object.values(e.target.classList).includes('active')) {
+                setEditTarget({
+                  name: '',
+                  content: ''
+                });
+              }
+            }
+          }
+        }>
           <span className="label">Wits</span>
           <span className="content">{props.selectedChar.wits}</span>
+          {switchStats('wits')}
         </div>
       </>
     );
   };
 
   const createStatus = () => {
+    const switchStatus = status => {
+      if ((editTarget.name === 'health' || editTarget.name === 'spirit' || editTarget.name === 'supply') &&
+        editTarget.name === status) {
+        return (
+          <>
+            <button type="button" className="active dec">
+              <i className="fas fa-long-arrow-alt-down active"></i>
+            </button>
+            <button type="button" className="active inc">
+              <i className="fas fa-long-arrow-alt-up active"></i>
+            </button>
+          </>
+        );
+      }
+    };
     return (
       <>
-        <div className="status-container health width-1-3">
+        <div className="status-container health width-1-3" onClick={
+          e => {
+            if (editTarget.name !== 'health') {
+              setEditTarget({
+                name: 'health',
+                content: props.selectedChar.health
+              });
+            } else {
+              if (!Object.values(e.target.classList).includes('active')) {
+                setEditTarget({
+                  name: '',
+                  content: ''
+                });
+              }
+            }
+          }
+        }>
           <span className="label">Health</span>
           <span className="content">{`${signDisplay(props.selectedChar.health)}${props.selectedChar.health}`}</span>
+          {switchStatus('health')}
         </div>
-        <div className="status-container spirit width-1-3">
+        <div className="status-container spirit width-1-3" onClick={
+          e => {
+            if (editTarget.name !== 'spirit') {
+              setEditTarget({
+                name: 'spirit',
+                content: props.selectedChar.spirit
+              });
+            } else {
+              if (!Object.values(e.target.classList).includes('active')) {
+                setEditTarget({
+                  name: '',
+                  content: ''
+                });
+              }
+            }
+          }
+        }>
           <span className="label">Spirit</span>
           <span className="content">{`${signDisplay(props.selectedChar.spirit)}${props.selectedChar.spirit}`}</span>
+          {switchStatus('spirit')}
         </div>
-        <div className="status-container supply width-1-3">
+        <div className="status-container supply width-1-3" onClick={
+          e => {
+            if (editTarget.name !== 'supply') {
+              setEditTarget({
+                name: 'supply',
+                content: props.selectedChar.supply
+              });
+            } else {
+              if (!Object.values(e.target.classList).includes('active')) {
+                setEditTarget({
+                  name: '',
+                  content: ''
+                });
+              }
+            }
+          }
+        }>
           <span className="label">Supply</span>
           <span className="content">{`${signDisplay(props.selectedChar.supply)}${props.selectedChar.supply}`}</span>
+          {switchStatus('supply')}
         </div>
       </>
     );
   };
 
   const createMomentum = () => {
+    const switchMomentum = momentum => {
+      if ((editTarget.name === 'momentum' || editTarget.name === 'maxMomentum' ||
+        editTarget.name === 'resetMomentum') && editTarget.name === momentum) {
+        return (
+          <>
+            <button type="button" className="active dec">
+              <i className="fas fa-long-arrow-alt-down active"></i>
+            </button>
+            <button type="button" className="active inc">
+              <i className="fas fa-long-arrow-alt-up active"></i>
+            </button>
+          </>
+        );
+      }
+    };
     return (
       <>
-        <div className="momentum-container momentum width-3-5">
+        <div className="momentum-container momentum width-1-3" onClick={
+          e => {
+            if (editTarget.name !== 'momentum') {
+              setEditTarget({
+                name: 'momentum',
+                content: props.selectedChar.momentum
+              });
+            } else {
+              if (!Object.values(e.target.classList).includes('active')) {
+                setEditTarget({
+                  name: '',
+                  content: ''
+                });
+              }
+            }
+          }
+        }>
           <span className="label">Momentum</span>
-          <span className="content">+10</span>
+          <span className="content">{`${signDisplay(props.selectedChar.momentum)}${props.selectedChar.momentum}`}</span>
+          {switchMomentum('momentum')}
         </div>
-        <div className="momentum-container max width-1-5">
+        <div className="momentum-container max width-1-3" onClick={
+          e => {
+            if (editTarget.name !== 'maxMomentum') {
+              setEditTarget({
+                name: 'maxMomentum',
+                content: props.selectedChar.maxMomentum
+              });
+            } else {
+              if (!Object.values(e.target.classList).includes('active')) {
+                setEditTarget({
+                  name: '',
+                  content: ''
+                });
+              }
+            }
+          }
+        }>
           <span className="label">Max</span>
-          <span className="content">+10</span>
+          <span className="content">{`${signDisplay(props.selectedChar.maxMomentum)}${props.selectedChar.maxMomentum}`}</span>
+          {switchMomentum('maxMomentum')}
         </div>
-        <div className="momentum-container reset width-1-5">
+        <div className="momentum-container reset width-1-3" onClick={
+          e => {
+            if (editTarget.name !== 'resetMomentum') {
+              setEditTarget({
+                name: 'resetMomentum',
+                content: props.selectedChar.resetMomentum
+              });
+            } else {
+              if (!Object.values(e.target.classList).includes('active')) {
+                setEditTarget({
+                  name: '',
+                  content: ''
+                });
+              }
+            }
+          }
+        }>
           <span className="label">Reset</span>
-          <span className="content">+10</span>
+          <span className="content">{`${signDisplay(props.selectedChar.resetMomentum)}${props.selectedChar.resetMomentum}`}</span>
+          {switchMomentum('resetMomentum')}
         </div>
       </>
     );
