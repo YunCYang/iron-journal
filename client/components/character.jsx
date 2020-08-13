@@ -1,7 +1,13 @@
 import React from 'react';
 import AssetModal from './assetModal';
+import { IdContext } from './app';
+import { CharacterContext } from './main';
+import deepCopy from '../tools/deepCopy';
 
 const Character = props => {
+  const id = React.useContext(IdContext);
+  const charList = React.useContext(CharacterContext);
+
   const [editTarget, setEditTarget] = React.useState({
     name: '',
     content: null
@@ -80,6 +86,48 @@ const Character = props => {
     }
   };
 
+  const editData = (charKey, charValue) => {
+    if (parseInt(id.id) === 0 && parseInt(sessionStorage.getItem('id')) === 0) {
+      const sessionCharList = (Array.isArray(JSON.parse(sessionStorage.getItem('character')))) || [];
+      let newCharList = [];
+      if (sessionCharList.length > 0) {
+        if (charList.characterList) {
+          if (charList.characterList.length === 0) newCharList = deepCopy(sessionCharList);
+          else newCharList = deepCopy(charList.characterList);
+        } else newCharList = deepCopy(sessionCharList);
+      } else if (charList.characterList) newCharList = deepCopy(charList.characterList);
+      newCharList[props.charListIndex][charKey] = charValue;
+      charList.setCharacterList(newCharList);
+      sessionStorage.setItem('character', JSON.stringify(newCharList));
+      const tempChar = deepCopy(props.selectedChar);
+      tempChar[charKey] = charValue;
+      props.setSelectedChar(tempChar);
+      setEditTarget({
+        name: '',
+        content: null
+      });
+    } else {
+      const newChar = {};
+      newChar[charKey] = charValue;
+      const tempChar = deepCopy(props.selectedChar);
+      tempChar[charKey] = charValue;
+      const characterInit = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newChar)
+      };
+      fetch(`/api/character/${props.selectedChar.characterId}`, characterInit)
+        .then(res => res.json())
+        .then(editRes => {
+          props.setSelectedChar(tempChar);
+          setEditTarget({
+            name: '',
+            content: null
+          });
+        });
+    }
+  };
+
   const createName = () => {
     const switchName = () => {
       if (editTarget.name === 'name') {
@@ -94,7 +142,9 @@ const Character = props => {
                   });
                 }
               } value={editTarget.content}/>
-            <i className='fas fa-check-circle' ></i>
+            <i className='fas fa-check-circle' onClick={
+              () => editData('characterName', editTarget.content)
+            }></i>
             <i className='fas fa-times-circle' onClick={
               () => {
                 setEditTarget({

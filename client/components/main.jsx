@@ -166,7 +166,8 @@ const Main = props => {
       return (
         <>
           <Character selectedChar={selectedChar} charListIndex={charListIndex}
-            returnGamePage={returnGamePage}/>
+            returnGamePage={returnGamePage} setCharacterList={setCharacterList}
+            setSelectedChar={setSelectedChar}/>
         </>
       );
     } else return null;
