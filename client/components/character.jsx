@@ -31,7 +31,6 @@ const Character = props => {
 
   const signDisplay = num => {
     if (num > 0) return '+';
-    else if (num < 0) return '-';
     else return '';
   };
 
@@ -102,11 +101,20 @@ const Character = props => {
       const tempChar = deepCopy(props.selectedChar);
       tempChar[charKey] = charValue;
       props.setSelectedChar(tempChar);
-      setEditTarget({
-        name: '',
-        content: null
-      });
+      if (charKey === 'experience' || charKey === 'edge' || charKey === 'heart' ||
+        charKey === 'iron' || charKey === 'shadow' || charKey === 'wits') {
+        setEditTarget({
+          name: charKey,
+          content: charValue
+        });
+      } else {
+        setEditTarget({
+          name: '',
+          content: null
+        });
+      }
     } else {
+      // console.log(charValue);
       const newChar = {};
       newChar[charKey] = charValue;
       const tempChar = deepCopy(props.selectedChar);
@@ -120,17 +128,27 @@ const Character = props => {
         .then(res => res.json())
         .then(editRes => {
           props.setSelectedChar(tempChar);
-          setEditTarget({
-            name: '',
-            content: null
-          });
+          if (charKey === 'experience' || charKey === 'edge' || charKey === 'heart' ||
+            charKey === 'iron' || charKey === 'shadow' || charKey === 'wits' ||
+            charKey === 'health' || charKey === 'spirit' || charKey === 'supply' ||
+            charKey === 'momentum' || charKey === 'maxMomentum' || charKey === 'resetMomentum') {
+            setEditTarget({
+              name: charKey,
+              content: charValue
+            });
+          } else {
+            setEditTarget({
+              name: '',
+              content: null
+            });
+          }
         });
     }
   };
 
   const createName = () => {
     const switchName = () => {
-      if (editTarget.name === 'name') {
+      if (editTarget.name === 'characterName') {
         return (
           <>
             <input type="text" name="characterInput__name" id="characterInput__name"
@@ -166,9 +184,9 @@ const Character = props => {
     return (
       <div className="name-container" onClick={
         () => {
-          if (editTarget.name !== 'name') {
+          if (editTarget.name !== 'characterName') {
             setEditTarget({
-              name: 'name',
+              name: 'characterName',
               content: props.selectedChar.characterName
             });
           }
@@ -181,14 +199,26 @@ const Character = props => {
 
   const createExp = () => {
     const switchExp = () => {
-      if (editTarget.name === 'exp') {
+      if (editTarget.name === 'experience') {
         return (
           <>
-            <button type="button" className="active dec">
-              <i className="fas fa-long-arrow-alt-down active"></i>
+            <button type="button" className="active dec" onClick={
+              () => {
+                if (parseInt(editTarget.content) >= 1) {
+                  editData('experience', parseInt(editTarget.content) - 1);
+                }
+              }
+            }>
+              <i className="fas fa-long-arrow-alt-down active" ></i>
             </button>
-            <button type="button" className="active inc">
-              <i className="fas fa-long-arrow-alt-up active"></i>
+            <button type="button" className="active inc" onClick={
+              () => {
+                if (parseInt(editTarget.content) <= 29) {
+                  editData('experience', parseInt(editTarget.content) + 1);
+                }
+              }
+            }>
+              <i className="fas fa-long-arrow-alt-up active" ></i>
             </button>
           </>
         );
@@ -197,9 +227,9 @@ const Character = props => {
     return (
       <div className="exp-container" onClick={
         e => {
-          if (editTarget.name !== 'exp') {
+          if (editTarget.name !== 'experience') {
             setEditTarget({
-              name: 'exp',
+              name: 'experience',
               content: props.selectedChar.experience
             });
           } else {
@@ -225,10 +255,22 @@ const Character = props => {
         editTarget.name === 'shadow' || editTarget.name === 'wits') && editTarget.name === stat) {
         return (
           <>
-            <button type="button" className="active dec">
+            <button type="button" className="active dec" onClick={
+              () => {
+                if (parseInt(editTarget.content) >= 2) {
+                  editData(editTarget.name, parseInt(editTarget.content) - 1);
+                }
+              }
+            }>
               <i className="fas fa-long-arrow-alt-down active"></i>
             </button>
-            <button type="button" className="active inc">
+            <button type="button" className="active inc" onClick={
+              () => {
+                if (parseInt(editTarget.content) <= 4) {
+                  editData(editTarget.name, parseInt(editTarget.content) + 1);
+                }
+              }
+            }>
               <i className="fas fa-long-arrow-alt-up active"></i>
             </button>
           </>
@@ -352,10 +394,22 @@ const Character = props => {
         editTarget.name === status) {
         return (
           <>
-            <button type="button" className="active dec">
+            <button type="button" className="active dec" onClick={
+              () => {
+                if (parseInt(editTarget.content) >= 1) {
+                  editData(editTarget.name, parseInt(editTarget.content) - 1);
+                }
+              }
+            }>
               <i className="fas fa-long-arrow-alt-down active"></i>
             </button>
-            <button type="button" className="active inc">
+            <button type="button" className="active inc" onClick={
+              () => {
+                if (parseInt(editTarget.content) <= 4) {
+                  editData(editTarget.name, parseInt(editTarget.content) + 1);
+                }
+              }
+            }>
               <i className="fas fa-long-arrow-alt-up active"></i>
             </button>
           </>
@@ -437,10 +491,22 @@ const Character = props => {
         editTarget.name === 'resetMomentum') && editTarget.name === momentum) {
         return (
           <>
-            <button type="button" className="active dec">
+            <button type="button" className="active dec" onClick={
+              () => {
+                if (parseInt(editTarget.content) >= -5) {
+                  editData(editTarget.name, parseInt(editTarget.content) - 1);
+                }
+              }
+            }>
               <i className="fas fa-long-arrow-alt-down active"></i>
             </button>
-            <button type="button" className="active inc">
+            <button type="button" className="active inc" onClick={
+              () => {
+                if (parseInt(editTarget.content) <= 9) {
+                  editData(editTarget.name, parseInt(editTarget.content) + 1);
+                }
+              }
+            }>
               <i className="fas fa-long-arrow-alt-up active"></i>
             </button>
           </>

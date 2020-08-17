@@ -309,19 +309,19 @@ app.get('/api/character/all/:userId', (req, res, next) => {
 // create character
 app.post('/api/character', (req, res, next) => {
   if (!req.body.characterName && req.body.characterName !== '') next(new ClientError('missing character name', 400));
-  else if (!req.body.stat_edge) next(new ClientError('missing stat - edge', 400));
-  else if (!req.body.stat_heart) next(new ClientError('missing stat - heart', 400));
-  else if (!req.body.stat_iron) next(new ClientError('missing stat - iron', 400));
-  else if (!req.body.stat_shadow) next(new ClientError('missing stat - shadow', 400));
-  else if (!req.body.stat_wits) next(new ClientError('missing stat - wits', 400));
+  else if (!req.body.edge) next(new ClientError('missing stat - edge', 400));
+  else if (!req.body.heart) next(new ClientError('missing stat - heart', 400));
+  else if (!req.body.iron) next(new ClientError('missing stat - iron', 400));
+  else if (!req.body.shadow) next(new ClientError('missing stat - shadow', 400));
+  else if (!req.body.wits) next(new ClientError('missing stat - wits', 400));
   else if (!req.body.location && req.body.location !== '') next(new ClientError('missing location', 400));
   else if (!req.body.bond && req.body.bond !== 0) next(new ClientError('missing bond', 400));
   else if (!req.body.userId) next(new ClientError('missing user id', 400));
-  intTest(req.body.stat_edge, next);
-  intTest(req.body.stat_heart, next);
-  intTest(req.body.stat_iron, next);
-  intTest(req.body.stat_shadow, next);
-  intTest(req.body.stat_wits, next);
+  intTest(req.body.edge, next);
+  intTest(req.body.heart, next);
+  intTest(req.body.iron, next);
+  intTest(req.body.shadow, next);
+  intTest(req.body.wits, next);
   intTest(req.body.bond, next);
   intTest(req.body.userId, next);
   const createCharacterSql = `
@@ -334,9 +334,9 @@ app.post('/api/character', (req, res, next) => {
     insert into "userCharacter" ("userId", "characterId")
     values ($1, $2);
   `;
-  const createCharacterValue = [req.body.characterName, parseInt(req.body.stat_edge),
-    parseInt(req.body.stat_heart), parseInt(req.body.stat_iron), parseInt(req.body.stat_shadow),
-    parseInt(req.body.stat_wits), parseInt(req.body.bond), req.body.location];
+  const createCharacterValue = [req.body.characterName, parseInt(req.body.edge),
+    parseInt(req.body.heart), parseInt(req.body.iron), parseInt(req.body.shadow),
+    parseInt(req.body.wits), parseInt(req.body.bond), req.body.location];
   db.query(createCharacterSql, createCharacterValue)
     .then(createResult => {
       const setUserCharacterValue = [req.body.userId, createResult.rows[0].characterId];
@@ -361,63 +361,63 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(nameSql, nameValue)
       .then(nameResult => res.status(200).json(nameResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.stat_edge) {
-    intTest(req.body.stat_edge, next);
+  } else if (req.body.edge) {
+    intTest(req.body.edge, next);
     const edgeSql = `
       update "character"
          set "edge" = $1
        where "characterId" = $2
       returning "edge";
     `;
-    const edgeValue = [parseInt(req.body.stat_edge), parseInt(req.params.characterId)];
+    const edgeValue = [parseInt(req.body.edge), parseInt(req.params.characterId)];
     db.query(edgeSql, edgeValue)
       .then(edgeResult => res.status(200).json(edgeResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.stat_heart) {
-    intTest(req.body.stat_heart, next);
+  } else if (req.body.heart) {
+    intTest(req.body.heart, next);
     const heartSql = `
       update "character"
          set "heart" = $1
        where "characterId" = $2
       returning "heart";
     `;
-    const heartValue = [parseInt(req.body.stat_heart), parseInt(req.params.characterId)];
+    const heartValue = [parseInt(req.body.heart), parseInt(req.params.characterId)];
     db.query(heartSql, heartValue)
       .then(heartResult => res.status(200).json(heartResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.stat_iron) {
-    intTest(req.body.stat_iron, next);
+  } else if (req.body.iron) {
+    intTest(req.body.iron, next);
     const ironSql = `
       update "character"
          set "iron" = $1
        where "characterId" = $2
       returning "iron";
     `;
-    const ironValue = [parseInt(req.body.stat_iron), parseInt(req.params.characterId)];
+    const ironValue = [parseInt(req.body.iron), parseInt(req.params.characterId)];
     db.query(ironSql, ironValue)
       .then(ironResult => res.status(200).json(ironResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.stat_shadow) {
-    intTest(req.body.stat_shadow, next);
+  } else if (req.body.shadow) {
+    intTest(req.body.shadow, next);
     const shadowSql = `
       update "character"
          set "shadow" = $1
        where "characterId" = $2
       returning "shadow";
     `;
-    const shadowValue = [parseInt(req.body.stat_shadow), parseInt(req.params.characterId)];
+    const shadowValue = [parseInt(req.body.shadow), parseInt(req.params.characterId)];
     db.query(shadowSql, shadowValue)
       .then(shadowResult => res.status(200).json(shadowResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.stat_wits) {
-    intTest(req.body.stat_wits, next);
+  } else if (req.body.wits) {
+    intTest(req.body.wits, next);
     const witsSql = `
       update "character"
          set "wits" = $1
        where "characterId" = $2
       returning "wits";
     `;
-    const witsValue = [parseInt(req.body.stat_wits), parseInt(req.params.characterId)];
+    const witsValue = [parseInt(req.body.wits), parseInt(req.params.characterId)];
     db.query(witsSql, witsValue)
       .then(witsResult => res.status(200).json(witsResult.rows[0]))
       .catch(err => next(err));
@@ -444,15 +444,15 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(bondSql, bondValue)
       .then(bondResult => res.status(200).json(bondResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.exp || req.body.exp === 0) {
-    intTest(req.body.exp, next);
+  } else if (req.body.experience || req.body.experience === 0) {
+    intTest(req.body.experience, next);
     const expSql = `
       update "character"
          set "experience" = $1
        where "characterId" = $2
       returning "experience";
     `;
-    const expValue = [parseInt(req.body.exp), parseInt(req.params.characterId)];
+    const expValue = [parseInt(req.body.experience), parseInt(req.params.characterId)];
     db.query(expSql, expValue)
       .then(expResult => res.status(200).json(expResult.rows[0]))
       .catch(err => next(err));
@@ -493,7 +493,7 @@ app.put('/api/character/:characterId', (req, res, next) => {
       .then(supplyResult => res.status(200).json(supplyResult.rows[0]))
       .catch(err => next(err));
   } else if (req.body.momentum || req.body.momentum === 0) {
-    intTest(req.body.momentum, next);
+    // intTest(req.body.momentum, next);
     const momentumSql = `
       update "character"
          set "momentum" = $1
@@ -504,27 +504,27 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(momentumSql, momentumValue)
       .then(momentumResult => res.status(200).json(momentumResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.maxMo || req.body.maxMo === 0) {
-    intTest(req.body.maxMo, next);
+  } else if (req.body.maxMomentum || req.body.maxMomentum === 0) {
+    // intTest(req.body.maxMomentum, next);
     const maxMoSql = `
       update "character"
          set "maxMomentum" = $1
        where "characterId" = $2
       returning "maxMomentum";
     `;
-    const maxMoValue = [parseInt(req.body.maxMo), parseInt(req.params.characterId)];
+    const maxMoValue = [parseInt(req.body.maxMomentum), parseInt(req.params.characterId)];
     db.query(maxMoSql, maxMoValue)
       .then(maxMoResult => res.status(200).json(maxMoResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.resetMo || req.body.resetMo === 0) {
-    intTest(req.body.resetMo, next);
+  } else if (req.body.resetMomentum || req.body.resetMomentum === 0) {
+    // intTest(req.body.resetMomenmtum, next);
     const resetMoSql = `
       update "character"
          set "resetMomentum" = $1
        where "characterId" = $2
       returning "resetMomentum";
     `;
-    const resetMoValue = [parseInt(req.body.resetMo), parseInt(req.params.characterId)];
+    const resetMoValue = [parseInt(req.body.resetMomentum), parseInt(req.params.characterId)];
     db.query(resetMoSql, resetMoValue)
       .then(resetMoResult => res.status(200).json(resetMoResult.rows[0]))
       .catch(err => next(err));

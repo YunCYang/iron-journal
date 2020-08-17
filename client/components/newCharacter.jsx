@@ -266,11 +266,11 @@ const NewCharacter = props => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             characterName: nameState,
-            stat_edge: statState.edge,
-            stat_heart: statState.heart,
-            stat_iron: statState.iron,
-            stat_shadow: statState.shadow,
-            stat_wits: statState.wits,
+            edge: statState.edge,
+            heart: statState.heart,
+            iron: statState.iron,
+            shadow: statState.shadow,
+            wits: statState.wits,
             bond: bondCount(),
             location: locationState,
             userId: parseInt(id.id)
