@@ -28,7 +28,7 @@ const NewCharacter = props => {
     vow2Name: '',
     vow2Rank: 0
   });
-  const [locationState, setLocationState] = React.useState('');
+  // const [locationState, setLocationState] = React.useState('loc');
   const [assetState, setAssetState] = React.useState({
     asset1: {
       name: '',
@@ -143,11 +143,10 @@ const NewCharacter = props => {
     const inputCharName = document.getElementById('input-characterName');
     const inputVowName1 = document.getElementById('input-vowName1');
     const inputVowName2 = document.getElementById('input-vowName2');
-    const inputLocName = document.getElementById('input-locationName');
+    // const inputLocName = document.getElementById('input-locationName');
     if (inputCharName.checkValidity() && inputVowName1.checkValidity() &&
       (rankEdgeCheck() && rankHeartCheck() && rankIronCheck() && rankShadowCheck() && rankWitsCheck()) &&
-      inputVowName2.checkValidity() && vow1Check() && vow2Check() && inputLocName.checkValidity() &&
-      assetCheck()) {
+      inputVowName2.checkValidity() && vow1Check() && vow2Check() && assetCheck()) {
       return true;
     } else {
       return false;
@@ -158,7 +157,7 @@ const NewCharacter = props => {
     const inputCharName = document.getElementById('input-characterName');
     const inputVow1Name = document.getElementById('input-vowName1');
     const inputVow2Name = document.getElementById('input-vowName2');
-    const inputLocName = document.getElementById('input-locationName');
+    // const inputLocName = document.getElementById('input-locationName');
     const emptyCharName = document.getElementById('character-feedback__empty');
     const emptyVow1Name = document.getElementById('vowName1-feedback__empty');
     const emptyVow2Name = document.getElementById('vowName2-feedback__empty');
@@ -169,7 +168,7 @@ const NewCharacter = props => {
     const emptyStatsWits = document.getElementById('statsWits-feedback__empty');
     const emptyVow1Rank = document.getElementById('vowRank1-feedback__empty');
     const emptyVow2Rank = document.getElementById('vowRank2-feedback__empty');
-    const emptyLocName = document.getElementById('location-feedback__empty');
+    // const emptyLocName = document.getElementById('location-feedback__empty');
     const emptyAsset = document.getElementById('asset-feedback__empty');
     if (validateInput()) {
       const bondCount = () => {
@@ -225,7 +224,7 @@ const NewCharacter = props => {
           corrupted: false,
           cursed: false,
           tormented: false,
-          location: locationState,
+          location: 'loc',
           assets: [
             {
               assetName: assetState.asset1.name,
@@ -272,7 +271,7 @@ const NewCharacter = props => {
             shadow: statState.shadow,
             wits: statState.wits,
             bond: bondCount(),
-            location: locationState,
+            location: 'loc',
             userId: parseInt(id.id)
           })
         };
@@ -295,8 +294,8 @@ const NewCharacter = props => {
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
                 characterId: characterRes,
-                vowName: vowState.vow1Name,
-                vowRank: vowState.vow1Rank,
+                vowName: vowState.vow2Name,
+                vowRank: vowState.vow2Rank,
                 vowProgress: 0,
                 vowStatus: false
               })
@@ -354,7 +353,7 @@ const NewCharacter = props => {
       if (!inputCharName.checkValidity()) emptyCharName.classList.remove('hide');
       if (!inputVow1Name.checkValidity()) emptyVow1Name.classList.remove('hide');
       if (!inputVow2Name.checkValidity()) emptyVow2Name.classList.remove('hide');
-      if (!inputLocName.checkValidity()) emptyLocName.classList.remove('hide');
+      // if (!inputLocName.checkValidity()) emptyLocName.classList.remove('hide');
       if (!rankEdgeCheck()) emptyStatsEdge.classList.remove('hide');
       if (!rankHeartCheck()) emptyStatsHeart.classList.remove('hide');
       if (!rankIronCheck()) emptyStatsIron.classList.remove('hide');
@@ -992,31 +991,6 @@ const NewCharacter = props => {
               </div>
             </div>
             <div className="divider"></div>
-            <div className="location">
-              <div className="location-title subtitle">
-                <span>Location</span>
-              </div>
-              <div className="location-input__container input__container">
-                <div className="location-input__container__name">
-                  <div className="input__container__left">
-                    <span>Loc Name</span>
-                  </div>
-                  <div className="input__container__right">
-                    <input type="text" name="locationName" id="input-locationName" required
-                      onChange={
-                        e => {
-                          setLocationState(e.target.value);
-                          inputFeedbackHandler('location-feedback__empty', 'input-locationName');
-                        }
-                      } value={locationState}/>
-                    <div className="newGame__feedback">
-                      <span id='location-feedback__empty' className="empty hide">Location is required.</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="divider"></div>
             <div className="asset">
               <div className="asset-title subtitle">
                 <span>Asset</span>
@@ -1051,3 +1025,31 @@ const NewCharacter = props => {
 };
 
 export default NewCharacter;
+
+/*
+<div className="divider"></div>
+  <div className="location">
+    <div className="location-title subtitle">
+      <span>Location</span>
+    </div>
+    <div className="location-input__container input__container">
+      <div className="location-input__container__name">
+        <div className="input__container__left">
+          <span>Loc Name</span>
+        </div>
+        <div className="input__container__right">
+          <input type="text" name="locationName" id="input-locationName" required
+            onChange={
+              e => {
+                setLocationState(e.target.value);
+                inputFeedbackHandler('location-feedback__empty', 'input-locationName');
+              }
+            } value={locationState} />
+          <div className="newGame__feedback">
+            <span id='location-feedback__empty' className="empty hide">Location is required.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  */

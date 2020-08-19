@@ -1452,17 +1452,17 @@ div.landing-action__signUpLink .right {
 .main-page .main-container__character__debilities .score {
   flex-direction: column;
 }
-.main-page .main-container__character__debilities .radio-container {
+.main-page .main-container__character__debilities .cb-container {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
-.main-page .main-container__character__debilities .radio-container input {
+.main-page .main-container__character__debilities .cb-container input {
   width: 0;
   height: 0;
   margin: 0;
 }
-.main-page .main-container__character__debilities .radio-container label {
+.main-page .main-container__character__debilities .cb-container label {
   font-size: 12px;
   width: 80px;
   height: 30px;
@@ -1476,7 +1476,7 @@ div.landing-action__signUpLink .right {
   z-index: 1;
   border: 1px solid #80ffc4;
 }
-.main-page .main-container__character__debilities .radio-container label::before {
+.main-page .main-container__character__debilities .cb-container label::before {
   background-image: linear-gradient(298deg, #00ff88, #46838b);
   content: "";
   width: 100%;
@@ -1488,12 +1488,12 @@ div.landing-action__signUpLink .right {
   border-radius: 4px;
   transition: all 300ms linear;
 }
-.main-page .main-container__character__debilities .radio-container input:checked + label {
+.main-page .main-container__character__debilities .cb-container input:checked + label {
   background-color: transparent;
   color: #f0fff8;
   font-weight: 500;
 }
-.main-page .main-container__character__debilities .radio-container input:not(:checked) + label::before {
+.main-page .main-container__character__debilities .cb-container input:not(:checked) + label::before {
   opacity: 0;
 }
 .main-page .main-container__character__actions {

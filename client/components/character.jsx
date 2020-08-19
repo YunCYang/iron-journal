@@ -583,6 +583,21 @@ const Character = props => {
   };
 
   const createBonds = () => {
+    // props.selectedChar.bond
+    // console.log(props.selectedChar.bond);
+    const bondDisplay = seq => parseInt(props.selectedChar.bond) >= seq ? '' : 'hide';
+    const bondSwitch = seq => {
+      if (Math.ceil(parseInt(props.selectedChar.bond) / 4) === seq) {
+        if (Math.ceil(parseInt(props.selectedChar.bond) / 4) * 4 > parseInt(props.selectedChar.bond)) {
+          editData('bond', parseInt(props.selectedChar.bond) + 1);
+        } else {
+          editData('bond', parseInt(props.selectedChar.bond) - 4);
+        }
+      } else if (Math.ceil(parseInt(props.selectedChar.bond) / 4) === seq - 1 &&
+        parseInt(props.selectedChar.bond) % 4 === 0) {
+        editData('bond', parseInt(props.selectedChar.bond) + 1);
+      }
+    };
     return (
       <>
         <div className="bonds-container title width-1-34">
@@ -594,71 +609,91 @@ const Character = props => {
         </div>
         <div className="bonds-container score width-1-3">
           <span className="label">Score</span>
-          <span className="score">10</span>
+          <span className="score">{Math.floor(parseInt(props.selectedChar.bond) / 4)}</span>
         </div>
         <div className="bonds-container counter">
           <div className="counter-container height-3-4 width-1-1">
-            <div className="counter-block">
-              <div className="counter-block__square square-1"></div>
-              <div className="counter-block__square square-2"></div>
-              <div className="counter-block__square square-3"></div>
-              <div className="counter-block__square square-4"></div>
+            <div className="counter-block" onClick={
+              () => bondSwitch(1)
+            }>
+              <div className={`counter-block__square square-1 ${bondDisplay(1)}`}></div>
+              <div className={`counter-block__square square-2 ${bondDisplay(2)}`}></div>
+              <div className={`counter-block__square square-3 ${bondDisplay(3)}`}></div>
+              <div className={`counter-block__square square-4 ${bondDisplay(4)}`}></div>
             </div>
-            <div className="counter-block">
-              <div className="counter-block__square square-1"></div>
-              <div className="counter-block__square square-2"></div>
-              <div className="counter-block__square square-3"></div>
-              <div className="counter-block__square square-4"></div>
+            <div className="counter-block" onClick={
+              () => bondSwitch(2)
+            }>
+              <div className={`counter-block__square square-1 ${bondDisplay(5)}`}></div>
+              <div className={`counter-block__square square-2 ${bondDisplay(6)}`}></div>
+              <div className={`counter-block__square square-3 ${bondDisplay(7)}`}></div>
+              <div className={`counter-block__square square-4 ${bondDisplay(8)}`}></div>
             </div>
-            <div className="counter-block">
-              <div className="counter-block__square square-1"></div>
-              <div className="counter-block__square square-2"></div>
-              <div className="counter-block__square square-3"></div>
-              <div className="counter-block__square square-4"></div>
+            <div className="counter-block" onClick={
+              () => bondSwitch(3)
+            }>
+              <div className={`counter-block__square square-1 ${bondDisplay(9)}`}></div>
+              <div className={`counter-block__square square-2 ${bondDisplay(10)}`}></div>
+              <div className={`counter-block__square square-3 ${bondDisplay(11)}`}></div>
+              <div className={`counter-block__square square-4 ${bondDisplay(12)}`}></div>
             </div>
-            <div className="counter-block">
-              <div className="counter-block__square square-1"></div>
-              <div className="counter-block__square square-2"></div>
-              <div className="counter-block__square square-3"></div>
-              <div className="counter-block__square square-4"></div>
+            <div className="counter-block" onClick={
+              () => bondSwitch(4)
+            }>
+              <div className={`counter-block__square square-1 ${bondDisplay(13)}`}></div>
+              <div className={`counter-block__square square-2 ${bondDisplay(14)}`}></div>
+              <div className={`counter-block__square square-3 ${bondDisplay(15)}`}></div>
+              <div className={`counter-block__square square-4 ${bondDisplay(16)}`}></div>
             </div>
-            <div className="counter-block">
-              <div className="counter-block__square square-1"></div>
-              <div className="counter-block__square square-2"></div>
-              <div className="counter-block__square square-3"></div>
-              <div className="counter-block__square square-4"></div>
+            <div className="counter-block" onClick={
+              () => bondSwitch(5)
+            }>
+              <div className={`counter-block__square square-1 ${bondDisplay(17)}`}></div>
+              <div className={`counter-block__square square-2 ${bondDisplay(18)}`}></div>
+              <div className={`counter-block__square square-3 ${bondDisplay(19)}`}></div>
+              <div className={`counter-block__square square-4 ${bondDisplay(20)}`}></div>
             </div>
           </div>
           <div className="counter-container height-3-4 width-1-1">
-            <div className="counter-block">
-              <div className="counter-block__square square-1"></div>
-              <div className="counter-block__square square-2"></div>
-              <div className="counter-block__square square-3"></div>
-              <div className="counter-block__square square-4"></div>
+            <div className="counter-block" onClick={
+              () => bondSwitch(6)
+            }>
+              <div className={`counter-block__square square-1 ${bondDisplay(21)}`}></div>
+              <div className={`counter-block__square square-2 ${bondDisplay(22)}`}></div>
+              <div className={`counter-block__square square-3 ${bondDisplay(23)}`}></div>
+              <div className={`counter-block__square square-4 ${bondDisplay(24)}`}></div>
             </div>
-            <div className="counter-block">
-              <div className="counter-block__square square-1"></div>
-              <div className="counter-block__square square-2"></div>
-              <div className="counter-block__square square-3"></div>
-              <div className="counter-block__square square-4"></div>
+            <div className="counter-block" onClick={
+              () => bondSwitch(7)
+            }>
+              <div className={`counter-block__square square-1 ${bondDisplay(25)}`}></div>
+              <div className={`counter-block__square square-2 ${bondDisplay(26)}`}></div>
+              <div className={`counter-block__square square-3 ${bondDisplay(27)}`}></div>
+              <div className={`counter-block__square square-4 ${bondDisplay(28)}`}></div>
             </div>
-            <div className="counter-block">
-              <div className="counter-block__square square-1"></div>
-              <div className="counter-block__square square-2"></div>
-              <div className="counter-block__square square-3"></div>
-              <div className="counter-block__square square-4"></div>
+            <div className="counter-block" onClick={
+              () => bondSwitch(8)
+            }>
+              <div className={`counter-block__square square-1 ${bondDisplay(29)}`}></div>
+              <div className={`counter-block__square square-2 ${bondDisplay(30)}`}></div>
+              <div className={`counter-block__square square-3 ${bondDisplay(31)}`}></div>
+              <div className={`counter-block__square square-4 ${bondDisplay(32)}`}></div>
             </div>
-            <div className="counter-block">
-              <div className="counter-block__square square-1"></div>
-              <div className="counter-block__square square-2"></div>
-              <div className="counter-block__square square-3"></div>
-              <div className="counter-block__square square-4"></div>
+            <div className="counter-block" onClick={
+              () => bondSwitch(9)
+            }>
+              <div className={`counter-block__square square-1 ${bondDisplay(33)}`}></div>
+              <div className={`counter-block__square square-2 ${bondDisplay(34)}`}></div>
+              <div className={`counter-block__square square-3 ${bondDisplay(35)}`}></div>
+              <div className={`counter-block__square square-4 ${bondDisplay(36)}`}></div>
             </div>
-            <div className="counter-block">
-              <div className="counter-block__square square-1"></div>
-              <div className="counter-block__square square-2"></div>
-              <div className="counter-block__square square-3"></div>
-              <div className="counter-block__square square-4"></div>
+            <div className="counter-block" onClick={
+              () => bondSwitch(10)
+            }>
+              <div className={`counter-block__square square-1 ${bondDisplay(37)}`}></div>
+              <div className={`counter-block__square square-2 ${bondDisplay(38)}`}></div>
+              <div className={`counter-block__square square-3 ${bondDisplay(39)}`}></div>
+              <div className={`counter-block__square square-4 ${bondDisplay(40)}`}></div>
             </div>
           </div>
         </div>
@@ -1055,6 +1090,15 @@ const Character = props => {
   };
 
   const createDebilities = () => {
+    const debList = ['wounded', 'shaken', 'unprepared', 'encumbered', 'maimed',
+      'corrupted', 'cursed', 'tormented'];
+    const debCount = () => {
+      let count = 0;
+      for (const deb of debList) {
+        if (props.selectedChar[deb]) count++;
+      }
+      return count;
+    };
     return (
       <>
         <div className="debilities-container title width-1-3">
@@ -1066,31 +1110,39 @@ const Character = props => {
         </div>
         <div className="debilities-container score width-1-3">
           <span className="label">Count</span>
-          <span className="score">0 / 8</span>
+          <span className="score">{`${debCount()} / 8`}</span>
         </div>
         <div className="debilities-container__conditions">
           <div className="debilities-container__conditions title-s height-3-4 width-1-1">
             <span>Conditions</span>
           </div>
-          <div className="radio-container height-double width-1-1">
-            <input className="radio-conditions__wounded" type="radio" name="radio-conditions__wounded"
-              id="radio-conditions__wounded" />
-            <label className="label-conditions__wounded" htmlFor="radio-conditions__wounded">
+          <div className="cb-container height-double width-1-1">
+            <input className="cb-conditions__wounded" type="checkbox" name="cb-conditions__wounded"
+              id="cb-conditions__wounded" checked={props.selectedChar.wounded} onChange={
+                () => editData('wounded', !props.selectedChar.wounded)
+              }/>
+            <label className="label-conditions__wounded" htmlFor="cb-conditions__wounded">
               <span>Wounded</span>
             </label>
-            <input className="radio-conditions__shaken" type="radio" name="radio-conditions__shaken"
-              id="radio-conditions__shaken" />
-            <label className="label-conditions__shaken" htmlFor="radio-conditions__shaken">
+            <input className="cb-conditions__shaken" type="checkbox" name="cb-conditions__shaken"
+              id="cb-conditions__shaken" checked={props.selectedChar.shaken} onChange={
+                () => editData('shaken', !props.selectedChar.shaken)
+              }/>
+            <label className="label-conditions__shaken" htmlFor="cb-conditions__shaken">
               <span>Shaken</span>
             </label>
-            <input className="radio-conditions__unprepared" type="radio" name="radio-conditions__unprepared"
-              id="radio-conditions__unprepared" />
-            <label className="label-conditions__unprepared" htmlFor="radio-conditions__unprepared">
+            <input className="cb-conditions__unprepared" type="checkbox" name="cb-conditions__unprepared"
+              id="cb-conditions__unprepared" checked={props.selectedChar.unprepared} onChange={
+                () => editData('unprepared', !props.selectedChar.unprepared)
+              }/>
+            <label className="label-conditions__unprepared" htmlFor="cb-conditions__unprepared">
               <span>Unprepared</span>
             </label>
-            <input className="radio-conditions__encumbered" type="radio" name="radio-conditions__encumbered"
-              id="radio-conditions__encumbered" />
-            <label className="label-conditions__encumbered" htmlFor="radio-conditions__encumbered">
+            <input className="cb-conditions__encumbered" type="checkbox" name="cb-conditions__encumbered"
+              id="cb-conditions__encumbered" checked={props.selectedChar.encumbered} onChange={
+                () => editData('encumbered', !props.selectedChar.encumbered)
+              }/>
+            <label className="label-conditions__encumbered" htmlFor="cb-conditions__encumbered">
               <span>Encumbered</span>
             </label>
           </div>
@@ -1099,15 +1151,19 @@ const Character = props => {
           <div className="debilities-container__banes title-s height-3-4 width-1-1">
             <span>Banes</span>
           </div>
-          <div className="radio-container height-single width-1-1">
-            <input className="radio-banes__maimed" type="radio" name="radio-banes__maimed"
-              id="radio-banes__maimed" />
-            <label className="label-banes__maimed" htmlFor="radio-banes__maimed">
+          <div className="cb-container height-single width-1-1">
+            <input className="cb-banes__maimed" type="checkbox" name="cb-banes__maimed"
+              id="cb-banes__maimed" checked={props.selectedChar.maimed} onChange={
+                () => editData('maimed', !props.selectedChar.maimed)
+              }/>
+            <label className="label-banes__maimed" htmlFor="cb-banes__maimed">
               <span>Maimed</span>
             </label>
-            <input className="radio-banes__corrupted" type="radio" name="radio-banes__corrupted"
-              id="radio-banes__corrupted" />
-            <label className="label-banes__corrupted" htmlFor="radio-banes__corrupted">
+            <input className="cb-banes__corrupted" type="checkbox" name="cb-banes__corrupted"
+              id="cb-banes__corrupted" checked={props.selectedChar.corrupted} onChange={
+                () => editData('corrupted', !props.selectedChar.corrupted)
+              }/>
+            <label className="label-banes__corrupted" htmlFor="cb-banes__corrupted">
               <span>Corrupted</span>
             </label>
           </div>
@@ -1116,15 +1172,19 @@ const Character = props => {
           <div className="debilities-container__burdens title-s height-3-4 width-1-1">
             <span>Burdens</span>
           </div>
-          <div className="radio-container height-single width-1-1">
-            <input className="radio-burdens__cursed" type="radio" name="radio-burdens__cursed"
-              id="radio-burdens__cursed" />
-            <label className="label-burdens__cursed" htmlFor="radio-burdens__cursed">
+          <div className="cb-container height-single width-1-1">
+            <input className="cb-burdens__cursed" type="checkbox" name="cb-burdens__cursed"
+              id="cb-burdens__cursed" checked={props.selectedChar.cursed} onChange={
+                () => editData('cursed', !props.selectedChar.cursed)
+              }/>
+            <label className="label-burdens__cursed" htmlFor="cb-burdens__cursed">
               <span>Cursed</span>
             </label>
-            <input className="radio-burdens__tormented" type="radio" name="radio-burdens__tormented"
-              id="radio-burdens__tormented" />
-            <label className="label-burdens__tormented" htmlFor="radio-burdens__tormented">
+            <input className="cb-burdens__tormented" type="checkbox" name="cb-burdens__tormented"
+              id="cb-burdens__tormented" checked={props.selectedChar.tormented} onChange={
+                () => editData('tormented', !props.selectedChar.tormented)
+              }/>
+            <label className="label-burdens__tormented" htmlFor="cb-burdens__tormented">
               <span>Tormented</span>
             </label>
           </div>
@@ -1132,6 +1192,8 @@ const Character = props => {
       </>
     );
   };
+
+  const createAsset = () => null;
 
   return (
     <>
@@ -1159,6 +1221,9 @@ const Character = props => {
         </div>
         <div className="main-container__character__debilities height-single">
           {createDebilities()}
+        </div>
+        <div className="main-container__character__assets height-single">
+          {createAsset()}
         </div>
         <div className="main-container__character__actions width-1-1">
           <div className="main-container__character__actions__back height-single-half width-1-4">
