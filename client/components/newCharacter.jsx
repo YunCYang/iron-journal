@@ -420,7 +420,7 @@ const NewCharacter = props => {
                   </div>
                   <div className="input__container__right">
                     <input type="text" name="characterName" id="input-characterName" required
-                      onChange={
+                      maxLength={32} onChange={
                         e => {
                           setNameState(e.target.value);
                           inputFeedbackHandler('character-feedback__empty', 'input-characterName');
@@ -728,7 +728,7 @@ const NewCharacter = props => {
                   </div>
                   <div className="input__container__right">
                     <input type="text" name="bondName1" id="input-bondName1"
-                      onChange={
+                      maxLength={32} onChange={
                         e => {
                           setBondState({
                             ...bondState,
@@ -744,7 +744,7 @@ const NewCharacter = props => {
                   </div>
                   <div className="input__container__right">
                     <input type="text" name="bondName2" id="input-bondName2"
-                      onChange={
+                      maxLength={32} onChange={
                         e => {
                           setBondState({
                             ...bondState,
@@ -760,7 +760,7 @@ const NewCharacter = props => {
                   </div>
                   <div className="input__container__right">
                     <input type="text" name="bondName3" id="input-bondName3"
-                      onChange={
+                      maxLength={32} onChange={
                         e => {
                           setBondState({
                             ...bondState,
@@ -784,7 +784,7 @@ const NewCharacter = props => {
                   </div>
                   <div className="input__container__right">
                     <input type="text" name="vowName1" id="input-vowName1" required
-                      onChange={
+                      maxLength={32} onChange={
                         e => {
                           setVowState({
                             ...vowState,
@@ -889,7 +889,7 @@ const NewCharacter = props => {
                   </div>
                   <div className="input__container__right">
                     <input type="text" name="vowName2" id="input-vowName2" required
-                      onChange={
+                      maxLength={32} onChange={
                         e => {
                           setVowState({
                             ...vowState,
@@ -1039,7 +1039,7 @@ export default NewCharacter;
         </div>
         <div className="input__container__right">
           <input type="text" name="locationName" id="input-locationName" required
-            onChange={
+            maxLength={32} onChange={
               e => {
                 setLocationState(e.target.value);
                 inputFeedbackHandler('location-feedback__empty', 'input-locationName');

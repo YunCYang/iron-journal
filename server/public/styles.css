@@ -1170,13 +1170,15 @@ div.landing-action__signUpLink .right {
   height: 80px;
 }
 .main-page .main-container__character .height-vows-container {
-  height: 635px;
+  height: 829px;
+}
+.main-page .main-container__character .height-vows-single {
+  height: 151px;
 }
 .main-page .main-container__character .height-deb-container {
   height: 290px;
 }
 .main-page .main-container__character > div {
-  overflow-y: hidden;
   margin: 8px;
   display: flex;
   justify-content: center;
@@ -1367,7 +1369,7 @@ div.landing-action__signUpLink .right {
   bottom: 4%;
   right: 4%;
 }
-.main-page .main-container__character__vows {
+.main-page .main-container__character__vows.hide-overflow {
   overflow: hidden;
 }
 .main-page .main-container__character__vows .title {
@@ -1431,6 +1433,125 @@ div.landing-action__signUpLink .right {
 .main-page .main-container__character__vows .vow .counter-block .square-4 {
   bottom: 5%;
   right: 4%;
+}
+.main-page .main-container__character__vows .vow .action {
+  height: 36px;
+}
+.main-page .main-container__character__vows .vow .action button {
+  border: none;
+  color: #f0fff8;
+  background-color: #972b21;
+  border-top: solid 2px #b43327;
+  border-bottom: solid 2px #79231b;
+  font-size: 12px;
+}
+.main-page .main-container__character__vows .vow .action button:focus {
+  outline: none;
+  border-top: solid 1px #b43327;
+  border-bottom: solid 1px #79231b;
+}
+.main-page .main-container__character__vows .vow .new {
+  border: 2px dashed gray;
+  display: flex;
+  align-items: center;
+  color: gray;
+  cursor: pointer;
+}
+.main-page .main-container__character__vows .vow .new i,
+.main-page .main-container__character__vows .vow .new span {
+  margin: 0 0 0 8px;
+}
+.main-page .main-container__character__vows .vow .new:hover {
+  color: #559caa;
+  border-color: #559caa;
+}
+.main-page .main-container__character__vows .vow .new_2 {
+  border: 2px dashed gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  color: gray;
+  cursor: pointer;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__name i,
+.main-page .main-container__character__vows .vow .new_2 .input__name span {
+  margin: 0 0 0 8px;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__name input {
+  width: 116px;
+  border: none;
+  background-color: #f7f7f7;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 2px #bfbfbf, 0 2px 0 #dedede;
+  height: 28px;
+  padding: 0 44px 0 4px;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__name input.empty {
+  border: solid 2px #b43327;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__rank {
+  border: solid 1px #bfbfbf;
+  width: 116px;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__rank__container {
+  height: 24px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__rank__container .rank__dropdown {
+  position: absolute;
+  border: solid 1px #bfbfbf;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #f0fff8;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__rank__container .rank__dropdown:nth-child(2) {
+  top: 24px;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__rank__container .rank__dropdown:nth-child(3) {
+  top: 48px;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__rank__container .rank__dropdown:nth-child(4) {
+  top: 72px;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__rank__container .rank__dropdown:nth-child(5) {
+  top: 96px;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__confirm {
+  width: 116px;
+  display: flex;
+  justify-content: space-between;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__confirm button {
+  border: none;
+  font-size: 12px;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__confirm button:focus {
+  outline: none;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__confirm button.vowButton__create {
+  color: #f0fff8;
+  background-color: #008044;
+  border-top: solid 2px #00bd65;
+  border-bottom: solid 2px #004726;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__confirm button.vowButton__create:focus {
+  border-top: solid 1px #00bd65;
+  border-bottom: solid 1px #004726;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__confirm button.vowButton__cancel {
+  color: #f0fff8;
+  background-color: #972b21;
+  border-top: solid 2px #b43327;
+  border-bottom: solid 2px #79231b;
+}
+.main-page .main-container__character__vows .vow .new_2 .input__confirm button.vowButton__cancel:focus {
+  border-top: solid 1px #b43327;
+  border-bottom: solid 1px #79231b;
 }
 .main-page .main-container__character__debilities {
   overflow: hidden;

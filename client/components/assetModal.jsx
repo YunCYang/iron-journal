@@ -127,7 +127,7 @@ const AssetModal = props => {
         <div className={`detail-uniqueName ${hiddenDisplay(assetDetail[0].uniqueName.show)}`}>
           <input type="text" name="detail-uniqueName__input" id="detail-uniqueName__input"
             placeholder={`Enter ${assetDetail[0].uniqueName.detail}.`} required
-            value={uniqueNameState} onChange={
+            value={uniqueNameState} maxLength={32} onChange={
               e => {
                 setUniquNameState(e.target.value);
                 if (document.getElementById('detail-uniqueName__input').checkValidity()) document.getElementById('uniqueName-feedback__empty').classList.add('hide');
@@ -527,9 +527,54 @@ const AssetModal = props => {
                     headers: { 'Content-Type': 'application/json' }
                   };
                   fetch(`/api/character/${props.characterId}`, deleteCharInit)
-                    .then(res => {
-                      props.returnGamePage();
-                    });
+                    .then(res => props.returnGamePage());
+                }
+              }
+            }>Delete</button>
+            <button className="cancel" onClick={
+              () => props.setModalShown(false)
+            }>Cancel</button>
+          </div>
+        </div>
+      );
+    } else if (props.modalType === 'deleteVow') {
+      return (
+        <div className="modal-container delete">
+          <div className="modal-header"></div>
+          <div className="modal-body">
+            <i className="fas fa-fire-alt"></i>
+            <span>{`Delete ${props.deleteVow.name}?`}</span>
+          </div>
+          <div className="modal-action">
+            <button className="delete" onClick={
+              () => {
+                if (parseInt(id.id) === 0 && parseInt(sessionStorage.getItem('id')) === 0) {
+                  const sessionCharList = (Array.isArray(JSON.parse(sessionStorage.getItem('character')))) || [];
+                  let newCharList = [];
+                  if (sessionCharList.length > 0) {
+                    if (charList.characterList) {
+                      if (charList.characterList.length === 0) newCharList = deepCopy(sessionCharList);
+                      else newCharList = deepCopy(charList.characterList);
+                    } else newCharList = deepCopy(sessionCharList);
+                  } else if (charList.characterList) newCharList = deepCopy(charList.characterList);
+                  newCharList[props.deleteVow.charIndex].vows.splice(props.deleteVow.index, 1);
+                  charList.setCharacterList(newCharList);
+                  sessionStorage.setItem('character', JSON.stringify(newCharList));
+                  // const tempChar = deepCopy(props.selectedChar);
+                  // tempChar.vows.splice(props.deleteVow.index, 1);
+                  // props.setSelectedChar(tempChar);
+                  // props.setEditTarget({
+                  //   name: '',
+                  //   content: null
+                  // });
+                  props.setModalShown(false);
+                } else {
+                  const deleteVowInit = {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' }
+                  };
+                  fetch(`/api/vow/vow/${props.deleteVow.id}`, deleteVowInit)
+                    .then(res => props.setModalShown(false));
                 }
               }
             }>Delete</button>
