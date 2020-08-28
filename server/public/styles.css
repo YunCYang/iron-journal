@@ -1004,12 +1004,12 @@ div.landing-action__signUpLink .right {
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.active:first-child, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__block.active:first-child {
   border-width: 2px;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.inactivate, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__block.inactivate {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.inactive, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__block.inactive {
   border-style: solid;
   border-width: 2px 2px 2px 0;
   border-color: #bfbfbf;
 }
-.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.inactivate span, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__block.inactivate span {
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.inactive span, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__block.inactive span {
   color: #bfbfbf;
 }
 .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option ul {
@@ -1179,10 +1179,12 @@ div.landing-action__signUpLink .right {
   height: 290px;
 }
 .main-page .main-container__character > div {
-  margin: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.main-page .main-container__character__name, .main-page .main-container__character__exp, .main-page .main-container__character__status, .main-page .main-container__character__momentum, .main-page .main-container__character__bonds, .main-page .main-container__character__vows, .main-page .main-container__character__debilities, .main-page .main-container__character__assets, .main-page .main-container__character__actions {
+  margin: 8px;
 }
 .main-page .main-container__character__name {
   font-size: 20px;
@@ -1312,7 +1314,7 @@ div.landing-action__signUpLink .right {
   bottom: 0;
   color: #008044;
 }
-.main-page .main-container__character__bonds, .main-page .main-container__character__vows, .main-page .main-container__character__debilities {
+.main-page .main-container__character__bonds, .main-page .main-container__character__vows, .main-page .main-container__character__debilities, .main-page .main-container__character__assets {
   display: flex;
   flex-wrap: wrap;
 }
@@ -1616,6 +1618,39 @@ div.landing-action__signUpLink .right {
 }
 .main-page .main-container__character__debilities .cb-container input:not(:checked) + label::before {
   opacity: 0;
+}
+.main-page .main-container__character__assets.hide-overflow {
+  overflow: hidden;
+}
+.main-page .main-container__character__assets .title {
+  font-size: 18px;
+}
+.main-page .main-container__character__assets > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-page .main-container__character__assets .score {
+  flex-direction: column;
+}
+.main-page .main-container__character__assets .asset {
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.main-page .main-container__character__assets .asset > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-page .main-container__character__assets .asset .detail-health__container {
+  width: 178px;
+  display: flex;
+}
+.main-page .main-container__character__assets .asset .detail-health__block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 29px;
 }
 .main-page .main-container__character__actions {
   display: flex;

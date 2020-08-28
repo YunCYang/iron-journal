@@ -1,5 +1,4 @@
 import React from 'react';
-// import AssetModal from './assetModal';
 import { IdContext } from './app';
 import { CharacterContext } from './main';
 import deepCopy from '../tools/deepCopy';
@@ -19,15 +18,30 @@ const CharacterVow = props => {
 
   React.useEffect(
     () => {
+      const abortController = new AbortController();
+      const signal = abortController.signal;
       if (parseInt(id.id) === 0 && parseInt(sessionStorage.getItem('id')) === 0) {
         setCharacterVow(props.selectedChar.vows);
       } else {
-        fetch(`/api/vow/all/${props.selectedChar.characterId}`)
+        fetch(`/api/vow/all/${props.selectedChar.characterId}`, {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+          signal: signal
+        })
           .then(res => res.json())
           .then(res => {
             setCharacterVow(res);
+          })
+          .catch(err => {
+            if (err.name === 'AbortError') {
+              // console.error('Automatically cancelled requests.');
+              return null;
+            }
           });
       }
+      return function cleanUp() {
+        abortController.abort();
+      };
     }
   );
 

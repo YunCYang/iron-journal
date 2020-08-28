@@ -1,6 +1,7 @@
 import React from 'react';
 import AssetModal from './assetModal';
 import CharacterVow from './characterVow';
+// import CharacterAsset from './characterAsset';
 import { IdContext } from './app';
 import { CharacterContext } from './main';
 import deepCopy from '../tools/deepCopy';
@@ -803,9 +804,13 @@ const Character = props => {
     );
   };
 
-  const createAsset = () => {
-    return null;
-  };
+  // const createAsset = () => {
+  //   return (
+  //     <>
+  //       <CharacterAsset selectedChar={props.selectedChar}/>
+  //     </>
+  //   );
+  // };
 
   return (
     <>
@@ -834,23 +839,15 @@ const Character = props => {
         <div className="main-container__character__debilities height-single">
           {createDebilities()}
         </div>
-        <div className="main-container__character__assets height-single">
-          {createAsset()}
-        </div>
         <div className="main-container__character__actions width-1-1">
-          <div className="main-container__character__actions__back height-single-half width-1-4">
+          <div className="main-container__character__actions__back height-single-half width-2-4"
+            onClick={
+              () => props.returnGamePage()
+            }>
             <i className="fas fa-long-arrow-alt-left"></i>
             <span className="label">Back</span>
           </div>
-          <div className="main-container__character__actions__roll height-single-half width-1-4">
-            <i className="fas fa-dice-d6"></i>
-            <span className="label">Roll</span>
-          </div>
-          <div className="main-container__character__actions__save height-single-half width-1-4">
-            <i className="fas fa-save"></i>
-            <span className="label">Save</span>
-          </div>
-          <div className="main-container__character__actions__delete height-single-half width-1-4"
+          <div className="main-container__character__actions__delete height-single-half width-2-4"
             onClick={
               () => {
                 setModalShown({

@@ -1115,7 +1115,7 @@ div.landing
                       &.active:first-child
                         border-width: 2px
 
-                      &.inactivate
+                      &.inactive
                         border-style: solid
                         border-width: 2px 2px 2px 0
                         border-color: $color-grey_300
@@ -1277,11 +1277,21 @@ div.landing
         height: 290px
 
       >div
-        // overflow-y: hidden
-        margin: 8px
+        // margin: 8px
         display: flex
         justify-content: center
         align-items: center
+
+      &__name,
+      &__exp,
+      &__status,
+      &__momentum,
+      &__bonds,
+      &__vows,
+      &__debilities,
+      &__assets,
+      &__actions
+        margin: 8px
 
       &__name
         font-size: 20px
@@ -1419,7 +1429,8 @@ div.landing
 
       &__bonds,
       &__vows,
-      &__debilities
+      &__debilities,
+      &__assets
         display: flex
         flex-wrap: wrap
 
@@ -1477,7 +1488,6 @@ div.landing
               right: 4%
 
       &__vows
-        // overflow: hidden
         &.hide-overflow
           overflow: hidden
 
@@ -1743,6 +1753,44 @@ div.landing
 
           input:not(:checked) + label::before
             opacity: 0
+
+      &__assets
+        &.hide-overflow
+          overflow: hidden
+
+        .title
+          font-size: 18px
+
+        >div
+          display: flex
+          justify-content: center
+          align-items: center
+
+        .score
+          flex-direction: column
+
+        .asset
+          flex-wrap: wrap
+          margin-top: 4px
+
+          // &:first-child
+          //   margin-top: 16px
+
+          >div
+            display: flex
+            justify-content: center
+            align-items: center
+
+          .detail-health
+            &__container
+              width: 178px
+              display: flex
+
+            &__block
+              display: flex
+              justify-content: center
+              align-items: center
+              width: 29px
 
       &__actions
         display: flex

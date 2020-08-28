@@ -8,7 +8,7 @@ const AssetModal = props => {
   const [newAssetState, setNewAssetState] = React.useState('type');
   const [selectedType, setSelectedType] = React.useState('');
   const [selectedAsset, setSelectedAsset] = React.useState('');
-  const [uniqueNameState, setUniquNameState] = React.useState('');
+  // const [uniqueNameState, setUniquNameState] = React.useState('');
   const [optionState, setOptionState] = React.useState(0);
 
   const id = React.useContext(IdContext);
@@ -33,7 +33,7 @@ const AssetModal = props => {
         document.getElementsByClassName('modal-body__detail')[0].scrollTop = 0;
       } else if (document.getElementsByClassName('modal-body__list')[0]) {
         document.getElementsByClassName('modal-body__list')[0].scrollTop = 0;
-        setUniquNameState('');
+        // setUniquNameState('');
         setOptionState(0);
       }
     }, [newAssetState]
@@ -41,7 +41,7 @@ const AssetModal = props => {
 
   React.useEffect(
     () => {
-      setUniquNameState(props.activeAsset.uniqueName);
+      // setUniquNameState(props.activeAsset.uniqueName);
       setOptionState(props.activeAsset.option);
     }, [props.activeAsset.index]
   );
@@ -102,7 +102,7 @@ const AssetModal = props => {
     const hiddenDisplay = shown => shown ? '' : 'hide';
     const healthDisplay = (display, health) => {
       if (display <= health) return 'active';
-      else return 'inactivate';
+      else return 'inactive';
     };
     const defaultCheck = index => {
       if (assetDetail[0].default) {
@@ -124,12 +124,12 @@ const AssetModal = props => {
         <div className={`detail-text ${hiddenDisplay(assetDetail[0].text)}`}>
           <span>{assetDetail[0].text}</span>
         </div>
-        <div className={`detail-uniqueName ${hiddenDisplay(assetDetail[0].uniqueName.show)}`}>
+        <div className={`detail-uniqueName ${hiddenDisplay(/* assetDetail[0].uniqueName.show */false)}`}>
           <input type="text" name="detail-uniqueName__input" id="detail-uniqueName__input"
             placeholder={`Enter ${assetDetail[0].uniqueName.detail}.`} required
-            value={uniqueNameState} maxLength={32} onChange={
+            value={''} maxLength={32} onChange={
               e => {
-                setUniquNameState(e.target.value);
+                // setUniquNameState(e.target.value);
                 if (document.getElementById('detail-uniqueName__input').checkValidity()) document.getElementById('uniqueName-feedback__empty').classList.add('hide');
                 else document.getElementById('uniqueName-feedback__empty').classList.remove('hide');
               }
@@ -282,7 +282,8 @@ const AssetModal = props => {
           ...props.assetState,
           asset1: {
             name: assetDetail[0].name,
-            uniqueName: uniqueNameState,
+            // uniqueName: uniqueNameState,
+            uniqueName: '',
             option: optionState,
             health: assetHealthLookUp(assetDetail[0].name),
             index: 1
@@ -293,7 +294,8 @@ const AssetModal = props => {
           ...props.assetState,
           asset2: {
             name: assetDetail[0].name,
-            uniqueName: uniqueNameState,
+            // uniqueName: uniqueNameState,
+            uniqueName: '',
             option: optionState,
             health: assetHealthLookUp(assetDetail[0].name),
             index: 2
@@ -304,7 +306,8 @@ const AssetModal = props => {
           ...props.assetState,
           asset3: {
             name: assetDetail[0].name,
-            uniqueName: uniqueNameState,
+            // uniqueName: uniqueNameState,
+            uniqueName: '',
             option: optionState,
             health: assetHealthLookUp(assetDetail[0].name),
             index: 3
@@ -431,7 +434,7 @@ const AssetModal = props => {
           <div className="modal-action">
             <button className="delete" onClick={
               () => {
-                setUniquNameState('');
+                // setUniquNameState('');
                 setOptionState(0);
                 if (props.activeAsset.index === 1) {
                   props.setAssetState({
