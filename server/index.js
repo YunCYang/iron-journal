@@ -278,7 +278,7 @@ app.put('/api/auth/password', (req, res, next) => {
 });
 
 // get character
-app.get('/api/character/:characterId', (req, res, next) => {
+app.get('/api/character/character/:characterId', (req, res, next) => {
   intTest(req.params.characterId, next);
   const sql = `
     select *
@@ -292,12 +292,12 @@ app.get('/api/character/:characterId', (req, res, next) => {
 });
 
 // get all characters
-app.get('/api/character/:userId', (req, res, next) => {
+app.get('/api/character/all/:userId', (req, res, next) => {
   intTest(req.params.userId, next);
   const sql = `
     select *
       from "character" c
-      left join "userCharacter" u on c."characterId" = u."charaterId"
+      left join "userCharacter" u on c."characterId" = u."characterId"
      where "userId" = $1;
   `;
   const value = [parseInt(req.params.userId)];
@@ -308,84 +308,40 @@ app.get('/api/character/:userId', (req, res, next) => {
 
 // create character
 app.post('/api/character', (req, res, next) => {
-  if (!req.body.characterName) next(new ClientError('missing character name', 400));
-  else if (!req.body.stat_edge) next(new ClientError('missing stat - edge', 400));
-  else if (!req.body.stat_heart) next(new ClientError('missing stat - heart', 400));
-  else if (!req.body.stat_iron) next(new ClientError('missing stat - iron', 400));
-  else if (!req.body.stat_shadow) next(new ClientError('missing stat - shadow', 400));
-  else if (!req.body.stat_wits) next(new ClientError('missing stat - wits', 400));
-  else if (!req.body.asset_1) next(new ClientError('missing first asset', 400));
-  else if (!req.body.asset_2) next(new ClientError('missing second asset', 400));
-  else if (!req.body.asset_3) next(new ClientError('missing third asset', 400));
-  else if (!req.body.location) next(new ClientError('missing location', 400));
+  if (!req.body.characterName && req.body.characterName !== '') next(new ClientError('missing character name', 400));
+  else if (!req.body.edge) next(new ClientError('missing stat - edge', 400));
+  else if (!req.body.heart) next(new ClientError('missing stat - heart', 400));
+  else if (!req.body.iron) next(new ClientError('missing stat - iron', 400));
+  else if (!req.body.shadow) next(new ClientError('missing stat - shadow', 400));
+  else if (!req.body.wits) next(new ClientError('missing stat - wits', 400));
+  else if (!req.body.location && req.body.location !== '') next(new ClientError('missing location', 400));
+  else if (!req.body.bond && req.body.bond !== 0) next(new ClientError('missing bond', 400));
   else if (!req.body.userId) next(new ClientError('missing user id', 400));
-  intTest(req.body.stat_edge, next);
-  intTest(req.body.stat_heart, next);
-  intTest(req.body.stat_iron, next);
-  intTest(req.body.stat_shadow, next);
-  intTest(req.body.stat_wits, next);
+  intTest(req.body.edge, next);
+  intTest(req.body.heart, next);
+  intTest(req.body.iron, next);
+  intTest(req.body.shadow, next);
+  intTest(req.body.wits, next);
+  intTest(req.body.bond, next);
   intTest(req.body.userId, next);
   const createCharacterSql = `
-    insert into "character" ("characterName", "asset", "location")
-    values ($1, ARRAY [$2, $3, $4], $5)
+    insert into "character" ("characterName", "edge", "heart", "iron", "shadow",
+      "wits", "bond", "location")
+    values ($1, $2, $3, $4, $5, $6, $7, $8)
     returning "characterId";
   `;
   const setUserCharacterSql = `
     insert into "userCharacter" ("userId", "characterId")
     values ($1, $2);
   `;
-  const updateStatSql = `
-    update "character"
-       set "stat" = ARRAY [$1::integer, $2::integer, $3::integer, $4::integer, $5::integer]
-     where "characterId" = $6;
-  `;
-  const updateBond1Sql = `
-    update "character"
-       set "bond" = ARRAY [$1]
-     where "characterId" = $2;
-  `;
-  const updateBond2Sql = `
-    update "character"
-       set "bond" = ARRAY [$1, $2]
-     where "characterId" = $3;
-  `;
-  const updateBond3Sql = `
-    update "character"
-       set "bond" = ARRAY [$1, $2, $3]
-     where "characterId" = $4;
-  `;
-  const createCharacterValue = [req.body.characterName, req.body.asset_1,
-    req.body.asset_2, req.body.asset_3, req.body.location];
+  const createCharacterValue = [req.body.characterName, parseInt(req.body.edge),
+    parseInt(req.body.heart), parseInt(req.body.iron), parseInt(req.body.shadow),
+    parseInt(req.body.wits), parseInt(req.body.bond), req.body.location];
   db.query(createCharacterSql, createCharacterValue)
     .then(createResult => {
-      const updateStatValue = [parseInt(req.body.stat_edge), parseInt(req.body.stat_heart),
-        parseInt(req.body.stat_iron), parseInt(req.body.stat_shadow), parseInt(req.body.stat_wits),
-        createResult.rows[0].characterId];
-      const updateBond1Value = [req.body.bond_1, createResult.rows[0].characterId];
-      const updateBond2Value = [req.body.bond_1, req.body.bond_2, createResult.rows[0].characterId];
-      const updateBond3Value = [req.body.bond_1, req.body.bond_2, req.body.bond_3,
-        createResult.rows[0].characterId];
       const setUserCharacterValue = [req.body.userId, createResult.rows[0].characterId];
       db.query(setUserCharacterSql, setUserCharacterValue)
-        .then(setUCResult => {
-          db.query(updateStatSql, updateStatValue)
-            .then(statResult => {
-              if (req.body.bond_3) {
-                db.query(updateBond3Sql, updateBond3Value)
-                  .then(bondResult => res.status(201).json(createResult.rows[0].characterId))
-                  .catch(err => next(err));
-              } else if (req.body.bond_2) {
-                db.query(updateBond2Sql, updateBond2Value)
-                  .then(bondResult => res.status(201).json(createResult.rows[0].characterId))
-                  .catch(err => next(err));
-              } else if (req.body.bond_1) {
-                db.query(updateBond1Sql, updateBond1Value)
-                  .then(bondResult => res.status(201).json(createResult.rows[0].characterId))
-                  .catch(err => next(err));
-              } else res.status(201).json(createResult.rows[0].characterId);
-            })
-            .catch(err => next(err));
-        })
+        .then(setUCResult => res.status(201).json(createResult.rows[0].characterId))
         .catch(err => next(err));
     })
     .catch(err => next(err));
@@ -405,148 +361,65 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(nameSql, nameValue)
       .then(nameResult => res.status(200).json(nameResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.stat_edge) {
+  } else if (req.body.edge) {
+    intTest(req.body.edge, next);
     const edgeSql = `
       update "character"
-         set "stat" [1] = $1
+         set "edge" = $1
        where "characterId" = $2
-      returning "stat" [1];
+      returning "edge";
     `;
-    const edgeValue = [req.body.stat_edge, parseInt(req.params.characterId)];
+    const edgeValue = [parseInt(req.body.edge), parseInt(req.params.characterId)];
     db.query(edgeSql, edgeValue)
       .then(edgeResult => res.status(200).json(edgeResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.stat_heart) {
+  } else if (req.body.heart) {
+    intTest(req.body.heart, next);
     const heartSql = `
       update "character"
-         set "stat" [2] = $1
+         set "heart" = $1
        where "characterId" = $2
-      returning "stat" [2];
+      returning "heart";
     `;
-    const heartValue = [req.body.stat_heart, parseInt(req.params.characterId)];
+    const heartValue = [parseInt(req.body.heart), parseInt(req.params.characterId)];
     db.query(heartSql, heartValue)
       .then(heartResult => res.status(200).json(heartResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.stat_iron) {
+  } else if (req.body.iron) {
+    intTest(req.body.iron, next);
     const ironSql = `
       update "character"
-         set "stat" [3] = $1
+         set "iron" = $1
        where "characterId" = $2
-      returning "stat" [3];
+      returning "iron";
     `;
-    const ironValue = [req.body.stat_iron, parseInt(req.params.characterId)];
+    const ironValue = [parseInt(req.body.iron), parseInt(req.params.characterId)];
     db.query(ironSql, ironValue)
       .then(ironResult => res.status(200).json(ironResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.stat_shadow) {
+  } else if (req.body.shadow) {
+    intTest(req.body.shadow, next);
     const shadowSql = `
       update "character"
-         set "stat" [4] = $1
+         set "shadow" = $1
        where "characterId" = $2
-      returning "stat" [4];
+      returning "shadow";
     `;
-    const shadowValue = [req.body.stat_shadow, parseInt(req.params.characterId)];
+    const shadowValue = [parseInt(req.body.shadow), parseInt(req.params.characterId)];
     db.query(shadowSql, shadowValue)
       .then(shadowResult => res.status(200).json(shadowResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.stat_wits) {
+  } else if (req.body.wits) {
+    intTest(req.body.wits, next);
     const witsSql = `
       update "character"
-         set "stat" [5] = $1
+         set "wits" = $1
        where "characterId" = $2
-      returning "stat" [5];
+      returning "wits";
     `;
-    const witsValue = [req.body.stat_wits, parseInt(req.params.characterId)];
+    const witsValue = [parseInt(req.body.wits), parseInt(req.params.characterId)];
     db.query(witsSql, witsValue)
       .then(witsResult => res.status(200).json(witsResult.rows[0]))
-      .catch(err => next(err));
-  } else if (req.body.asset) {
-    const checkAssetSql = `
-      select "asset"
-        from "character"
-       where $1 = ANY ("asset") and "characterId" = $2;
-    `;
-    const selectAssetSql = `
-      select "asset"
-        from "character"
-       where "characterId" = $1;
-    `;
-    const addAssetSql = `
-      update "character"
-         set "asset" = ARRAY_APPEND($1, $2::varchar(255))
-       where "characterId" = $3
-      returning "asset";
-    `;
-    const deleteAssetSql = `
-      update "character"
-         set "asset" = ARRAY_REMOVE($1, $2::varchar(255))
-       where "characterId" = $3
-      returning "asset";
-    `;
-    const checkAssetValue = [req.body.asset, parseInt(req.params.characterId)];
-    const selectAssetValue = [parseInt(req.params.characterId)];
-    db.query(checkAssetSql, checkAssetValue)
-      .then(checkAssetResult => {
-        if (!checkAssetResult.rows[0]) {
-          db.query(selectAssetSql, selectAssetValue)
-            .then(selectResult => {
-              const assetValue = [selectResult.rows[0].asset, req.body.asset, parseInt(req.params.characterId)];
-              db.query(addAssetSql, assetValue)
-                .then(addAssetResult => res.status(201).json(addAssetResult.rows[0]))
-                .catch(err => next(err));
-            })
-            .catch(err => next(err));
-        } else {
-          const assetValue = [checkAssetResult.rows[0].asset, req.body.asset, parseInt(req.params.characterId)];
-          db.query(deleteAssetSql, assetValue)
-            .then(deleteAssetResult => res.status(204).json([]))
-            .catch(err => next(err));
-        }
-      })
-      .catch(err => next(err));
-  } else if (req.body.equipment) {
-    const checkEquipmentSql = `
-      select "equipment"
-        from "character"
-       where $1 = ANY ("equipment") and "characterId" = $2;
-    `;
-    const selectEquipmentSql = `
-      select "equipment"
-        from "character"
-       where "characterId" = $1;
-    `;
-    const addEquipmentSql = `
-      update "character"
-         set "equipment" = ARRAY_APPEND($1, $2::varchar(255))
-       where "characterId" = $3
-      returning "equipment";
-    `;
-    const deleteEquipmentSql = `
-      update "character"
-         set "equipment" = ARRAY_REMOVE($1, $2::varchar(255))
-       where "characterId" = $3
-      returning "equipment";
-    `;
-    const checkEquipmentValue = [req.body.equipment, parseInt(req.params.characterId)];
-    const selectEquipmentValue = [parseInt(req.params.characterId)];
-    db.query(checkEquipmentSql, checkEquipmentValue)
-      .then(checkEquipmentResult => {
-        if (!checkEquipmentResult.rows[0]) {
-          db.query(selectEquipmentSql, selectEquipmentValue)
-            .then(selectResult => {
-              const equipmentValue = [selectResult.rows[0].equipment, req.body.equipment, parseInt(req.params.characterId)];
-              db.query(addEquipmentSql, equipmentValue)
-                .then(addEquipmentResult => res.status(201).json(addEquipmentResult.rows[0]))
-                .catch(err => next(err));
-            })
-            .catch(err => next(err));
-        } else {
-          const equipmentValue = [checkEquipmentResult.rows[0].equipment, req.body.equipment, parseInt(req.params.characterId)];
-          db.query(deleteEquipmentSql, equipmentValue)
-            .then(deleteEquipmentResult => res.status(204).json([]))
-            .catch(err => next(err));
-        }
-      })
       .catch(err => next(err));
   } else if (req.body.location) {
     const locationSql = `
@@ -559,49 +432,189 @@ app.put('/api/character/:characterId', (req, res, next) => {
     db.query(locationSql, locationValue)
       .then(locationResult => res.status(200).json(locationResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.bond) {
-    const checkBondSql = `
-      select "bond"
-        from "character"
-       where $1 = ANY ("bond") and "characterId" = $2;
-    `;
-    const selectBondSql = `
-      select "bond"
-        from "character"
-       where "characterId" = $1;
-    `;
-    const addBondSql = `
+  } else if (req.body.bond || req.body.bond === 0) {
+    intTest(req.body.bond, next);
+    const bondSql = `
       update "character"
-         set "bond" = ARRAY_APPEND($1, $2::varchar(255))
-       where "characterId" = $3
+         set "bond" = $1
+       where "characterId" = $2
       returning "bond";
     `;
-    const deleteBondSql = `
+    const bondValue = [parseInt(req.body.bond), parseInt(req.params.characterId)];
+    db.query(bondSql, bondValue)
+      .then(bondResult => res.status(200).json(bondResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.experience || req.body.experience === 0) {
+    intTest(req.body.experience, next);
+    const expSql = `
       update "character"
-         set "bond" = ARRAY_REMOVE($1, $2::varchar(255))
-       where "characterId" = $3
-      returning "bond";
+         set "experience" = $1
+       where "characterId" = $2
+      returning "experience";
     `;
-    const checkBondValue = [req.body.bond, parseInt(req.params.characterId)];
-    const selectBondValue = [parseInt(req.params.characterId)];
-    db.query(checkBondSql, checkBondValue)
-      .then(checkBondResult => {
-        if (!checkBondResult.rows[0]) {
-          db.query(selectBondSql, selectBondValue)
-            .then(selectResult => {
-              const bondValue = [selectResult.rows[0].bond, req.body.bond, parseInt(req.params.characterId)];
-              db.query(addBondSql, bondValue)
-                .then(addBondResult => res.status(201).json(addBondResult.rows[0]))
-                .catch(err => next(err));
-            })
-            .catch(err => next(err));
-        } else {
-          const bondValue = [checkBondResult.rows[0].bond, req.body.bond, parseInt(req.params.characterId)];
-          db.query(deleteBondSql, bondValue)
-            .then(deleteBondResult => res.status(204).json([]))
-            .catch(err => next(err));
-        }
-      })
+    const expValue = [parseInt(req.body.experience), parseInt(req.params.characterId)];
+    db.query(expSql, expValue)
+      .then(expResult => res.status(200).json(expResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.health || req.body.health === 0) {
+    intTest(req.body.health, next);
+    const healthSql = `
+      update "character"
+         set "health" = $1
+       where "characterId" = $2
+      returning "health";
+    `;
+    const healthValue = [parseInt(req.body.health), parseInt(req.params.characterId)];
+    db.query(healthSql, healthValue)
+      .then(healthResult => res.status(200).json(healthResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.spirit || req.body.spirit === 0) {
+    intTest(req.body.spirit, next);
+    const spiritSql = `
+      update "character"
+         set "spirit" = $1
+       where "characterId" = $2
+      returning "spirit";
+    `;
+    const spiritValue = [parseInt(req.body.spirit), parseInt(req.params.characterId)];
+    db.query(spiritSql, spiritValue)
+      .then(spiritResult => res.status(200).json(spiritResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.supply || req.body.supply === 0) {
+    intTest(req.body.supply, next);
+    const supplySql = `
+      update "character"
+         set "supply" = $1
+       where "characterId" = $2
+      returning "supply";
+    `;
+    const supplyValue = [parseInt(req.body.supply), parseInt(req.params.characterId)];
+    db.query(supplySql, supplyValue)
+      .then(supplyResult => res.status(200).json(supplyResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.momentum || req.body.momentum === 0) {
+    // intTest(req.body.momentum, next);
+    const momentumSql = `
+      update "character"
+         set "momentum" = $1
+       where "characterId" = $2
+      returning "momentum";
+    `;
+    const momentumValue = [parseInt(req.body.momentum), parseInt(req.params.characterId)];
+    db.query(momentumSql, momentumValue)
+      .then(momentumResult => res.status(200).json(momentumResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.maxMomentum || req.body.maxMomentum === 0) {
+    // intTest(req.body.maxMomentum, next);
+    const maxMoSql = `
+      update "character"
+         set "maxMomentum" = $1
+       where "characterId" = $2
+      returning "maxMomentum";
+    `;
+    const maxMoValue = [parseInt(req.body.maxMomentum), parseInt(req.params.characterId)];
+    db.query(maxMoSql, maxMoValue)
+      .then(maxMoResult => res.status(200).json(maxMoResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.resetMomentum || req.body.resetMomentum === 0) {
+    // intTest(req.body.resetMomenmtum, next);
+    const resetMoSql = `
+      update "character"
+         set "resetMomentum" = $1
+       where "characterId" = $2
+      returning "resetMomentum";
+    `;
+    const resetMoValue = [parseInt(req.body.resetMomentum), parseInt(req.params.characterId)];
+    db.query(resetMoSql, resetMoValue)
+      .then(resetMoResult => res.status(200).json(resetMoResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.wounded || req.body.wounded === false) {
+    const woundedSql = `
+      update "character"
+         set "wounded" = $1
+       where "characterId" = $2
+      returning "wounded";
+    `;
+    const woundedValue = [req.body.wounded, parseInt(req.params.characterId)];
+    db.query(woundedSql, woundedValue)
+      .then(woundedResult => res.status(200).json(woundedResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.shaken || req.body.shaken === false) {
+    const shakenSql = `
+      update "character"
+         set "shaken" = $1
+       where "characterId" = $2
+      returning "shaken";
+    `;
+    const shakenValue = [req.body.shaken, parseInt(req.params.characterId)];
+    db.query(shakenSql, shakenValue)
+      .then(shakenResult => res.status(200).json(shakenResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.unprepared || req.body.unprepared === false) {
+    const unpreparedSql = `
+      update "character"
+         set "unprepared" = $1
+       where "characterId" = $2
+      returning "unprepared";
+    `;
+    const unpreparedValue = [req.body.unprepared, parseInt(req.params.characterId)];
+    db.query(unpreparedSql, unpreparedValue)
+      .then(unpreparedResult => res.status(200).json(unpreparedResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.encumbered || req.body.encumbered === false) {
+    const encumberedSql = `
+      update "character"
+         set "encumbered" = $1
+       where "characterId" = $2
+      returning "encumbered";
+    `;
+    const encumberedValue = [req.body.encumbered, parseInt(req.params.characterId)];
+    db.query(encumberedSql, encumberedValue)
+      .then(encumberedResult => res.status(200).json(encumberedResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.maimed || req.body.maimed === false) {
+    const maimedSql = `
+      update "character"
+         set "maimed" = $1
+       where "characterId" = $2
+      returning "maimed";
+    `;
+    const maimedValue = [req.body.maimed, parseInt(req.params.characterId)];
+    db.query(maimedSql, maimedValue)
+      .then(maimedResult => res.status(200).json(maimedResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.corrupted || req.body.corrupted === false) {
+    const corruptedSql = `
+      update "character"
+         set "corrupted" = $1
+       where "characterId" = $2
+      returning "corrupted";
+    `;
+    const corruptedValue = [req.body.corrupted, parseInt(req.params.characterId)];
+    db.query(corruptedSql, corruptedValue)
+      .then(corruptedResult => res.status(200).json(corruptedResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.cursed || req.body.cursed === false) {
+    const cursedSql = `
+      update "character"
+         set "cursed" = $1
+       where "characterId" = $2
+      returning "cursed";
+    `;
+    const cursedValue = [req.body.cursed, parseInt(req.params.characterId)];
+    db.query(cursedSql, cursedValue)
+      .then(cursedResult => res.status(200).json(cursedResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.tormented || req.body.tormented === false) {
+    const tormentedSql = `
+      update "character"
+         set "tormented" = $1
+       where "characterId" = $2
+      returning "tormented";
+    `;
+    const tormentedValue = [req.body.tormented, parseInt(req.params.characterId)];
+    db.query(tormentedSql, tormentedValue)
+      .then(tormentedResult => res.status(200).json(tormentedResult.rows[0]))
       .catch(err => next(err));
   }
 });
@@ -646,8 +659,178 @@ app.delete('/api/character/:characterId', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
+// get asset
+app.get('/api/asset/asset/:assetId', (req, res, next) => {
+  intTest(req.params.assetId, next);
+  const sql = `
+    select *
+      from "asset"
+     where "assetId" = $1;
+  `;
+  const value = [parseInt(req.params.assetId)];
+  db.query(sql, value)
+    .then(result => res.status(200).json(result.rows[0]))
+    .catch(err => next(err));
+});
+
+// get all assets
+app.get('/api/asset/all/:characterId', (req, res, next) => {
+  intTest(req.params.characterId, next);
+  const sql = `
+    select *
+      from "asset" a
+      left join "characterAsset" c on a."assetId" = c."assetId"
+     where "characterId" = $1;
+  `;
+  const value = [parseInt(req.params.characterId)];
+  db.query(sql, value)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
+// create asset
+app.post('/api/asset', (req, res, next) => {
+  if (!req.body.characterId) next(new ClientError('missing character id', 400));
+  else if (!req.body.assetName) next(new ClientError('missing asset name', 400));
+  else if (!req.body.health && req.body.health !== 0) next(new ClientError('missing asset health', 400));
+  else if (!req.body.option1 && req.body.option1 !== false) next(new ClientError('missing asset option 1', 400));
+  else if (!req.body.option2 && req.body.option2 !== false) next(new ClientError('missing asset option 2', 400));
+  else if (!req.body.option3 && req.body.option3 !== false) next(new ClientError('missing asset option 3', 400));
+  intTest(req.body.characterId, next);
+  intTest(req.body.health, next);
+  if (req.body.uniqueName) {
+    const createAssetSql = `
+    insert into "asset" ("assetName", "health", "option1", "option2", "option3", "uniqueName")
+    values ($1, $2, $3, $4, $5, $6)
+    returning "assetId";
+  `;
+    const setCharacterAssetSql = `
+    insert into "characterAsset" ("characterId", "assetId")
+    values ($1, $2);
+  `;
+    const createAssetValue = [req.body.assetName, parseInt(req.body.health), req.body.option1,
+      req.body.option2, req.body.option3, req.body.uniqueName];
+    db.query(createAssetSql, createAssetValue)
+      .then(createAssetResult => {
+        const setCharacterAssetValue = [parseInt(req.body.characterId), parseInt(createAssetResult.rows[0].assetId)];
+        db.query(setCharacterAssetSql, setCharacterAssetValue)
+          .then(setCharacterAssetResult => res.status(201).json(createAssetResult.rows[0].assetId))
+          .catch(err => next(err));
+      })
+      .catch(err => next(err));
+  } else {
+    const createAssetSql = `
+    insert into "asset" ("assetName", "health", "option1", "option2", "option3")
+    values ($1, $2, $3, $4, $5)
+    returning "assetId";
+  `;
+    const setCharacterAssetSql = `
+    insert into "characterAsset" ("characterId", "assetId")
+    values ($1, $2);
+  `;
+    const createAssetValue = [req.body.assetName, parseInt(req.body.health), req.body.option1,
+      req.body.option2, req.body.option3];
+    db.query(createAssetSql, createAssetValue)
+      .then(createAssetResult => {
+        const setCharacterAssetValue = [parseInt(req.body.characterId), parseInt(createAssetResult.rows[0].assetId)];
+        db.query(setCharacterAssetSql, setCharacterAssetValue)
+          .then(setCharacterAssetResult => res.status(201).json(createAssetResult.rows[0].assetId))
+          .catch(err => next(err));
+      })
+      .catch(err => next(err));
+  }
+});
+
+// edit asset
+app.put('/api/asset/:assetId', (req, res, next) => {
+  intTest(req.params.assetId, next);
+  if (req.body.uniqueName) {
+    const nameSql = `
+      update "asset"
+         set "uniqueName" = $1
+       where "assetId" = $2
+      returning "uniqueName";
+    `;
+    const nameValue = [req.body.uniqueName, parseInt(req.params.assetId)];
+    db.query(nameSql, nameValue)
+      .then(nameResult => res.status(200).json(nameResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.health || req.body.health === 0) {
+    intTest(req.body.health, next);
+    const healthSql = `
+      update "asset"
+         set "health" = $1
+       where "assetId" = $2
+      returning "health";
+    `;
+    const healthValue = [parseInt(req.body.health), parseInt(req.params.vowId)];
+    db.query(healthSql, healthValue)
+      .then(healthResult => res.status(200).json(healthResult.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.option1 || req.body.option1 === false) {
+    const option1Sql = `
+      update "asset"
+         set "option1" = $1
+       where "assetId" = $2
+      returning "option1";
+    `;
+    const option1Value = [req.body.option1, parseInt(req.params.assetId)];
+    db.query(option1Sql, option1Value)
+      .then(option1Result => res.status(200).json(option1Result.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.option2 || req.body.option2 === false) {
+    const option2Sql = `
+      update "asset"
+         set "option2" = $1
+       where "assetId" = $2
+      returning "option2";
+    `;
+    const option2Value = [req.body.option2, parseInt(req.params.assetId)];
+    db.query(option2Sql, option2Value)
+      .then(option2Result => res.status(200).json(option2Result.rows[0]))
+      .catch(err => next(err));
+  } else if (req.body.option3 || req.body.option3 === false) {
+    const option3Sql = `
+      update "asset"
+         set "option3" = $1
+       where "assetId" = $2
+      returning "option3";
+    `;
+    const option3Value = [req.body.option3, parseInt(req.params.assetId)];
+    db.query(option3Sql, option3Value)
+      .then(option3Result => res.status(200).json(option3Result.rows[0]))
+      .catch(err => next(err));
+  }
+});
+
+// delete asset
+app.delete('/api/asset/asset/:assetId', (req, res, next) => {
+  intTest(req.params.assetId, next);
+  const getSql = `
+    select "assetId"
+      from "asset"
+     where "assetId" = $1;
+  `;
+  const deleteSql = `
+    delete from "asset"
+     where "assetId" = $1;
+  `;
+  const value = [parseInt(req.params.assetId)];
+  db.query(getSql, value)
+    .then(getResult => {
+      if (!getResult.rows[0]) next(new ClientError(`asset id ${req.params.assetId} does not exist`, 404));
+      else {
+        db.query(deleteSql, value)
+          .then(deleteResult => res.status(204).json([]))
+          .catch(err => next(err));
+      }
+    })
+    .catch(err => next(err));
+});
+
 // get vow
-app.get('/api/vow/:vowId', (req, res, next) => {
+app.get('/api/vow/vow/:vowId', (req, res, next) => {
   intTest(req.params.vowId, next);
   const sql = `
     select *
@@ -661,7 +844,7 @@ app.get('/api/vow/:vowId', (req, res, next) => {
 });
 
 // get all vows
-app.get('/api/vow/:characterId', (req, res, next) => {
+app.get('/api/vow/all/:characterId', (req, res, next) => {
   intTest(req.params.characterId, next);
   const sql = `
     select *
@@ -678,10 +861,10 @@ app.get('/api/vow/:characterId', (req, res, next) => {
 // create vow
 app.post('/api/vow', (req, res, next) => {
   if (!req.body.characterId) next(new ClientError('missing character id', 400));
-  else if (!req.body.vowName) next(new ClientError('missing vow name', 400));
-  else if (!req.body.vowRank) next(new ClientError('missing vow rank', 400));
-  else if (!req.body.vowProgress) next(new ClientError('missing vow progress', 400));
-  else if (!req.body.vowStatus) next(new ClientError('missing vow status', 400));
+  else if (!req.body.vowName && req.body.vowName !== '') next(new ClientError('missing vow name', 400));
+  else if (!req.body.vowRank && req.body.vowRank !== 0) next(new ClientError('missing vow rank', 400));
+  else if (!req.body.vowProgress && req.body.vowProgress !== 0) next(new ClientError('missing vow progress', 400));
+  else if (!req.body.vowStatus && req.body.vowStatus !== false) next(new ClientError('missing vow status', 400));
   intTest(req.body.characterId, next);
   intTest(req.body.vowRank, next);
   intTest(req.body.vowProgress, next);
@@ -709,7 +892,7 @@ app.post('/api/vow', (req, res, next) => {
 // edit vow
 app.put('/api/vow/:vowId', (req, res, next) => {
   intTest(req.params.vowId, next);
-  if (req.body.vowName) {
+  if (req.body.vowName || req.body.vowName === '') {
     const nameSql = `
       update "vow"
          set "name" = $1
@@ -720,7 +903,7 @@ app.put('/api/vow/:vowId', (req, res, next) => {
     db.query(nameSql, nameValue)
       .then(nameResult => res.status(200).json(nameResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.vowRank) {
+  } else if (req.body.vowRank || req.body.vowRank === 0) {
     intTest(req.body.vowRank, next);
     const rankSql = `
       update "vow"
@@ -732,7 +915,7 @@ app.put('/api/vow/:vowId', (req, res, next) => {
     db.query(rankSql, rankValue)
       .then(rankResult => res.status(200).json(rankResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.vowProgress) {
+  } else if (req.body.vowProgress || req.body.vowProgress === 0) {
     intTest(req.body.vowProgress, next);
     const progressSql = `
       update "vow"
@@ -744,7 +927,7 @@ app.put('/api/vow/:vowId', (req, res, next) => {
     db.query(progressSql, progressValue)
       .then(progressResult => res.status(200).json(progressResult.rows[0]))
       .catch(err => next(err));
-  } else if (req.body.vowStatus) {
+  } else if (req.body.vowStatus || req.body.vowStatus === false) {
     const statusSql = `
       update "vow"
          set "status" = $1
@@ -759,7 +942,7 @@ app.put('/api/vow/:vowId', (req, res, next) => {
 });
 
 // delete vow
-app.delete('/api/vow/:vowId', (req, res, next) => {
+app.delete('/api/vow/vow/:vowId', (req, res, next) => {
   intTest(req.params.vowId, next);
   const getSql = `
     select "vowId"

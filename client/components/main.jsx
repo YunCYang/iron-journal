@@ -3,30 +3,85 @@ import { withRouter } from 'react-router-dom';
 import NewCharacter from './newCharacter';
 import Character from './character';
 import { IdContext } from './app';
+import AssetModal from './assetModal';
 
 export const CharacterContext = React.createContext([]);
 
 const Main = props => {
-  // const [isPage, setIsPage] = React.useState('game');
-  const [isPage, setIsPage] = React.useState('character');
+  // sessionStorage.clear();
+  const [isPage, setIsPage] = React.useState('game');
   const id = React.useContext(IdContext);
-  const [characterList, setCharacterList] = React.useState(
-    sessionStorage.getItem('character') || []
-  );
+  const [characterList, setCharacterList] = React.useState([]);
+  // const [characterList, setCharacterList] = React.useState(
+  //   JSON.parse(sessionStorage.getItem('character')) || []
+  // );
   const [modalShown, setModalShown] = React.useState(false);
+  const [selectedChar, setSelectedChar] = React.useState({});
+  const [charListIndex, setCharListIndex] = React.useState(0);
 
   React.useEffect(
     () => {
+      // const sessionId = JSON.parse(sessionStorage.getItem('id'));
       const sessionId = sessionStorage.getItem('id');
       if ((!id.id && parseInt(id.id) !== 0) && (!sessionId && parseInt(sessionId) !== 0)) {
         props.history.push('/');
       }
+      // sessionStorage.clear();
+      // console.log(sessionStorage.getItem('character'));
     }
   );
+
+  React.useEffect(
+    () => {
+      if (parseInt(id.id) === 0 && parseInt(sessionStorage.getItem('id')) === 0) {
+        setCharacterList(JSON.parse(sessionStorage.getItem('character')));
+      } else {
+        let tempId = 0;
+        if (parseInt(id.id) !== 0) tempId = parseInt(id.id);
+        else tempId = parseInt(sessionStorage.getItem('id'));
+        fetch(`/api/character/all/${tempId}`)
+          .then(res => res.json())
+          .then(res => setCharacterList(res));
+      }
+    }, [isPage]
+  );
+
+  const showCharBlock = () => {
+    // console.log(characterList);
+    if (!characterList) {
+      return null;
+    } else {
+      return (
+        characterList.map((char, index) => {
+          return (
+            <div className="main-container__game__content__oldBlock game-block"
+              key={`${char.characterName}-${index}`} onClick={
+                () => {
+                  characterPage();
+                  setModalShown(false);
+                  setSelectedChar(characterList[index]);
+                  setCharListIndex(index);
+                }
+              }>
+              <span>{char.characterName[0].toUpperCase()}</span>
+              <div className="main-container__game__content__oldTag game-tag">
+                <span>{char.characterName}</span>
+              </div>
+            </div>
+          );
+        })
+      );
+    }
+  };
 
   const createNewGame = () => setIsPage('new');
   const returnGamePage = () => setIsPage('game');
   const characterPage = () => setIsPage('character');
+
+  const displayShadow = () => {
+    if (modalShown) return '';
+    else return 'hide';
+  };
 
   const createPage = () => {
     if (isPage === 'game') {
@@ -39,12 +94,34 @@ const Main = props => {
             <div className="main-container__game__content__container">
               <div className="main-container__game__content__newBlock game-block"
                 onClick={
-                  () => createNewGame()
+                  () => {
+                    if (!characterList) {
+                      createNewGame();
+                      setModalShown(false);
+                    } else if (characterList.length >= 8) {
+                      setModalShown(true);
+                    } else {
+                      createNewGame();
+                      setModalShown(false);
+                    }
+                  }
                 }>
                 <i className="fas fa-plus"></i>
                 <div className="main-container__game__content__newTag game-tag">
                   <span>New Character</span>
                 </div>
+              </div>
+              {showCharBlock()}
+              <div className={`modal-shadow ${displayShadow()}`} onClick={
+                e => {
+                  if (e.target.contains(document.getElementsByClassName('modal-shadow')[0])) {
+                    setModalShown(false);
+                  }
+                }
+              }>
+                <AssetModal modalType="full" modalShown={modalShown}
+                  setModalShown={setModalShown} activeAsset=''
+                  assetState={{}}/>
               </div>
             </div>
           </div>
@@ -52,7 +129,12 @@ const Main = props => {
       );
     } else if (isPage === 'resource') {
       return (
-        <></>
+        <>
+          <div className="main-container__resource">
+            <p>To learn more information, please check out the official website for Ironsworn.</p>
+            <a href="https://www.ironswornrpg.com/">Ironsworn</a>
+          </div>
+        </>
       );
     } else if (isPage === 'option') {
       return (
@@ -88,7 +170,9 @@ const Main = props => {
     } else if (isPage === 'character') {
       return (
         <>
-          <Character />
+          <Character selectedChar={selectedChar} charListIndex={charListIndex}
+            returnGamePage={returnGamePage} setCharacterList={setCharacterList}
+            setSelectedChar={setSelectedChar}/>
         </>
       );
     } else return null;
@@ -113,10 +197,6 @@ const Main = props => {
           </div>
           <div className="main-menu__resource" onClick={() => setIsPage('resource')}>
             <span>Resource</span>
-            <span className="bar"></span>
-          </div>
-          <div className="main-menu__option" onClick={() => setIsPage('option')}>
-            <span>Option</span>
             <span className="bar"></span>
           </div>
         </div>

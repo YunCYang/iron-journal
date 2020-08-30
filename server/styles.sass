@@ -95,6 +95,20 @@ $color-shade: hsla(152, 0%, 3%, 0.8)
   span
     width: $feedback-width
 
+=contentInput($input-width)
+  border: none
+  background-color: $color-grey_100
+  border-radius: 4px
+  box-shadow: inset 0 2px 2px $color-grey_300, 0 2px 0 $color-grey_200
+  height: 28px
+  width: $input-width
+  cursor: pointer
+
+=flexCenter
+  display: flex
+  justify-content: center
+  align-items: center
+
 *
   box-sizing: border-box
   font-family: $font-main
@@ -111,7 +125,6 @@ div.main
   align-items: center
   overflow: hidden
 
-// landing
 div.landing
   width: 100%
   display: flex
@@ -122,9 +135,7 @@ div.landing
     height: 120px
     width: 120px
     margin-top: 48px
-    display: flex
-    justify-content: center
-    align-items: center
+    @include flexCenter
     position: relative
 
     &__circle
@@ -233,6 +244,7 @@ div.landing
       padding: 8px 8px 8px 4px
       margin-left: 8px
       background-color: $color-grey_100
+      cursor: pointer
 
       &:focus
         outline: none
@@ -287,7 +299,18 @@ div.landing
 
     &__feedback
       @include feedback($feedback-width: 184px)
-      margin-bottom: 8px
+
+      span
+        padding: 4px 8px 4px 8px
+
+    &__sent
+      font-size: 12px
+      color: $color-prime_800
+      display: flex
+      justify-content: center
+      flex-direction: column
+      border-radius: 4px
+      background-color: $color-prime_200
 
       span
         padding: 4px 8px 4px 8px
@@ -301,6 +324,7 @@ div.landing
       a
         color: $color-accent1_700
         text-decoration: none
+        cursor: pointer
 
     button
       width: 184px
@@ -312,6 +336,7 @@ div.landing
       border-top: solid 2px $color-prime_700
       border-bottom: solid 2px $color-prime_900
       border-radius: 4px
+      cursor: pointer
 
       &:focus
         outline: none
@@ -327,6 +352,7 @@ div.landing
       span
         color: $color-accent1_500
         text-decoration: none
+        cursor: pointer
 
       .left
         margin-right: 48px
@@ -334,7 +360,8 @@ div.landing
       .right
         font-weight: 500
 
-.signup-container
+.signup-container,
+.forgetPwd-container
   width: 224px
   height: 440px
   background-color: $color-grey_100
@@ -342,93 +369,155 @@ div.landing
   display: flex
   flex-direction: column
   align-items: center
-  // justify-content: center
-  // border-radius: 8px
 
-  .signup-container__username,
-  .signup-container__email,
-  .signup-container__password
+.signup-container
+  &__username,
+  &__email,
+  &__password
     display: flex
     margin-top: 24px
     flex-wrap: wrap
 
-  .signup-container
-    &__title
+  &__title
+    color: $color-prime_900
+    font-size: 30px
+    margin-bottom: 16px
+
+  &__left
+    margin: 0 24px 0 0
+    width: 66px
+    font-size: 14px
+
+  &__right
+    display: flex
+    flex-direction: column
+
+    .signup__input
+      position: relative
+
+      i
+        position: absolute
+        right: 3px
+        top: 6px
+
+        &.fa-check-circle
+          color: $color-prime_700
+
+        &.fa-times-circle
+          color: $color-accent2_500
+
+    input
+      @include contentInput($input-width: 134px)
+      padding: 0 20px 0 8px
+
+  &__feedback
+    @include feedback($feedback-width: 224px)
+    margin: 8px 0 0 0
+
+    span
+      padding: 4px 8px
+
+  &__submit
+    margin-top: 24px
+
+    button
+      width: 146px
+      background-color: $color-prime_800
+      border: none
+      color: $color-prime_100
+      height: 40px
+      border-top: solid 2px $color-prime_700
+      border-bottom: solid 2px $color-prime_900
+      border-radius: 4px
+      cursor: pointer
+
+      &:focus
+        outline: none
+        border-top: solid 0px $color-prime_700
+        border-bottom: solid 0px $color-prime_900
+
+  &__loginLink
+    margin-top: 16px
+    font-size: 14px
+    display: flex
+    justify-content: center
+
+    a,
+    span
+      color: $color-accent1_500
+      text-decoration: none
+
+.forgetPwd-container
+  &__title
+    color: $color-prime_900
+    font-size: 30px
+    margin-bottom: 16px
+
+  &__main
+    @include flexCenter
+    flex-direction: column
+    margin-top: 24px
+
+    label
       color: $color-prime_900
-      font-size: 30px
-      margin-bottom: 16px
 
-    &__left
-      margin: 0 24px 0 0
-      width: 66px
-      font-size: 14px
-
-    &__right
-      display: flex
-      flex-direction: column
-
-      .signup__input
-        position: relative
-
-        i
-          position: absolute
-          right: 3px
-          top: 3px
-
-          &.fa-check-circle
-            color: $color-prime_700
-
-          &.fa-times-circle
-            color: $color-accent2_500
-
-      input
-        width: 134px
-        border-style: solid
-        border-color: $color-grey_300
-        border-radius: 4px
-        background-color: $color-prime_100
-        transition: 0.2s ease all
-        padding-right: 20px
-
-        &:focus
-          outline: none
-          border-color: $color-prime_700
-
-    &__feedback
-      @include feedback($feedback-width: 224px)
-      margin: 8px 0 0 0
-
-      span
-        padding: 4px 8px
-
-    &__submit
-      margin-top: 24px
-
-      button
-        width: 146px
-        background-color: $color-prime_800
-        border: none
-        color: $color-prime_100
-        height: 40px
-        border-top: solid 2px $color-prime_700
-        border-bottom: solid 2px $color-prime_900
-        border-radius: 4px
-
-        &:focus
-          outline: none
-          border-top: solid 0px $color-prime_700
-          border-bottom: solid 0px $color-prime_900
-
-    &__loginLink
+    input
+      @include contentInput($input-width: 160px)
+      padding: 0 20px 0 8px
       margin-top: 16px
-      font-size: 14px
-      display: flex
-      justify-content: center
 
-      a,
-      span
-        color: $color-accent1_500
-        text-decoration: none
+  &__feedback
+    @include feedback($feedback-width: 160px)
+    margin: 8px 0 0 0
+    font-weight: 500
+
+    span
+      padding: 4px 8px
+
+  &__sent
+    font-size: 12px
+    color: $color-prime_800
+    display: flex
+    justify-content: center
+    flex-direction: column
+    border-radius: 4px
+    background-color: $color-prime_200
+    margin: 8px 0 0 0
+    font-weight: 500
+
+    span
+      width: 160px
+      padding: 4px 8px
+
+  &__submit
+    margin-top: 24px
+    @include flexCenter
+
+    button
+      width: 146px
+      background-color: $color-prime_800
+      border: none
+      color: $color-prime_100
+      height: 40px
+      border-top: solid 2px $color-prime_700
+      border-bottom: solid 2px $color-prime_900
+      border-radius: 4px
+
+      &:focus
+        outline: none
+        border-top: solid 0px $color-prime_700
+        border-bottom: solid 0px $color-prime_900
+
+  &__loginLink
+    margin-top: 16px
+    font-size: 14px
+    display: flex
+    justify-content: center
+
+    a,
+    span
+      color: $color-accent1_500
+      text-decoration: none
 
 .main-page
   width: 100%
@@ -493,18 +582,107 @@ div.landing
       margin: 8px 0 0 16px
       color: $color-prime_900
 
-    &__game__content__newBlock
-      border: 2px dashed $color-grey_500
-      margin: 8px 0 0 16px
-      height: 64px
-      width: 64px
+    &__game__content__container
       display: flex
-      justify-content: center
-      align-items: center
+      flex-wrap: wrap
+      width: 100%
+      margin-top: 16px
+
+      .modal-shadow
+        position: fixed
+        height: 441px
+        width: 210px
+        background-color: $color-shade
+        top: 91px
+        z-index: 2
+        border-radius: 3px
+
+        .modal-container
+          width: 180px
+          background-color: $color-prime_100
+          position: relative
+          left: 15px
+
+          .modal-header
+            width: 100%
+            height: 15px
+
+          .modal-body
+            width: 100%
+            display: flex
+            flex-direction: column
+            align-items: center
+            justify-content: space-evenly
+
+            i
+              font-size: 20px
+              margin-top: 8px
+
+              &.fa-fire-alt
+                color: $color-accent2_700
+
+            span
+              color: $color-prime_900
+
+          .modal-action
+            height: 45px
+            width: 100%
+            display: flex
+            justify-content: space-evenly
+            align-items: center
+            cursor: pointer
+
+            button
+              border: none
+              color: $color-prime_100
+              margin: 10px 0
+
+              &.confirm
+                background-color: $color-prime_700
+                border-top: solid 2px $color-prime_600
+                border-bottom: solid 2px $color-prime_800
+
+                &:focus
+                  outline: none
+                  border-top: solid 1px $color-prime_600
+                  border-bottom: solid 1px $color-prime_800
+
+          &.full
+            height: 120px
+            top: 160px
+
+            .modal-header
+              background-color: $color-accent2_400
+
+            .modal-body
+              height: 60px
+
+    &__game__content__newBlock,
+    &__game__content__oldBlock
+      margin: 8px 5px 48px 5px
+      height: 60px
+      width: 60px
+      @include flexCenter
       border-radius: 10px
-      color: $color-grey_500
       font-size: 30px
       position: relative
+
+    &__game__content__newBlock
+      border: 2px dashed $color-grey_500
+      color: $color-grey_500
+
+      &:hover
+        color: $color-accent1_500
+        border-color: $color-accent1_500
+        cursor: pointer
+
+        .game-tag
+          color: $color-accent1_500
+          cursor: pointer
+
+    &__game__content__oldBlock
+      border: 2px solid $color-prime_800
+      color: $color-prime_800
 
       &:hover
         color: $color-accent1_500
@@ -517,12 +695,19 @@ div.landing
 
     .game-tag
       font-size: 12px
-      width: 64px
+      width: 60px
       display: flex
       justify-content: center
-      color: $color-grey_900
       position: absolute
-      top: 72px
+      top: 68px
+      height: 32px
+      overflow: hidden
+
+    &__game__content__newTag
+      color: $color-grey_900
+
+    &__game__content__oldTag
+      color: $color-prime_800
 
     &__newGame
       position: relative
@@ -563,28 +748,25 @@ div.landing
 
             >div
               display: flex
-              margin: 4px 0 0 0
+              margin: 8px 0 0 0
 
             &__left
               margin: 0 0 0 16px
               width: 68px
               font-size: 14px
+              padding-top: 4px
 
             &__right
               input
                 width: 110px
+                height: 28px
 
                 &[type="text"]
-                  border-style: solid
-                  border-color: $color-grey_300
+                  border: none
+                  background-color: $color-grey_100
                   border-radius: 4px
-                  width: 110px
-                  background-color: $color-prime_100
-                  transition: 0.2s ease all
-
-                  &:focus
-                    outline: none
-                    border-color: $color-prime_700
+                  box-shadow: inset 0 2px 2px $color-grey_300, 0 2px 0 $color-grey_200
+                  padding: 0 8px
 
           .stats-input__container
             .input__container__right
@@ -636,7 +818,6 @@ div.landing
             margin-top: 32px
 
           .vows-input__container__rank
-
             > div
               margin-top: 4px
 
@@ -802,12 +983,6 @@ div.landing
             font-size: 20px
             margin-top: 8px
 
-            &.fa-plus-circle
-              color: $color-prime_800
-
-            &.fa-pen-fancy
-              color: $color-accent1_800
-
             &.fa-fire-alt
               color: $color-accent2_700
 
@@ -820,10 +995,12 @@ div.landing
           display: flex
           justify-content: space-evenly
           align-items: center
+          cursor: pointer
 
           button
             border: none
             color: $color-prime_100
+            margin: 10px 0
 
             &.confirm
               background-color: $color-prime_700
@@ -855,15 +1032,14 @@ div.landing
                 border-top: solid 1px $color-grey_500
                 border-bottom: solid 1px $color-grey_700
 
-        &.new
+        &.new,
+        &.edit
           height: 300px
           top: 70px
 
-          .modal-header
-            background-color: $color-prime_600
-
           .modal-body
             height: 285px
+            color: $color-prime_900
 
             >div
               width: 100%
@@ -892,9 +1068,7 @@ div.landing
               &__container
                 width: 50%
                 height: 50%
-                display: flex
-                justify-content: center
-                align-items: center
+                @include flexCenter
 
               &__button
                 width: 70px
@@ -964,8 +1138,48 @@ div.landing
                   &-name
                     font-size: 18px
 
+                  &-text,
+                  &-uniqueName,
+                  &-health
+                    margin-top: 12px
+
                   &-text
                     font-size: 14px
+
+                  &-uniqueName
+                    input
+                      @include contentInput($input-width: 148px)
+                      padding: 0 8px
+
+                  &-health
+                    &__container
+                      display: flex
+                      width: 148px
+                      justify-content: center
+
+                    &__block
+                      height: 28px
+                      width: 24px
+                      @include flexCenter
+
+                      &.active
+                        border-style: solid
+                        border-width: 2px 2px 2px 0
+                        border-color: $color-prime_700
+
+                        span
+                          color: $color-prime_700
+
+                      &.active:first-child
+                        border-width: 2px
+
+                      &.inactive
+                        border-style: solid
+                        border-width: 2px 2px 2px 0
+                        border-color: $color-grey_300
+
+                        span
+                          color: $color-grey_300
 
                   &-option
                     ul
@@ -973,22 +1187,79 @@ div.landing
                       margin: 0
                       padding: 0
 
+                      li
+                        input
+                          width: 0
+                          height: 0
+                          margin: 0
+
+                        label
+                          display: flex
+                          cursor: pointer
+
+                        .check
+                          width: 18px
+                          padding: 6px
+
+                          &-light
+                            background-color: $color-grey_200
+                            content: ''
+                            width: 100%
+                            height: 100%
+                            border-radius: 4px
+                            transition:0.2s ease all
+
+                        input:checked ~ label
+                          .detail-option__container
+                            color: $color-prime_800
+
+                          .check-light
+                            background-color: $color-prime_500
+
+                        input:disabled ~ label
+                          .detail-option__container
+                            color: $color-grey_300
+
+                          .check-light
+                            background-color: $color-grey_400
+
                     &__container
+                      width: 130px
+                      padding: 4px
+
                       &__name
                         font-size: 14px
+                        margin-bottom: 8px
 
                       &__description
                         font-size: 12px
 
-        &.edit
-          height: 300px
-          top: 70px
+                      &__option
+                        font-size: 12px
 
+                        div.option-detail
+                          margin-top: 8px
+
+                          span
+                            color: $color-prime_800
+
+                  .uniqueName__feedback,
+                  .option__feedback,
+                  .duplicate__feedback
+                    @include feedback($feedback-width: 148px)
+                    margin: 8px 0
+
+                    span
+                      padding: 4px
+                      color: $color-accent2_800
+
+        &.new
+          .modal-header
+            background-color: $color-prime_600
+
+        &.edit
           .modal-header
             background-color: $color-accent1_500
-
-          .modal-body
-            height: 285px
 
         &.delete
           height: 120px
@@ -1055,37 +1326,171 @@ div.landing
         height: 80px
 
       .height-vows-container
-        height: 635px
+        height: 829px
+
+      .height-vows-single
+        height: 151px
 
       .height-deb-container
         height: 290px
 
-      >div
-        overflow-y: hidden
+      &__name,
+      &__exp,
+      &__5stats,
+      &__status,
+      &__momentum,
+      &__bonds,
+      &__vows,
+      &__debilities,
+      &__assets
+        @include flexCenter
+
+      &__name,
+      &__exp,
+      &__status,
+      &__momentum,
+      &__bonds,
+      &__vows,
+      &__debilities,
+      &__assets,
+      &__actions
         margin: 8px
-        display: flex
-        justify-content: center
-        align-items: center
 
       &__name
         font-size: 20px
 
+        .name-container
+          width: 100%
+          display: flex
+          justify-content: center
+          overflow-y: hidden
+          position: relative
+
+          input
+            @include contentInput($input-width: 108px)
+            padding: 0 44px 0 4px
+
+          i
+            position: absolute
+            font-size: 16px
+            cursor: pointer
+
+            &.fa-check-circle
+              right: 32px
+              top: 6px
+              color: $color-prime_700
+
+            &.fa-times-circle
+              right: 12px
+              top: 6px
+              color: $color-accent2_500
+
+        .content
+          color: $color-prime_800
+          font-weight: 500
+
       &__exp
         flex-direction: column
+
+        .exp-container
+          width: 100%
+          display: flex
+          flex-direction: column
+          align-items: center
+          position: relative
+
+          button
+            position: absolute
+            border: solid 1px $color-grey_300
+            border-radius: 4px
+            background-color: $color-prime_100
+            padding: 1px 2px
+
+            &.dec
+              left: 0
+              bottom: 0
+              color: $color-accent2_500
+
+            &.inc
+              right: 0
+              bottom: 0
+              color: $color-prime_700
 
       &__5stats,
       &__status,
       &__momentum
         >div
-          display: flex
+          @include flexCenter
           flex-direction: column
-          justify-content: center
-          align-items: center
           margin: 0 4px
+
+      &__5stats
+        .stats5-container
+          position: relative
+
+          button
+            position: absolute
+            border: solid 1px $color-grey_300
+            border-radius: 4px
+            background-color: $color-prime_100
+            padding: 1px 2px
+
+            &.dec
+              left: -4px
+              bottom: 0
+              color: $color-accent2_500
+
+            &.inc
+              right: -4px
+              bottom: 0
+              color: $color-prime_700
+
+      &__status
+        .status-container
+          position: relative
+
+          button
+            position: absolute
+            border: solid 1px $color-grey_300
+            border-radius: 4px
+            background-color: $color-prime_100
+            padding: 1px 2px
+
+            &.dec
+              left: 0
+              bottom: 0
+              color: $color-accent2_500
+
+            &.inc
+              right: 0
+              bottom: 0
+              color: $color-prime_700
+
+      &__momentum
+        .momentum-container
+          position: relative
+
+          button
+            position: absolute
+            border: solid 1px $color-grey_300
+            border-radius: 4px
+            background-color: $color-prime_100
+            padding: 1px 2px
+
+            &.dec
+              left: 0
+              bottom: 0
+              color: $color-accent2_500
+
+            &.inc
+              right: 0
+              bottom: 0
+              color: $color-prime_700
 
       &__bonds,
       &__vows,
-      &__debilities
+      &__debilities,
+      &__assets
         display: flex
         flex-wrap: wrap
 
@@ -1096,17 +1501,13 @@ div.landing
           font-size: 18px
 
         >div
-          display: flex
-          justify-content: center
-          align-items: center
+          @include flexCenter
 
         .score
           flex-direction: column
 
         .counter
-          display: flex
-          justify-content: center
-          align-items: center
+          @include flexCenter
           flex-direction: column
 
           &-container
@@ -1143,15 +1544,14 @@ div.landing
               right: 4%
 
       &__vows
-        overflow: hidden
+        &.hide-overflow
+          overflow: hidden
 
         .title
           font-size: 18px
 
         >div
-          display: flex
-          justify-content: center
-          align-items: center
+          @include flexCenter
 
         .score
           flex-direction: column
@@ -1161,17 +1561,13 @@ div.landing
           margin-top: 4px
 
           >div
-            display: flex
-            justify-content: center
-            align-items: center
+            @include flexCenter
 
           .progress
             flex-direction: column
 
           .counter
-            display: flex
-            justify-content: center
-            align-items: center
+            @include flexCenter
             flex-direction: column
 
             &-container
@@ -1207,6 +1603,122 @@ div.landing
                 bottom: 5%
                 right: 4%
 
+          .action
+            height: 36px
+
+            button
+              border: none
+              color: $color-prime_100
+              background-color: $color-accent2_700
+              border-top: solid 2px $color-accent2_600
+              border-bottom: solid 2px $color-accent2_800
+              font-size: 12px
+
+              &:focus
+                outline: none
+                border-top: solid 1px $color-accent2_600
+                border-bottom: solid 1px $color-accent2_800
+
+          .new
+            border: 2px dashed $color-grey_500
+            display: flex
+            align-items: center
+            color: $color-grey_500
+            cursor: pointer
+
+            i,
+            span
+              margin: 0 0 0 8px
+
+            &:hover
+              color: $color-accent1_500
+              border-color: $color-accent1_500
+
+          .new_2
+            border: 2px dashed $color-grey_500
+            display: flex
+            flex-direction: column
+            align-items: center
+            justify-content: space-evenly
+            color: $color-grey_500
+            cursor: pointer
+
+            .input__name
+              i,
+              span
+                margin: 0 0 0 8px
+
+              input
+                @include contentInput($input-width: 116px)
+                padding: 0 44px 0 4px
+
+                &.empty
+                  border: solid 2px $color-accent2_600
+
+            .input__rank
+              border: solid 1px $color-grey_300
+              width: 116px
+
+              &__container
+                height: 24px
+                width: 100%
+                position: relative
+                display: flex
+                justify-content: center
+
+                .rank__dropdown
+                  position: absolute
+                  border: solid 1px $color-grey_300
+                  width: 100%
+                  display: flex
+                  justify-content: center
+                  background-color: $color-prime_100
+
+                  &:nth-child(2)
+                    top: 24px
+
+                  &:nth-child(3)
+                    top: 48px
+
+                  &:nth-child(4)
+                    top: 72px
+
+                  &:nth-child(5)
+                    top: 96px
+
+            .input__confirm
+              width: 116px
+              display: flex
+              justify-content: space-between
+
+              button
+                border: none
+                font-size: 12px
+
+                &:focus
+                  outline: none
+
+                &.vowButton
+                  &__create
+                    color: $color-prime_100
+                    background-color: $color-prime_700
+                    border-top: solid 2px $color-prime_600
+                    border-bottom: solid 2px $color-prime_800
+
+                    &:focus
+                      border-top: solid 1px $color-prime_600
+                      border-bottom: solid 1px $color-prime_800
+
+                  &__cancel
+                    color: $color-prime_100
+                    background-color: $color-accent2_700
+                    border-top: solid 2px $color-accent2_600
+                    border-bottom: solid 2px $color-accent2_800
+
+                    &:focus
+                      border-top: solid 1px $color-accent2_600
+                      border-bottom: solid 1px $color-accent2_800
+
       &__debilities
         overflow: hidden
 
@@ -1220,14 +1732,12 @@ div.landing
         .title,
         .expand,
         .score
-          display: flex
-          justify-content: center
-          align-items: center
+          @include flexCenter
 
         .score
           flex-direction: column
 
-        .radio-container
+        .cb-container
           display: flex
           justify-content: space-evenly
           flex-wrap: wrap
@@ -1271,15 +1781,67 @@ div.landing
           input:not(:checked) + label::before
             opacity: 0
 
+      &__assets
+        &.hide-overflow
+          overflow: hidden
+
+        .title
+          font-size: 18px
+
+        >div
+          @include flexCenter
+
+        .score
+          flex-direction: column
+
+        .asset
+          flex-wrap: wrap
+          margin-top: 4px
+
+          >div
+            @include flexCenter
+
+          .detail-health
+            &__container
+              width: 178px
+              display: flex
+
+            &__block
+              @include flexCenter
+              width: 29px
+
       &__actions
         display: flex
         justify-content: space-evenly
+        align-items: center
 
         >div
           display: flex
           flex-direction: column
           justify-content: space-evenly
           align-items: center
+          width: 80px
+          border-radius: 4px
+          color: $color-prime_100
+          cursor: pointer
+
+        &__back
+          background-color: $color-accent3_300
+
+          &:hover
+            background-color: $color-accent3_400
+
+        &__delete
+          background-color: $color-accent2_300
+
+          &:hover
+            background-color: $color-accent2_400
+
+    &__resource
+      padding: 8px
 
 .hide
   display: none
+
+.transparent
+  background-color: transparent

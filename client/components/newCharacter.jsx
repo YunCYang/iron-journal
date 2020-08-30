@@ -3,6 +3,7 @@ import { IdContext } from './app';
 import { CharacterContext } from './main';
 import ShowAsset from './showAsset';
 import AssetModal from './assetModal';
+import deepCopy from '../tools/deepCopy';
 
 const NewCharacter = props => {
   const id = React.useContext(IdContext);
@@ -27,23 +28,37 @@ const NewCharacter = props => {
     vow2Name: '',
     vow2Rank: 0
   });
-  const [locationState, setLocationState] = React.useState('');
+  // const [locationState, setLocationState] = React.useState('loc');
   const [assetState, setAssetState] = React.useState({
-    asset1: '',
-    asset2: '',
-    asset3: 'test'
-  });
-  const [characterState, setCharacterState] = React.useState({
-    name: '',
-    stat: [0, 0, 0, 0, 0],
-    debilities: [false, false, false, false, false, false, false, false],
-    bond: [],
-    asset: [],
-    equipment: [],
-    location: []
+    asset1: {
+      name: '',
+      uniqueName: '',
+      option: 0,
+      health: 0,
+      index: 1
+    },
+    asset2: {
+      name: '',
+      uniqueName: '',
+      option: 0,
+      health: 0,
+      index: 2
+    },
+    asset3: {
+      name: '',
+      uniqueName: '',
+      option: 0,
+      health: 0,
+      index: 3
+    }
   });
   const [modalType, setModalType] = React.useState('');
-  const [activeAsset, setActiveAsset] = React.useState('');
+  const [activeAsset, setActiveAsset] = React.useState({
+    name: '',
+    uniqueName: '',
+    option: 0,
+    index: 0
+  });
 
   const displayShadow = () => {
     if (props.modalShown) return '';
@@ -120,7 +135,7 @@ const NewCharacter = props => {
   };
 
   const assetCheck = () => {
-    if (assetState.asset1 && assetState.asset2 && assetState.asset3) return true;
+    if (assetState.asset1.name && assetState.asset2.name && assetState.asset3.name) return true;
     else return false;
   };
 
@@ -128,11 +143,10 @@ const NewCharacter = props => {
     const inputCharName = document.getElementById('input-characterName');
     const inputVowName1 = document.getElementById('input-vowName1');
     const inputVowName2 = document.getElementById('input-vowName2');
-    const inputLocName = document.getElementById('input-locationName');
+    // const inputLocName = document.getElementById('input-locationName');
     if (inputCharName.checkValidity() && inputVowName1.checkValidity() &&
       (rankEdgeCheck() && rankHeartCheck() && rankIronCheck() && rankShadowCheck() && rankWitsCheck()) &&
-      inputVowName2.checkValidity() && vow1Check() && vow2Check() && inputLocName.checkValidity() &&
-      assetCheck()) {
+      inputVowName2.checkValidity() && vow1Check() && vow2Check() && assetCheck()) {
       return true;
     } else {
       return false;
@@ -143,7 +157,7 @@ const NewCharacter = props => {
     const inputCharName = document.getElementById('input-characterName');
     const inputVow1Name = document.getElementById('input-vowName1');
     const inputVow2Name = document.getElementById('input-vowName2');
-    const inputLocName = document.getElementById('input-locationName');
+    // const inputLocName = document.getElementById('input-locationName');
     const emptyCharName = document.getElementById('character-feedback__empty');
     const emptyVow1Name = document.getElementById('vowName1-feedback__empty');
     const emptyVow2Name = document.getElementById('vowName2-feedback__empty');
@@ -154,26 +168,192 @@ const NewCharacter = props => {
     const emptyStatsWits = document.getElementById('statsWits-feedback__empty');
     const emptyVow1Rank = document.getElementById('vowRank1-feedback__empty');
     const emptyVow2Rank = document.getElementById('vowRank2-feedback__empty');
-    const emptyLocName = document.getElementById('location-feedback__empty');
+    // const emptyLocName = document.getElementById('location-feedback__empty');
     const emptyAsset = document.getElementById('asset-feedback__empty');
     if (validateInput()) {
-      if (id.id === '0') {
-        sessionStorage.setItem('character', null);
-        charList.setCharacterList(null);
-        if (nameState || locationState || characterState) return null; // just so I can commit
-        if (locationState === 'saveOnly') {
-          setAssetState('');
-          setCharacterState('');
+      const bondCount = () => {
+        let count = 0;
+        for (const bond in bondState) {
+          if (bondState[bond]) count++;
         }
+        return count;
+      };
+      if (parseInt(id.id) === 0 && parseInt(sessionStorage.getItem('id')) === 0) {
+        const sessionCharList = (Array.isArray(JSON.parse(sessionStorage.getItem('character')))) || [];
+        let newCharList = [];
+        if (sessionCharList.length > 0) {
+          if (charList.characterList) {
+            if (charList.characterList.length === 0) newCharList = deepCopy(sessionCharList);
+            else newCharList = deepCopy(charList.characterList);
+          } else newCharList = deepCopy(sessionCharList);
+        } else if (charList.characterList) newCharList = deepCopy(charList.characterList);
+        const newChar = {
+          characterName: nameState,
+          experience: 0,
+          edge: statState.edge,
+          heart: statState.heart,
+          iron: statState.iron,
+          shadow: statState.shadow,
+          wits: statState.wits,
+          health: 5,
+          spirit: 5,
+          supply: 5,
+          momentum: 2,
+          maxMomentum: 10,
+          resetMomentum: 2,
+          bond: bondCount(),
+          vows: [
+            {
+              name: vowState.vow1Name,
+              rank: vowState.vow1Rank,
+              progress: 0,
+              status: false
+            },
+            {
+              name: vowState.vow2Name,
+              rank: vowState.vow2Rank,
+              progress: 0,
+              status: false
+            }
+          ],
+          wounded: false,
+          shaken: false,
+          unprepared: false,
+          encumbered: false,
+          maimed: false,
+          corrupted: false,
+          cursed: false,
+          tormented: false,
+          location: 'loc',
+          assets: [
+            {
+              assetName: assetState.asset1.name,
+              uniqueName: assetState.asset1.UniqueName,
+              option1: assetState.asset1.option === 1,
+              option2: assetState.asset1.option === 2,
+              option3: assetState.asset1.option === 3,
+              health: assetState.asset1.health,
+              index: 1
+            },
+            {
+              assetName: assetState.asset2.name,
+              uniqueName: assetState.asset2.UniqueName,
+              option1: assetState.asset2.option === 1,
+              option2: assetState.asset2.option === 2,
+              option3: assetState.asset2.option === 3,
+              health: assetState.asset2.health,
+              index: 2
+            },
+            {
+              assetName: assetState.asset3.name,
+              uniqueName: assetState.asset3.UniqueName,
+              option1: assetState.asset3.option === 1,
+              option2: assetState.asset3.option === 2,
+              option3: assetState.asset3.option === 3,
+              health: assetState.asset3.health,
+              index: 3
+            }
+          ]
+        };
+        newCharList.push(newChar);
+        charList.setCharacterList(newCharList);
+        sessionStorage.setItem('character', JSON.stringify(newCharList));
+        props.returnGamePage();
       } else {
-        return null;
+        const characterInit = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            characterName: nameState,
+            edge: statState.edge,
+            heart: statState.heart,
+            iron: statState.iron,
+            shadow: statState.shadow,
+            wits: statState.wits,
+            bond: bondCount(),
+            location: 'loc',
+            userId: parseInt(id.id)
+          })
+        };
+        fetch('/api/character', characterInit)
+          .then(res => res.json())
+          .then(characterRes => {
+            const vow1Init = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                characterId: characterRes,
+                vowName: vowState.vow1Name,
+                vowRank: vowState.vow1Rank,
+                vowProgress: 0,
+                vowStatus: false
+              })
+            };
+            const vow2Init = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                characterId: characterRes,
+                vowName: vowState.vow2Name,
+                vowRank: vowState.vow2Rank,
+                vowProgress: 0,
+                vowStatus: false
+              })
+            };
+            const asset1Init = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                characterId: characterRes,
+                assetName: assetState.asset1.name,
+                health: assetState.asset1.health || 0,
+                option1: assetState.asset1.option === 1,
+                option2: assetState.asset1.option === 2,
+                option3: assetState.asset1.option === 3,
+                uniqueName: assetState.asset1.UniqueName || false
+              })
+            };
+            const asset2Init = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                characterId: characterRes,
+                assetName: assetState.asset2.name,
+                health: assetState.asset2.health || 0,
+                option1: assetState.asset2.option === 1,
+                option2: assetState.asset2.option === 2,
+                option3: assetState.asset2.option === 3,
+                uniqueName: assetState.asset2.UniqueName || false
+              })
+            };
+            const asset3Init = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                characterId: characterRes,
+                assetName: assetState.asset3.name,
+                health: assetState.asset3.health || 0,
+                option1: assetState.asset3.option === 1,
+                option2: assetState.asset3.option === 2,
+                option3: assetState.asset3.option === 3,
+                uniqueName: assetState.asset3.UniqueName || false
+              })
+            };
+            Promise.all([
+              fetch('/api/vow', vow1Init),
+              fetch('/api/vow', vow2Init),
+              fetch('/api/asset', asset1Init),
+              fetch('/api/asset', asset2Init),
+              fetch('/api/asset', asset3Init)
+            ])
+              .then(res => props.returnGamePage());
+          });
       }
-      props.characterPage();
     } else {
       if (!inputCharName.checkValidity()) emptyCharName.classList.remove('hide');
       if (!inputVow1Name.checkValidity()) emptyVow1Name.classList.remove('hide');
       if (!inputVow2Name.checkValidity()) emptyVow2Name.classList.remove('hide');
-      if (!inputLocName.checkValidity()) emptyLocName.classList.remove('hide');
+      // if (!inputLocName.checkValidity()) emptyLocName.classList.remove('hide');
       if (!rankEdgeCheck()) emptyStatsEdge.classList.remove('hide');
       if (!rankHeartCheck()) emptyStatsHeart.classList.remove('hide');
       if (!rankIronCheck()) emptyStatsIron.classList.remove('hide');
@@ -210,6 +390,12 @@ const NewCharacter = props => {
     }
   };
 
+  React.useEffect(
+    () => {
+      if (assetCheck()) document.getElementById('asset-feedback__empty').classList.add('hide');
+    }, [assetState]
+  );
+
   return (
     <>
       <div className="main-container__newGame">
@@ -234,12 +420,12 @@ const NewCharacter = props => {
                   </div>
                   <div className="input__container__right">
                     <input type="text" name="characterName" id="input-characterName" required
-                      onChange={
+                      maxLength={32} onChange={
                         e => {
                           setNameState(e.target.value);
                           inputFeedbackHandler('character-feedback__empty', 'input-characterName');
                         }
-                      }/>
+                      } value={nameState}/>
                     <div className="newGame__feedback">
                       <span id='character-feedback__empty' className="empty hide">Character name is required.</span>
                     </div>
@@ -542,14 +728,14 @@ const NewCharacter = props => {
                   </div>
                   <div className="input__container__right">
                     <input type="text" name="bondName1" id="input-bondName1"
-                      onChange={
+                      maxLength={32} onChange={
                         e => {
                           setBondState({
                             ...bondState,
                             bond1: e.target.value
                           });
                         }
-                      }/>
+                      } value={bondState.bond1}/>
                   </div>
                 </div>
                 <div className="bonds-input__container__name">
@@ -558,14 +744,14 @@ const NewCharacter = props => {
                   </div>
                   <div className="input__container__right">
                     <input type="text" name="bondName2" id="input-bondName2"
-                      onChange={
+                      maxLength={32} onChange={
                         e => {
                           setBondState({
                             ...bondState,
                             bond2: e.target.value
                           });
                         }
-                      }/>
+                      } value={bondState.bond2}/>
                   </div>
                 </div>
                 <div className="bonds-input__container__name">
@@ -574,14 +760,14 @@ const NewCharacter = props => {
                   </div>
                   <div className="input__container__right">
                     <input type="text" name="bondName3" id="input-bondName3"
-                      onChange={
+                      maxLength={32} onChange={
                         e => {
                           setBondState({
                             ...bondState,
                             bond3: e.target.value
                           });
                         }
-                      }/>
+                      } value={bondState.bond3}/>
                   </div>
                 </div>
               </div>
@@ -598,7 +784,7 @@ const NewCharacter = props => {
                   </div>
                   <div className="input__container__right">
                     <input type="text" name="vowName1" id="input-vowName1" required
-                      onChange={
+                      maxLength={32} onChange={
                         e => {
                           setVowState({
                             ...vowState,
@@ -606,7 +792,7 @@ const NewCharacter = props => {
                           });
                           inputFeedbackHandler('vowName1-feedback__empty', 'input-vowName1');
                         }
-                      }/>
+                      } value={vowState.vow1Name}/>
                     <div className="newGame__feedback">
                       <span id='vowName1-feedback__empty' className="empty hide">1st vow name is required.</span>
                     </div>
@@ -703,7 +889,7 @@ const NewCharacter = props => {
                   </div>
                   <div className="input__container__right">
                     <input type="text" name="vowName2" id="input-vowName2" required
-                      onChange={
+                      maxLength={32} onChange={
                         e => {
                           setVowState({
                             ...vowState,
@@ -711,7 +897,7 @@ const NewCharacter = props => {
                           });
                           inputFeedbackHandler('vowName2-feedback__empty', 'input-vowName2');
                         }
-                      }/>
+                      } value={vowState.vow2Name}/>
                     <div className="newGame__feedback">
                       <span id='vowName2-feedback__empty' className="empty hide">2nd vow name is required.</span>
                     </div>
@@ -805,31 +991,6 @@ const NewCharacter = props => {
               </div>
             </div>
             <div className="divider"></div>
-            <div className="location">
-              <div className="location-title subtitle">
-                <span>Location</span>
-              </div>
-              <div className="location-input__container input__container">
-                <div className="location-input__container__name">
-                  <div className="input__container__left">
-                    <span>Loc Name</span>
-                  </div>
-                  <div className="input__container__right">
-                    <input type="text" name="locationName" id="input-locationName" required
-                      onChange={
-                        e => {
-                          setLocationState(e.target.value);
-                          inputFeedbackHandler('location-feedback__empty', 'input-locationName');
-                        }
-                      } />
-                    <div className="newGame__feedback">
-                      <span id='location-feedback__empty' className="empty hide">Location is required.</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="divider"></div>
             <div className="asset">
               <div className="asset-title subtitle">
                 <span>Asset</span>
@@ -856,10 +1017,39 @@ const NewCharacter = props => {
         }
       }>
         <AssetModal modalType={modalType} activeAsset={activeAsset}
-          modalShown={props.modalShown}/>
+          modalShown={props.modalShown} setModalShown={props.setModalShown}
+          setAssetState={setAssetState} assetState={assetState}/>
       </div>
     </>
   );
 };
 
 export default NewCharacter;
+
+/*
+<div className="divider"></div>
+  <div className="location">
+    <div className="location-title subtitle">
+      <span>Location</span>
+    </div>
+    <div className="location-input__container input__container">
+      <div className="location-input__container__name">
+        <div className="input__container__left">
+          <span>Loc Name</span>
+        </div>
+        <div className="input__container__right">
+          <input type="text" name="locationName" id="input-locationName" required
+            maxLength={32} onChange={
+              e => {
+                setLocationState(e.target.value);
+                inputFeedbackHandler('location-feedback__empty', 'input-locationName');
+              }
+            } value={locationState} />
+          <div className="newGame__feedback">
+            <span id='location-feedback__empty' className="empty hide">Location is required.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  */
