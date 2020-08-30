@@ -37,7 +37,14 @@ const Signup = props => {
       nameLengthFeedback.classList.add('hide');
       nameSpecialFeedback.classList.add('hide');
       setUsername(nameInput.value);
-    } else {
+    }
+  };
+
+  const nameInputWarning = () => {
+    const nameInput = document.getElementById('input-signup__username');
+    const nameLengthFeedback = document.getElementsByClassName('username-feedback__length')[0];
+    const nameSpecialFeedback = document.getElementsByClassName('username-feedback__special')[0];
+    if (!nameInput.checkValidity()) {
       setIsNameValid(false);
       if (specialCharCheck.test(nameInput.value)) {
         nameSpecialFeedback.classList.remove('hide');
@@ -55,7 +62,13 @@ const Signup = props => {
       setIsEmailValid(true);
       emailFormatFeedback.classList.add('hide');
       setEmail(emailInput.value);
-    } else {
+    }
+  };
+
+  const emailInputWarning = () => {
+    const emailInput = document.getElementById('input-signup__email');
+    const emailFormatFeedback = document.getElementsByClassName('email-feedback__format')[0];
+    if (!emailInput.checkValidity()) {
       setIsEmailValid(false);
       emailFormatFeedback.classList.remove('hide');
     }
@@ -76,7 +89,17 @@ const Signup = props => {
       passwordNumberFeedback.classList.add('hide');
       passwordSpecialFeedback.classList.add('hide');
       setPassword(passwordInput.value);
-    } else {
+    }
+  };
+
+  const passwordInputWarning = () => {
+    const passwordInput = document.getElementById('input-signup__password');
+    const passwordLengthFeedback = document.getElementsByClassName('password-feedback__length')[0];
+    const passwordUppercaseFeedback = document.getElementsByClassName('password-feedback__uppercase')[0];
+    const passwordLowercaseFeedback = document.getElementsByClassName('password-feedback__lowercase')[0];
+    const passwordNumberFeedback = document.getElementsByClassName('password-feedback__number')[0];
+    const passwordSpecialFeedback = document.getElementsByClassName('password-feedback__special')[0];
+    if (!passwordInput.checkValidity()) {
       setIsPasswordValid(false);
       if (!passwordLengthCheck.test(passwordInput.value)) {
         passwordLengthFeedback.classList.remove('hide');
@@ -176,7 +199,11 @@ const Signup = props => {
           <div className="signup-container__right">
             <div className="signup__input">
               <input type="text" name="input-signup__username" id="input-signup__username"
-                pattern="^[\w]{6,30}" onChange={nameInputHandler} required/>
+                pattern="^[\w]{6,30}" onChange={nameInputHandler} required onKeyPress={
+                  e => {
+                    if (e.key === 'Enter') submitHandler();
+                  }
+                } onBlur={nameInputWarning}/>
               <i className={`fas fa-check-circle ${validDisplay(isNameValid)}`}></i>
               <i className={`fas fa-times-circle ${invalidDisplay(isNameValid)}`}></i>
             </div>
@@ -193,7 +220,11 @@ const Signup = props => {
           <div className="signup-container__right">
             <div className="signup__input">
               <input type="email" name="input-signup__email" id="input-signup__email"
-                onChange={emailInputHandler} required/>
+                onChange={emailInputHandler} required onKeyPress={
+                  e => {
+                    if (e.key === 'Enter') submitHandler();
+                  }
+                } onBlur={emailInputWarning}/>
               <i className={`fas fa-check-circle ${validDisplay(isEmailValid)}`}></i>
               <i className={`fas fa-times-circle ${invalidDisplay(isEmailValid)}`}></i>
             </div>
@@ -210,7 +241,11 @@ const Signup = props => {
             <div className="signup__input">
               <input type="password" name="input-signup__password" id="input-signup__password"
                 pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,32}$"
-                onChange={passwordInputHandler} required/>
+                onChange={passwordInputHandler} required onKeyPress={
+                  e => {
+                    if (e.key === 'Enter') submitHandler();
+                  }
+                } onBlur={passwordInputWarning}/>
               <i className={`fas fa-check-circle ${validDisplay(isPasswordValid)}`}></i>
               <i className={`fas fa-times-circle ${invalidDisplay(isPasswordValid)}`}></i>
             </div>

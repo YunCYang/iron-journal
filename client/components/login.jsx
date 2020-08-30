@@ -73,12 +73,22 @@ const Login = props => {
       return (
         <>
           <div className="landing-action__userName">
-            <input type="text" name="usename" id="input-username" required onChange={usernameInputHandler} />
+            <input type="text" name="usename" id="input-username" required onChange={usernameInputHandler}
+              onKeyPress={
+                e => {
+                  if (e.key === 'Enter') loginHandler();
+                }
+              }/>
             <span className="bar"></span>
             <label className="landing-action__label">Username</label>
           </div>
           <div className="landing-action__password">
-            <input type="password" name="password" id="input-password" required onChange={passwordInputHandler} />
+            <input type="password" name="password" id="input-password" required onChange={passwordInputHandler}
+              onKeyPress={
+                e => {
+                  if (e.key === 'Enter') loginHandler();
+                }
+              }/>
             <span className="bar"></span>
             <label className="landing-action__label">Password</label>
           </div>

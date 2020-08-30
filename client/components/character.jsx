@@ -94,7 +94,9 @@ const Character = props => {
       tempChar[charKey] = charValue;
       props.setSelectedChar(tempChar);
       if (charKey === 'experience' || charKey === 'edge' || charKey === 'heart' ||
-        charKey === 'iron' || charKey === 'shadow' || charKey === 'wits') {
+        charKey === 'iron' || charKey === 'shadow' || charKey === 'wits' ||
+        charKey === 'health' || charKey === 'spirit' || charKey === 'supply' ||
+        charKey === 'momentum' || charKey === 'maxMomentum' || charKey === 'resetMomentum') {
         setEditTarget({
           name: charKey,
           content: charValue
@@ -840,14 +842,14 @@ const Character = props => {
           {createDebilities()}
         </div>
         <div className="main-container__character__actions width-1-1">
-          <div className="main-container__character__actions__back height-single-half width-2-4"
+          <div className="main-container__character__actions__back height-single-half"
             onClick={
               () => props.returnGamePage()
             }>
             <i className="fas fa-long-arrow-alt-left"></i>
             <span className="label">Back</span>
           </div>
-          <div className="main-container__character__actions__delete height-single-half width-2-4"
+          <div className="main-container__character__actions__delete height-single-half"
             onClick={
               () => {
                 setModalShown({

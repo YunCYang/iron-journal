@@ -129,7 +129,12 @@ const Main = props => {
       );
     } else if (isPage === 'resource') {
       return (
-        <></>
+        <>
+          <div className="main-container__resource">
+            <p>To learn more information, please check out the official website for Ironsworn.</p>
+            <a href="https://www.ironswornrpg.com/">Ironsworn</a>
+          </div>
+        </>
       );
     } else if (isPage === 'option') {
       return (
@@ -192,10 +197,6 @@ const Main = props => {
           </div>
           <div className="main-menu__resource" onClick={() => setIsPage('resource')}>
             <span>Resource</span>
-            <span className="bar"></span>
-          </div>
-          <div className="main-menu__option" onClick={() => setIsPage('option')}>
-            <span>Option</span>
             <span className="bar"></span>
           </div>
         </div>

@@ -95,6 +95,20 @@ $color-shade: hsla(152, 0%, 3%, 0.8)
   span
     width: $feedback-width
 
+=contentInput($input-width)
+  border: none
+  background-color: $color-grey_100
+  border-radius: 4px
+  box-shadow: inset 0 2px 2px $color-grey_300, 0 2px 0 $color-grey_200
+  height: 28px
+  width: $input-width
+  cursor: pointer
+
+=flexCenter
+  display: flex
+  justify-content: center
+  align-items: center
+
 *
   box-sizing: border-box
   font-family: $font-main
@@ -111,7 +125,6 @@ div.main
   align-items: center
   overflow: hidden
 
-// landing
 div.landing
   width: 100%
   display: flex
@@ -122,9 +135,7 @@ div.landing
     height: 120px
     width: 120px
     margin-top: 48px
-    display: flex
-    justify-content: center
-    align-items: center
+    @include flexCenter
     position: relative
 
     &__circle
@@ -233,6 +244,7 @@ div.landing
       padding: 8px 8px 8px 4px
       margin-left: 8px
       background-color: $color-grey_100
+      cursor: pointer
 
       &:focus
         outline: none
@@ -287,7 +299,18 @@ div.landing
 
     &__feedback
       @include feedback($feedback-width: 184px)
-      margin-bottom: 8px
+
+      span
+        padding: 4px 8px 4px 8px
+
+    &__sent
+      font-size: 12px
+      color: $color-prime_800
+      display: flex
+      justify-content: center
+      flex-direction: column
+      border-radius: 4px
+      background-color: $color-prime_200
 
       span
         padding: 4px 8px 4px 8px
@@ -301,6 +324,7 @@ div.landing
       a
         color: $color-accent1_700
         text-decoration: none
+        cursor: pointer
 
     button
       width: 184px
@@ -312,6 +336,7 @@ div.landing
       border-top: solid 2px $color-prime_700
       border-bottom: solid 2px $color-prime_900
       border-radius: 4px
+      cursor: pointer
 
       &:focus
         outline: none
@@ -327,6 +352,7 @@ div.landing
       span
         color: $color-accent1_500
         text-decoration: none
+        cursor: pointer
 
       .left
         margin-right: 48px
@@ -334,7 +360,8 @@ div.landing
       .right
         font-weight: 500
 
-.signup-container
+.signup-container,
+.forgetPwd-container
   width: 224px
   height: 440px
   background-color: $color-grey_100
@@ -342,100 +369,155 @@ div.landing
   display: flex
   flex-direction: column
   align-items: center
-  // justify-content: center
-  // border-radius: 8px
 
-  .signup-container__username,
-  .signup-container__email,
-  .signup-container__password
+.signup-container
+  &__username,
+  &__email,
+  &__password
     display: flex
     margin-top: 24px
     flex-wrap: wrap
 
-  .signup-container
-    &__title
+  &__title
+    color: $color-prime_900
+    font-size: 30px
+    margin-bottom: 16px
+
+  &__left
+    margin: 0 24px 0 0
+    width: 66px
+    font-size: 14px
+
+  &__right
+    display: flex
+    flex-direction: column
+
+    .signup__input
+      position: relative
+
+      i
+        position: absolute
+        right: 3px
+        top: 6px
+
+        &.fa-check-circle
+          color: $color-prime_700
+
+        &.fa-times-circle
+          color: $color-accent2_500
+
+    input
+      @include contentInput($input-width: 134px)
+      padding: 0 20px 0 8px
+
+  &__feedback
+    @include feedback($feedback-width: 224px)
+    margin: 8px 0 0 0
+
+    span
+      padding: 4px 8px
+
+  &__submit
+    margin-top: 24px
+
+    button
+      width: 146px
+      background-color: $color-prime_800
+      border: none
+      color: $color-prime_100
+      height: 40px
+      border-top: solid 2px $color-prime_700
+      border-bottom: solid 2px $color-prime_900
+      border-radius: 4px
+      cursor: pointer
+
+      &:focus
+        outline: none
+        border-top: solid 0px $color-prime_700
+        border-bottom: solid 0px $color-prime_900
+
+  &__loginLink
+    margin-top: 16px
+    font-size: 14px
+    display: flex
+    justify-content: center
+
+    a,
+    span
+      color: $color-accent1_500
+      text-decoration: none
+
+.forgetPwd-container
+  &__title
+    color: $color-prime_900
+    font-size: 30px
+    margin-bottom: 16px
+
+  &__main
+    @include flexCenter
+    flex-direction: column
+    margin-top: 24px
+
+    label
       color: $color-prime_900
-      font-size: 30px
-      margin-bottom: 16px
 
-    &__left
-      margin: 0 24px 0 0
-      width: 66px
-      font-size: 14px
-
-    &__right
-      display: flex
-      flex-direction: column
-
-      .signup__input
-        position: relative
-
-        i
-          position: absolute
-          right: 3px
-          top: 6px
-
-          &.fa-check-circle
-            color: $color-prime_700
-
-          &.fa-times-circle
-            color: $color-accent2_500
-
-      input
-        border: none
-        background-color: $color-grey_100
-        border-radius: 4px
-        box-shadow: inset 0 2px 2px $color-grey_300, 0 2px 0 $color-grey_200
-        padding: 0 20px 0 8px
-        height: 28px
-        width: 134px
-        // width: 134px
-        // border-style: solid
-        // border-color: $color-grey_300
-        // border-radius: 4px
-        // background-color: $color-prime_100
-        // transition: 0.2s ease all
-        // padding-right: 20px
-
-        // &:focus
-        //   outline: none
-        //   border-color: $color-prime_700
-
-    &__feedback
-      @include feedback($feedback-width: 224px)
-      margin: 8px 0 0 0
-
-      span
-        padding: 4px 8px
-
-    &__submit
-      margin-top: 24px
-
-      button
-        width: 146px
-        background-color: $color-prime_800
-        border: none
-        color: $color-prime_100
-        height: 40px
-        border-top: solid 2px $color-prime_700
-        border-bottom: solid 2px $color-prime_900
-        border-radius: 4px
-
-        &:focus
-          outline: none
-          border-top: solid 0px $color-prime_700
-          border-bottom: solid 0px $color-prime_900
-
-    &__loginLink
+    input
+      @include contentInput($input-width: 160px)
+      padding: 0 20px 0 8px
       margin-top: 16px
-      font-size: 14px
-      display: flex
-      justify-content: center
 
-      a,
-      span
-        color: $color-accent1_500
-        text-decoration: none
+  &__feedback
+    @include feedback($feedback-width: 160px)
+    margin: 8px 0 0 0
+    font-weight: 500
+
+    span
+      padding: 4px 8px
+
+  &__sent
+    font-size: 12px
+    color: $color-prime_800
+    display: flex
+    justify-content: center
+    flex-direction: column
+    border-radius: 4px
+    background-color: $color-prime_200
+    margin: 8px 0 0 0
+    font-weight: 500
+
+    span
+      width: 160px
+      padding: 4px 8px
+
+  &__submit
+    margin-top: 24px
+    @include flexCenter
+
+    button
+      width: 146px
+      background-color: $color-prime_800
+      border: none
+      color: $color-prime_100
+      height: 40px
+      border-top: solid 2px $color-prime_700
+      border-bottom: solid 2px $color-prime_900
+      border-radius: 4px
+
+      &:focus
+        outline: none
+        border-top: solid 0px $color-prime_700
+        border-bottom: solid 0px $color-prime_900
+
+  &__loginLink
+    margin-top: 16px
+    font-size: 14px
+    display: flex
+    justify-content: center
+
+    a,
+    span
+      color: $color-accent1_500
+      text-decoration: none
 
 .main-page
   width: 100%
@@ -580,9 +662,7 @@ div.landing
       margin: 8px 5px 48px 5px
       height: 60px
       width: 60px
-      display: flex
-      justify-content: center
-      align-items: center
+      @include flexCenter
       border-radius: 10px
       font-size: 30px
       position: relative
@@ -679,26 +759,14 @@ div.landing
             &__right
               input
                 width: 110px
-                // added style
                 height: 28px
 
                 &[type="text"]
-                  // border-style: solid
-                  // border-color: $color-grey_300
-                  // border-radius: 4px
-                  // width: 110px
-                  // background-color: $color-prime_100
-                  // transition: 0.2s ease all
-                  // added style
                   border: none
                   background-color: $color-grey_100
                   border-radius: 4px
                   box-shadow: inset 0 2px 2px $color-grey_300, 0 2px 0 $color-grey_200
                   padding: 0 8px
-
-                  // &:focus
-                  //   outline: none
-                  //   border-color: $color-prime_700
 
           .stats-input__container
             .input__container__right
@@ -750,7 +818,6 @@ div.landing
             margin-top: 32px
 
           .vows-input__container__rank
-
             > div
               margin-top: 4px
 
@@ -1001,9 +1068,7 @@ div.landing
               &__container
                 width: 50%
                 height: 50%
-                display: flex
-                justify-content: center
-                align-items: center
+                @include flexCenter
 
               &__button
                 width: 70px
@@ -1083,13 +1148,8 @@ div.landing
 
                   &-uniqueName
                     input
-                      border: none
-                      background-color: $color-grey_100
-                      border-radius: 4px
-                      box-shadow: inset 0 2px 2px $color-grey_300, 0 2px 0 $color-grey_200
+                      @include contentInput($input-width: 148px)
                       padding: 0 8px
-                      height: 28px
-                      width: 148px
 
                   &-health
                     &__container
@@ -1100,9 +1160,7 @@ div.landing
                     &__block
                       height: 28px
                       width: 24px
-                      display: flex
-                      justify-content: center
-                      align-items: center
+                      @include flexCenter
 
                       &.active
                         border-style: solid
@@ -1276,11 +1334,16 @@ div.landing
       .height-deb-container
         height: 290px
 
-      >div
-        // margin: 8px
-        display: flex
-        justify-content: center
-        align-items: center
+      &__name,
+      &__exp,
+      &__5stats,
+      &__status,
+      &__momentum,
+      &__bonds,
+      &__vows,
+      &__debilities,
+      &__assets
+        @include flexCenter
 
       &__name,
       &__exp,
@@ -1304,12 +1367,7 @@ div.landing
           position: relative
 
           input
-            width: 108px
-            border: none
-            background-color: $color-grey_100
-            border-radius: 4px
-            box-shadow: inset 0 2px 2px $color-grey_300, 0 2px 0 $color-grey_200
-            height: 28px
+            @include contentInput($input-width: 108px)
             padding: 0 44px 0 4px
 
           i
@@ -1326,6 +1384,10 @@ div.landing
               right: 12px
               top: 6px
               color: $color-accent2_500
+
+        .content
+          color: $color-prime_800
+          font-weight: 500
 
       &__exp
         flex-direction: column
@@ -1358,10 +1420,8 @@ div.landing
       &__status,
       &__momentum
         >div
-          display: flex
+          @include flexCenter
           flex-direction: column
-          justify-content: center
-          align-items: center
           margin: 0 4px
 
       &__5stats
@@ -1441,17 +1501,13 @@ div.landing
           font-size: 18px
 
         >div
-          display: flex
-          justify-content: center
-          align-items: center
+          @include flexCenter
 
         .score
           flex-direction: column
 
         .counter
-          display: flex
-          justify-content: center
-          align-items: center
+          @include flexCenter
           flex-direction: column
 
           &-container
@@ -1495,9 +1551,7 @@ div.landing
           font-size: 18px
 
         >div
-          display: flex
-          justify-content: center
-          align-items: center
+          @include flexCenter
 
         .score
           flex-direction: column
@@ -1507,17 +1561,13 @@ div.landing
           margin-top: 4px
 
           >div
-            display: flex
-            justify-content: center
-            align-items: center
+            @include flexCenter
 
           .progress
             flex-direction: column
 
           .counter
-            display: flex
-            justify-content: center
-            align-items: center
+            @include flexCenter
             flex-direction: column
 
             &-container
@@ -1594,18 +1644,12 @@ div.landing
             cursor: pointer
 
             .input__name
-
               i,
               span
                 margin: 0 0 0 8px
 
               input
-                width: 116px
-                border: none
-                background-color: $color-grey_100
-                border-radius: 4px
-                box-shadow: inset 0 2px 2px $color-grey_300, 0 2px 0 $color-grey_200
-                height: 28px
+                @include contentInput($input-width: 116px)
                 padding: 0 44px 0 4px
 
                 &.empty
@@ -1675,21 +1719,6 @@ div.landing
                       border-top: solid 1px $color-accent2_600
                       border-bottom: solid 1px $color-accent2_800
 
-            // i
-            //   position: absolute
-            //   font-size: 16px
-            //   cursor: pointer
-
-            //   &.fa-check-circle
-            //     right: 32px
-            //     top: 6px
-            //     color: $color-prime_700
-
-            //   &.fa-times-circle
-            //     right: 12px
-            //     top: 6px
-            //     color: $color-accent2_500
-
       &__debilities
         overflow: hidden
 
@@ -1703,9 +1732,7 @@ div.landing
         .title,
         .expand,
         .score
-          display: flex
-          justify-content: center
-          align-items: center
+          @include flexCenter
 
         .score
           flex-direction: column
@@ -1762,9 +1789,7 @@ div.landing
           font-size: 18px
 
         >div
-          display: flex
-          justify-content: center
-          align-items: center
+          @include flexCenter
 
         .score
           flex-direction: column
@@ -1773,13 +1798,8 @@ div.landing
           flex-wrap: wrap
           margin-top: 4px
 
-          // &:first-child
-          //   margin-top: 16px
-
           >div
-            display: flex
-            justify-content: center
-            align-items: center
+            @include flexCenter
 
           .detail-health
             &__container
@@ -1787,20 +1807,38 @@ div.landing
               display: flex
 
             &__block
-              display: flex
-              justify-content: center
-              align-items: center
+              @include flexCenter
               width: 29px
 
       &__actions
         display: flex
         justify-content: space-evenly
+        align-items: center
 
         >div
           display: flex
           flex-direction: column
           justify-content: space-evenly
           align-items: center
+          width: 80px
+          border-radius: 4px
+          color: $color-prime_100
+          cursor: pointer
+
+        &__back
+          background-color: $color-accent3_300
+
+          &:hover
+            background-color: $color-accent3_400
+
+        &__delete
+          background-color: $color-accent2_300
+
+          &:hover
+            background-color: $color-accent2_400
+
+    &__resource
+      padding: 8px
 
 .hide
   display: none

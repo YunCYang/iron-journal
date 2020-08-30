@@ -254,23 +254,23 @@ const AssetModal = props => {
     };
     const validateInput = () => {
       if (inputOption1.checked || inputOption2.checked || inputOption3.checked) {
-        if (assetDetail[0].uniqueName.show) {
-          if (inputUniqueName.checkValidity()) {
-            if (checkDuplicate()) {
-              if ((props.activeAsset.index === 1 && assetDetail[0].name === props.assetState.asset1.name) ||
-                (props.activeAsset.index === 2 && assetDetail[0].name === props.assetState.asset2.name) ||
-                (props.activeAsset.index === 3 && assetDetail[0].name === props.assetState.asset3.name)) return true;
-              else return false;
-            } else return true;
-          } else return false;
-        } else {
-          if (checkDuplicate()) {
-            if ((props.activeAsset.index === 1 && assetDetail[0].name === props.assetState.asset1.name) ||
+        // if (assetDetail[0].uniqueName.show) {
+        //   if (inputUniqueName.checkValidity()) {
+        //     if (checkDuplicate()) {
+        //       if ((props.activeAsset.index === 1 && assetDetail[0].name === props.assetState.asset1.name) ||
+        //         (props.activeAsset.index === 2 && assetDetail[0].name === props.assetState.asset2.name) ||
+        //         (props.activeAsset.index === 3 && assetDetail[0].name === props.assetState.asset3.name)) return true;
+        //       else return false;
+        //     } else return true;
+        //   } else return false;
+        // } else {
+        if (checkDuplicate()) {
+          if ((props.activeAsset.index === 1 && assetDetail[0].name === props.assetState.asset1.name) ||
               (props.activeAsset.index === 2 && assetDetail[0].name === props.assetState.asset2.name) ||
               (props.activeAsset.index === 3 && assetDetail[0].name === props.assetState.asset3.name)) return true;
-            else return false;
-          } else return true;
-        }
+          else return false;
+        } else return true;
+        // }
       } else return false;
     };
     if (validateInput()) {

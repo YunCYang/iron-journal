@@ -201,7 +201,7 @@ const NewCharacter = props => {
           momentum: 2,
           maxMomentum: 10,
           resetMomentum: 2,
-          bonds: bondCount(),
+          bond: bondCount(),
           vows: [
             {
               name: vowState.vow1Name,
