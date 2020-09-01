@@ -8,26 +8,19 @@ import AssetModal from './assetModal';
 export const CharacterContext = React.createContext([]);
 
 const Main = props => {
-  // sessionStorage.clear();
   const [isPage, setIsPage] = React.useState('game');
   const id = React.useContext(IdContext);
   const [characterList, setCharacterList] = React.useState([]);
-  // const [characterList, setCharacterList] = React.useState(
-  //   JSON.parse(sessionStorage.getItem('character')) || []
-  // );
   const [modalShown, setModalShown] = React.useState(false);
   const [selectedChar, setSelectedChar] = React.useState({});
   const [charListIndex, setCharListIndex] = React.useState(0);
 
   React.useEffect(
     () => {
-      // const sessionId = JSON.parse(sessionStorage.getItem('id'));
       const sessionId = sessionStorage.getItem('id');
       if ((!id.id && parseInt(id.id) !== 0) && (!sessionId && parseInt(sessionId) !== 0)) {
         props.history.push('/');
       }
-      // sessionStorage.clear();
-      // console.log(sessionStorage.getItem('character'));
     }
   );
 
@@ -191,11 +184,17 @@ const Main = props => {
           <span>Iron Journal</span>
         </div>
         <div className="main-menu">
-          <div className="main-menu__game" onClick={() => setIsPage('game')}>
+          <div className="main-menu__game" onClick={() => {
+            setIsPage('game');
+            setModalShown(false);
+          }}>
             <span>Game</span>
             <span className="bar"></span>
           </div>
-          <div className="main-menu__resource" onClick={() => setIsPage('resource')}>
+          <div className="main-menu__resource" onClick={() => {
+            setIsPage('resource');
+            setModalShown(false);
+          }}>
             <span>Resource</span>
             <span className="bar"></span>
           </div>

@@ -193,19 +193,21 @@ const Signup = props => {
           <span>Sign Up</span>
         </div>
         <div className="signup-container__username">
-          <div className="signup-container__left">
-            <label htmlFor="input-signup__username">Username</label>
-          </div>
-          <div className="signup-container__right">
-            <div className="signup__input">
-              <input type="text" name="input-signup__username" id="input-signup__username"
-                pattern="^[\w]{6,30}" onChange={nameInputHandler} required onKeyPress={
-                  e => {
-                    if (e.key === 'Enter') submitHandler();
-                  }
-                } onBlur={nameInputWarning}/>
-              <i className={`fas fa-check-circle ${validDisplay(isNameValid)}`}></i>
-              <i className={`fas fa-times-circle ${invalidDisplay(isNameValid)}`}></i>
+          <div className="signup-container__row">
+            <div className="signup-container__left">
+              <label htmlFor="input-signup__username">Username</label>
+            </div>
+            <div className="signup-container__right">
+              <div className="signup__input">
+                <input type="text" name="input-signup__username" id="input-signup__username"
+                  pattern="^[\w]{6,30}" onChange={nameInputHandler} required onKeyPress={
+                    e => {
+                      if (e.key === 'Enter') submitHandler();
+                    }
+                  } onBlur={nameInputWarning} />
+                <i className={`fas fa-check-circle ${validDisplay(isNameValid)}`}></i>
+                <i className={`fas fa-times-circle ${invalidDisplay(isNameValid)}`}></i>
+              </div>
             </div>
           </div>
           <div className="signup-container__feedback">
@@ -214,19 +216,21 @@ const Signup = props => {
           </div>
         </div>
         <div className="signup-container__email">
-          <div className="signup-container__left">
-            <label htmlFor="input-signup__email">Email</label>
-          </div>
-          <div className="signup-container__right">
-            <div className="signup__input">
-              <input type="email" name="input-signup__email" id="input-signup__email"
-                onChange={emailInputHandler} required onKeyPress={
-                  e => {
-                    if (e.key === 'Enter') submitHandler();
-                  }
-                } onBlur={emailInputWarning}/>
-              <i className={`fas fa-check-circle ${validDisplay(isEmailValid)}`}></i>
-              <i className={`fas fa-times-circle ${invalidDisplay(isEmailValid)}`}></i>
+          <div className="signup-container__row">
+            <div className="signup-container__left">
+              <label htmlFor="input-signup__email">Email</label>
+            </div>
+            <div className="signup-container__right">
+              <div className="signup__input">
+                <input type="email" name="input-signup__email" id="input-signup__email"
+                  onChange={emailInputHandler} required onKeyPress={
+                    e => {
+                      if (e.key === 'Enter') submitHandler();
+                    }
+                  } onBlur={emailInputWarning} />
+                <i className={`fas fa-check-circle ${validDisplay(isEmailValid)}`}></i>
+                <i className={`fas fa-times-circle ${invalidDisplay(isEmailValid)}`}></i>
+              </div>
             </div>
           </div>
           <div className="signup-container__feedback">
@@ -234,20 +238,22 @@ const Signup = props => {
           </div>
         </div>
         <div className="signup-container__password">
-          <div className="signup-container__left">
-            <label htmlFor="input-signup__password">Password</label>
-          </div>
-          <div className="signup-container__right">
-            <div className="signup__input">
-              <input type="password" name="input-signup__password" id="input-signup__password"
-                pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,32}$"
-                onChange={passwordInputHandler} required onKeyPress={
-                  e => {
-                    if (e.key === 'Enter') submitHandler();
-                  }
-                } onBlur={passwordInputWarning}/>
-              <i className={`fas fa-check-circle ${validDisplay(isPasswordValid)}`}></i>
-              <i className={`fas fa-times-circle ${invalidDisplay(isPasswordValid)}`}></i>
+          <div className="signup-container__row">
+            <div className="signup-container__left">
+              <label htmlFor="input-signup__password">Password</label>
+            </div>
+            <div className="signup-container__right">
+              <div className="signup__input">
+                <input type="password" name="input-signup__password" id="input-signup__password"
+                  pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,32}$"
+                  onChange={passwordInputHandler} required onKeyPress={
+                    e => {
+                      if (e.key === 'Enter') submitHandler();
+                    }
+                  } onBlur={passwordInputWarning} />
+                <i className={`fas fa-check-circle ${validDisplay(isPasswordValid)}`}></i>
+                <i className={`fas fa-times-circle ${invalidDisplay(isPasswordValid)}`}></i>
+              </div>
             </div>
           </div>
           <div className="signup-container__feedback">
@@ -259,7 +265,7 @@ const Signup = props => {
           </div>
         </div>
         <div className="signup-container__submit">
-          <button type="button" onClick={submitHandler}>Sign Up</button>
+          <button type="button" onClick={submitHandler}>Sign up</button>
         </div>
         <div className="signup-container__loginLink">
           <Link to='/' className='right'>Back to log in</Link>

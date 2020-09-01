@@ -1,13 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,500;1,700;1,800;1,900&display=swap");
-* {
-  box-sizing: border-box;
-  font-family: "Alegreya", serif;
-}
-
-body {
-  margin: 0;
-}
-
 div.main {
   background-color: #f7f7f7;
   width: 100%;
@@ -117,7 +108,7 @@ div.landing-action {
   width: 200px;
   margin-top: 48px;
 }
-div.landing-action > div {
+div.landing-action__userName, div.landing-action__password, div.landing-action__forgetPwd, div.landing-action__login, div.landing-action__signUpLink {
   position: relative;
   width: 200px;
 }
@@ -183,6 +174,15 @@ div.landing-action__password {
 }
 div.landing-action__forgetPwd {
   margin-bottom: 12px;
+  font-size: 12px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 8px;
+}
+div.landing-action__forgetPwd a {
+  color: #386c70;
+  text-decoration: none;
+  cursor: pointer;
 }
 div.landing-action__login {
   margin-bottom: 12px;
@@ -195,35 +195,15 @@ div.landing-action__feedback {
   flex-direction: column;
   border-radius: 4px;
   background-color: #eba9a3;
+  width: 184px;
+  position: relative;
+  margin: 0 8px;
 }
 div.landing-action__feedback span {
   width: 184px;
 }
 div.landing-action__feedback span {
   padding: 4px 8px 4px 8px;
-}
-div.landing-action__sent {
-  font-size: 12px;
-  color: #004726;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  border-radius: 4px;
-  background-color: #bdffe0;
-}
-div.landing-action__sent span {
-  padding: 4px 8px 4px 8px;
-}
-div.landing-action__forgetPwd {
-  font-size: 12px;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 8px;
-}
-div.landing-action__forgetPwd a {
-  color: #386c70;
-  text-decoration: none;
-  cursor: pointer;
 }
 div.landing-action button {
   width: 184px;
@@ -273,13 +253,16 @@ div.landing-action__signUpLink .right {
 
 .signup-container__username, .signup-container__email, .signup-container__password {
   display: flex;
+  flex-direction: column;
   margin-top: 24px;
-  flex-wrap: wrap;
 }
 .signup-container__title {
   color: #000f08;
   font-size: 30px;
   margin-bottom: 16px;
+}
+.signup-container__row {
+  display: flex;
 }
 .signup-container__left {
   margin: 0 24px 0 0;
@@ -382,7 +365,7 @@ div.landing-action__signUpLink .right {
   border-radius: 4px;
   box-shadow: inset 0 2px 2px #bfbfbf, 0 2px 0 #dedede;
   height: 28px;
-  width: 160px;
+  width: 200px;
   cursor: pointer;
   padding: 0 20px 0 8px;
   margin-top: 16px;
@@ -399,7 +382,7 @@ div.landing-action__signUpLink .right {
   font-weight: 500;
 }
 .forgetPwd-container__feedback span {
-  width: 160px;
+  width: 200px;
 }
 .forgetPwd-container__feedback span {
   padding: 4px 8px;
@@ -416,7 +399,7 @@ div.landing-action__signUpLink .right {
   font-weight: 500;
 }
 .forgetPwd-container__sent span {
-  width: 160px;
+  width: 200px;
   padding: 4px 8px;
 }
 .forgetPwd-container__submit {
@@ -426,19 +409,20 @@ div.landing-action__signUpLink .right {
   align-items: center;
 }
 .forgetPwd-container__submit button {
-  width: 146px;
+  width: 200px;
   background-color: #004726;
   border: none;
   color: #f0fff8;
-  height: 40px;
-  border-top: solid 2px #008044;
-  border-bottom: solid 2px #000f08;
+  height: 50px;
+  border-top: solid 3px #008044;
+  border-bottom: solid 3px #000f08;
   border-radius: 4px;
+  font-size: 16px;
 }
 .forgetPwd-container__submit button:focus {
   outline: none;
-  border-top: solid 0px #008044;
-  border-bottom: solid 0px #000f08;
+  border-top: solid 1px #008044;
+  border-bottom: solid 1px #000f08;
 }
 .forgetPwd-container__loginLink {
   margin-top: 16px;
@@ -505,7 +489,7 @@ div.landing-action__signUpLink .right {
 }
 .main-page .main-container {
   width: 210px;
-  height: 441px;
+  height: 70vh;
   background-color: #f0fff8;
   border-radius: 4px;
   overflow-y: scroll;
@@ -523,7 +507,7 @@ div.landing-action__signUpLink .right {
 }
 .main-page .main-container__game__content__container .modal-shadow {
   position: fixed;
-  height: 441px;
+  height: 70vh;
   width: 210px;
   background-color: rgba(8, 8, 8, 0.8);
   top: 91px;
@@ -675,12 +659,24 @@ div.landing-action__signUpLink .right {
 .main-page .main-container__newGame__content__form .subtitle {
   margin: 8px 0 8px 16px;
 }
+.main-page .main-container__newGame__content__form .input__container__row {
+  display: flex;
+  margin-bottom: 8px;
+}
 .main-page .main-container__newGame__content__form .input__container {
   display: flex;
   flex-direction: column;
 }
+.main-page .main-container__newGame__content__form .input__container .newGame__feedback {
+  width: 178px;
+  margin: 0 0 0 16px;
+}
+.main-page .main-container__newGame__content__form .input__container .newGame__feedback span {
+  width: 100%;
+}
 .main-page .main-container__newGame__content__form .input__container > div {
   display: flex;
+  flex-direction: column;
   margin: 8px 0 0 0;
 }
 .main-page .main-container__newGame__content__form .input__container__left {
@@ -861,13 +857,13 @@ div.landing-action__signUpLink .right {
   flex-direction: column;
   border-radius: 4px;
   background-color: #eba9a3;
-  margin: 8px 0 12px 0;
 }
 .main-page .main-container__newGame__content .newGame__feedback span {
   width: 110px;
 }
 .main-page .main-container__newGame__content .newGame__feedback span {
   padding: 4px;
+  margin: 4px;
 }
 .main-page .main-container__newGame__content__confirm {
   margin-bottom: 24px;
@@ -890,7 +886,7 @@ div.landing-action__signUpLink .right {
 }
 .main-page .main-container .modal-shadow {
   position: fixed;
-  height: 441px;
+  height: 70vh;
   width: 210px;
   background-color: rgba(8, 8, 8, 0.8);
   top: 91px;
@@ -1663,7 +1659,7 @@ div.landing-action__signUpLink .right {
 .main-page .main-container__character__vows .vow .new_2 .input__confirm button.vowButton__cancel {
   color: #f0fff8;
   background-color: #972b21;
-  border-top: solid 2px #b43327;
+  border-top: solid 2px #d13c2e;
   border-bottom: solid 2px #79231b;
 }
 .main-page .main-container__character__vows .vow .new_2 .input__confirm button.vowButton__cancel:focus {
@@ -1690,10 +1686,9 @@ div.landing-action__signUpLink .right {
 .main-page .main-container__character__debilities .score {
   flex-direction: column;
 }
-.main-page .main-container__character__debilities .cb-container {
+.main-page .main-container__character__debilities .cb-container__row {
   display: flex;
   justify-content: space-evenly;
-  flex-wrap: wrap;
 }
 .main-page .main-container__character__debilities .cb-container input {
   width: 0;
@@ -1796,6 +1791,1685 @@ div.landing-action__signUpLink .right {
 }
 .main-page .main-container__resource {
   padding: 8px;
+}
+
+@media screen and (min-width: 360px) {
+  div.landing-logo {
+    margin-top: 64px;
+  }
+  div.landing-title {
+    margin-top: 32px;
+  }
+  div.landing-action__container button:first-child {
+    margin-top: 64px;
+  }
+  div.landing-action__container button:nth-child(2) {
+    margin-top: 32px;
+  }
+  div.landing-action__password {
+    margin-bottom: 8px;
+  }
+  div.landing-action__forgetPwd {
+    margin-top: 8px;
+    margin-bottom: 32px;
+  }
+  div.landing-action__login {
+    margin-bottom: 16px;
+  }
+  div.landing-action__forgetPwd {
+    font-size: 12px;
+    padding-right: 8px;
+  }
+
+  .signup-container,
+.forgetPwd-container {
+    width: 252px;
+    height: 500px;
+    margin-top: 64px;
+  }
+
+  .signup-container__username, .signup-container__email, .signup-container__password {
+    margin-top: 32px;
+  }
+  .signup-container__feedback {
+    font-size: 12px;
+    color: #79231b;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 4px;
+    background-color: #eba9a3;
+  }
+  .signup-container__feedback span {
+    width: 224px;
+  }
+  .signup-container__submit {
+    margin-top: 32px;
+  }
+
+  .forgetPwd-container__title {
+    font-size: 30px;
+    margin-bottom: 24px;
+  }
+  .forgetPwd-container__main {
+    margin-top: 24px;
+  }
+  .forgetPwd-container__main input {
+    margin-top: 24px;
+  }
+  .forgetPwd-container__feedback {
+    margin: 12px 0 0 0;
+  }
+  .forgetPwd-container__sent {
+    margin: 12px 0 0 0;
+  }
+
+  .main-page .main-title {
+    margin: 24px 0 12px 0;
+  }
+  .main-page .main-menu {
+    width: 230px;
+    font-size: 16px;
+  }
+  .main-page .main-container {
+    width: 230px;
+  }
+  .main-page .main-container .sub-title {
+    margin: 12px 0 0 16px;
+    font-size: 18px;
+  }
+  .main-page .main-container__game__content__container {
+    margin-top: 16px;
+  }
+  .main-page .main-container__game__content__container .modal-shadow {
+    width: 230px;
+    top: 110px;
+  }
+  .main-page .main-container__game__content__container .modal-shadow .modal-container {
+    left: 25px;
+  }
+  .main-page .main-container__game__content__newBlock, .main-page .main-container__game__content__oldBlock {
+    margin: 12px 8px 48px 8px;
+  }
+  .main-page .main-container .modal-shadow {
+    width: 230px;
+    top: 110px;
+  }
+  .main-page .main-container .modal-shadow .modal-container {
+    left: 25px;
+  }
+  .main-page .main-container .modal-shadow .modal-container .modal-header {
+    height: 15px;
+  }
+  .main-page .main-container .modal-shadow .modal-container .modal-body i {
+    font-size: 20px;
+    margin-top: 8px;
+  }
+  .main-page .main-container__newGame__content__form .input__container__left {
+    width: 75px;
+    font-size: 16px;
+  }
+  .main-page .main-container__newGame__content__form .input__container__right input {
+    width: 120px;
+  }
+  .main-page .main-container__newGame__content__form .input__container .newGame__feedback {
+    width: 196px;
+  }
+  .main-page .main-container__newGame__content__form .stats-input__container .input__container__right {
+    width: 120px;
+  }
+  .main-page .main-container__newGame__content__form .vows-input__container__rank .input__container__right {
+    width: 120px;
+  }
+  .main-page .main-container__newGame__content__form .asset-input__container__asset > div {
+    width: 196px;
+  }
+  .main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__exist__name {
+    width: 154px;
+  }
+  .main-page .main-container__newGame__content__form .asset .newGame__feedback {
+    width: 198px;
+  }
+  .main-page .main-container__character .width-1-1 {
+    width: 214px;
+  }
+  .main-page .main-container__character .width-2-3 {
+    width: 134px;
+  }
+  .main-page .main-container__character .width-1-3 {
+    width: 64px;
+  }
+  .main-page .main-container__character .width-2-4 {
+    width: 107px;
+  }
+  .main-page .main-container__character .width-1-4 {
+    width: 53.5px;
+  }
+  .main-page .main-container__character .width-3-5 {
+    width: 130px;
+  }
+  .main-page .main-container__character .width-1-5 {
+    width: 38px;
+  }
+  .main-page .main-container__character__name .name-container input {
+    border: none;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 2px #bfbfbf, 0 2px 0 #dedede;
+    height: 28px;
+    width: 120px;
+    cursor: pointer;
+  }
+  .main-page .main-container__resource {
+    padding: 16px;
+  }
+}
+@media screen and (min-width: 375px) {
+  .main-page .main-container__character__bonds .counter-block {
+    height: 26px;
+    width: 26px;
+  }
+  .main-page .main-container__character__vows .vow .counter-block {
+    height: 26px;
+    width: 26px;
+  }
+}
+@media screen and (min-width: 411px) {
+  div.landing-logo {
+    height: 150px;
+    width: 150px;
+    margin-top: 64px;
+  }
+  div.landing-logo__circle {
+    width: 150px;
+    height: 150px;
+  }
+  div.landing-logo__head {
+    width: 18px;
+    height: 13.5px;
+    left: 66px;
+    top: 16.5px;
+  }
+  div.landing-logo__handle {
+    width: 18px;
+    left: 66px;
+    top: 27.75px;
+    border-bottom: 54px solid #f7f7f7;
+    border-left: 2.25px solid #004726;
+    border-right: 2.25px solid #004726;
+  }
+  div.landing-logo__guard__left, div.landing-logo__guard__right {
+    width: 32.5px;
+    height: 10px;
+    top: 76px;
+  }
+  div.landing-logo__guard__left {
+    left: 37.5px;
+  }
+  div.landing-logo__guard__right {
+    left: 80px;
+  }
+  div.landing-logo__blade {
+    height: 60px;
+    width: 22.5px;
+    left: 63.75px;
+    top: 90px;
+  }
+  div.landing-logo__shade__left, div.landing-logo__shade__right {
+    width: 62.5px;
+    height: 62.5px;
+    top: 81.25px;
+  }
+  div.landing-logo__shade__left {
+    left: 31.5px;
+  }
+  div.landing-logo__shade__right {
+    left: 56px;
+  }
+  div.landing-title {
+    height: 70px;
+    width: 250px;
+  }
+  div.landing-title__main {
+    font-size: 48px;
+  }
+  div.landing-title__secondary {
+    font-size: 18px;
+  }
+  div.landing-action {
+    width: 250px;
+    margin-top: 64px;
+  }
+  div.landing-action__userName, div.landing-action__password, div.landing-action__forgetPwd, div.landing-action__login, div.landing-action__signUpLink {
+    width: 250px;
+  }
+  div.landing-action input {
+    width: 230px;
+  }
+  div.landing-action .bar {
+    width: 230px;
+  }
+  div.landing-action__forgetPwd {
+    font-size: 14px;
+  }
+  div.landing-action__login {
+    margin-bottom: 24px;
+  }
+  div.landing-action__feedback {
+    font-size: 12px;
+    color: #79231b;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 4px;
+    background-color: #eba9a3;
+    width: 230px;
+    font-size: 14px;
+  }
+  div.landing-action__feedback span {
+    width: 230px;
+  }
+  div.landing-action button {
+    width: 230px;
+    height: 60px;
+    border-top: solid 3px #008044;
+    border-bottom: solid 3px #000f08;
+    font-size: 16px;
+  }
+  div.landing-action button:focus {
+    border-top: solid 1px #008044;
+    border-bottom: solid 1px #000f08;
+  }
+  div.landing-action__signUpLink {
+    font-size: 16px;
+  }
+  div.landing-action__signUpLink .left {
+    margin-right: 84px;
+  }
+
+  .signup-container,
+.forgetPwd-container {
+    height: 600px;
+  }
+
+  .signup-container__title {
+    font-size: 36px;
+    margin-bottom: 24px;
+  }
+  .signup-container__left {
+    margin: 0 24px 0 0;
+    width: 66px;
+    font-size: 16px;
+  }
+  .signup-container__feedback {
+    font-size: 12px;
+    color: #79231b;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 4px;
+    background-color: #eba9a3;
+  }
+  .signup-container__feedback span {
+    width: 224px;
+  }
+  .signup-container__submit {
+    margin-top: 48px;
+  }
+  .signup-container__submit button {
+    width: 230px;
+    height: 60px;
+    border-top: solid 3px #008044;
+    border-bottom: solid 3px #000f08;
+    font-size: 16px;
+  }
+  .signup-container__submit button:focus {
+    border-top: solid 1px #008044;
+    border-bottom: solid 1px #000f08;
+  }
+  .signup-container__loginLink {
+    margin-top: 24px;
+    font-size: 16px;
+  }
+
+  .forgetPwd-container__title {
+    font-size: 36px;
+  }
+  .forgetPwd-container__main {
+    margin-top: 24px;
+  }
+  .forgetPwd-container__main input {
+    margin-top: 32px;
+  }
+  .forgetPwd-container__submit {
+    margin-top: 24px;
+  }
+  .forgetPwd-container__submit button {
+    font-size: 16px;
+  }
+  .forgetPwd-container__loginLink {
+    margin-top: 24px;
+    font-size: 16px;
+  }
+
+  .main-page .main-title {
+    font-size: 36px;
+    margin: 24px 0 24px 0;
+  }
+  .main-page .main-menu {
+    width: 250px;
+    font-size: 18px;
+  }
+  .main-page .main-menu__game {
+    margin: 0 16px 0 16px;
+  }
+  .main-page .main-container {
+    width: 250px;
+  }
+  .main-page .main-container .sub-title {
+    margin: 16px 0 0 16px;
+    font-size: 20px;
+  }
+  .main-page .main-container__game__content__container .modal-shadow {
+    width: 250px;
+    top: 133px;
+  }
+  .main-page .main-container__game__content__container .modal-shadow .modal-container {
+    width: 180px;
+    left: 35px;
+  }
+  .main-page .main-container__game__content__newBlock, .main-page .main-container__game__content__oldBlock {
+    margin: 12px 12px 48px 10px;
+  }
+  .main-page .main-container .game-tag {
+    font-size: 14px;
+    height: 48px;
+  }
+  .main-page .main-container__newGame__backLink i {
+    font-size: 30px;
+  }
+  .main-page .main-container__newGame__content__form .divider {
+    margin: 16px 16px 8px 16px;
+  }
+  .main-page .main-container__newGame__content__form .input__container__left {
+    width: 85px;
+    font-size: 16px;
+  }
+  .main-page .main-container__newGame__content__form .input__container__right input {
+    width: 130px;
+  }
+  .main-page .main-container__newGame__content__form .input__container .newGame__feedback {
+    width: 218px;
+  }
+  .main-page .main-container__newGame__content__form .stats-input__container .input__container__right {
+    width: 130px;
+  }
+  .main-page .main-container__newGame__content__form .stats-input__container__wits .input__container__right {
+    margin-bottom: 4px;
+  }
+  .main-page .main-container__newGame__content__form .bonds-input__container__name:nth-child(3) .input__container__right {
+    margin-bottom: 4px;
+  }
+  .main-page .main-container__newGame__content__form .vows-input__container__name ~ .vows-input__container__name {
+    margin-top: 32px;
+  }
+  .main-page .main-container__newGame__content__form .vows-input__container__rank .input__container__right {
+    width: 130px;
+  }
+  .main-page .main-container__newGame__content__form .asset-input__container__asset > div {
+    width: 218px;
+  }
+  .main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__exist__name {
+    width: 154px;
+  }
+  .main-page .main-container__newGame__content__form .asset .newGame__feedback {
+    width: 218px;
+    margin: 0 0 0 16px;
+  }
+  .main-page .main-container__newGame__content .newGame__feedback {
+    font-size: 12px;
+    color: #79231b;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 4px;
+    background-color: #eba9a3;
+    margin: 8px 0 12px 0;
+  }
+  .main-page .main-container__newGame__content .newGame__feedback span {
+    width: 110px;
+  }
+  .main-page .main-container__newGame__content .newGame__feedback span {
+    padding: 4px;
+  }
+  .main-page .main-container__newGame__content__confirm {
+    margin-bottom: 32px;
+  }
+  .main-page .main-container__newGame__content__confirm button {
+    width: 160px;
+    margin: 24px 0 0 45px;
+    height: 50px;
+    font-size: 14px;
+  }
+  .main-page .main-container .modal-shadow {
+    width: 250px;
+    top: 133px;
+  }
+  .main-page .main-container .modal-shadow .modal-container {
+    width: 180px;
+    left: 35px;
+  }
+  .main-page .main-container__character .width-1-1 {
+    width: 234px;
+  }
+  .main-page .main-container__character .width-2-3 {
+    width: 148px;
+  }
+  .main-page .main-container__character .width-1-3 {
+    width: 70px;
+  }
+  .main-page .main-container__character .width-2-4 {
+    width: 117px;
+  }
+  .main-page .main-container__character .width-1-4 {
+    width: 58.5px;
+  }
+  .main-page .main-container__character .width-3-5 {
+    width: 142px;
+  }
+  .main-page .main-container__character .width-1-5 {
+    width: 42px;
+  }
+  .main-page .main-container__character .label,
+.main-page .main-container__character .bondName,
+.main-page .main-container__character .vowRank {
+    font-size: 14px;
+  }
+  .main-page .main-container__character .content {
+    font-size: 20px;
+  }
+  .main-page .main-container__character .height-half {
+    height: 27px;
+  }
+  .main-page .main-container__character .height-single {
+    height: 45px;
+  }
+  .main-page .main-container__character .height-single-half {
+    height: 68px;
+  }
+  .main-page .main-container__character .height-3-4 {
+    height: 33px;
+  }
+  .main-page .main-container__character .height-double-half {
+    height: 135px;
+  }
+  .main-page .main-container__character .height-double {
+    height: 90px;
+  }
+  .main-page .main-container__character .height-vows-container {
+    height: 870px;
+  }
+  .main-page .main-container__character .height-vows-single {
+    height: 162px;
+  }
+  .main-page .main-container__character .height-deb-container {
+    height: 320px;
+  }
+  .main-page .main-container__character__name, .main-page .main-container__character__exp, .main-page .main-container__character__status, .main-page .main-container__character__momentum, .main-page .main-container__character__bonds, .main-page .main-container__character__vows, .main-page .main-container__character__debilities, .main-page .main-container__character__assets {
+    margin: 12px 8px 8px 8px;
+  }
+  .main-page .main-container__character__name {
+    font-size: 24px;
+  }
+  .main-page .main-container__character__name .name-container input {
+    border: none;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 2px #bfbfbf, 0 2px 0 #dedede;
+    height: 28px;
+    width: 130px;
+    cursor: pointer;
+    height: 30px;
+  }
+  .main-page .main-container__character__name .name-container i.fa-check-circle {
+    top: 7px;
+  }
+  .main-page .main-container__character__name .name-container i.fa-times-circle {
+    top: 7px;
+  }
+  .main-page .main-container__character__exp .exp-container button {
+    padding: 1px 3px;
+  }
+  .main-page .main-container__character__exp .exp-container button.dec {
+    left: 4px;
+  }
+  .main-page .main-container__character__exp .exp-container button.inc {
+    right: 4px;
+  }
+  .main-page .main-container__character__5stats > div, .main-page .main-container__character__status > div, .main-page .main-container__character__momentum > div {
+    margin: 0 4px;
+  }
+  .main-page .main-container__character__5stats .stats5-container button {
+    padding: 1px 3px;
+  }
+  .main-page .main-container__character__5stats .stats5-container button.dec {
+    left: -3px;
+  }
+  .main-page .main-container__character__5stats .stats5-container button.inc {
+    right: -3px;
+  }
+  .main-page .main-container__character__status .status-container button {
+    padding: 1px 3px;
+  }
+  .main-page .main-container__character__momentum .momentum-container button {
+    padding: 1px 3px;
+  }
+  .main-page .main-container__character__bonds .score {
+    margin-bottom: 4px;
+  }
+  .main-page .main-container__character__bonds .counter-block {
+    height: 30px;
+    width: 30px;
+  }
+  .main-page .main-container__character__bonds .counter-block__square {
+    height: 44%;
+    width: 44%;
+  }
+  .main-page .main-container__character__vows .vow .name {
+    font-size: 18px;
+  }
+  .main-page .main-container__character__vows .vow .counter-block {
+    height: 30px;
+    width: 30px;
+    border: solid 2px #000f08;
+  }
+  .main-page .main-container__character__vows .vow .counter-block__square {
+    height: 44%;
+    width: 44%;
+  }
+  .main-page .main-container__character__vows .vow .action {
+    height: 40px;
+  }
+  .main-page .main-container__character__vows .vow .action button {
+    font-size: 14px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__name i,
+.main-page .main-container__character__vows .vow .new_2 .input__name span {
+    margin: 0 0 0 8px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__name input {
+    border: none;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 2px #bfbfbf, 0 2px 0 #dedede;
+    height: 28px;
+    width: 140px;
+    cursor: pointer;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__rank {
+    width: 140px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__rank__container {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__rank__container .rank__dropdown {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__rank__container .rank__dropdown:nth-child(2) {
+    top: 30px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__rank__container .rank__dropdown:nth-child(3) {
+    top: 60px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__rank__container .rank__dropdown:nth-child(4) {
+    top: 90px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__rank__container .rank__dropdown:nth-child(5) {
+    top: 120px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__confirm {
+    width: 140px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__confirm button {
+    font-size: 14px;
+    width: 60px;
+    height: 30px;
+  }
+  .main-page .main-container__character__debilities .cb-container label {
+    font-size: 14px;
+    height: 35px;
+    padding-top: 6px;
+  }
+  .main-page .main-container__character__actions {
+    margin: 12px 8px 16px 8px;
+  }
+  .main-page .main-container__character__actions > div {
+    width: 80px;
+  }
+}
+@media screen and (min-width: 450px) {
+  div.landing-logo {
+    margin-top: 32px;
+  }
+  div.landing-title {
+    margin-top: 24px;
+  }
+  div.landing-action {
+    margin-top: 48px;
+  }
+  div.landing-action__container button:first-child {
+    margin-top: 48px;
+  }
+  div.landing-action__userName {
+    margin-bottom: 12px;
+  }
+  div.landing-action__password {
+    margin-bottom: 4px;
+  }
+  div.landing-action__forgetPwd {
+    margin-bottom: 16px;
+  }
+  div.landing-action__login {
+    margin-bottom: 12px;
+  }
+
+  .signup-container,
+.forgetPwd-container {
+    height: 500px;
+    margin-top: 48px;
+  }
+
+  .signup-container__username, .signup-container__email, .signup-container__password {
+    margin-top: 24px;
+  }
+  .signup-container__title {
+    margin-bottom: 16px;
+  }
+  .signup-container__submit {
+    margin-top: 24px;
+  }
+  .signup-container__loginLink {
+    margin-top: 12px;
+  }
+
+  .main-page .main-title {
+    margin: 24px 0 16px 0;
+  }
+}
+@media screen and (min-width: 768px) {
+  div.landing-logo {
+    height: 200px;
+    width: 200px;
+    margin-top: 96px;
+  }
+  div.landing-logo__circle {
+    width: 200px;
+    height: 200px;
+  }
+  div.landing-logo__head {
+    width: 24px;
+    height: 18px;
+    left: 88px;
+    top: 22px;
+  }
+  div.landing-logo__handle {
+    width: 24px;
+    left: 88px;
+    top: 37px;
+    border-bottom: 72px solid #f7f7f7;
+    border-left: 3px solid #004726;
+    border-right: 3px solid #004726;
+  }
+  div.landing-logo__guard__left, div.landing-logo__guard__right {
+    width: 43.3px;
+    height: 13.3px;
+    top: 101.3px;
+  }
+  div.landing-logo__guard__left {
+    left: 50px;
+  }
+  div.landing-logo__guard__right {
+    left: 106.7px;
+  }
+  div.landing-logo__blade {
+    height: 80px;
+    width: 30px;
+    left: 85px;
+    top: 120px;
+  }
+  div.landing-logo__shade__left, div.landing-logo__shade__right {
+    width: 83.3px;
+    height: 83.3px;
+    top: 108.3px;
+  }
+  div.landing-logo__shade__left {
+    left: 42px;
+  }
+  div.landing-logo__shade__right {
+    left: 74.7px;
+  }
+  div.landing-title {
+    height: 80px;
+    width: 360px;
+  }
+  div.landing-title__main {
+    font-size: 60px;
+  }
+  div.landing-title__secondary {
+    font-size: 24px;
+  }
+  div.landing-action {
+    width: 300px;
+    margin-top: 96px;
+  }
+  div.landing-action__userName, div.landing-action__password, div.landing-action__forgetPwd, div.landing-action__login, div.landing-action__signUpLink {
+    width: 300px;
+  }
+  div.landing-action__userName, div.landing-action__password {
+    font-size: 20px;
+  }
+  div.landing-action__container button:nth-child(2) {
+    margin-top: 48px;
+  }
+  div.landing-action input {
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
+  }
+  div.landing-action .bar {
+    width: 300px;
+  }
+  div.landing-action__userName {
+    margin-bottom: 16px;
+  }
+  div.landing-action__password {
+    margin-bottom: 8px;
+  }
+  div.landing-action__forgetPwd {
+    margin-bottom: 32px;
+    font-size: 18px;
+    margin-left: 20px;
+  }
+  div.landing-action__login {
+    margin-bottom: 24px;
+  }
+  div.landing-action__feedback {
+    font-size: 12px;
+    color: #79231b;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 4px;
+    background-color: #eba9a3;
+    width: 300px;
+    font-size: 16px;
+  }
+  div.landing-action__feedback span {
+    width: 300px;
+  }
+  div.landing-action button {
+    width: 300px;
+    height: 70px;
+    font-size: 20px;
+  }
+  div.landing-action__signUpLink {
+    font-size: 20px;
+  }
+  div.landing-action__signUpLink .left {
+    margin-left: 8px;
+    margin-right: 110px;
+  }
+
+  .signup-container,
+.forgetPwd-container {
+    width: 360px;
+    height: 600px;
+    margin-top: 96px;
+  }
+
+  .signup-container__username, .signup-container__email, .signup-container__password {
+    margin-top: 48px;
+  }
+  .signup-container__title {
+    font-size: 48px;
+    margin-bottom: 32px;
+  }
+  .signup-container__left {
+    margin: 0 24px 0 0;
+    width: 100px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+  }
+  .signup-container__right .signup__input i {
+    right: 4px;
+    top: 8px;
+    font-size: 24px;
+  }
+  .signup-container__right input {
+    border: none;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 2px #bfbfbf, 0 2px 0 #dedede;
+    height: 28px;
+    width: 200px;
+    cursor: pointer;
+    height: 40px;
+    font-size: 18px;
+  }
+  .signup-container__feedback {
+    font-size: 12px;
+    color: #79231b;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 4px;
+    background-color: #eba9a3;
+    font-size: 16px;
+  }
+  .signup-container__feedback span {
+    width: 300px;
+  }
+  .signup-container__submit {
+    margin-top: 60px;
+  }
+  .signup-container__submit button {
+    width: 300px;
+    height: 70px;
+    font-size: 20px;
+  }
+  .signup-container__loginLink {
+    margin-top: 24px;
+    font-size: 20px;
+  }
+
+  .forgetPwd-container__title {
+    font-size: 48px;
+    margin-bottom: 48px;
+  }
+  .forgetPwd-container__main label {
+    font-size: 24px;
+  }
+  .forgetPwd-container__main input {
+    border: none;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 2px #bfbfbf, 0 2px 0 #dedede;
+    height: 28px;
+    width: 300px;
+    cursor: pointer;
+    height: 40px;
+    font-size: 18px;
+  }
+  .forgetPwd-container__feedback {
+    font-size: 12px;
+    color: #79231b;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 4px;
+    background-color: #eba9a3;
+    font-size: 16px;
+  }
+  .forgetPwd-container__feedback span {
+    width: 300px;
+  }
+  .forgetPwd-container__sent {
+    font-size: 16px;
+  }
+  .forgetPwd-container__sent span {
+    width: 300px;
+  }
+  .forgetPwd-container__submit {
+    margin-top: 64px;
+  }
+  .forgetPwd-container__submit button {
+    width: 300px;
+    height: 70px;
+    font-size: 20px;
+  }
+  .forgetPwd-container__loginLink {
+    margin-top: 24px;
+    font-size: 20px;
+  }
+
+  .main-page .main-title {
+    font-size: 48px;
+    margin: 24px 0 24px 0;
+  }
+  .main-page .main-menu {
+    width: 360px;
+    margin-bottom: 16px;
+    font-size: 24px;
+  }
+  .main-page .main-menu .bar:before {
+    height: 2px;
+  }
+  .main-page .main-menu__game {
+    margin: 0 24px 0 16px;
+  }
+  .main-page .main-container {
+    width: 360px;
+    height: 60vh;
+    border-radius: 20px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .main-page .main-container::-webkit-scrollbar {
+    display: none;
+  }
+  .main-page .main-container .sub-title {
+    font-size: 28px;
+  }
+  .main-page .main-container__game__content__container {
+    margin-top: 16px;
+  }
+  .main-page .main-container__game__content__container .modal-shadow {
+    width: 360px;
+    height: 60vh;
+    top: 162px;
+    border-radius: 18px;
+  }
+  .main-page .main-container__game__content__container .modal-shadow .modal-container {
+    width: 180px;
+    left: 35px;
+  }
+  .main-page .main-container__game__content__container .modal-shadow .modal-container .modal-header {
+    height: 25px;
+  }
+  .main-page .main-container__game__content__container .modal-shadow .modal-container .modal-header i {
+    font-size: 30px;
+    margin-top: 24px;
+  }
+  .main-page .main-container__game__content__container .modal-shadow .modal-container .modal-action {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .main-page .main-container__game__content__container .modal-shadow .modal-container .modal-action button {
+    font-size: 18px;
+  }
+  .main-page .main-container__game__content__container .modal-shadow .modal-container .modal-action button.confirm {
+    border-top: solid 2px #00bd65;
+    border-bottom: solid 2px #004726;
+  }
+  .main-page .main-container__game__content__container .modal-shadow .modal-container .modal-action button.confirm:focus {
+    border-top: solid 1px #00bd65;
+    border-bottom: solid 1px #004726;
+  }
+  .main-page .main-container__game__content__container .modal-shadow .modal-container.full {
+    height: 180px;
+    top: 160px;
+  }
+  .main-page .main-container__game__content__container .modal-shadow .modal-container.full .modal-body {
+    height: 95px;
+  }
+  .main-page .main-container__game__content__newBlock, .main-page .main-container__game__content__oldBlock {
+    margin: 24px 12px 48px 16px;
+    height: 90px;
+    width: 90px;
+    font-size: 48px;
+  }
+  .main-page .main-container__game__content__newBlock {
+    border: 3px dashed gray;
+  }
+  .main-page .main-container__game__content__oldBlock {
+    border: 3px solid #004726;
+  }
+  .main-page .main-container .game-tag {
+    font-size: 18px;
+    width: 80px;
+    top: 94px;
+    height: 48px;
+  }
+  .main-page .main-container__newGame__backLink {
+    right: 16px;
+    top: 0;
+  }
+  .main-page .main-container__newGame__backLink i {
+    font-size: 30px;
+  }
+  .main-page .main-container__newGame__content__form .divider {
+    height: 3px;
+    margin: 16px 16px 8px 16px;
+  }
+  .main-page .main-container__newGame__content__form .subtitle {
+    font-size: 24px;
+    margin: 8px 0 8px 16px;
+  }
+  .main-page .main-container__newGame__content__form .input__container > div {
+    margin: 8px 0 0 0;
+  }
+  .main-page .main-container__newGame__content__form .input__container__left {
+    margin: 0 0 0 16px;
+    width: 120px;
+    font-size: 20px;
+    padding-top: 4px;
+  }
+  .main-page .main-container__newGame__content__form .input__container__right input {
+    width: 204px;
+    height: 40px;
+  }
+  .main-page .main-container__newGame__content__form .input__container__right input[type=text] {
+    box-shadow: inset 0 2px 2px #bfbfbf, 0 2px 0 #dedede;
+    padding: 0 8px;
+    font-size: 20px;
+  }
+  .main-page .main-container__newGame__content__form .input__container .newGame__feedback {
+    width: 324px;
+  }
+  .main-page .main-container__newGame__content__form .stats-input__container .input__container__right {
+    width: 204px;
+  }
+  .main-page .main-container__newGame__content__form .stats-input__container .input__container__right label {
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    padding-top: 4px;
+  }
+  .main-page .main-container__newGame__content__form .vows-input__container__rank > div {
+    margin-top: 4px;
+  }
+  .main-page .main-container__newGame__content__form .vows-input__container__rank .input__container__right {
+    width: 204px;
+  }
+  .main-page .main-container__newGame__content__form .vows-input__container__rank .input__container__right label {
+    font-size: 18px;
+    width: 150px;
+    height: 80px;
+    padding: 24px 0;
+  }
+  .main-page .main-container__newGame__content__form .asset-input__container__asset > div {
+    height: 60px;
+    width: 324px;
+    margin: 0 0 16px 16px;
+  }
+  .main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__new {
+    border: 3px dashed gray;
+  }
+  .main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__new i,
+.main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__new span {
+    margin: 0 0 0 8px;
+    font-size: 20px;
+  }
+  .main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__exist {
+    border: 3px solid #000f08;
+  }
+  .main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__exist__name {
+    width: 240px;
+    margin: 0 0 0 8px;
+    font-size: 20px;
+  }
+  .main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__exist__action {
+    width: 64px;
+  }
+  .main-page .main-container__newGame__content__form .asset-input__container__asset .asset-block__exist__action i {
+    font-size: 24px;
+  }
+  .main-page .main-container__newGame__content__form .asset .newGame__feedback {
+    width: 218px;
+    margin: 0 0 0 16px;
+  }
+  .main-page .main-container__newGame__content .newGame__feedback {
+    font-size: 12px;
+    color: #79231b;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 4px;
+    background-color: #eba9a3;
+    margin: 8px 0 12px 0;
+  }
+  .main-page .main-container__newGame__content .newGame__feedback span {
+    width: 110px;
+  }
+  .main-page .main-container__newGame__content .newGame__feedback span {
+    padding: 4px;
+  }
+  .main-page .main-container__newGame__content__confirm {
+    margin-bottom: 48px;
+  }
+  .main-page .main-container__newGame__content__confirm button {
+    width: 200px;
+    margin: 24px 0 0 70px;
+    height: 60px;
+    border-top: solid 3px #008044;
+    border-bottom: solid 3px #000f08;
+    font-size: 20px;
+  }
+  .main-page .main-container__newGame__content__confirm button:focus {
+    border-top: solid 1px #008044;
+    border-bottom: solid 1px #000f08;
+  }
+  .main-page .main-container .modal-shadow {
+    width: 360px;
+    height: 60vh;
+    top: 162px;
+    border-radius: 18px;
+  }
+  .main-page .main-container .modal-shadow .modal-container {
+    width: 250px;
+    left: 55px;
+  }
+  .main-page .main-container .modal-shadow .modal-container .modal-header {
+    height: 25px;
+  }
+  .main-page .main-container .modal-shadow .modal-container .modal-body i {
+    font-size: 30px;
+    margin-top: 24px;
+  }
+  .main-page .main-container .modal-shadow .modal-container .modal-action {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .main-page .main-container .modal-shadow .modal-container .modal-action button {
+    font-size: 18px;
+  }
+  .main-page .main-container .modal-shadow .modal-container .modal-action button.confirm {
+    border-top: solid 2px #00bd65;
+    border-bottom: solid 2px #004726;
+  }
+  .main-page .main-container .modal-shadow .modal-container .modal-action button.confirm:focus {
+    border-top: solid 1px #00bd65;
+    border-bottom: solid 1px #004726;
+  }
+  .main-page .main-container .modal-shadow .modal-container .modal-action button.delete {
+    border-top: solid 2px #b43327;
+    border-bottom: solid 2px #79231b;
+  }
+  .main-page .main-container .modal-shadow .modal-container .modal-action button.delete:focus {
+    border-top: solid 1px #b43327;
+    border-bottom: solid 1px #79231b;
+  }
+  .main-page .main-container .modal-shadow .modal-container .modal-action button.cancel {
+    border-top: solid 2px gray;
+    border-bottom: solid 2px #404040;
+  }
+  .main-page .main-container .modal-shadow .modal-container .modal-action button.cancel:focus {
+    border-top: solid 1px gray;
+    border-bottom: solid 1px #404040;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new, .main-page .main-container .modal-shadow .modal-container.edit {
+    height: 400px;
+    top: 80px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body, .main-page .main-container .modal-shadow .modal-container.edit .modal-body {
+    height: 375px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__back, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__back {
+    height: 30px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__back i, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__back i {
+    margin-right: 16px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__type, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__type {
+    padding: 28px 8px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__type__container, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__type__container {
+    width: 50%;
+    height: 50%;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__type__button, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__type__button {
+    width: 90px;
+    height: 130px;
+    border: solid 3px #004726;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__type__button i, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__type__button i {
+    font-size: 36px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__type__button span, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__type__button span {
+    font-size: 16px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__list, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__list {
+    height: 255px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__list__container {
+    margin: 4px 0 0 0;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container .list, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__list__container .list {
+    margin: 8px 16px;
+    border: solid 2px #004726;
+    height: 40px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__list__container .list span, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__list__container .list span {
+    margin-left: 8px;
+    font-size: 18px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail {
+    height: 255px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container {
+    margin: 4px 0 0 0;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail > div, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail > div {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-name, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-name {
+    font-size: 24px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-text, .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-uniqueName, .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-text, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-uniqueName, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health {
+    margin-top: 12px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-text, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-text {
+    font-size: 18px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-uniqueName input, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-uniqueName input {
+    border: none;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 2px #bfbfbf, 0 2px 0 #dedede;
+    height: 28px;
+    width: 148px;
+    cursor: pointer;
+    padding: 0 8px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__container, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__container {
+    width: 200px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__block {
+    height: 32px;
+    width: 32px;
+    font-size: 24px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.active, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__block.active {
+    border-width: 2px 2px 2px 0;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.active:first-child, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__block.active:first-child {
+    border-width: 2px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-health__block.inactive, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-health__block.inactive {
+    border-width: 2px 2px 2px 0;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option ul li .check, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option ul li .check {
+    width: 20px;
+    padding: 6px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option__container {
+    width: 190px;
+    padding: 4px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__name, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option__container__name {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__description, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option__container__description {
+    font-size: 16px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__option, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option__container__option {
+    font-size: 16px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail-option__container__option div.option-detail, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail-option__container__option div.option-detail {
+    margin-top: 8px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .uniqueName__feedback,
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .option__feedback,
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .duplicate__feedback, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .uniqueName__feedback,
+.main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .option__feedback,
+.main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .duplicate__feedback {
+    font-size: 12px;
+    color: #79231b;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 4px;
+    background-color: #eba9a3;
+    margin: 8px 0;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .uniqueName__feedback span,
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .option__feedback span,
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .duplicate__feedback span, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .uniqueName__feedback span,
+.main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .option__feedback span,
+.main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .duplicate__feedback span {
+    width: 148px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .uniqueName__feedback span,
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .option__feedback span,
+.main-page .main-container .modal-shadow .modal-container.new .modal-body__detail__container .detail .duplicate__feedback span, .main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .uniqueName__feedback span,
+.main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .option__feedback span,
+.main-page .main-container .modal-shadow .modal-container.edit .modal-body__detail__container .detail .duplicate__feedback span {
+    padding: 4px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.delete {
+    height: 180px;
+    top: 160px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.delete .modal-body {
+    height: 95px;
+  }
+  .main-page .main-container .modal-shadow .modal-container.delete button {
+    font-size: 18px;
+  }
+  .main-page .main-container__character .width-1-1 {
+    width: 344px;
+  }
+  .main-page .main-container__character .width-2-3 {
+    width: 218px;
+  }
+  .main-page .main-container__character .width-1-3 {
+    width: 110px;
+  }
+  .main-page .main-container__character .width-2-4 {
+    width: 174px;
+  }
+  .main-page .main-container__character .width-1-4 {
+    width: 87px;
+  }
+  .main-page .main-container__character .width-3-5 {
+    width: 202px;
+  }
+  .main-page .main-container__character .width-1-5 {
+    width: 64px;
+  }
+  .main-page .main-container__character .label,
+.main-page .main-container__character .bondName {
+    font-size: 20px;
+  }
+  .main-page .main-container__character .vowName {
+    font-size: 20px;
+  }
+  .main-page .main-container__character .content {
+    font-size: 24px;
+  }
+  .main-page .main-container__character .height-half {
+    height: 33px;
+  }
+  .main-page .main-container__character .height-single {
+    height: 55px;
+  }
+  .main-page .main-container__character .height-single-half {
+    height: 82px;
+  }
+  .main-page .main-container__character .height-3-4 {
+    height: 42px;
+  }
+  .main-page .main-container__character .height-double-half {
+    height: 165px;
+  }
+  .main-page .main-container__character .height-double {
+    height: 110px;
+  }
+  .main-page .main-container__character .height-vows-container {
+    height: 1100px;
+  }
+  .main-page .main-container__character .height-vows-single {
+    height: 200px;
+  }
+  .main-page .main-container__character .height-deb-container {
+    height: 420px;
+  }
+  .main-page .main-container__character__name, .main-page .main-container__character__exp, .main-page .main-container__character__status, .main-page .main-container__character__momentum, .main-page .main-container__character__bonds, .main-page .main-container__character__vows, .main-page .main-container__character__debilities, .main-page .main-container__character__assets {
+    margin: 12px 8px 8px 8px;
+  }
+  .main-page .main-container__character__name {
+    font-size: 30px;
+  }
+  .main-page .main-container__character__name .name-container input {
+    border: none;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 2px #bfbfbf, 0 2px 0 #dedede;
+    height: 28px;
+    width: 180px;
+    cursor: pointer;
+    height: 40px;
+    padding: 0 44px 0 4px;
+    font-size: 20px;
+    border-radius: 10px;
+  }
+  .main-page .main-container__character__name .name-container i {
+    font-size: 24px;
+  }
+  .main-page .main-container__character__name .name-container i.fa-check-circle {
+    right: 54px;
+    top: 10px;
+  }
+  .main-page .main-container__character__name .name-container i.fa-times-circle {
+    right: 24px;
+    top: 10px;
+  }
+  .main-page .main-container__character__exp .exp-container button {
+    border: solid 2px #bfbfbf;
+    padding: 2px 6px;
+    font-size: 20px;
+  }
+  .main-page .main-container__character__exp .exp-container button.dec {
+    left: 12px;
+  }
+  .main-page .main-container__character__exp .exp-container button.inc {
+    right: 12px;
+  }
+  .main-page .main-container__character__5stats > div, .main-page .main-container__character__status > div, .main-page .main-container__character__momentum > div {
+    margin: 0 4px;
+  }
+  .main-page .main-container__character__5stats .stats5-container button {
+    border: solid 2px #bfbfbf;
+    padding: 2px 6px;
+    font-size: 20px;
+  }
+  .main-page .main-container__character__5stats .stats5-container button.dec {
+    left: -3px;
+  }
+  .main-page .main-container__character__5stats .stats5-container button.inc {
+    right: -3px;
+  }
+  .main-page .main-container__character__status .status-container button {
+    border: solid 2px #bfbfbf;
+    padding: 2px 6px;
+    font-size: 20px;
+  }
+  .main-page .main-container__character__status .status-container button.dec {
+    left: 12px;
+  }
+  .main-page .main-container__character__status .status-container button.inc {
+    right: 12px;
+  }
+  .main-page .main-container__character__momentum .momentum-container button {
+    border: solid 2px #bfbfbf;
+    padding: 2px 6px;
+    font-size: 20px;
+  }
+  .main-page .main-container__character__momentum .momentum-container button.dec {
+    left: 12px;
+  }
+  .main-page .main-container__character__momentum .momentum-container button.inc {
+    right: 12px;
+  }
+  .main-page .main-container__character__bonds .title {
+    font-size: 24px;
+  }
+  .main-page .main-container__character__bonds .score {
+    font-size: 20px;
+  }
+  .main-page .main-container__character__bonds .expand {
+    font-size: 24px;
+  }
+  .main-page .main-container__character__bonds .counter-block {
+    height: 36px;
+    width: 36px;
+    border: solid 2px #000f08;
+  }
+  .main-page .main-container__character__bonds .counter-block__square {
+    height: 43%;
+    width: 43%;
+  }
+  .main-page .main-container__character__vows .title,
+.main-page .main-container__character__vows .expand {
+    font-size: 24px;
+  }
+  .main-page .main-container__character__vows .score {
+    font-size: 20px;
+  }
+  .main-page .main-container__character__vows .vow {
+    margin-top: 12px;
+  }
+  .main-page .main-container__character__vows .vow .name {
+    font-size: 20px;
+  }
+  .main-page .main-container__character__vows .vow .vowRank {
+    font-size: 16px;
+  }
+  .main-page .main-container__character__vows .vow .counter-block {
+    height: 36px;
+    width: 36px;
+    border: solid 2px #000f08;
+  }
+  .main-page .main-container__character__vows .vow .counter-block__square {
+    height: 43%;
+    width: 43%;
+  }
+  .main-page .main-container__character__vows .vow .action {
+    height: 40px;
+  }
+  .main-page .main-container__character__vows .vow .action button {
+    border-top: solid 2px #b43327;
+    border-bottom: solid 2px #79231b;
+    font-size: 18px;
+  }
+  .main-page .main-container__character__vows .vow .action button:focus {
+    border-top: solid 1px #b43327;
+    border-bottom: solid 1px #79231b;
+  }
+  .main-page .main-container__character__vows .vow .new {
+    border: 3px dashed gray;
+  }
+  .main-page .main-container__character__vows .vow .new i,
+.main-page .main-container__character__vows .vow .new span {
+    margin: 0 0 0 8px;
+    font-size: 20px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 {
+    border: 3px dashed gray;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__name i,
+.main-page .main-container__character__vows .vow .new_2 .input__name span {
+    margin: 0 0 0 8px;
+    font-size: 20px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__name input {
+    border: none;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 2px #bfbfbf, 0 2px 0 #dedede;
+    height: 28px;
+    width: 220px;
+    cursor: pointer;
+    padding: 0 12px 0 12px;
+    font-size: 20px;
+    height: 40px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__name input.empty {
+    border: solid 3px #b43327;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__rank {
+    border: solid 2px #bfbfbf;
+    width: 220px;
+    font-size: 20px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__rank__container {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__rank__container .rank__dropdown {
+    border: solid 2px #bfbfbf;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__rank__container .rank__dropdown:nth-child(2) {
+    top: 40px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__rank__container .rank__dropdown:nth-child(3) {
+    top: 80px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__rank__container .rank__dropdown:nth-child(4) {
+    top: 120px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__rank__container .rank__dropdown:nth-child(5) {
+    top: 160px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__confirm {
+    width: 220px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__confirm button {
+    font-size: 20px;
+    width: 80px;
+    height: 40px;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__confirm button.vowButton__create {
+    border-top: solid 2px #00bd65;
+    border-bottom: solid 2px #004726;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__confirm button.vowButton__create:focus {
+    border-top: solid 1px #00bd65;
+    border-bottom: solid 1px #004726;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__confirm button.vowButton__cancel {
+    background-color: #972b21;
+    border-top: solid 2px #b43327;
+    border-bottom: solid 2px #79231b;
+  }
+  .main-page .main-container__character__vows .vow .new_2 .input__confirm button.vowButton__cancel:focus {
+    border-top: solid 1px #b43327;
+    border-bottom: solid 1px #79231b;
+  }
+  .main-page .main-container__character__debilities .title {
+    font-size: 24px;
+  }
+  .main-page .main-container__character__debilities .title-s {
+    font-size: 14px;
+    padding-left: 12px;
+  }
+  .main-page .main-container__character__debilities .expand {
+    font-size: 24px;
+  }
+  .main-page .main-container__character__debilities .score {
+    font-size: 20px;
+  }
+  .main-page .main-container__character__debilities .title-s {
+    font-size: 20px;
+  }
+  .main-page .main-container__character__debilities .cb-container label {
+    font-size: 18px;
+    width: 110px;
+    height: 45px;
+    padding-top: 6px;
+    border: 1px solid #80ffc4;
+  }
+  .main-page .main-container__character__debilities .cb-container input:checked + label {
+    font-weight: 500;
+  }
+  .main-page .main-container__character__actions {
+    margin: 12px 8px 16px 8px;
+  }
+  .main-page .main-container__character__actions > div {
+    width: 120px;
+    font-size: 24px;
+  }
+  .main-page .main-container__resource {
+    padding: 24px;
+    font-size: 20px;
+  }
+}
+* {
+  box-sizing: border-box;
+  font-family: "Alegreya", serif;
+}
+
+body {
+  margin: 0;
 }
 
 .hide {

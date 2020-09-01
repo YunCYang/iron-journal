@@ -1,0 +1,249 @@
+$font-main: 'Alegreya', serif
+$color-grey_100: hsla(152, 0%, 97%, 1)
+$color-grey_200: hsla(152, 0%, 87%, 1)
+$color-grey_300: hsla(152, 0%, 75%, 1)
+$color-grey_400: hsla(152, 0%, 62%, 1)
+$color-grey_500: hsla(152, 0%, 50%, 1)
+$color-grey_600: hsla(152, 0%, 37%, 1)
+$color-grey_700: hsla(152, 0%, 25%, 1)
+$color-grey_800: hsla(152, 0%, 14%, 1)
+$color-grey_900: hsla(152, 0%, 3%, 1)
+$color-prime_100: hsla(152, 100%, 97%, 1)
+$color-prime_200: hsla(152, 100%, 87%, 1)
+$color-prime_300: hsla(152, 100%, 75%, 1)
+$color-prime_400: hsla(152, 100%, 62%, 1)
+$color-prime_500: hsla(152, 100%, 50%, 1)
+$color-prime_600: hsla(152, 100%, 37%, 1)
+$color-prime_700: hsla(152, 100%, 25%, 1)
+$color-prime_800: hsla(152, 100%, 14%, 1)
+$color-prime_900: hsla(152, 100%, 3%, 1)
+$color-accent1_100: hsla(180, 33%, 84%, 1)
+$color-accent1_200: hsla(182, 33%, 75%, 1)
+$color-accent1_300: hsla(184, 33%, 67%, 1)
+$color-accent1_400: hsla(187, 33%, 59%, 1)
+$color-accent1_500: hsla(190, 33%, 50%, 1)
+$color-accent1_600: hsla(187, 33%, 41%, 1)
+$color-accent1_700: hsla(184, 33%, 33%, 1)
+$color-accent1_800: hsla(182, 33%, 25%, 1)
+$color-accent1_900: hsla(180, 33%, 16%, 1)
+$color-accent2_100: hsla(5, 64%, 78%, 1)
+$color-accent2_200: hsla(5, 64%, 71%, 1)
+$color-accent2_300: hsla(5, 64%, 64%, 1)
+$color-accent2_400: hsla(5, 64%, 57%, 1)
+$color-accent2_500: hsla(5, 64%, 50%, 1)
+$color-accent2_600: hsla(5, 64%, 43%, 1)
+$color-accent2_700: hsla(5, 64%, 36%, 1)
+$color-accent2_800: hsla(5, 64%, 29%, 1)
+$color-accent2_900: hsla(5, 64%, 22%, 1)
+$color-accent3_100: hsla(185, 32%, 72%, 1)
+$color-accent3_200: hsla(185, 25%, 66%, 1)
+$color-accent3_300: hsla(185, 17%, 61%, 1)
+$color-accent3_400: hsla(185, 17%, 55%, 1)
+$color-accent3_500: hsla(185, 17%, 50%, 1)
+$color-accent3_600: hsla(185, 17%, 44%, 1)
+$color-accent3_700: hsla(185, 17%, 39%, 1)
+$color-accent3_800: hsla(185, 25%, 33%, 1)
+$color-accent3_900: hsla(185, 32%, 28%, 1)
+$color-shade: hsla(152, 0%, 3%, 0.8)
+
+=feedback($feedback-width)
+  font-size: 12px
+  color: $color-accent2_800
+  display: flex
+  justify-content: center
+  flex-direction: column
+  border-radius: 4px
+  background-color: $color-accent2_100
+
+  span
+    width: $feedback-width
+
+=contentInput($input-width)
+  border: none
+  background-color: $color-grey_100
+  border-radius: 4px
+  box-shadow: inset 0 2px 2px $color-grey_300, 0 2px 0 $color-grey_200
+  height: 28px
+  width: $input-width
+  cursor: pointer
+
+=flexCenter
+  display: flex
+  justify-content: center
+  align-items: center
+
+@media screen and (min-width: 360px)
+  div.landing
+    &-logo
+      margin-top: 64px
+
+    &-title
+      margin-top: 32px
+
+    &-action
+      &__container
+        button:first-child
+          margin-top: 64px
+
+        button:nth-child(2)
+          margin-top: 32px
+
+      &__password
+        margin-bottom: 8px
+
+      &__forgetPwd
+        margin-top: 8px
+        margin-bottom: 32px
+
+      &__login
+        margin-bottom: 16px
+
+      &__forgetPwd
+        font-size: 12px
+        padding-right: 8px
+
+  .signup-container,
+  .forgetPwd-container
+    width: 252px
+    height: 500px
+    margin-top: 64px
+
+  .signup-container
+    &__username,
+    &__email,
+    &__password
+      margin-top: 32px
+
+    &__feedback
+      @include feedback($feedback-width: 224px)
+
+    &__submit
+      margin-top: 32px
+
+  .forgetPwd-container
+    &__title
+      font-size: 30px
+      margin-bottom: 24px
+
+    &__main
+      margin-top: 24px
+
+      input
+        margin-top: 24px
+
+    &__feedback
+      margin: 12px 0 0 0
+
+    &__sent
+      margin: 12px 0 0 0
+
+  .main-page
+    .main-title
+      margin: 24px  0 12px 0
+
+    .main-menu
+      width: 230px
+      font-size: 16px
+
+    .main-container
+      width: 230px
+
+      .sub-title
+        margin: 12px 0 0 16px
+        font-size: 18px
+
+      &__game__content__container
+        margin-top: 16px
+
+        .modal-shadow
+          width: 230px
+          top: 110px
+
+          .modal-container
+            left: 25px
+
+      &__game__content__newBlock,
+      &__game__content__oldBlock
+        margin: 12px 8px 48px 8px
+
+      .modal-shadow
+        width: 230px
+        top: 110px
+
+        .modal-container
+          left: 25px
+
+          .modal-header
+            height: 15px
+
+          .modal-body
+            i
+              font-size: 20px
+              margin-top: 8px
+
+      &__newGame
+        &__content
+          &__form
+            .input__container
+              &__left
+                width: 75px
+                font-size: 16px
+
+              &__right
+                input
+                  width: 120px
+
+              .newGame__feedback
+                width: 196px
+
+            .stats-input__container
+              .input__container__right
+                width: 120px
+
+            .vows-input__container__rank
+              .input__container__right
+                width: 120px
+
+            .asset
+              &-input__container
+                &__asset
+                  >div
+                    width: 196px
+
+                  .asset-block
+                    &__exist
+                      &__name
+                        width: 154px
+
+              .newGame__feedback
+                width: 198px
+
+      &__character
+        .width-1-1
+          width: 214px
+
+        .width-2-3
+          width: 134px
+
+        .width-1-3
+          width: 64px
+
+        .width-2-4
+          width: 107px
+
+        .width-1-4
+          width: 53.5px
+
+        .width-3-5
+          width: 130px
+
+        .width-1-5
+          width: 38px
+
+        &__name
+          .name-container
+            input
+              @include contentInput($input-width: 120px)
+
+      &__resource
+        padding: 16px

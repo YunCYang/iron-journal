@@ -591,7 +591,7 @@ const Character = props => {
     };
     return (
       <>
-        <div className="bonds-container title width-1-34">
+        <div className="bonds-container title width-1-3">
           <span>Bonds</span>
         </div>
         <div className="bonds-container expand width-1-3" onClick={bondExpandHandler}>
@@ -730,34 +730,38 @@ const Character = props => {
             <span>Conditions</span>
           </div>
           <div className="cb-container height-double width-1-1">
-            <input className="cb-conditions__wounded" type="checkbox" name="cb-conditions__wounded"
-              id="cb-conditions__wounded" checked={props.selectedChar.wounded} onChange={
-                () => editData('wounded', !props.selectedChar.wounded)
-              }/>
-            <label className="label-conditions__wounded" htmlFor="cb-conditions__wounded">
-              <span>Wounded</span>
-            </label>
-            <input className="cb-conditions__shaken" type="checkbox" name="cb-conditions__shaken"
-              id="cb-conditions__shaken" checked={props.selectedChar.shaken} onChange={
-                () => editData('shaken', !props.selectedChar.shaken)
-              }/>
-            <label className="label-conditions__shaken" htmlFor="cb-conditions__shaken">
-              <span>Shaken</span>
-            </label>
-            <input className="cb-conditions__unprepared" type="checkbox" name="cb-conditions__unprepared"
-              id="cb-conditions__unprepared" checked={props.selectedChar.unprepared} onChange={
-                () => editData('unprepared', !props.selectedChar.unprepared)
-              }/>
-            <label className="label-conditions__unprepared" htmlFor="cb-conditions__unprepared">
-              <span>Unprepared</span>
-            </label>
-            <input className="cb-conditions__encumbered" type="checkbox" name="cb-conditions__encumbered"
-              id="cb-conditions__encumbered" checked={props.selectedChar.encumbered} onChange={
-                () => editData('encumbered', !props.selectedChar.encumbered)
-              }/>
-            <label className="label-conditions__encumbered" htmlFor="cb-conditions__encumbered">
-              <span>Encumbered</span>
-            </label>
+            <div className="cb-container__row height-single width-1-1">
+              <input className="cb-conditions__wounded" type="checkbox" name="cb-conditions__wounded"
+                id="cb-conditions__wounded" checked={props.selectedChar.wounded} onChange={
+                  () => editData('wounded', !props.selectedChar.wounded)
+                } />
+              <label className="label-conditions__wounded" htmlFor="cb-conditions__wounded">
+                <span>Wounded</span>
+              </label>
+              <input className="cb-conditions__shaken" type="checkbox" name="cb-conditions__shaken"
+                id="cb-conditions__shaken" checked={props.selectedChar.shaken} onChange={
+                  () => editData('shaken', !props.selectedChar.shaken)
+                } />
+              <label className="label-conditions__shaken" htmlFor="cb-conditions__shaken">
+                <span>Shaken</span>
+              </label>
+            </div>
+            <div className="cb-container__row height-single width-1-1">
+              <input className="cb-conditions__unprepared" type="checkbox" name="cb-conditions__unprepared"
+                id="cb-conditions__unprepared" checked={props.selectedChar.unprepared} onChange={
+                  () => editData('unprepared', !props.selectedChar.unprepared)
+                } />
+              <label className="label-conditions__unprepared" htmlFor="cb-conditions__unprepared">
+                <span>Unprepared</span>
+              </label>
+              <input className="cb-conditions__encumbered" type="checkbox" name="cb-conditions__encumbered"
+                id="cb-conditions__encumbered" checked={props.selectedChar.encumbered} onChange={
+                  () => editData('encumbered', !props.selectedChar.encumbered)
+                } />
+              <label className="label-conditions__encumbered" htmlFor="cb-conditions__encumbered">
+                <span>Encumbered</span>
+              </label>
+            </div>
           </div>
         </div>
         <div className="debilities-container__banes">
@@ -765,20 +769,22 @@ const Character = props => {
             <span>Banes</span>
           </div>
           <div className="cb-container height-single width-1-1">
-            <input className="cb-banes__maimed" type="checkbox" name="cb-banes__maimed"
-              id="cb-banes__maimed" checked={props.selectedChar.maimed} onChange={
-                () => editData('maimed', !props.selectedChar.maimed)
-              }/>
-            <label className="label-banes__maimed" htmlFor="cb-banes__maimed">
-              <span>Maimed</span>
-            </label>
-            <input className="cb-banes__corrupted" type="checkbox" name="cb-banes__corrupted"
-              id="cb-banes__corrupted" checked={props.selectedChar.corrupted} onChange={
-                () => editData('corrupted', !props.selectedChar.corrupted)
-              }/>
-            <label className="label-banes__corrupted" htmlFor="cb-banes__corrupted">
-              <span>Corrupted</span>
-            </label>
+            <div className="cb-container__row height-single width-1-1">
+              <input className="cb-banes__maimed" type="checkbox" name="cb-banes__maimed"
+                id="cb-banes__maimed" checked={props.selectedChar.maimed} onChange={
+                  () => editData('maimed', !props.selectedChar.maimed)
+                } />
+              <label className="label-banes__maimed" htmlFor="cb-banes__maimed">
+                <span>Maimed</span>
+              </label>
+              <input className="cb-banes__corrupted" type="checkbox" name="cb-banes__corrupted"
+                id="cb-banes__corrupted" checked={props.selectedChar.corrupted} onChange={
+                  () => editData('corrupted', !props.selectedChar.corrupted)
+                } />
+              <label className="label-banes__corrupted" htmlFor="cb-banes__corrupted">
+                <span>Corrupted</span>
+              </label>
+            </div>
           </div>
         </div>
         <div className="debilities-container__burdens">
@@ -786,20 +792,22 @@ const Character = props => {
             <span>Burdens</span>
           </div>
           <div className="cb-container height-single width-1-1">
-            <input className="cb-burdens__cursed" type="checkbox" name="cb-burdens__cursed"
-              id="cb-burdens__cursed" checked={props.selectedChar.cursed} onChange={
-                () => editData('cursed', !props.selectedChar.cursed)
-              }/>
-            <label className="label-burdens__cursed" htmlFor="cb-burdens__cursed">
-              <span>Cursed</span>
-            </label>
-            <input className="cb-burdens__tormented" type="checkbox" name="cb-burdens__tormented"
-              id="cb-burdens__tormented" checked={props.selectedChar.tormented} onChange={
-                () => editData('tormented', !props.selectedChar.tormented)
-              }/>
-            <label className="label-burdens__tormented" htmlFor="cb-burdens__tormented">
-              <span>Tormented</span>
-            </label>
+            <div className="cb-container__row height-single width-1-1">
+              <input className="cb-burdens__cursed" type="checkbox" name="cb-burdens__cursed"
+                id="cb-burdens__cursed" checked={props.selectedChar.cursed} onChange={
+                  () => editData('cursed', !props.selectedChar.cursed)
+                } />
+              <label className="label-burdens__cursed" htmlFor="cb-burdens__cursed">
+                <span>Cursed</span>
+              </label>
+              <input className="cb-burdens__tormented" type="checkbox" name="cb-burdens__tormented"
+                id="cb-burdens__tormented" checked={props.selectedChar.tormented} onChange={
+                  () => editData('tormented', !props.selectedChar.tormented)
+                } />
+              <label className="label-burdens__tormented" htmlFor="cb-burdens__tormented">
+                <span>Tormented</span>
+              </label>
+            </div>
           </div>
         </div>
       </>

@@ -1,0 +1,1009 @@
+$font-main: 'Alegreya', serif
+$color-grey_100: hsla(152, 0%, 97%, 1)
+$color-grey_200: hsla(152, 0%, 87%, 1)
+$color-grey_300: hsla(152, 0%, 75%, 1)
+$color-grey_400: hsla(152, 0%, 62%, 1)
+$color-grey_500: hsla(152, 0%, 50%, 1)
+$color-grey_600: hsla(152, 0%, 37%, 1)
+$color-grey_700: hsla(152, 0%, 25%, 1)
+$color-grey_800: hsla(152, 0%, 14%, 1)
+$color-grey_900: hsla(152, 0%, 3%, 1)
+$color-prime_100: hsla(152, 100%, 97%, 1)
+$color-prime_200: hsla(152, 100%, 87%, 1)
+$color-prime_300: hsla(152, 100%, 75%, 1)
+$color-prime_400: hsla(152, 100%, 62%, 1)
+$color-prime_500: hsla(152, 100%, 50%, 1)
+$color-prime_600: hsla(152, 100%, 37%, 1)
+$color-prime_700: hsla(152, 100%, 25%, 1)
+$color-prime_800: hsla(152, 100%, 14%, 1)
+$color-prime_900: hsla(152, 100%, 3%, 1)
+$color-accent1_100: hsla(180, 33%, 84%, 1)
+$color-accent1_200: hsla(182, 33%, 75%, 1)
+$color-accent1_300: hsla(184, 33%, 67%, 1)
+$color-accent1_400: hsla(187, 33%, 59%, 1)
+$color-accent1_500: hsla(190, 33%, 50%, 1)
+$color-accent1_600: hsla(187, 33%, 41%, 1)
+$color-accent1_700: hsla(184, 33%, 33%, 1)
+$color-accent1_800: hsla(182, 33%, 25%, 1)
+$color-accent1_900: hsla(180, 33%, 16%, 1)
+$color-accent2_100: hsla(5, 64%, 78%, 1)
+$color-accent2_200: hsla(5, 64%, 71%, 1)
+$color-accent2_300: hsla(5, 64%, 64%, 1)
+$color-accent2_400: hsla(5, 64%, 57%, 1)
+$color-accent2_500: hsla(5, 64%, 50%, 1)
+$color-accent2_600: hsla(5, 64%, 43%, 1)
+$color-accent2_700: hsla(5, 64%, 36%, 1)
+$color-accent2_800: hsla(5, 64%, 29%, 1)
+$color-accent2_900: hsla(5, 64%, 22%, 1)
+$color-accent3_100: hsla(185, 32%, 72%, 1)
+$color-accent3_200: hsla(185, 25%, 66%, 1)
+$color-accent3_300: hsla(185, 17%, 61%, 1)
+$color-accent3_400: hsla(185, 17%, 55%, 1)
+$color-accent3_500: hsla(185, 17%, 50%, 1)
+$color-accent3_600: hsla(185, 17%, 44%, 1)
+$color-accent3_700: hsla(185, 17%, 39%, 1)
+$color-accent3_800: hsla(185, 25%, 33%, 1)
+$color-accent3_900: hsla(185, 32%, 28%, 1)
+$color-shade: hsla(152, 0%, 3%, 0.8)
+
+=feedback($feedback-width)
+  font-size: 12px
+  color: $color-accent2_800
+  display: flex
+  justify-content: center
+  flex-direction: column
+  border-radius: 4px
+  background-color: $color-accent2_100
+
+  span
+    width: $feedback-width
+
+=contentInput($input-width)
+  border: none
+  background-color: $color-grey_100
+  border-radius: 4px
+  box-shadow: inset 0 2px 2px $color-grey_300, 0 2px 0 $color-grey_200
+  height: 28px
+  width: $input-width
+  cursor: pointer
+
+=flexCenter
+  display: flex
+  justify-content: center
+  align-items: center
+
+@media screen and (min-width: 768px)
+  div.landing
+    &-logo
+      height: 200px
+      width: 200px
+      margin-top: 96px
+
+      &__circle
+        width: 200px
+        height: 200px
+
+      &__head
+        width: 24px
+        height: 18px
+        left: 88px
+        top: 22px
+
+      &__handle
+        width: 24px
+        left: 88px
+        top: 37px
+        border-bottom: 72px solid $color-grey_100
+        border-left: 3px solid $color-prime_800
+        border-right: 3px solid $color-prime_800
+
+      &__guard__left,
+      &__guard__right
+        width: 43.3px
+        height: 13.3px
+        top: 101.3px
+
+      &__guard__left
+        left: 50px
+
+      &__guard__right
+        left: 106.7px
+
+      &__blade
+        height: 80px
+        width: 30px
+        left: 85px
+        top: 120px
+
+      &__shade__left,
+      &__shade__right
+        width: 83.3px
+        height: 83.3px
+        top: 108.3px
+
+      &__shade__left
+        left: 42px
+
+      &__shade__right
+        left: 74.7px
+
+    &-title
+      height: 80px
+      width: 360px
+
+      &__main
+        font-size: 60px
+
+      &__secondary
+        font-size: 24px
+
+    &-action
+      width: 300px
+      margin-top: 96px
+
+      &__userName,
+      &__password,
+      &__forgetPwd,
+      &__login,
+      &__signUpLink
+        width: 300px
+
+      &__userName,
+      &__password
+        font-size: 20px
+
+      &__container
+        button:nth-child(2)
+          margin-top: 48px
+
+      input
+        width: 300px
+        height: 50px
+        font-size: 20px
+
+      .bar
+        width: 300px
+
+      &__userName
+        margin-bottom: 16px
+
+      &__password
+        margin-bottom: 8px
+
+      &__forgetPwd
+        margin-bottom: 32px
+        font-size: 18px
+        margin-left: 20px
+
+      &__login
+        margin-bottom: 24px
+
+      &__feedback
+        @include feedback($feedback-width: 300px)
+        width: 300px
+        font-size: 16px
+
+      button
+        width: 300px
+        height: 70px
+        font-size: 20px
+
+      &__signUpLink
+        font-size: 20px
+
+        .left
+          margin-left: 8px
+          margin-right: 110px
+
+  .signup-container,
+  .forgetPwd-container
+    width: 360px
+    height: 600px
+    margin-top: 96px
+
+  .signup-container
+    &__username,
+    &__email,
+    &__password
+      margin-top: 48px
+
+    &__title
+      font-size: 48px
+      margin-bottom: 32px
+
+    &__left
+      margin: 0 24px 0 0
+      width: 100px
+      font-size: 20px
+      display: flex
+      align-items: center
+
+    &__right
+      .signup__input
+        i
+          right: 4px
+          top: 8px
+          font-size: 24px
+
+      input
+        @include contentInput($input-width: 200px)
+        height: 40px
+        font-size: 18px
+
+    &__feedback
+      @include feedback($feedback-width: 300px)
+      font-size: 16px
+
+    &__submit
+      margin-top: 60px
+
+      button
+        width: 300px
+        height: 70px
+        font-size: 20px
+
+    &__loginLink
+      margin-top: 24px
+      font-size: 20px
+
+  .forgetPwd-container
+    &__title
+      font-size: 48px
+      margin-bottom: 48px
+
+    &__main
+      label
+        font-size: 24px
+
+      input
+        @include contentInput($input-width: 300px)
+        height: 40px
+        font-size: 18px
+
+    &__feedback
+      @include feedback($feedback-width: 300px)
+      font-size: 16px
+
+    &__sent
+      font-size: 16px
+
+      span
+        width: 300px
+
+    &__submit
+      margin-top: 64px
+
+      button
+        width: 300px
+        height: 70px
+        font-size: 20px
+
+    &__loginLink
+      margin-top: 24px
+      font-size: 20px
+
+  .main-page
+    .main-title
+      font-size: 48px
+      margin: 24px  0 24px 0
+
+    .main-menu
+      width: 360px
+      margin-bottom: 16px
+      font-size: 24px
+
+      .bar
+        &:before
+          height: 2px
+
+      &__game
+        margin:0 24px 0 16px
+
+    .main-container
+      width: 360px
+      height: 60vh
+      // overflow-y: hidden
+      border-radius: 20px
+      -ms-overflow-style: none
+      scrollbar-width: none
+
+      &::-webkit-scrollbar
+        display: none
+
+      .sub-title
+        font-size: 28px
+
+      &__game__content__container
+        margin-top: 16px
+
+        .modal-shadow
+          width: 360px
+          height: 60vh
+          top: 162px
+          border-radius: 18px
+
+          .modal-container
+            width: 180px
+            left: 35px
+
+            .modal-header
+              height: 25px
+
+              i
+                font-size: 30px
+                margin-top: 24px
+
+            .modal-action
+              height: 60px
+              display: flex
+              align-items: center
+              justify-content: space-evenly
+
+              button
+                font-size: 18px
+
+                &.confirm
+                  border-top: solid 2px $color-prime_600
+                  border-bottom: solid 2px $color-prime_800
+
+                  &:focus
+                    border-top: solid 1px $color-prime_600
+                    border-bottom: solid 1px $color-prime_800
+
+            &.full
+              height: 180px
+              top: 160px
+
+              .modal-body
+                height: 95px
+
+      &__game__content__newBlock,
+      &__game__content__oldBlock
+        margin: 24px 12px 48px 16px
+        height: 90px
+        width: 90px
+        font-size: 48px
+
+      &__game__content__newBlock
+        border: 3px dashed $color-grey_500
+
+      &__game__content__oldBlock
+        border: 3px solid $color-prime_800
+
+      .game-tag
+        font-size: 18px
+        width: 80px
+        top: 94px
+        height: 48px
+
+      &__newGame
+        &__backLink
+          right: 16px
+          top: 0
+
+          i
+            font-size: 30px
+
+        &__content
+          &__form
+            .divider
+              height: 3px
+              margin: 16px 16px 8px 16px
+
+            .subtitle
+              font-size: 24px
+              margin: 8px 0 8px 16px
+
+            .input__container
+              >div
+                margin: 8px 0 0 0
+
+              &__left
+                margin: 0 0 0 16px
+                width: 120px
+                font-size: 20px
+                padding-top: 4px
+
+              &__right
+                input
+                  width: 204px
+                  height: 40px
+
+                  &[type="text"]
+                    box-shadow: inset 0 2px 2px $color-grey_300, 0 2px 0 $color-grey_200
+                    padding: 0 8px
+                    font-size: 20px
+
+              .newGame__feedback
+                width: 324px
+
+            .stats-input__container
+              .input__container__right
+                width: 204px
+
+                label
+                  font-size: 20px
+                  width: 40px
+                  height: 40px
+                  padding-top: 4px
+
+            .vows-input__container__rank
+              > div
+                margin-top: 4px
+
+              .input__container__right
+                width: 204px
+
+                label
+                  font-size: 18px
+                  width: 150px
+                  height: 80px
+                  padding: 24px 0
+
+            .asset
+              &-input__container
+                &__asset
+                  >div
+                    height: 60px
+                    width: 324px
+                    margin: 0 0 16px 16px
+
+                  .asset-block
+                    &__new
+                      border: 3px dashed $color-grey_500
+
+                      i,
+                      span
+                        margin: 0 0 0 8px
+                        font-size: 20px
+
+                    &__exist
+                      border: 3px solid $color-prime_900
+
+                      &__name
+                        width: 240px
+                        margin: 0 0 0 8px
+                        font-size: 20px
+
+                      &__action
+                        width: 64px
+
+                        i
+                          font-size: 24px
+
+              .newGame__feedback
+                width: 218px
+                margin: 0 0 0 16px
+
+          .newGame__feedback
+            @include feedback($feedback-width: 110px)
+            margin: 8px 0 12px 0
+
+            span
+              padding: 4px
+
+          &__confirm
+            margin-bottom: 48px
+
+            button
+              width: 200px
+              margin: 24px 0 0 70px
+              height: 60px
+              border-top: solid 3px $color-prime_700
+              border-bottom: solid 3px $color-prime_900
+              font-size: 20px
+
+              &:focus
+                border-top: solid 1px $color-prime_700
+                border-bottom: solid 1px $color-prime_900
+
+      .modal-shadow
+        width: 360px
+        height: 60vh
+        top: 162px
+        border-radius: 18px
+
+        .modal-container
+          width: 250px
+          left: 55px
+
+          .modal-header
+            height: 25px
+
+          .modal-body
+            i
+              font-size: 30px
+              margin-top: 24px
+
+          .modal-action
+            height: 60px
+            display: flex
+            align-items: center
+            justify-content: space-evenly
+
+            button
+              font-size: 18px
+
+              &.confirm
+                border-top: solid 2px $color-prime_600
+                border-bottom: solid 2px $color-prime_800
+
+                &:focus
+                  border-top: solid 1px $color-prime_600
+                  border-bottom: solid 1px $color-prime_800
+
+              &.delete
+                border-top: solid 2px $color-accent2_600
+                border-bottom: solid 2px $color-accent2_800
+
+                &:focus
+                  border-top: solid 1px $color-accent2_600
+                  border-bottom: solid 1px $color-accent2_800
+
+              &.cancel
+                border-top: solid 2px $color-grey_500
+                border-bottom: solid 2px $color-grey_700
+
+                &:focus
+                  border-top: solid 1px $color-grey_500
+                  border-bottom: solid 1px $color-grey_700
+
+          &.new,
+          &.edit
+            height: 400px
+            top: 80px
+
+            .modal-body
+              height: 375px
+
+              &__back
+                height: 30px
+
+                i
+                  margin-right: 16px
+
+              &__type
+                padding: 28px 8px
+
+                &__container
+                  width: 50%
+                  height: 50%
+
+                &__button
+                  width: 90px
+                  height: 130px
+                  border: solid 3px $color-prime_800
+
+                  i
+                    font-size: 36px
+
+                  span
+                    font-size: 16px
+
+              &__list
+                height: 255px
+
+                &__container
+                  margin: 4px 0 0 0
+
+                  .list
+                    margin: 8px 16px
+                    border: solid 2px $color-prime_800
+                    height: 40px
+
+                    span
+                      margin-left: 8px
+                      font-size: 18px
+
+              &__detail
+                height: 255px
+
+                &__container
+                  margin: 4px 0 0 0
+
+                  .detail
+                    >div
+                      margin-left: 16px
+                      margin-right: 16px
+
+                    &-name
+                      font-size: 24px
+
+                    &-text,
+                    &-uniqueName,
+                    &-health
+                      margin-top: 12px
+
+                    &-text
+                      font-size: 18px
+
+                    &-uniqueName
+                      input
+                        @include contentInput($input-width: 148px)
+                        padding: 0 8px
+
+                    &-health
+                      &__container
+                        width: 200px
+
+                      &__block
+                        height: 32px
+                        width: 32px
+                        font-size: 24px
+
+                        &.active
+                          border-width: 2px 2px 2px 0
+
+                        &.active:first-child
+                          border-width: 2px
+
+                        &.inactive
+                          border-width: 2px 2px 2px 0
+
+                    &-option
+                      ul
+                        li
+                          .check
+                            width: 20px
+                            padding: 6px
+
+                      &__container
+                        width: 190px
+                        padding: 4px
+
+                        &__name
+                          font-size: 18px
+                          margin-bottom: 8px
+
+                        &__description
+                          font-size: 16px
+
+                        &__option
+                          font-size: 16px
+
+                          div.option-detail
+                            margin-top: 8px
+
+                    .uniqueName__feedback,
+                    .option__feedback,
+                    .duplicate__feedback
+                      @include feedback($feedback-width: 148px)
+                      margin: 8px 0
+
+                      span
+                        padding: 4px
+
+          &.delete
+            height: 180px
+            top: 160px
+
+            .modal-body
+              height: 95px
+
+            button
+              font-size: 18px
+
+      &__character
+        .width-1-1
+          width: 344px
+
+        .width-2-3
+          width: 218px
+
+        .width-1-3
+          width: 110px
+
+        .width-2-4
+          width: 174px
+
+        .width-1-4
+          width: 87px
+
+        .width-3-5
+          width: 202px
+
+        .width-1-5
+          width: 64px
+
+        .label,
+        .bondName
+          font-size: 20px
+
+        .vowName
+          font-size: 20px
+
+        .content
+          font-size: 24px
+
+        .height-half
+          height: 33px
+
+        .height-single
+          height: 55px
+
+        .height-single-half
+          height: 82px
+
+        .height-3-4
+          height: 42px
+
+        .height-double-half
+          height: 165px
+
+        .height-double
+          height: 110px
+
+        .height-vows-container
+          height: 1100px
+
+        .height-vows-single
+          height: 200px
+
+        .height-deb-container
+          height: 420px
+
+        &__name,
+        &__exp,
+        &__status,
+        &__momentum,
+        &__bonds,
+        &__vows,
+        &__debilities,
+        &__assets
+          margin: 12px 8px 8px 8px
+
+        &__name
+          font-size: 30px
+
+          .name-container
+            input
+              @include contentInput($input-width: 180px)
+              height: 40px
+              padding: 0 44px 0 4px
+              font-size: 20px
+              border-radius: 10px
+
+            i
+              font-size: 24px
+
+              &.fa-check-circle
+                right: 54px
+                top: 10px
+
+              &.fa-times-circle
+                right: 24px
+                top: 10px
+
+        &__exp
+          .exp-container
+            button
+              border: solid 2px $color-grey_300
+              padding: 2px 6px
+              font-size: 20px
+
+              &.dec
+                left: 12px
+
+              &.inc
+                right: 12px
+
+        &__5stats,
+        &__status,
+        &__momentum
+          >div
+            margin: 0 4px
+
+        &__5stats
+          .stats5-container
+            button
+              border: solid 2px $color-grey_300
+              padding: 2px 6px
+              font-size: 20px
+
+              &.dec
+                left: -3px
+
+              &.inc
+                right: -3px
+
+        &__status
+          .status-container
+            button
+              border: solid 2px $color-grey_300
+              padding: 2px 6px
+              font-size: 20px
+
+              &.dec
+                left: 12px
+
+              &.inc
+                right: 12px
+
+        &__momentum
+          .momentum-container
+            button
+              border: solid 2px $color-grey_300
+              padding: 2px 6px
+              font-size: 20px
+
+              &.dec
+                left: 12px
+
+              &.inc
+                right: 12px
+
+        &__bonds
+          .title
+            font-size: 24px
+
+          .score
+            font-size: 20px
+
+          .expand
+            font-size: 24px
+
+          .counter
+            &-block
+              height: 36px
+              width: 36px
+              border: solid 2px $color-prime_900
+
+              &__square
+                height: 43%
+                width: 43%
+
+        &__vows
+          .title,
+          .expand
+            font-size: 24px
+
+          .score
+            font-size: 20px
+
+          .vow
+            margin-top: 12px
+
+            .name
+              font-size: 20px
+
+            .vowRank
+              font-size: 16px
+
+            .counter
+              &-block
+                height: 36px
+                width: 36px
+                border: solid 2px $color-prime_900
+
+                &__square
+                  height: 43%
+                  width: 43%
+
+            .action
+              height: 40px
+
+              button
+                border-top: solid 2px $color-accent2_600
+                border-bottom: solid 2px $color-accent2_800
+                font-size: 18px
+
+                &:focus
+                  border-top: solid 1px $color-accent2_600
+                  border-bottom: solid 1px $color-accent2_800
+
+            .new
+              border: 3px dashed $color-grey_500
+
+              i,
+              span
+                margin: 0 0 0 8px
+                font-size: 20px
+
+            .new_2
+              border: 3px dashed $color-grey_500
+
+              .input__name
+                i,
+                span
+                  margin: 0 0 0 8px
+                  font-size: 20px
+
+                input
+                  @include contentInput($input-width: 220px)
+                  padding: 0 12px 0 12px
+                  font-size: 20px
+                  height: 40px
+
+                  &.empty
+                    border: solid 3px $color-accent2_600
+
+              .input__rank
+                border: solid 2px $color-grey_300
+                width: 220px
+                font-size: 20px
+
+                &__container
+                  height: 40px
+                  @include flexCenter
+
+                  .rank__dropdown
+                    border: solid 2px $color-grey_300
+                    height: 40px
+                    @include flexCenter
+
+                    &:nth-child(2)
+                      top: 40px
+
+                    &:nth-child(3)
+                      top: 80px
+
+                    &:nth-child(4)
+                      top: 120px
+
+                    &:nth-child(5)
+                      top: 160px
+
+              .input__confirm
+                width: 220px
+
+                button
+                  font-size: 20px
+                  width: 80px
+                  height: 40px
+
+                  &.vowButton
+                    &__create
+                      border-top: solid 2px $color-prime_600
+                      border-bottom: solid 2px $color-prime_800
+
+                      &:focus
+                        border-top: solid 1px $color-prime_600
+                        border-bottom: solid 1px $color-prime_800
+
+                    &__cancel
+                      background-color: $color-accent2_700
+                      border-top: solid 2px $color-accent2_600
+                      border-bottom: solid 2px $color-accent2_800
+
+                      &:focus
+                        border-top: solid 1px $color-accent2_600
+                        border-bottom: solid 1px $color-accent2_800
+
+        &__debilities
+          .title
+            font-size: 24px
+
+          .title-s
+            font-size: 14px
+            padding-left: 12px
+
+          .expand
+            font-size: 24px
+
+          .score
+            font-size: 20px
+
+          .title-s
+            font-size: 20px
+
+          .cb-container
+            label
+              font-size: 18px
+              width: 110px
+              height: 45px
+              padding-top: 6px
+              border: 1px solid $color-prime_300
+
+            input:checked + label
+              font-weight: 500
+
+        &__actions
+          margin: 12px 8px 16px 8px
+
+          >div
+            width: 120px
+            font-size: 24px
+
+      &__resource
+        padding: 24px
+        font-size: 20px
