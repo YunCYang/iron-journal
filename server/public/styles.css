@@ -509,7 +509,6 @@ div.landing-action__signUpLink .right {
   position: fixed;
   height: 70vh;
   width: 210px;
-  background-color: rgba(8, 8, 8, 0.8);
   top: 91px;
   z-index: 2;
   border-radius: 3px;
@@ -888,7 +887,6 @@ div.landing-action__signUpLink .right {
   position: fixed;
   height: 70vh;
   width: 210px;
-  background-color: rgba(8, 8, 8, 0.8);
   top: 91px;
   z-index: 2;
   border-radius: 3px;
