@@ -415,20 +415,22 @@ const NewCharacter = props => {
               </div>
               <div className="character-input__container input__container">
                 <div className="character-input__container__name">
-                  <div className="input__container__left">
-                    <span>Name</span>
-                  </div>
-                  <div className="input__container__right">
-                    <input type="text" name="characterName" id="input-characterName" required
-                      maxLength={32} onChange={
-                        e => {
-                          setNameState(e.target.value);
-                          inputFeedbackHandler('character-feedback__empty', 'input-characterName');
-                        }
-                      } value={nameState}/>
-                    <div className="newGame__feedback">
-                      <span id='character-feedback__empty' className="empty hide">Character name is required.</span>
+                  <div className="input__container__row">
+                    <div className="input__container__left">
+                      <span>Name</span>
                     </div>
+                    <div className="input__container__right">
+                      <input type="text" name="characterName" id="input-characterName" required
+                        maxLength={32} onChange={
+                          e => {
+                            setNameState(e.target.value);
+                            inputFeedbackHandler('character-feedback__empty', 'input-characterName');
+                          }
+                        } value={nameState} />
+                    </div>
+                  </div>
+                  <div className="newGame__feedback">
+                    <span id='character-feedback__empty' className="empty hide">Character name is required.</span>
                   </div>
                 </div>
               </div>
@@ -440,278 +442,288 @@ const NewCharacter = props => {
               </div>
               <div className="stats-input__container input__container">
                 <div className="stats-input__container__edge">
-                  <div className="input__container__left">
-                    <span>Edge</span>
-                  </div>
-                  <div className="input__container__right">
-                    <input className="radio-stat__edge" type="radio" name="stat__edge-radio" id="radio-stat__edge__1"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setStatState({
-                              ...statState,
-                              edge: 1
-                            });
-                          }
-                          inputFeedbackHandler('statsEdge-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-stat__edge" htmlFor="radio-stat__edge__1">
-                      <span>1</span>
-                    </label>
-                    <input className="radio-stat__edge" type="radio" name="stat__edge-radio" id="radio-stat__edge__2"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setStatState({
-                              ...statState,
-                              edge: 2
-                            });
-                          }
-                          inputFeedbackHandler('statsEdge-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-stat__edge" htmlFor="radio-stat__edge__2">
-                      <span>2</span>
-                    </label>
-                    <input className="radio-stat__edge" type="radio" name="stat__edge-radio" id="radio-stat__edge__3"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setStatState({
-                              ...statState,
-                              edge: 3
-                            });
-                          }
-                          inputFeedbackHandler('statsEdge-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-stat__edge" htmlFor="radio-stat__edge__3">
-                      <span>3</span>
-                    </label>
-                    <div className="newGame__feedback">
-                      <span id='statsEdge-feedback__empty' className="empty hide">Stat for Edge is required.</span>
+                  <div className="input__container__row">
+                    <div className="input__container__left">
+                      <span>Edge</span>
                     </div>
+                    <div className="input__container__right">
+                      <input className="radio-stat__edge" type="radio" name="stat__edge-radio" id="radio-stat__edge__1"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setStatState({
+                                ...statState,
+                                edge: 1
+                              });
+                            }
+                            inputFeedbackHandler('statsEdge-feedback__empty');
+                          }
+                        } />
+                      <label className="label-stat__edge" htmlFor="radio-stat__edge__1">
+                        <span>1</span>
+                      </label>
+                      <input className="radio-stat__edge" type="radio" name="stat__edge-radio" id="radio-stat__edge__2"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setStatState({
+                                ...statState,
+                                edge: 2
+                              });
+                            }
+                            inputFeedbackHandler('statsEdge-feedback__empty');
+                          }
+                        } />
+                      <label className="label-stat__edge" htmlFor="radio-stat__edge__2">
+                        <span>2</span>
+                      </label>
+                      <input className="radio-stat__edge" type="radio" name="stat__edge-radio" id="radio-stat__edge__3"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setStatState({
+                                ...statState,
+                                edge: 3
+                              });
+                            }
+                            inputFeedbackHandler('statsEdge-feedback__empty');
+                          }
+                        } />
+                      <label className="label-stat__edge" htmlFor="radio-stat__edge__3">
+                        <span>3</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="newGame__feedback">
+                    <span id='statsEdge-feedback__empty' className="empty hide">Stat for Edge is required.</span>
                   </div>
                 </div>
                 <div className="stats-input__container__heart">
-                  <div className="input__container__left">
-                    <span>Heart</span>
-                  </div>
-                  <div className="input__container__right">
-                    <input className="radio-stat__heart" type="radio" name="stat__heart-radio" id="radio-stat__heart__1"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setStatState({
-                              ...statState,
-                              heart: 1
-                            });
-                          }
-                          inputFeedbackHandler('statsHeart-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-stat__heart" htmlFor="radio-stat__heart__1">
-                      <span>1</span>
-                    </label>
-                    <input className="radio-stat__heart" type="radio" name="stat__heart-radio" id="radio-stat__heart__2"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setStatState({
-                              ...statState,
-                              heart: 2
-                            });
-                          }
-                          inputFeedbackHandler('statsHeart-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-stat__heart" htmlFor="radio-stat__heart__2">
-                      <span>2</span>
-                    </label>
-                    <input className="radio-stat__heart" type="radio" name="stat__heart-radio" id="radio-stat__heart__3"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setStatState({
-                              ...statState,
-                              heart: 3
-                            });
-                          }
-                          inputFeedbackHandler('statsHeart-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-stat__heart" htmlFor="radio-stat__heart__3">
-                      <span>3</span>
-                    </label>
-                    <div className="newGame__feedback">
-                      <span id='statsHeart-feedback__empty' className="empty hide">Stat for Heart is required.</span>
+                  <div className="input__container__row">
+                    <div className="input__container__left">
+                      <span>Heart</span>
                     </div>
+                    <div className="input__container__right">
+                      <input className="radio-stat__heart" type="radio" name="stat__heart-radio" id="radio-stat__heart__1"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setStatState({
+                                ...statState,
+                                heart: 1
+                              });
+                            }
+                            inputFeedbackHandler('statsHeart-feedback__empty');
+                          }
+                        } />
+                      <label className="label-stat__heart" htmlFor="radio-stat__heart__1">
+                        <span>1</span>
+                      </label>
+                      <input className="radio-stat__heart" type="radio" name="stat__heart-radio" id="radio-stat__heart__2"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setStatState({
+                                ...statState,
+                                heart: 2
+                              });
+                            }
+                            inputFeedbackHandler('statsHeart-feedback__empty');
+                          }
+                        } />
+                      <label className="label-stat__heart" htmlFor="radio-stat__heart__2">
+                        <span>2</span>
+                      </label>
+                      <input className="radio-stat__heart" type="radio" name="stat__heart-radio" id="radio-stat__heart__3"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setStatState({
+                                ...statState,
+                                heart: 3
+                              });
+                            }
+                            inputFeedbackHandler('statsHeart-feedback__empty');
+                          }
+                        } />
+                      <label className="label-stat__heart" htmlFor="radio-stat__heart__3">
+                        <span>3</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="newGame__feedback">
+                    <span id='statsHeart-feedback__empty' className="empty hide">Stat for Heart is required.</span>
                   </div>
                 </div>
                 <div className="stats-input__container__iron">
-                  <div className="input__container__left">
-                    <span>Iron</span>
-                  </div>
-                  <div className="input__container__right">
-                    <input className="radio-stat__iron" type="radio" name="stat__iron-radio" id="radio-stat__iron__1"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setStatState({
-                              ...statState,
-                              iron: 1
-                            });
-                          }
-                          inputFeedbackHandler('statsHeart-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-stat__iron" htmlFor="radio-stat__iron__1">
-                      <span>1</span>
-                    </label>
-                    <input className="radio-stat__iron" type="radio" name="stat__iron-radio" id="radio-stat__iron__2"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setStatState({
-                              ...statState,
-                              iron: 2
-                            });
-                          }
-                          inputFeedbackHandler('statsHeart-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-stat__iron" htmlFor="radio-stat__iron__2">
-                      <span>2</span>
-                    </label>
-                    <input className="radio-stat__iron" type="radio" name="stat__iron-radio" id="radio-stat__iron__3"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setStatState({
-                              ...statState,
-                              iron: 3
-                            });
-                          }
-                          inputFeedbackHandler('statsHeart-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-stat__iron" htmlFor="radio-stat__iron__3">
-                      <span>3</span>
-                    </label>
-                    <div className="newGame__feedback">
-                      <span id='statsIron-feedback__empty' className="empty hide">Stat for Iron is required.</span>
+                  <div className="input__container__row">
+                    <div className="input__container__left">
+                      <span>Iron</span>
                     </div>
+                    <div className="input__container__right">
+                      <input className="radio-stat__iron" type="radio" name="stat__iron-radio" id="radio-stat__iron__1"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setStatState({
+                                ...statState,
+                                iron: 1
+                              });
+                            }
+                            inputFeedbackHandler('statsHeart-feedback__empty');
+                          }
+                        } />
+                      <label className="label-stat__iron" htmlFor="radio-stat__iron__1">
+                        <span>1</span>
+                      </label>
+                      <input className="radio-stat__iron" type="radio" name="stat__iron-radio" id="radio-stat__iron__2"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setStatState({
+                                ...statState,
+                                iron: 2
+                              });
+                            }
+                            inputFeedbackHandler('statsHeart-feedback__empty');
+                          }
+                        } />
+                      <label className="label-stat__iron" htmlFor="radio-stat__iron__2">
+                        <span>2</span>
+                      </label>
+                      <input className="radio-stat__iron" type="radio" name="stat__iron-radio" id="radio-stat__iron__3"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setStatState({
+                                ...statState,
+                                iron: 3
+                              });
+                            }
+                            inputFeedbackHandler('statsHeart-feedback__empty');
+                          }
+                        } />
+                      <label className="label-stat__iron" htmlFor="radio-stat__iron__3">
+                        <span>3</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="newGame__feedback">
+                    <span id='statsIron-feedback__empty' className="empty hide">Stat for Iron is required.</span>
                   </div>
                 </div>
                 <div className="stats-input__container__shadow">
-                  <div className="input__container__left">
-                    <span>Shadow</span>
-                  </div>
-                  <div className="input__container__right">
-                    <input className="radio-stat__shadow" type="radio" name="stat__shadow-radio" id="radio-stat__shadow__1"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setStatState({
-                              ...statState,
-                              shadow: 1
-                            });
-                          }
-                          inputFeedbackHandler('statsHeart-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-stat__shadow" htmlFor="radio-stat__shadow__1">
-                      <span>1</span>
-                    </label>
-                    <input className="radio-stat__shadow" type="radio" name="stat__shadow-radio" id="radio-stat__shadow__2"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setStatState({
-                              ...statState,
-                              shadow: 2
-                            });
-                          }
-                          inputFeedbackHandler('statsHeart-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-stat__shadow" htmlFor="radio-stat__shadow__2">
-                      <span>2</span>
-                    </label>
-                    <input className="radio-stat__shadow" type="radio" name="stat__shadow-radio" id="radio-stat__shadow__3"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setStatState({
-                              ...statState,
-                              shadow: 3
-                            });
-                          }
-                          inputFeedbackHandler('statsHeart-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-stat__shadow" htmlFor="radio-stat__shadow__3">
-                      <span>3</span>
-                    </label>
-                    <div className="newGame__feedback">
-                      <span id='statsShadow-feedback__empty' className="empty hide">Stat for Shadow is required.</span>
+                  <div className="input__container__row">
+                    <div className="input__container__left">
+                      <span>Shadow</span>
                     </div>
+                    <div className="input__container__right">
+                      <input className="radio-stat__shadow" type="radio" name="stat__shadow-radio" id="radio-stat__shadow__1"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setStatState({
+                                ...statState,
+                                shadow: 1
+                              });
+                            }
+                            inputFeedbackHandler('statsHeart-feedback__empty');
+                          }
+                        } />
+                      <label className="label-stat__shadow" htmlFor="radio-stat__shadow__1">
+                        <span>1</span>
+                      </label>
+                      <input className="radio-stat__shadow" type="radio" name="stat__shadow-radio" id="radio-stat__shadow__2"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setStatState({
+                                ...statState,
+                                shadow: 2
+                              });
+                            }
+                            inputFeedbackHandler('statsHeart-feedback__empty');
+                          }
+                        } />
+                      <label className="label-stat__shadow" htmlFor="radio-stat__shadow__2">
+                        <span>2</span>
+                      </label>
+                      <input className="radio-stat__shadow" type="radio" name="stat__shadow-radio" id="radio-stat__shadow__3"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setStatState({
+                                ...statState,
+                                shadow: 3
+                              });
+                            }
+                            inputFeedbackHandler('statsHeart-feedback__empty');
+                          }
+                        } />
+                      <label className="label-stat__shadow" htmlFor="radio-stat__shadow__3">
+                        <span>3</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="newGame__feedback">
+                    <span id='statsShadow-feedback__empty' className="empty hide">Stat for Shadow is required.</span>
                   </div>
                 </div>
                 <div className="stats-input__container__wits">
-                  <div className="input__container__left">
-                    <span>Wits</span>
-                  </div>
-                  <div className="input__container__right">
-                    <input className="radio-stat__wits" type="radio" name="stat__wits-radio" id="radio-stat__wits__1"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setStatState({
-                              ...statState,
-                              wits: 1
-                            });
-                          }
-                          inputFeedbackHandler('statsHeart-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-stat__wits" htmlFor="radio-stat__wits__1">
-                      <span>1</span>
-                    </label>
-                    <input className="radio-stat__wits" type="radio" name="stat__wits-radio" id="radio-stat__wits__2"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setStatState({
-                              ...statState,
-                              wits: 2
-                            });
-                          }
-                          inputFeedbackHandler('statsHeart-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-stat__wits" htmlFor="radio-stat__wits__2">
-                      <span>2</span>
-                    </label>
-                    <input className="radio-stat__wits" type="radio" name="stat__wits-radio" id="radio-stat__wits__3"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setStatState({
-                              ...statState,
-                              wits: 3
-                            });
-                          }
-                          inputFeedbackHandler('statsHeart-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-stat__wits" htmlFor="radio-stat__wits__3">
-                      <span>3</span>
-                    </label>
-                    <div className="newGame__feedback">
-                      <span id='statsWits-feedback__empty' className="empty hide">Stat for Wits is required.</span>
+                  <div className="input__container__row">
+                    <div className="input__container__left">
+                      <span>Wits</span>
                     </div>
+                    <div className="input__container__right">
+                      <input className="radio-stat__wits" type="radio" name="stat__wits-radio" id="radio-stat__wits__1"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setStatState({
+                                ...statState,
+                                wits: 1
+                              });
+                            }
+                            inputFeedbackHandler('statsHeart-feedback__empty');
+                          }
+                        } />
+                      <label className="label-stat__wits" htmlFor="radio-stat__wits__1">
+                        <span>1</span>
+                      </label>
+                      <input className="radio-stat__wits" type="radio" name="stat__wits-radio" id="radio-stat__wits__2"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setStatState({
+                                ...statState,
+                                wits: 2
+                              });
+                            }
+                            inputFeedbackHandler('statsHeart-feedback__empty');
+                          }
+                        } />
+                      <label className="label-stat__wits" htmlFor="radio-stat__wits__2">
+                        <span>2</span>
+                      </label>
+                      <input className="radio-stat__wits" type="radio" name="stat__wits-radio" id="radio-stat__wits__3"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setStatState({
+                                ...statState,
+                                wits: 3
+                              });
+                            }
+                            inputFeedbackHandler('statsHeart-feedback__empty');
+                          }
+                        } />
+                      <label className="label-stat__wits" htmlFor="radio-stat__wits__3">
+                        <span>3</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="newGame__feedback">
+                    <span id='statsWits-feedback__empty' className="empty hide">Stat for Wits is required.</span>
                   </div>
                 </div>
               </div>
@@ -723,51 +735,57 @@ const NewCharacter = props => {
               </div>
               <div className="bonds-input__container input__container">
                 <div className="bonds-input__container__name">
-                  <div className="input__container__left">
-                    <span>1st Bond</span>
-                  </div>
-                  <div className="input__container__right">
-                    <input type="text" name="bondName1" id="input-bondName1"
-                      maxLength={32} onChange={
-                        e => {
-                          setBondState({
-                            ...bondState,
-                            bond1: e.target.value
-                          });
-                        }
-                      } value={bondState.bond1}/>
-                  </div>
-                </div>
-                <div className="bonds-input__container__name">
-                  <div className="input__container__left">
-                    <span>2nd Bond</span>
-                  </div>
-                  <div className="input__container__right">
-                    <input type="text" name="bondName2" id="input-bondName2"
-                      maxLength={32} onChange={
-                        e => {
-                          setBondState({
-                            ...bondState,
-                            bond2: e.target.value
-                          });
-                        }
-                      } value={bondState.bond2}/>
+                  <div className="input__container__row">
+                    <div className="input__container__left">
+                      <span>1st Bond</span>
+                    </div>
+                    <div className="input__container__right">
+                      <input type="text" name="bondName1" id="input-bondName1"
+                        maxLength={32} onChange={
+                          e => {
+                            setBondState({
+                              ...bondState,
+                              bond1: e.target.value
+                            });
+                          }
+                        } value={bondState.bond1} />
+                    </div>
                   </div>
                 </div>
                 <div className="bonds-input__container__name">
-                  <div className="input__container__left">
-                    <span>3rd Bond</span>
+                  <div className="input__container__row">
+                    <div className="input__container__left">
+                      <span>2nd Bond</span>
+                    </div>
+                    <div className="input__container__right">
+                      <input type="text" name="bondName2" id="input-bondName2"
+                        maxLength={32} onChange={
+                          e => {
+                            setBondState({
+                              ...bondState,
+                              bond2: e.target.value
+                            });
+                          }
+                        } value={bondState.bond2} />
+                    </div>
                   </div>
-                  <div className="input__container__right">
-                    <input type="text" name="bondName3" id="input-bondName3"
-                      maxLength={32} onChange={
-                        e => {
-                          setBondState({
-                            ...bondState,
-                            bond3: e.target.value
-                          });
-                        }
-                      } value={bondState.bond3}/>
+                </div>
+                <div className="bonds-input__container__name">
+                  <div className="input__container__row">
+                    <div className="input__container__left">
+                      <span>3rd Bond</span>
+                    </div>
+                    <div className="input__container__right">
+                      <input type="text" name="bondName3" id="input-bondName3"
+                        maxLength={32} onChange={
+                          e => {
+                            setBondState({
+                              ...bondState,
+                              bond3: e.target.value
+                            });
+                          }
+                        } value={bondState.bond3} />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -779,213 +797,221 @@ const NewCharacter = props => {
               </div>
               <div className="vows-input__container input__container">
                 <div className="vows-input__container__name">
-                  <div className="input__container__left">
-                    <span>1st Vow</span>
-                  </div>
-                  <div className="input__container__right">
-                    <input type="text" name="vowName1" id="input-vowName1" required
-                      maxLength={32} onChange={
-                        e => {
-                          setVowState({
-                            ...vowState,
-                            vow1Name: e.target.value
-                          });
-                          inputFeedbackHandler('vowName1-feedback__empty', 'input-vowName1');
-                        }
-                      } value={vowState.vow1Name}/>
-                    <div className="newGame__feedback">
-                      <span id='vowName1-feedback__empty' className="empty hide">1st vow name is required.</span>
+                  <div className="input__container__row">
+                    <div className="input__container__left">
+                      <span>1st Vow</span>
                     </div>
+                    <div className="input__container__right">
+                      <input type="text" name="vowName1" id="input-vowName1" required
+                        maxLength={32} onChange={
+                          e => {
+                            setVowState({
+                              ...vowState,
+                              vow1Name: e.target.value
+                            });
+                            inputFeedbackHandler('vowName1-feedback__empty', 'input-vowName1');
+                          }
+                        } value={vowState.vow1Name} />
+                    </div>
+                  </div>
+                  <div className="newGame__feedback">
+                    <span id='vowName1-feedback__empty' className="empty hide">1st vow name is required.</span>
                   </div>
                 </div>
                 <div className="vows-input__container__rank">
-                  <div className="input__container__left">
-                    <span>Rank</span>
-                  </div>
-                  <div className="input__container__right">
-                    <input className="radio-vow1" type="radio" name="rank1-radio" id="radio-rank__troublesome__1"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setVowState({
-                              ...vowState,
-                              vow1Rank: 1
-                            });
-                          }
-                          inputFeedbackHandler('vowRank1-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-vow1" htmlFor="radio-rank__troublesome__1">
-                      <span>Troublesome</span>
-                    </label>
-                    <input className="radio-vow1" type="radio" name="rank1-radio" id="radio-rank__dangerous__1"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setVowState({
-                              ...vowState,
-                              vow1Rank: 2
-                            });
-                          }
-                          inputFeedbackHandler('vowRank1-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-vow1" htmlFor="radio-rank__dangerous__1">
-                      <span>Dangerous</span>
-                    </label>
-                    <input className="radio-vow1" type="radio" name="rank1-radio" id="radio-rank__formidable__1"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setVowState({
-                              ...vowState,
-                              vow1Rank: 3
-                            });
-                          }
-                          inputFeedbackHandler('vowRank1-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-vow1" htmlFor="radio-rank__formidable__1">
-                      <span>Formidable</span>
-                    </label>
-                    <input className="radio-vow1" type="radio" name="rank1-radio" id="radio-rank__extreme__1"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setVowState({
-                              ...vowState,
-                              vow1Rank: 4
-                            });
-                          }
-                          inputFeedbackHandler('vowRank1-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-vow1" htmlFor="radio-rank__extreme__1">
-                      <span>Extreme</span>
-                    </label>
-                    <input className="radio-vow1" type="radio" name="rank1-radio" id="radio-rank__epic__1"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setVowState({
-                              ...vowState,
-                              vow1Rank: 5
-                            });
-                          }
-                          inputFeedbackHandler('vowRank1-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-vow1" htmlFor="radio-rank__epic__1">
-                      <span>Epic</span>
-                    </label>
-                    <div className="newGame__feedback">
-                      <span id='vowRank1-feedback__empty' className="empty hide">Rank for the 1st vow is required.</span>
+                  <div className="input__container__row">
+                    <div className="input__container__left">
+                      <span>Rank</span>
                     </div>
+                    <div className="input__container__right">
+                      <input className="radio-vow1" type="radio" name="rank1-radio" id="radio-rank__troublesome__1"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setVowState({
+                                ...vowState,
+                                vow1Rank: 1
+                              });
+                            }
+                            inputFeedbackHandler('vowRank1-feedback__empty');
+                          }
+                        } />
+                      <label className="label-vow1" htmlFor="radio-rank__troublesome__1">
+                        <span>Troublesome</span>
+                      </label>
+                      <input className="radio-vow1" type="radio" name="rank1-radio" id="radio-rank__dangerous__1"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setVowState({
+                                ...vowState,
+                                vow1Rank: 2
+                              });
+                            }
+                            inputFeedbackHandler('vowRank1-feedback__empty');
+                          }
+                        } />
+                      <label className="label-vow1" htmlFor="radio-rank__dangerous__1">
+                        <span>Dangerous</span>
+                      </label>
+                      <input className="radio-vow1" type="radio" name="rank1-radio" id="radio-rank__formidable__1"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setVowState({
+                                ...vowState,
+                                vow1Rank: 3
+                              });
+                            }
+                            inputFeedbackHandler('vowRank1-feedback__empty');
+                          }
+                        } />
+                      <label className="label-vow1" htmlFor="radio-rank__formidable__1">
+                        <span>Formidable</span>
+                      </label>
+                      <input className="radio-vow1" type="radio" name="rank1-radio" id="radio-rank__extreme__1"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setVowState({
+                                ...vowState,
+                                vow1Rank: 4
+                              });
+                            }
+                            inputFeedbackHandler('vowRank1-feedback__empty');
+                          }
+                        } />
+                      <label className="label-vow1" htmlFor="radio-rank__extreme__1">
+                        <span>Extreme</span>
+                      </label>
+                      <input className="radio-vow1" type="radio" name="rank1-radio" id="radio-rank__epic__1"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setVowState({
+                                ...vowState,
+                                vow1Rank: 5
+                              });
+                            }
+                            inputFeedbackHandler('vowRank1-feedback__empty');
+                          }
+                        } />
+                      <label className="label-vow1" htmlFor="radio-rank__epic__1">
+                        <span>Epic</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="newGame__feedback">
+                    <span id='vowRank1-feedback__empty' className="empty hide">Rank for the 1st vow is required.</span>
                   </div>
                 </div>
                 <div className="vows-input__container__name">
-                  <div className="input__container__left">
-                    <span>2nd Vow</span>
-                  </div>
-                  <div className="input__container__right">
-                    <input type="text" name="vowName2" id="input-vowName2" required
-                      maxLength={32} onChange={
-                        e => {
-                          setVowState({
-                            ...vowState,
-                            vow2Name: e.target.value
-                          });
-                          inputFeedbackHandler('vowName2-feedback__empty', 'input-vowName2');
-                        }
-                      } value={vowState.vow2Name}/>
-                    <div className="newGame__feedback">
-                      <span id='vowName2-feedback__empty' className="empty hide">2nd vow name is required.</span>
+                  <div className="input__container__row">
+                    <div className="input__container__left">
+                      <span>2nd Vow</span>
                     </div>
+                    <div className="input__container__right">
+                      <input type="text" name="vowName2" id="input-vowName2" required
+                        maxLength={32} onChange={
+                          e => {
+                            setVowState({
+                              ...vowState,
+                              vow2Name: e.target.value
+                            });
+                            inputFeedbackHandler('vowName2-feedback__empty', 'input-vowName2');
+                          }
+                        } value={vowState.vow2Name} />
+                    </div>
+                  </div>
+                  <div className="newGame__feedback">
+                    <span id='vowName2-feedback__empty' className="empty hide">2nd vow name is required.</span>
                   </div>
                 </div>
                 <div className="vows-input__container__rank">
-                  <div className="input__container__left">
-                    <span>Rank</span>
-                  </div>
-                  <div className="input__container__right">
-                    <input className="radio-vow2" type="radio" name="rank2-radio" id="radio-rank__troublesome__2"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setVowState({
-                              ...vowState,
-                              vow2Rank: 1
-                            });
-                          }
-                          inputFeedbackHandler('vowRank2-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-vow2" htmlFor="radio-rank__troublesome__2">
-                      <span>Troublesome</span>
-                    </label>
-                    <input className="radio-vow2" type="radio" name="rank2-radio" id="radio-rank__dangerous__2"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setVowState({
-                              ...vowState,
-                              vow2Rank: 2
-                            });
-                          }
-                          inputFeedbackHandler('vowRank2-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-vow2" htmlFor="radio-rank__dangerous__2">
-                      <span>Dangerous</span>
-                    </label>
-                    <input className="radio-vow2" type="radio" name="rank2-radio" id="radio-rank__formidable__2"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setVowState({
-                              ...vowState,
-                              vow2Rank: 3
-                            });
-                          }
-                          inputFeedbackHandler('vowRank2-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-vow2" htmlFor="radio-rank__formidable__2">
-                      <span>Formidable</span>
-                    </label>
-                    <input className="radio-vow2" type="radio" name="rank2-radio" id="radio-rank__extreme__2"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setVowState({
-                              ...vowState,
-                              vow2Rank: 4
-                            });
-                          }
-                          inputFeedbackHandler('vowRank2-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-vow2" htmlFor="radio-rank__extreme__2">
-                      <span>Extreme</span>
-                    </label>
-                    <input className="radio-vow2" type="radio" name="rank2-radio" id="radio-rank__epic__2"
-                      onChange={
-                        e => {
-                          if (e.target.value === 'on') {
-                            setVowState({
-                              ...vowState,
-                              vow2Rank: 5
-                            });
-                          }
-                          inputFeedbackHandler('vowRank2-feedback__empty');
-                        }
-                      }/>
-                    <label className="label-vow2" htmlFor="radio-rank__epic__2">
-                      <span>Epic</span>
-                    </label>
-                    <div className="newGame__feedback">
-                      <span id='vowRank2-feedback__empty' className="empty hide">Rank for the 2nd vow is required.</span>
+                  <div className="input__container__row">
+                    <div className="input__container__left">
+                      <span>Rank</span>
                     </div>
+                    <div className="input__container__right">
+                      <input className="radio-vow2" type="radio" name="rank2-radio" id="radio-rank__troublesome__2"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setVowState({
+                                ...vowState,
+                                vow2Rank: 1
+                              });
+                            }
+                            inputFeedbackHandler('vowRank2-feedback__empty');
+                          }
+                        } />
+                      <label className="label-vow2" htmlFor="radio-rank__troublesome__2">
+                        <span>Troublesome</span>
+                      </label>
+                      <input className="radio-vow2" type="radio" name="rank2-radio" id="radio-rank__dangerous__2"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setVowState({
+                                ...vowState,
+                                vow2Rank: 2
+                              });
+                            }
+                            inputFeedbackHandler('vowRank2-feedback__empty');
+                          }
+                        } />
+                      <label className="label-vow2" htmlFor="radio-rank__dangerous__2">
+                        <span>Dangerous</span>
+                      </label>
+                      <input className="radio-vow2" type="radio" name="rank2-radio" id="radio-rank__formidable__2"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setVowState({
+                                ...vowState,
+                                vow2Rank: 3
+                              });
+                            }
+                            inputFeedbackHandler('vowRank2-feedback__empty');
+                          }
+                        } />
+                      <label className="label-vow2" htmlFor="radio-rank__formidable__2">
+                        <span>Formidable</span>
+                      </label>
+                      <input className="radio-vow2" type="radio" name="rank2-radio" id="radio-rank__extreme__2"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setVowState({
+                                ...vowState,
+                                vow2Rank: 4
+                              });
+                            }
+                            inputFeedbackHandler('vowRank2-feedback__empty');
+                          }
+                        } />
+                      <label className="label-vow2" htmlFor="radio-rank__extreme__2">
+                        <span>Extreme</span>
+                      </label>
+                      <input className="radio-vow2" type="radio" name="rank2-radio" id="radio-rank__epic__2"
+                        onChange={
+                          e => {
+                            if (e.target.value === 'on') {
+                              setVowState({
+                                ...vowState,
+                                vow2Rank: 5
+                              });
+                            }
+                            inputFeedbackHandler('vowRank2-feedback__empty');
+                          }
+                        } />
+                      <label className="label-vow2" htmlFor="radio-rank__epic__2">
+                        <span>Epic</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="newGame__feedback">
+                    <span id='vowRank2-feedback__empty' className="empty hide">Rank for the 2nd vow is required.</span>
                   </div>
                 </div>
               </div>

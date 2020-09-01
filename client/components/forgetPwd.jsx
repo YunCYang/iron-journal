@@ -51,7 +51,7 @@ const ForgetPwd = () => {
       </div>
       <form noValidate onSubmit={submitHandler}>
         <div className="forgetPwd-container__main">
-          <label htmlFor="email">Send a Email to Reset Password</label>
+          <label htmlFor="email">Send a email to reset password</label>
           <input type="email" id='email' name='email' required
             placeholder="Email address" onChange={
               e => setEmail(e.target.value)
@@ -73,10 +73,10 @@ const ForgetPwd = () => {
           </div>
         </div>
         <div className='forgetPwd-container__submit'>
-          <button type='submit'>Send Reset Email</button>
+          <button type='submit'>Send reset email</button>
         </div>
         <div className="forgetPwd-container__loginLink">
-          <Link to='/'>Back to Log In</Link>
+          <Link to='/'>Back to log in</Link>
         </div>
       </form>
     </div>
